@@ -1,0 +1,153 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 21 ottobre 2025};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{21/10/2025}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{3cm}|p{8cm}|M{1.8cm}|}
+  \hline
+  \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} \\
+  \hline
+  Giuliano Banchieri & Stesura iniziale & 21/10/2025 \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Temi della discussione}
+\begin{itemize}
+    \item Conferma della scelta del capitolato C6 e discussione riguardante:
+    \begin{itemize}
+        \item Domande da porre all'azienda per comprendere meglio gli obbiettivi e le richieste del capitolato
+        \item Proposte di stack da discutere
+        \item Metodo di comunicazione con l'azienda per discutere degli argomenti sopra citati
+    \end{itemize} 
+    \item Breve discussione di alcuni dubbi relativi ai capitolati C3 e C9
+\end{itemize}
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Giuliano Banchieri &  \\
+  \hline
+  Gabriele Disa &  \\
+  \hline
+  Stefano Maso &  \\
+  \hline
+  Besnik Murtezan &  \\
+  \hline
+  Ruben Spadiliero &  \\
+  \hline
+  Niccolò Feltrin &  \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+\newpage
+
+\section*{Verbale}
+Abbiamo iniziato valutando 3 diverse proposte di stack da discutere con l'azienda:\begin{itemize}
+    \item Fullstack typescript
+    \item App desktop Electron
+    \item Laravel
+\end{itemize}
+Discusso brevemente di metodologie per la gestione della persistenza dei dati.
+
+\vspace{1\baselineskip}
+
+Abbiamo stilato una lista di domande da porre al referente dell'azienda durante un eventuale meeting organizzato:\begin{itemize}
+    \item Cosa intendono con "Utilizzare le note collegate quando si creano o modificano i testi nell’editor."?
+    \item Come implementare il salvataggio delle note e l'autenticazione
+    \item Valutazione dei 3 stack proposti
+    \item Sono disposti ad aiutarci con un eventuale fine-tuning in caso di utilizzo di modelli ospitati nei server dell'azienda?
+    \item Possibilità di utilizzare API di DeepL per la componente di traduzione del testo
+    
+\end{itemize}
+\newpage
+
+\section*{To-Do}
+\begin{itemize}
+    \item Contattare via mail il referente dell'azienda del capitolato C6
+    \item Organizzare incontri futuri
+\end{itemize}
+
+\section*{Prossima riunione}
+Riunione esterna con l'azienda Zucchetti in data da destinarsi.
+\end{document}

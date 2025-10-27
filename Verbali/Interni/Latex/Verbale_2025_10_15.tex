@@ -1,0 +1,143 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 15 ottobre 2025};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{15/10/2025}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{3cm}|p{8cm}|M{1.8cm}|}
+  \hline
+  \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} \\
+  \hline
+  Giuliano Banchieri & Prima stesura & 15/10/2025 \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Questa prima riunione è stata fatta per conoscerci, per condividere i nostri pensieri riguardanti i vari capitolati e per scegliere nome e logo del gruppo.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Giuliano Banchieri &  \\
+  \hline
+  Gabriele Disa &  \\
+  \hline
+  Stefano Maso &  \\
+  \hline
+  Besnik Murtezan &  \\
+  \hline
+  Ruben Spadiliero &  \\
+  \hline
+  Niccolò Feltrin &  \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+Dopo un confronto tra tutti i membri, il gruppo ha concordato il nome e il logo che ci rappresenteranno.
+
+\vspace{1\baselineskip}
+
+Abbiamo discusso delle nostre capacità e della fattibilità e apprezzamento dei vari capitolati per trovarne uno adatto a tutti e siamo giunti alle seguenti conclusioni:
+\begin{itemize}
+    \item  Capitolato favorito:
+    \begin{itemize}
+        \item C6: Second Brain
+    \end{itemize} 
+    \item Altri capitolati interessanti:
+    \begin{itemize}
+        \item C9: View4Life
+        \item C3: DIPReader
+    \end{itemize}
+\end{itemize}
+
+Questi sono stati i 3 capitolati più apprezzati dai membri del gruppo e si rimanda alla prossima riunione la discussione delle domande da porre per chiarire eventuali dubbi.
+
+\section*{Conclusioni}
+\begin{itemize}
+    \item Raccogliere domande sui capitolati
+    \par
+    \item Mettersi in contatto con le aziende
+\end{itemize}
+
+\end{document}
