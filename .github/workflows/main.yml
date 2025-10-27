@@ -14,15 +14,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup LaTeX environment
-        run: sudo apt-get update && sudo apt-get install -y texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex latexmk
+      - name: Setup TeX Live con caching
+        uses: actions/cache@v3
+        id: texlive-cache
+        with:
+          path: /usr/local/texlive/2025
+          key: texlive-2025-${{ runner.os }}
+          restore-keys: texlive-2025-${{ runner.os }}
+      
+      - name: Install minimal TeX Live
+        if: steps.texlive-cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-xetex \
+            latexmk
 
       - name: Compila verbali interni
         run: |
           mkdir -p output/verbali_interni
           for file in Verbali/Interni/Latex/*.tex; do
             echo "Compilo $file..."
-            latexmk -pdf -interaction=nonstopmode -output-directory=output/verbali_interni "$file"
+            latexmk -pdf -interaction=nonstopmode -output-directory=output/verbali_interni -cd "$file"
           done
 
       - name: Compila verbali esterni
@@ -30,7 +46,7 @@ jobs:
           mkdir -p output/verbali_esterni
           for file in Verbali/Esterni/Latex/*.tex; do
             echo "Compilo $file..."
-            latexmk -pdf -interaction=nonstopmode -output-directory=output/verbali_esterni "$file"
+            latexmk -pdf -interaction=nonstopmode -output-directory=output/verbali_esterni -cd "$file"
           done
 
       - name: Crea pagina HTML
