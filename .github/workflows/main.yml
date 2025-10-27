@@ -14,9 +14,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup LaTeX environment
-        uses: xu-cheng/latex-action@v3
-        with:
-          latexmk_shell_escape: true
+  	run: sudo apt-get update && sudo apt-get install -y texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex latexmk
+
 
       - name: Compila verbali interni
         run: |
