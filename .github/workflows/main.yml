@@ -1,0 +1,68 @@
+name: Compilazione LaTeX e pubblicazione su GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup LaTeX environment
+        uses: xu-cheng/latex-action@v3
+        with:
+          latexmk_shell_escape: true
+
+      - name: Compila verbali interni
+        run: |
+          mkdir -p output/verbali_interni
+          for file in Verbali/Interni/Latex/*.tex; do
+            echo "Compilo $file..."
+            latexmk -pdf -interaction=nonstopmode -output-directory=output/verbali_interni "$file"
+          done
+
+      - name: Compila verbali esterni
+        run: |
+          mkdir -p output/verbali_esterni
+          for file in Verbali/Esterni/Latex/*.tex; do
+            echo "Compilo $file..."
+            latexmk -pdf -interaction=nonstopmode -output-directory=output/verbali_esterni "$file"
+          done
+
+      - name: Crea pagina HTML
+        run: |
+          mkdir -p output
+          echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Verbali</title>
+          <style>
+            body { font-family: sans-serif; padding: 2em; }
+            h1 { margin-top: 1em; }
+            ul { list-style: none; padding-left: 0; }
+            li { margin-bottom: 0.5em; }
+          </style></head><body>" > output/index.html
+
+          # Verbali Interni
+          echo "<h1>Verbali Interni</h1><ul>" >> output/index.html
+          for f in $(ls -1 output/verbali_interni/*.pdf | sort -r); do
+            name=$(basename "$f")
+            echo "<li><a href='verbali_interni/$name'>$name</a></li>" >> output/index.html
+          done
+          echo "</ul>" >> output/index.html
+
+          # Verbali Esterni
+          echo "<h1>Verbali Esterni</h1><ul>" >> output/index.html
+          for f in $(ls -1 output/verbali_esterni/*.pdf | sort -r); do
+            name=$(basename "$f")
+            echo "<li><a href='verbali_esterni/$name'>$name</a></li>" >> output/index.html
+          done
+          echo "</ul></body></html>" >> output/index.html
+
+      - name: Pubblica su GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
