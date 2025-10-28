@@ -8,28 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: texlive/texlive:latest
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Setup TeX Live con caching
-        uses: actions/cache@v3
-        id: texlive-cache
-        with:
-          path: /usr/local/texlive/2025
-          key: texlive-2025-${{ runner.os }}
-          restore-keys: texlive-2025-${{ runner.os }}
-      
-      - name: Install minimal TeX Live
-        if: steps.texlive-cache.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            texlive-xetex \
-            latexmk
       
       - name: Compila verbali interni
         run: |
@@ -39,18 +23,13 @@ jobs:
               echo "Compilo $file..."
               filename=$(basename "$file" .tex)
               basedir=$(dirname "$file")
-              outdir=$(realpath output/verbali_interni)
+              outdir=$(pwd)/output/verbali_interni
               
-              # Cambia nella directory del file .tex
               cd "$basedir"
-              
-              # Compila con latexmk (massimo 3 run per risolvere riferimenti)
               latexmk -pdf -interaction=nonstopmode -file-line-error \
                 -output-directory="$outdir" \
                 -jobname="$filename" \
                 "$(basename $file)" || true
-              
-              # Torna alla root
               cd - > /dev/null
             fi
           done
@@ -62,16 +41,15 @@ jobs:
             if [ -f "$file" ]; then
               echo "Compilo $file..."
               filename=$(basename "$file" .tex)
+              basedir=$(dirname "$file")
+              outdir=$(pwd)/output/verbali_esterni
+              
+              cd "$basedir"
               latexmk -pdf -interaction=nonstopmode -file-line-error \
-                -output-directory=../../output/verbali_esterni \
+                -output-directory="$outdir" \
                 -jobname="$filename" \
-                -cd "$file" || {
-                  echo "Primo tentativo fallito, riprovo..."
-                  latexmk -pdf -interaction=nonstopmode -file-line-error \
-                    -output-directory=../../output/verbali_esterni \
-                    -jobname="$filename" \
-                    -cd "$file" || echo "Warning: compilazione di $file completata con errori"
-                }
+                "$(basename $file)" || true
+              cd - > /dev/null
             fi
           done
       
@@ -85,7 +63,8 @@ jobs:
       - name: Crea pagina HTML
         run: |
           mkdir -p output
-          echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Verbali</title>
+          cat > output/index.html << 'EOF'
+          <!DOCTYPE html><html><head><meta charset='UTF-8'><title>Verbali</title>
           <style>
             body { 
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -124,7 +103,8 @@ jobs:
             a:hover {
               text-decoration: underline;
             }
-          </style></head><body>" > output/index.html
+          </style></head><body>
+          EOF
           
           # Verbali Interni
           echo "<h1>📋 Verbali Interni</h1><ul>" >> output/index.html
