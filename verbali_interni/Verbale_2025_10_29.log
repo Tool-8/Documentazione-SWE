@@ -3,8 +3,8 @@ entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**Verbale_2025_10_21.tex
-(./Verbale_2025_10_21.tex
+**Verbale_2025_10_29.tex
+(./Verbale_2025_10_29.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-09>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -264,51 +264,17 @@ Package caption Info: hyperref package is loaded.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
-(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
-Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
-\col@sep=\dimen172
-\ar@mcellbox=\box55
-\extrarowheight=\dimen173
-\NC@list=\toks23
-\extratabsurround=\skip52
-\backup@length=\skip53
-\ar@cellbox=\box56
-)
-(/usr/local/texlive/2025/texmf-dist/tex/latex/eso-pic/eso-pic.sty
-Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
-\ESO@tempdima=\dimen174
-\ESO@tempdimb=\dimen175
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package xcolor Info: Driver file: pdftex.def on input line 274.
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
-Package xcolor Info: Model `RGB' extended on input line 1365.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
-))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
-\pgfutil@everybye=\toks24
-\pgfutil@tempdima=\dimen176
-\pgfutil@tempdimb=\dimen177
+\pgfutil@everybye=\toks23
+\pgfutil@tempdima=\dimen172
+\pgfutil@tempdimb=\dimen173
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box57
+\pgfutil@abb=\box55
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
@@ -320,32 +286,32 @@ Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks25
-\pgfkeys@temptoks=\toks26
+\pgfkeys@pathtoks=\toks24
+\pgfkeys@temptoks=\toks25
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
 tered.code.tex
-\pgfkeys@tmptoks=\toks27
+\pgfkeys@tmptoks=\toks26
 ))
-\pgf@x=\dimen178
-\pgf@y=\dimen179
-\pgf@xa=\dimen180
-\pgf@ya=\dimen181
-\pgf@xb=\dimen182
-\pgf@yb=\dimen183
-\pgf@xc=\dimen184
-\pgf@yc=\dimen185
-\pgf@xd=\dimen186
-\pgf@yd=\dimen187
+\pgf@x=\dimen174
+\pgf@y=\dimen175
+\pgf@xa=\dimen176
+\pgf@ya=\dimen177
+\pgf@xb=\dimen178
+\pgf@yb=\dimen179
+\pgf@xc=\dimen180
+\pgf@yc=\dimen181
+\pgf@xd=\dimen182
+\pgf@yd=\dimen183
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
 \c@pgf@counta=\count306
 \c@pgf@countb=\count307
 \c@pgf@countc=\count308
 \c@pgf@countd=\count309
-\t@pgf@toka=\toks28
-\t@pgf@tokb=\toks29
-\t@pgf@tokc=\toks30
+\t@pgf@toka=\toks27
+\t@pgf@tokb=\toks28
+\t@pgf@tokc=\toks29
 \pgf@sys@id@count=\count310
 
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
@@ -370,18 +336,36 @@ File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
 File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))
+)) (/usr/local/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen188
+\pgfmath@dimen=\dimen184
 \pgfmath@count=\count313
-\pgfmath@box=\box58
-\pgfmath@toks=\toks31
-\pgfmath@stack@operand=\toks32
-\pgfmath@stack@operation=\toks33
+\pgfmath@box=\box56
+\pgfmath@toks=\toks30
+\pgfmath@stack@operand=\toks31
+\pgfmath@stack@operation=\toks32
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex)
@@ -408,52 +392,52 @@ erarithmetics.code.tex)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@picminx=\dimen189
-\pgf@picmaxx=\dimen190
-\pgf@picminy=\dimen191
-\pgf@picmaxy=\dimen192
-\pgf@pathminx=\dimen193
-\pgf@pathmaxx=\dimen194
-\pgf@pathminy=\dimen195
-\pgf@pathmaxy=\dimen196
-\pgf@xx=\dimen197
-\pgf@xy=\dimen198
-\pgf@yx=\dimen199
-\pgf@yy=\dimen256
-\pgf@zx=\dimen257
-\pgf@zy=\dimen258
+\pgf@picminx=\dimen185
+\pgf@picmaxx=\dimen186
+\pgf@picminy=\dimen187
+\pgf@picmaxy=\dimen188
+\pgf@pathminx=\dimen189
+\pgf@pathmaxx=\dimen190
+\pgf@pathminy=\dimen191
+\pgf@pathmaxy=\dimen192
+\pgf@xx=\dimen193
+\pgf@xy=\dimen194
+\pgf@yx=\dimen195
+\pgf@yy=\dimen196
+\pgf@zx=\dimen197
+\pgf@zy=\dimen198
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@path@lastx=\dimen259
-\pgf@path@lasty=\dimen260
+\pgf@path@lastx=\dimen199
+\pgf@path@lasty=\dimen256
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@shorten@end@additional=\dimen261
-\pgf@shorten@start@additional=\dimen262
+\pgf@shorten@end@additional=\dimen257
+\pgf@shorten@start@additional=\dimen258
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfpic=\box59
-\pgf@hbox=\box60
-\pgf@layerbox@main=\box61
+\pgfpic=\box57
+\pgf@hbox=\box58
+\pgf@layerbox@main=\box59
 \pgf@picture@serial@count=\count315
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgflinewidth=\dimen263
+\pgflinewidth=\dimen259
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@pt@x=\dimen264
-\pgf@pt@y=\dimen265
-\pgf@pt@temp=\dimen266
+\pgf@pt@x=\dimen260
+\pgf@pt@y=\dimen261
+\pgf@pt@temp=\dimen262
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -470,12 +454,12 @@ File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
 de.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfarrowsep=\dimen267
+\pgfarrowsep=\dimen263
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@max=\dimen268
+\pgf@max=\dimen264
 \pgf@sys@shading@range@num=\count316
 \pgf@shadingcount=\count317
 )
@@ -486,7 +470,7 @@ File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
 File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfexternal@startupbox=\box62
+\pgfexternal@startupbox=\box60
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
@@ -507,7 +491,7 @@ File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfnodeparttextbox=\box63
+\pgfnodeparttextbox=\box61
 )
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
@@ -516,8 +500,8 @@ File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@nodesepstart=\dimen269
-\pgf@nodesepend=\dimen270
+\pgf@nodesepstart=\dimen265
+\pgf@nodesepend=\dimen266
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -530,10 +514,10 @@ Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
-\pgffor@iter=\dimen271
-\pgffor@skip=\dimen272
-\pgffor@stack=\toks34
-\pgffor@toks=\toks35
+\pgffor@iter=\dimen267
+\pgffor@skip=\dimen268
+\pgffor@stack=\toks33
+\pgffor@toks=\toks34
 ))
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
@@ -543,20 +527,20 @@ Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@plot@mark@count=\count318
-\pgfplotmarksize=\dimen273
+\pgfplotmarksize=\dimen269
 )
-\tikz@lastx=\dimen274
-\tikz@lasty=\dimen275
-\tikz@lastxsaved=\dimen276
-\tikz@lastysaved=\dimen277
-\tikz@lastmovetox=\dimen278
-\tikz@lastmovetoy=\dimen279
-\tikzleveldistance=\dimen280
-\tikzsiblingdistance=\dimen281
-\tikz@figbox=\box64
-\tikz@figbox@bg=\box65
-\tikz@tempbox=\box66
-\tikz@tempbox@bg=\box67
+\tikz@lastx=\dimen270
+\tikz@lasty=\dimen271
+\tikz@lastxsaved=\dimen272
+\tikz@lastysaved=\dimen273
+\tikz@lastmovetox=\dimen274
+\tikz@lastmovetoy=\dimen275
+\tikzleveldistance=\dimen276
+\tikzsiblingdistance=\dimen277
+\tikz@figbox=\box62
+\tikz@figbox@bg=\box63
+\tikz@tempbox=\box64
+\tikz@tempbox@bg=\box65
 \tikztreelevel=\count319
 \tikznumberofchildren=\count320
 \tikznumberofcurrentchild=\count321
@@ -575,43 +559,134 @@ File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
+\col@sep=\dimen278
+\ar@mcellbox=\box66
+\extrarowheight=\dimen279
+\NC@list=\toks35
+\extratabsurround=\skip52
+\backup@length=\skip53
+\ar@cellbox=\box67
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/datetime/datetime.sty
+Package: datetime 2015/03/20 v2.60 Date Time Package
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/fmtcount/fmtcount.sty
+Package: fmtcount 2025/08/23 v3.11 Displaying the values of LaTeX counters (NT,
+VB,NE)
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks36
+\XKV@tempa@toks=\toks37
+)
+\XKV@depth=\count327
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/fmtcount/fcprefix.sty
+Package: fcprefix 2012/09/28
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
+Package: fcnumparser 2017/06/15
+\fc@digit@counter=\count328
+))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks38
+\ex@=\dimen280
+)
+\c@padzeroesN=\count329
+\fc@tmpcatcode=\count330
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/fmtcount/fc-italian.def
+File: fc-italian.def 2013/08/17
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/itnumpar/itnumpar.sty
+Package: itnumpar 2007/04/03 v1.0 Numbers in words for Italian
+))
+\@DT@modctr=\count331
+\@ordinalctr=\count332
+\@orgargctr=\count333
+\@strctr=\count334
+\@tmpstrctr=\count335
+\@DT@loopN=\count336
+\@DT@X=\count337
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/datetime/datetime-defaults.sty
+Package: datetime-defaults 2013/09/10
+)
+\@day=\count338
+\@month=\count339
+\@year=\count340
+\c@HOUR=\count341
+\c@HOURXII=\count342
+\c@MINUTE=\count343
+\c@TOHOUR=\count344
+\c@TOMINUTE=\count345
+\c@SECOND=\count346
+\currenthour=\count347
+\currentminute=\count348
+\currentsecond=\count349
+Package datetime Info: No datetime.cfg file found, using default settings on in
+put line 308.
+\@dtctr=\count350
+\dayofyear=\count351
+\dayofweek=\count352
+LaTeX Info: Redefining \today on input line 736.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/datetime/dt-italian.def
+File: dt-italian.def 2015/03/20
+LaTeX Info: Redefining \dateitalian on input line 103.
+)
+\dt@a=\toks39
+\dt@b=\toks40
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
+\ESO@tempdima=\dimen281
+\ESO@tempdimb=\dimen282
+)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count327
+\l__color_backend_stack_int=\count353
 )
 (/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_interni/Verbale_2025
-_10_21.aux)
-\openout1 = `Verbale_2025_10_21.aux'.
+_10_29.aux)
+\openout1 = `Verbale_2025_10_29.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-Package hyperref Info: Link coloring OFF on input line 67.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+Package hyperref Info: Link coloring OFF on input line 78.
 
 (/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_interni/Verbale_2025
-_10_21.out)
+_10_29.out)
 (/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_interni/Verbale_2025
-_10_21.out)
+_10_29.out)
 \@outlinefile=\write4
-\openout4 = `Verbale_2025_10_21.out'.
+\openout4 = `Verbale_2025_10_29.out'.
 
-LaTeX Info: Redefining \it@ocap on input line 67.
-LaTeX Info: Redefining \it@ccap on input line 67.
+LaTeX Info: Redefining \it@ocap on input line 78.
+LaTeX Info: Redefining \it@ccap on input line 78.
 
 
 File italian.ldf warning: 
@@ -619,7 +694,7 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting
-italian.ldf    on input line 67.
+italian.ldf    on input line 78.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -657,17 +732,17 @@ italian.ldf    on input line 67.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count328
-\scratchdimen=\dimen282
+\scratchcounter=\count354
+\scratchdimen=\dimen283
 \scratchbox=\box68
-\nofMPsegments=\count329
-\nofMParguments=\count330
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count331
-\MPscratchDim=\dimen283
-\MPnumerator=\count332
-\makeMPintoPDFobject=\count333
-\everyMPtoPDFconversion=\toks37
+\nofMPsegments=\count355
+\nofMParguments=\count356
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count357
+\MPscratchDim=\dimen284
+\MPnumerator=\count358
+\makeMPintoPDFobject=\count359
+\everyMPtoPDFconversion=\toks42
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -679,79 +754,78 @@ e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<resources/Tool-8_white.png, id=7, 793.96625pt x 244.915pt>
-File: resources/Tool-8_white.png Graphic file (type png)
-<use resources/Tool-8_white.png>
-Package pdftex.def Info: resources/Tool-8_white.png  used on input line 69.
+<resources/Abstract_lines.png, id=7, 4015.0pt x 7025.24625pt>
+File: resources/Abstract_lines.png Graphic file (type png)
+<use resources/Abstract_lines.png>
+Package pdftex.def Info: resources/Abstract_lines.png  used on input line 79.
+(pdftex.def)             Requested size: 597.50671pt x 845.02992pt.
+<resources/Tool-8_white_2.png, id=9, 793.96625pt x 244.915pt>
+File: resources/Tool-8_white_2.png Graphic file (type png)
+<use resources/Tool-8_white_2.png>
+Package pdftex.def Info: resources/Tool-8_white_2.png  used on input line 81.
 (pdftex.def)             Requested size: 284.52756pt x 87.76945pt.
 
 
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./resou
-rces/Tool-8_white.png>]
+rces/Abstract_lines.png> <./resources/Tool-8_white_2.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 76.
+(Font)              <7> on input line 88.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 76.
+(Font)              <5> on input line 88.
 
 
-<resources/Tool-8_icon_white.png, id=17, 242.9075pt x 247.92625pt>
+<resources/Tool-8_icon_white.png, id=20, 242.9075pt x 247.92625pt>
 File: resources/Tool-8_icon_white.png Graphic file (type png)
 <use resources/Tool-8_icon_white.png>
-Package pdftex.def Info: resources/Tool-8_icon_white.png  used on input line 87
-.
+Package pdftex.def Info: resources/Tool-8_icon_white.png  used on input line 10
+0.
 (pdftex.def)             Requested size: 28.45082pt x 28.45227pt.
 [2 <./resources/Tool-8_icon_white.png>]
 
 File: resources/Tool-8_icon_white.png Graphic file (type png)
 <use resources/Tool-8_icon_white.png>
-Package pdftex.def Info: resources/Tool-8_icon_white.png  used on input line 12
+Package pdftex.def Info: resources/Tool-8_icon_white.png  used on input line 13
 3.
 (pdftex.def)             Requested size: 28.45082pt x 28.45227pt.
-[3{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}]
-
-File: resources/Tool-8_icon_white.png Graphic file (type png)
-<use resources/Tool-8_icon_white.png>
-Package pdftex.def Info: resources/Tool-8_icon_white.png  used on input line 14
-3.
-(pdftex.def)             Requested size: 28.45082pt x 28.45227pt.
-[4]
+[3]
 
 File: resources/Tool-8_icon_white.png Graphic file (type png)
 <use resources/Tool-8_icon_white.png>
 Package pdftex.def Info: resources/Tool-8_icon_white.png  used on input line 15
-3.
+8.
 (pdftex.def)             Requested size: 28.45082pt x 28.45227pt.
-[5]
+[4{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+}]
 (/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_interni/Verbale_2025
-_10_21.aux)
+_10_29.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-09>
  ***********
-Package rerunfilecheck Info: File `Verbale_2025_10_21.out' has not changed.
+Package rerunfilecheck Info: File `Verbale_2025_10_29.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 22156 strings out of 467747
- 417564 string characters out of 5426947
- 813148 words of memory out of 5000000
- 50523 multiletter control sequences out of 15000+600000
+ 23168 strings out of 467747
+ 434741 string characters out of 5426947
+ 844146 words of memory out of 5000000
+ 51495 multiletter control sequences out of 15000+600000
  630172 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,87p,423b,689s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,91p,1030b,733s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr
-/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
+r/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/l
+ocal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
 Output written on /__w/Documentazione-SWE/Documentazione-SWE/output/verbali_int
-erni/Verbale_2025_10_21.pdf (5 pages, 253966 bytes).
+erni/Verbale_2025_10_29.pdf (4 pages, 2361743 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
+ 77 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
- 14 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 named destinations out of 1000 (max. 500000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 
