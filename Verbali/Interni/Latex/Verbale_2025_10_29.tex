@@ -1,0 +1,158 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{tikz}
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{29}{10}{2025}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale \italianformat{\displaydate{dataverbale}}};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large\slashdate{\displaydate{dataverbale}} \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{1cm}|p{3cm}|p{7cm}|M{1.8cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} \\
+  \hline
+  0.1 & Stefano Maso & Prima stesura & \slashdate{\displaydate{dataverbale}} \\
+  \hline
+  0.2 & Besnik Murtezan & Prima revisione & \slashdate{\displaydate{dataverbale}} \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Partecipanti}
+\textbf{Orario della riunione}: 15:00 - 19:15
+\\
+\textbf{Sede / piattaforma}: Discord
+\\
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Giuliano Banchieri &  \\
+  \hline
+  Gabriele Disa &  \\
+  \hline
+  Stefano Maso &  \\
+  \hline
+  Besnik Murtezan &  \\
+  \hline
+  Ruben Spadiliero &  \\
+  \hline
+  Niccolò Feltrin &  \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Motivazioni riunione}
+La riunione è stata indetta per iniziare e terminare l'analisi dei costi, stimando le ore produttive richieste per persona seguendo il regolamento e iniziare la stesura del documento di candidatura.
+
+\newpage
+
+\section*{Verbale}
+Abbiamo discusso dei seguenti punti:
+\begin{itemize}
+    \item Analisi dei costi
+    \begin{itemize}
+        \item Discussione riguardo alle ore da assegnare a ciascun ruolo sulla base delle indicazioni del regolamento, di esperienze personali e ragionamenti condivisi;
+        \item Creazione foglio Excel di supporto 
+    \end{itemize}
+    \item Documento candidatura
+    \begin{itemize}
+        \item 	Predisposizione file relativo al documento di candidatura e  inizio redazione contenuti, in particolare la motivazione della nostra scelta
+    \end{itemize}
+\end{itemize}
+
+\section*{Conclusioni}
+Abbiamo portato a termine tutti gli obiettivi posti a inizio riunione, terminando l'analisi dei costi e iniziando con la stesura della candidatura
+
+\section*{To-Do}
+\begin{itemize}
+    \par
+    \item Terminare il documento di candidatura
+\end{itemize}
+
+\end{document}
