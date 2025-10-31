@@ -1,5 +1,8 @@
 <h1 align="center">Documentazione SWE</h1>
-<p align="center">Repository della documentazione di progetto del gruppo Tool-8.</p>
+<p align="center">
+<img width="400" alt="logo" src="https://github.com/user-attachments/assets/4b4299db-1d5b-422d-939b-ec94e6b141a6" /> <br/>
+Repository della documentazione di progetto del gruppo Tool-8.
+</p>
 <br>
 
 # [Visualizza documentazione](https://tool-8.github.io/Documentazione-SWE/)
