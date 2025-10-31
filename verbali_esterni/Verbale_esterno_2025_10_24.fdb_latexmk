@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1761918676.09455 "Verbale_esterno_2025_10_24.tex" "/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_esterni/Verbale_esterno_2025_10_24.pdf" "Verbale_esterno_2025_10_24" 1761918676.75319 0
-  "/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_esterni/Verbale_esterno_2025_10_24.aux" 1761918676.67589 785 0ea0a9e212be8005fdb3dd7ab0f126c3 "pdflatex"
-  "/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_esterni/Verbale_esterno_2025_10_24.out" 1761918676.49589 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["pdflatex"] 1761919102.55314 "Verbale_esterno_2025_10_24.tex" "/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_esterni/Verbale_esterno_2025_10_24.pdf" "Verbale_esterno_2025_10_24" 1761919103.24471 0
+  "/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_esterni/Verbale_esterno_2025_10_24.aux" 1761919103.16427 785 0ea0a9e212be8005fdb3dd7ab0f126c3 "pdflatex"
+  "/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_esterni/Verbale_esterno_2025_10_24.out" 1761919102.97927 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -136,9 +136,9 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761457643 5528139 daf1353d2d3d7fed9df2ebbf1b26218e ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761457708 3628915 a5b012b47340bf4273be316cee740578 ""
   "/usr/local/texlive/2025/texmf.cnf" 1761457639 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "Verbale_esterno_2025_10_24.tex" 1761918663.85992 4734 f87c20bd0c68495b69227f8203664d98 ""
-  "resources/Tool-8_icon_white.png" 1761918663.85992 62894 c79f3825db954156081d303811f2b661 ""
-  "resources/Tool-8_white.png" 1761918663.86092 146154 82c9eab44b84a609ca5dddea8744d148 ""
+  "Verbale_esterno_2025_10_24.tex" 1761919089.99127 4734 f87c20bd0c68495b69227f8203664d98 ""
+  "resources/Tool-8_icon_white.png" 1761919089.99127 62894 c79f3825db954156081d303811f2b661 ""
+  "resources/Tool-8_white.png" 1761919089.99227 146154 82c9eab44b84a609ca5dddea8744d148 ""
   (generated)
   "/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_esterni/Verbale_esterno_2025_10_24.aux"
   "/__w/Documentazione-SWE/Documentazione-SWE/output/verbali_esterni/Verbale_esterno_2025_10_24.log"
