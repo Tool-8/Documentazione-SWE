@@ -1,0 +1,264 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{tabularx}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+
+% Pie chart
+\usepackage{pgf-pie}  
+
+\usepackage{tocloft}    % per indice
+\setlength{\cftbeforesecskip}{1em}
+\setlength{\cftbeforesubsecskip}{0.5em}
+\setlength{\cftbeforesubsubsecskip}{0.5em}
+
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+\usepackage{makecell}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{29}{10}{2025}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(3.6cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Lettera di candidatura};
+    \end{tikzpicture}
+  }{}
+}
+
+\newcommand{\pieslice}[6][black!10]{
+%%% Usage: \pieslice[color]{total}{start angle}{end angle}{data value}{label}
+  % calculate start and end points of arc
+  \pgfmathparse{#3/#2*360}
+  \let\a\pgfmathresult
+  \pgfmathparse{#4/#2*360}
+  \let\b\pgfmathresult
+
+  % calculate mid angle of arc
+  \pgfmathparse{0.5*\a+0.5*\b}
+  \let\midangle\pgfmathresult
+
+  % draw slice
+  \draw[fill=#1] (0,0) -- (\a:1) arc (\a:\b:1) -- cycle;
+
+  % outer label
+  \node[label=\midangle:{\tiny#6}] at (\midangle:1) {};
+
+  % inner label
+  \pgfmathparse{min((\b-\a-10)/110*(-0.3),0)}
+  \let\temp\pgfmathresult
+  \pgfmathparse{max(\temp,-0.5) + 0.8}
+  \let\innerpos\pgfmathresult
+  \pgfmathparse{(\b-\a)/3.6} % convert slice size to percentage
+  \let\percentage\pgfmathresult
+  \node at (\midangle:\innerpos) {\tiny\pgfmathprintnumber[fixed,precision=1]{\percentage}\%};
+}
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large31/10/2025 \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Lettera di candidatura}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{1cm}|p{3cm}|p{7cm}|M{1.8cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} \\
+  \hline
+  1.0 & Giuliano Banchieri & Revisione e conferma del documento & 31/10/2025\\
+  \hline
+  0.4 & Niccolò Feltrin & Aggiunta grafico della suddivisione dei lavori & 31/10/2025\\
+  \hline
+  0.3 & Besnik Murtezan & Revisione contenuto generale & 30/10/2025\\
+  \hline
+  0.2 & Stefano Maso & Aggiunta sezione "Motivazione della suddivione oraria" & 30/10/2025\\
+  \hline
+  0.1 & \makecell[lt]{Niccolò Feltrin \\ Giuliano Banchieri} & Prima stesura & \slashdate{\displaydate{dataverbale}} \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section*{Candidatura}
+\addcontentsline{toc}{section}{Candidatura}
+Il gruppo, dopo vari riscontri e dialogando con l'azienda, ha deciso di candidarsi per il \textbf{capitolato C6}: \textit{Second Brain}. Si citano i seguenti verbali che prendono in considerazione la scelta:
+
+\vspace{1\baselineskip}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\par\vspace{6pt}
+\textbullet\hspace{0.5em} \textbf{Verbale interno del 15/10/2025}: & Discussione dei vari capitolati \\
+\par\vspace{6pt}
+\textbullet\hspace{0.5em} \textbf{Verbale interno del 21/10/2025}: & Conferma sulla preferenza del capitolato C6 e raccolta di dubbi e domande \\
+\par\vspace{6pt}
+\textbullet\hspace{0.5em} \textbf{Verbale esterno del 24/10/2025}: & Incontro con il referente dell'azienda Zucchetti per chiarire i vari dubbi sorti nell'incontro precedente
+\end{tabularx}
+
+\vspace{1\baselineskip}
+\section*{Motivazioni scelta}
+\addcontentsline{toc}{section}{Motivazioni scelta}
+\textbf{Descrizione del capitolato}: il progetto prevede la realizzazione di un'applicazione che permette di creare testi in formato MarkDown, con un'area di scrittura e una di visualizzazione del risultato formattato. In particolare, l'app usufruisce dell'intelligenza artificiale come supporto di scrittura durante l'utilizzo: l'utente avrà una finestra di dialogo dove potrà chiedere ad un LLM di migliorare, riassumere, tradurre o criticare il testo. Le critiche seguono il metodo dei \textit{sei cappelli del pensare} di Edward De Bono, secondo il quale si analizza il testo offrendo sei punti di vista differenti (neutrale, emotivo, ottimistico, critico, creativo e logico). Inoltre, il programma consente di generare testi automaticamente tramite un prompt affidato all'IA (principio di "Distant Writing"). Infine, viene considerata una possibile implementazione di un sistema di persistenza delle note tramite database, che consenta di accedere alle note raggruppate tra di loro in base ad affinità e contenuto.
+
+\vspace{1\baselineskip}
+
+\textbf{Motivazione}: la scelta nasce da una combinazione di motivazioni tecniche, formative e di interesse personale:
+\begin{itemize}
+    \item \textbf{Forte potenziale di apprendimento ed utilizzo reale}\\
+    l'opportunità di sviluppare il prodotto richiesto è un ottimo modo per conoscere ed approfondire la realizzazione ed il funzionamento di applicazioni di note-taking e scrittura assistita MarkDown. Di fatto, software simili sono già ampiamente diffusi ed utilizzati nel mondo reale per una vasta gamma di ambiti professionali e non. Esempi importanti come Obsidian e NotebookLM verranno presi in considerazione come spunto durante lo sviluppo.
+    \item \textbf{Applicazione interessante dell'IA}\\
+    è stata particolarmente stimolante l'introduzione del \textit{metodo dei sei capelli del pensare} per la critica del testo, la quale spinge l'utilizzo dell'IA oltre il comune compito di generare testo fine a se stesso. Inoltre, essendo un tema molto attuale nel mondo informatico, lo sviluppo del prodotto offre la possibilità di sperimentare e comprendere più a fondo il funzionamento di varie LLM generative su una base più applicativa.
+    \item \textbf{Implementazione di tecnologie web moderne}\\
+    il software integra diverse componenti importanti quali: interfaccia web destinata all'utente, gestione delle richieste a livello backend, integrazione con intelligenza artificiale e persistenza dei dati su database. L'azienda dà libertà nella scelta dello stack di sviluppo e dei framework da utilizzare per l'implementazione dell'applicazione, lasciando la possibilità di sperimentare e approfondire varie tecnologie a nostra scelta.
+    \item \textbf{Supporto consolidato dell'azienda}\\
+    la proponente, avendo esperienza nella collaborazione con il corso di Ingegneria del Software, offre una forte base per l'aiuto nella gestione e realizzazione del progetto, dimostrandosi fin da subito comprensiva riguardo ai possibili problemi che possono scaturire dall'inesperienza del gruppo.
+\end{itemize}
+
+\newpage
+
+\section*{Dichiarazione impegni}
+\addcontentsline{toc}{section}{Dichiarazione impegni}
+
+Il gruppo dichiara di candidarsi con un preventivo di \textbf{€ 10.950,00}, e prevede di portare a termine il progetto entro il \textbf{15 aprile 2026}. In seguito si riportano i possibili rischi considerati e la suddivisione oraria dei ruoli.
+
+\subsection*{Rischi attesi}
+\addcontentsline{toc}{subsection}{Rischi attesi}
+\begin{itemize}
+\item\textbf{Inesperienza nella gestione organizzata dei compiti}\\
+La maggior parte dei membri del gruppo affronta per la prima volta la gestione di un progetto che comprende una suddivisione dei compiti coordinata e temporizzata, la quale può portare a possibili incertezze sul lavoro da svolgere e quindi allungare il tempo di sviluppo.\\
+Per mitigare il rischio si è esplorato in modo approfondito l'impiego di ogni ruolo per cercare di quantificare nel miglior modo il tempo da dedicare ad ognuno di questi.
+\item\textbf{Prima applicazione di un Way of Working standardizzato}\\
+La creazione e l'utilizzo di un Way of Working efficace richiedono sperimentazione e capacità di adattamento e organizzazione non familiari al gruppo.
+Tale mancanza di familiarità con l'adozione e l'uso di un WoW ben definito possono portare a ritardi nello sviluppo dell'applicazione.
+
+\item\textbf{Utilizzo di tecnologie poco familiari}\\
+Il progetto rappresenta una prima introduzione ad alcune nuove tecnologie che, sebbene ritenute interessanti dal gruppo, richiedono tempo per il loro apprendimento.\\
+Per questo si sono discusse varie possibili combinazioni tecnologiche di sviluppo sia internamente che esternamente con l'azienda, al fine di stimare la durata della fase di progettazione e successiva implementazione e verifica, tenendo sempre in considerazione le capacità di ogni membro del gruppo.\\
+Lo studio verrà poi ripreso in modo più dettagliato in seguito all'eventuale aggiudicazione dell'appalto.
+\item\textbf{Imprevisti di altra natura}\\
+È importante tenere in considerazione la possibilità di ritardi non prevedibili dovuti a cause esterne, come, ad esempio, l'impossibilità per un membro del gruppo di svolgere il proprio lavoro a causa di impegni improvvisi o problemi di salute.\\
+Per limitare i possibili danni, si è deciso di includere un margine di sicurezza temporale nelle stime di progetto, così da garantire il rispetto delle scadenze anche in presenza di ritardi imprevisti. 
+
+\end{itemize}
+
+
+\subsection*{Impegno orario}
+\addcontentsline{toc}{subsection}{Impegno orario}
+Ogni membro del gruppo ha dato la disponibilità di lavorare 90 ore, per un totale di 540 ore. I ruoli sono stati divisi nel modo seguente:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|p{2.7cm}|M{1.6cm}|M{1.6cm}|p{2.1cm}|}
+  \hline
+  \textbf{Ruolo} & \textbf{Ore Tot.} & \textbf{Ore Ind.} &  \textbf\textbf{Costo (€)} \\
+  \hline
+  Responsabile & 60 & 10 & 1.800,00\\
+  \hline
+  Amministratore & 50 & 8--9 & 1.000,00\\
+  \hline
+  Analista & 100 & 16--17 & 2.500,00\\
+  \hline
+  Progettista & 70 & 11--12 & 1.750,00\\
+  \hline
+  Programmatore & 120 & 20 & 1.800,00\\
+  \hline
+  Verificatore & 140 & 23--24 & 2.100,00\\
+  \hline
+  \textbf{Totale} & \textbf{540} & \textbf{90} & \textbf{10.950,00}\\
+  \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\subsection*{Motivazione della suddivisione oraria}
+\addcontentsline{toc}{subsection}{Motivazione della suddivisione oraria}
+\begin{itemize}
+    \item \textbf{Responsabile}: si tratta della persona incaricata di rappresentare il progetto verso l’esterno e coordinare l’intero gruppo; poiché il suo ruolo è strettamente legato alle relazioni, è stato deciso di dedicare 60 ore per riservare un maggiore quantitativo di tempo ad altri ruoli ritenuti più importanti;
+    \item \textbf{Amministratore}: le ore assegnate a questo ruolo permettono di gestire sufficientemente l'organizzazione delle tecnologie e gli strumenti per la documentazione e il corretto procedimento del Way of Working;
+    \item \textbf{Analista}: ruolo fondamentale per la riuscita del progetto; si è deciso di assegnare 100 ore a questa figura, in modo da poter evitare di incontrare problemi futuri grazie ad una corretta analisi iniziale;
+    \item \textbf{Progettista}: sono state attribuite 70 ore a questo ruolo in modo da poter confrontare tutte le tecnologie disponibili, scegliere le più adatte in base alle capacità dei singoli membri, al contesto del progetto, e seguire lo sviluppo di esso;
+    \item \textbf{Programmatore}: ruolo indispensabile per la realizzazione del prodotto, al quale si è cercato di destinare un numero di ore adeguato per poter implementare tutto ciò che è richiesto dal capitolato;
+    \item \textbf{Verificatore}: la scelta di assegnare a questo ruolo il numero più alto di ore, rispecchia la volontà del gruppo di evitare possibili ritardi dovuti a errori e di consegnare un prodotto funzionante e corretto;
+\end{itemize}
+
+\subsection*{Grafico suddivisione ruoli}
+\addcontentsline{toc}{subsection}{Grafico suddivisione ruoli}
+
+\vspace{1\baselineskip}
+\vspace{1\baselineskip}
+
+\begin{center}
+\begin{tikzpicture}
+    \pie[
+    rotate=90,
+    color={orange!60, green!50, yellow!60, red!60, blue!50, violet!60}
+    ]
+    {11/Responsabile, 9/Amministratore, 19/Analista, 13/Progettista, 22/Programmatore, 26/Verificatore}
+\end{tikzpicture}
+\end{center}
+
+\end{document}

@@ -1,0 +1,118 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{tikz}
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{29}{10}{2025}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(3.5cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Valutazione capitolati };
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large31/10/2025 \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Valutazione capitolati}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{1cm}|p{3cm}|p{7cm}|M{1.8cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} \\
+  \hline
+  1.0  & Niccolò Feltrin & Revisione e conferma documento & 30/10/2025 \\
+  \hline
+  0.1 & Stefano Maso & Prima stesura & \slashdate{\displaydate{dataverbale}} \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+
+\section*{Valutazione capitolati}
+Nella riunione interna del 15/10/2025, il gruppo ha valutato ciascun capitolato e deciso di effettuare la candidatura per il progetto \textit{Second Brain} (C6). Di seguito, ecco le considerazioni su ciascun capitolato:
+\begin{itemize}
+    \item \textbf{C1, Automated EN18031 Compliance Verification}: ritenuto poco avvincente dalla maggior parte del gruppo;
+    \item \textbf{C2, Code Guardian}: nonostante la grande disponibilità da parte dell'azienda, il progetto richiede tecnologie particolarmente complicate;
+    \item \textbf{C3, DIPReader}: l'obiettivo che si pone il progetto ha catturato l'attenzione del gruppo; tuttavia, le tecnologie consigliate non sono familiari ai membri del gruppo;
+    \item \textbf{C4, L'app che Protegge e Trasforma}: le tante funzionalità richieste, in particolare quelle sulla sicurezza dei dati, risultano particolarmente difficili da soddisfare;
+    \item \textbf{C5, NEXUM}: progetto molto interessante, soprattutto per il problema che si propone di risolvere e anche per l'utilizzo dell'intelligenza artificiale;
+    \item \textbf{C6, Second Brain}: la libertà nella scelta delle tecnologie e l'utilizzo di LLM del progetto hanno fin da subito catturato l'attenzione di tutto il gruppo, anche la velocità nelle risposte e la disponibilità da parte dell'azienda è stata molto apprezzata;
+    \item \textbf{C7, Sistema di acquisizione dati da sensori}: molto interessante il contesto e l'obiettivo del progetto;
+    \item \textbf{C8, Smart Order}: la richiesta di utilizzo di metodologie di Machine Learning avanzato per la gestione automatizzata di ordini di acquisto rende il progetto ambizioso e interessante;
+    \item \textbf{C9, View4Life}: la possibilità di utilizzare i sensori dell'azienda e poterci effettivamente lavorare nella pratica attira sicuramente l'attenzione e l'interesse di cimentarsi in questo progetto; richiede un impegno sostanziale da parte di tutti i membri del gruppo;
+\end{itemize}
+
+
+\end{document}

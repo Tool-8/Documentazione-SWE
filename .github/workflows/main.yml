@@ -20,38 +20,75 @@ jobs:
       
       - name: Compila verbali interni
         run: |
-          mkdir -p output/verbali_interni
           for file in Verbali/Interni/Latex/*.tex; do
             if [ -f "$file" ]; then
               echo "Compilo $file..."
               filename=$(basename "$file" .tex)
               basedir=$(dirname "$file")
-              outdir=$(pwd)/output/verbali_interni
               
+              # Compila nella cartella temporanea
               cd "$basedir"
               latexmk -pdf -interaction=nonstopmode -file-line-error \
-                -output-directory="$outdir" \
-                -jobname="$filename" \
+                -aux-directory=/tmp/latex_aux \
                 "$(basename $file)" || true
+              
+              # Sposta solo il PDF nella cartella finale
+              if [ -f "${filename}.pdf" ]; then
+                mkdir -p "$(pwd)/../../../Verbali/Interni"
+                mv "${filename}.pdf" "$(pwd)/../../../Verbali/Interni/"
+                echo "PDF spostato in Verbali/Interni/${filename}.pdf"
+              fi
+              
               cd - > /dev/null
             fi
           done
       
       - name: Compila verbali esterni
         run: |
-          mkdir -p output/verbali_esterni
           for file in Verbali/Esterni/Latex/*.tex; do
             if [ -f "$file" ]; then
               echo "Compilo $file..."
               filename=$(basename "$file" .tex)
               basedir=$(dirname "$file")
-              outdir=$(pwd)/output/verbali_esterni
               
+              # Compila nella cartella temporanea
               cd "$basedir"
               latexmk -pdf -interaction=nonstopmode -file-line-error \
-                -output-directory="$outdir" \
-                -jobname="$filename" \
+                -aux-directory=/tmp/latex_aux \
                 "$(basename $file)" || true
+              
+              # Sposta solo il PDF nella cartella finale
+              if [ -f "${filename}.pdf" ]; then
+                mkdir -p "$(pwd)/../../../Verbali/Esterni"
+                mv "${filename}.pdf" "$(pwd)/../../../Verbali/Esterni/"
+                echo "PDF spostato in Verbali/Esterni/${filename}.pdf"
+              fi
+              
+              cd - > /dev/null
+            fi
+          done
+      
+      - name: Compila documenti candidatura
+        run: |
+          for file in Candidatura/Latex/*.tex; do
+            if [ -f "$file" ]; then
+              echo "Compilo $file..."
+              filename=$(basename "$file" .tex)
+              basedir=$(dirname "$file")
+              
+              # Compila nella cartella temporanea
+              cd "$basedir"
+              latexmk -pdf -interaction=nonstopmode -file-line-error \
+                -aux-directory=/tmp/latex_aux \
+                "$(basename $file)" || true
+              
+              # Sposta solo il PDF nella cartella finale
+              if [ -f "${filename}.pdf" ]; then
+                mkdir -p "$(pwd)/../../Candidatura"
+                mv "${filename}.pdf" "$(pwd)/../../Candidatura/"
+                echo "PDF spostato in Candidatura/${filename}.pdf"
+              fi
+              
               cd - > /dev/null
             fi
           done
@@ -59,86 +96,101 @@ jobs:
       - name: Verifica PDFs generati
         run: |
           echo "=== PDFs Verbali Interni ==="
-          ls -lh output/verbali_interni/*.pdf 2>/dev/null || echo "Nessun PDF interno trovato"
+          ls -lh Verbali/Interni/*.pdf 2>/dev/null || echo "Nessun PDF interno trovato"
           echo "=== PDFs Verbali Esterni ==="
-          ls -lh output/verbali_esterni/*.pdf 2>/dev/null || echo "Nessun PDF esterno trovato"
+          ls -lh Verbali/Esterni/*.pdf 2>/dev/null || echo "Nessun PDF esterno trovato"
+          echo "=== PDFs Documenti candidatura ==="
+          ls -lh Candidatura/*.pdf 2>/dev/null || echo "Nessun PDF documento trovato"
+      
+      - name: Prepara output per GitHub Pages
+        run: |
+          mkdir -p output/verbali_interni
+          mkdir -p output/verbali_esterni
+          mkdir -p output/candidatura
+          
+          # Copia il file index.html e il logo
+          cp .github/templates/index.html output/
+          cp .github/templates/logo.png output/ 2>/dev/null || echo "Logo non trovato"
+          
+          # Copia TUTTI i PDF nella cartella output (compilati + già esistenti)
+          if ls Verbali/Interni/*.pdf 1> /dev/null 2>&1; then
+            cp Verbali/Interni/*.pdf output/verbali_interni/
+            echo "Copiati $(ls Verbali/Interni/*.pdf | wc -l) PDF interni"
+          fi
+          
+          if ls Verbali/Esterni/*.pdf 1> /dev/null 2>&1; then
+            cp Verbali/Esterni/*.pdf output/verbali_esterni/
+            echo "Copiati $(ls Verbali/Esterni/*.pdf | wc -l) PDF esterni"
+          fi
+          
+          # Copia documenti candidatura (compilati + già esistenti)
+          if ls Candidatura/*.pdf 1> /dev/null 2>&1; then
+            cp Candidatura/*.pdf output/candidatura/
+            echo "Copiati $(ls Candidatura/*.pdf | wc -l) documenti"
+          else
+            echo "Nessun documento trovato"
+          fi
+      
+      - name: Genera indice dei verbali
+        run: |
+          # Funzione per generare JSON
+          generate_json() {
+            local dir=$1
+            local output_file=$2
+            
+            echo '{"files":[' > "$output_file"
+            
+            local first=true
+            for pdf in "$dir"/*.pdf; do
+              if [ -f "$pdf" ]; then
+                if [ "$first" = "false" ]; then
+                  printf ',' >> "$output_file"
+                fi
+                printf '"%s"' "$(basename "$pdf")" >> "$output_file"
+                first=false
+              fi
+            done
+            
+            echo ']}' >> "$output_file"
+          }
+          
+          # Genera JSON per verbali interni
+          generate_json "output/verbali_interni" "output/verbali_interni/index.json"
+          
+          # Genera JSON per verbali esterni
+          generate_json "output/verbali_esterni" "output/verbali_esterni/index.json"
+          
+          # Genera JSON per candidatura
+          generate_json "output/candidatura" "output/candidatura/index.json"
+          
+          echo "Indici JSON generati"
+          echo "=== Verbali Interni ==="
+          cat output/verbali_interni/index.json
+          echo ""
+          echo "=== Verbali Esterni ==="
+          cat output/verbali_esterni/index.json
+          echo ""
+          echo "=== Candidatura ==="
+          cat output/candidatura/index.json
       
       - name: Carica PDFs come artifacts
         uses: actions/upload-artifact@v4
         with:
           name: pdfs-generati
-          path: output/**/*.pdf
+          path: |
+            Verbali/Interni/*.pdf
+            Verbali/Esterni/*.pdf
+            Candidatura/*.pdf
           if-no-files-found: warn
       
-      - name: Crea pagina HTML
+      - name: Commit PDFs su main
         run: |
-          mkdir -p output
-          cat > output/index.html << 'EOF'
-          <!DOCTYPE html><html><head><meta charset='UTF-8'><title>Verbali</title>
-          <style>
-            body { 
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-              padding: 2em;
-              max-width: 1200px;
-              margin: 0 auto;
-              background: #f5f5f5;
-            }
-            h1 { 
-              margin-top: 1em;
-              color: #333;
-              border-bottom: 3px solid #0066cc;
-              padding-bottom: 0.5em;
-            }
-            ul { 
-              list-style: none;
-              padding-left: 0;
-              background: white;
-              border-radius: 8px;
-              padding: 1em;
-              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            li { 
-              margin-bottom: 0.5em;
-              padding: 0.5em;
-              border-bottom: 1px solid #eee;
-            }
-            li:last-child {
-              border-bottom: none;
-            }
-            a {
-              color: #0066cc;
-              text-decoration: none;
-              font-weight: 500;
-            }
-            a:hover {
-              text-decoration: underline;
-            }
-          </style></head><body>
-          EOF
-          
-          # Verbali Interni
-          echo "<h1>📋 Verbali Interni</h1><ul>" >> output/index.html
-          if ls output/verbali_interni/*.pdf 1> /dev/null 2>&1; then
-            for f in $(ls -1 output/verbali_interni/*.pdf | sort -r); do
-              name=$(basename "$f")
-              echo "<li><a href='verbali_interni/$name'>$name</a></li>" >> output/index.html
-            done
-          else
-            echo "<li>Nessun verbale interno disponibile</li>" >> output/index.html
-          fi
-          echo "</ul>" >> output/index.html
-          
-          # Verbali Esterni
-          echo "<h1>📄 Verbali Esterni</h1><ul>" >> output/index.html
-          if ls output/verbali_esterni/*.pdf 1> /dev/null 2>&1; then
-            for f in $(ls -1 output/verbali_esterni/*.pdf | sort -r); do
-              name=$(basename "$f")
-              echo "<li><a href='verbali_esterni/$name'>$name</a></li>" >> output/index.html
-            done
-          else
-            echo "<li>Nessun verbale esterno disponibile</li>" >> output/index.html
-          fi
-          echo "</ul></body></html>" >> output/index.html
+          git config --global --add safe.directory /__w/Test-swe/Test-swe
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add Verbali/Interni/*.pdf Verbali/Esterni/*.pdf Candidatura/*.pdf
+          git diff --staged --quiet || git commit -m "Aggiorna PDFs compilati [skip ci]"
+          git push
       
       - name: Pubblica su GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

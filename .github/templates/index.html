@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbali - Documentazione Progetto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;       
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header con logo */
+        header {
+            text-align: center;
+            padding: 3rem 0 4rem;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+        }
+
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: #ffffff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: #a0a0a0;
+            font-weight: 300;
+        }
+
+        /* Grid dei verbali */
+        .verbali-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            margin-top:3rem;
+        }
+
+        .verbale-section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .verbale-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .verbale-section:hover {
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.4));
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .pdf-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .pdf-link {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #e0e0e0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pdf-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .pdf-link:hover::before {
+            left: 100%;
+        }
+
+        .pdf-link:hover {
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .pdf-icon {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .pdf-link:hover .pdf-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .pdf-name {
+            flex: 1;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+
+        .pdf-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            gap: 0.5rem;
+        }
+
+        .loading-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: loadingDots 1.4s infinite ease-in-out;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: 0s; }
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes loadingDots {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+        }
+
+        .about-us {
+            font-size: 1.3rem;
+            color: #a0a0a0;
+            font-weight: 300;
+        }
+
+        .about-us h2 {
+            color: white;
+        }
+
+        .about-us dl {
+            padding: 0.4rem 0.8rem;
+        }
+
+        .about-us p{
+            padding: 0.4rem 0.8rem;
+        }
+
+        .about-us dt {
+            
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            float: left;
+            padding-right: 0.3rem;
+        }
+
+        .about-us a {
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .about-us a:hover {
+            color: #764ba2;
+        }
+
+        /* Animazioni */
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .verbali-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .verbale-section {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="logo" id="logo">
+            </div>
+            <h1>Tool-8</h1>
+            <p>Documentazione progetto</p>
+        </header>
+        
+        <!-- Documenti -->
+        <div class="verbale-section">
+            <div class="section-header">
+                <span class="section-icon"></span>
+                <h2 class="section-title">Candidatura</h2>
+            </div>
+            <ul class="pdf-list" id="documenti-list">
+                <li class="loading">
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="verbali-grid">
+
+            <!-- Verbali Interni -->
+            <div class="verbale-section">
+                <div class="section-header">
+                    <span class="section-icon"></span>
+                    <h2 class="section-title">Verbali Interni</h2>
+                </div>
+                <ul class="pdf-list" id="interni-list">
+                    <li class="loading">
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Verbali Esterni -->
+            <div class="verbale-section">
+                <div class="section-header">
+                    <span class="section-icon"></span>
+                    <h2 class="section-title">Verbali Esterni</h2>
+                </div>
+                <ul class="pdf-list" id="esterni-list">
+                    <li class="loading">
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                        <div class="loading-dot"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="about-us">
+            <h2>About us:</h2>
+            <dl>
+                <dt>Email del gruppo</dt>
+                <dd>- tool8eight@gmail.com</dd>
+            </dl>
+            <p><a href="https://github.com/Tool-8/Documentazione-SWE" >Repository documentazione di github</a></p>
+            <dl>
+                <dt>Besnik Murtezan</dt>
+                <dd>- besnik.murtezan@studenti.unipd.it</dd>
+                <dt>Gabriele Disa</dt>
+                <dd>- gabriele.disa@studenti.unipd.it</dd>
+                <dt>Giuliano Banchieri</dt>
+                <dd>- giuliano.banchieri@studenti.unipd.it</dd>
+                <dt>Niccolò Feltrin</dt>
+                <dd>- niccolo.feltrin@studenti.unipd.it</dd>
+                <dt>Ruben Spadiliero</dt>
+                <dd>- ruben.spadiliero@studenti.unipd.it</dd>
+                <dt>Stefano Maso</dt>
+                <dd>- stefano.maso@studenti.unipd.it</dd>
+            </dl>
+        </div>
+
+        <footer>
+            <p>Aggiornato automaticamente via <a href="https://github.com/features/actions" target="_blank">GitHub Actions</a></p>
+    </div>
+
+    <script>
+        // Funzione per estrarre la data dal nome del file (se presente)
+        function extractDate(filename) {
+            const match = filename.match(/(\d{4})-(\d{2})-(\d{2})/);
+            if (match) {
+                return new Date(match[0]);
+            }
+            return null;
+        }
+
+        // Funzione per formattare il nome del file
+        function formatFilename(filename) {
+            // Rimuove l'estensione
+            const name = filename.replace('.pdf', '');
+            // Sostituisce underscore e trattini con spazi
+            return name.replace(/[_-]/g, ' ');
+        }
+
+        // Funzione per caricare i PDF da una directory
+        async function loadPDFs(directory, listId) {
+            const list = document.getElementById(listId);
+            
+            try {
+                const response = await fetch(`${directory}/index.json`);
+                if (!response.ok) {
+                    throw new Error('Indice non trovato');
+                }
+                
+                const data = await response.json();
+                const links = data.files || [];
+
+                if (links.length === 0) {
+                    list.innerHTML = `
+                        <li class="empty-state">
+                            <div class="empty-state-icon"></div>
+                            <div>Nessun documento disponibile</div>
+                        </li>
+                    `;
+                    return;
+                }
+
+                // Ordina per data (se presente nel nome) o alfabeticamente
+                links.sort((a, b) => {
+                    const dateA = extractDate(a);
+                    const dateB = extractDate(b);
+                    if (dateA && dateB) {
+                        return dateB - dateA; // Più recenti prima
+                    }
+                    return b.localeCompare(a); // Alfabetico inverso
+                });
+
+                list.innerHTML = links.map((pdf, index) => {
+                    const displayName = formatFilename(pdf);
+                    const date = extractDate(pdf);
+                    const badge = date ? 
+                        `<span class="pdf-badge">${date.toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' })}</span>` : 
+                        '';
+                    
+                    return `
+                        <li class="pdf-item">
+                            <a href="${directory}/${pdf}" class="pdf-link" target="_blank">
+                                <span class="pdf-icon"></span>
+                                <span class="pdf-name">${displayName}</span>
+                                ${badge}
+                            </a>
+                        </li>
+                    `;
+                }).join('');
+            } catch (error) {
+                list.innerHTML = `
+                    <li class="empty-state">
+                        <div class="empty-state-icon"></div>
+                        <div>Errore nel caricamento dei file</div>
+                    </li>
+                `;
+                console.error('Errore:', error);
+            }
+        }
+
+        // Gestione logo fallback
+        document.getElementById('logo').addEventListener('error', function() {
+            this.style.display = 'none';
+        });
+
+        // Carica i PDF al caricamento della pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPDFs('verbali_interni', 'interni-list');
+            loadPDFs('verbali_esterni', 'esterni-list');
+            loadPDFs('candidatura', 'documenti-list');
+        });
+    </script>
+</body>
+</html>
