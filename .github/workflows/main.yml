@@ -185,7 +185,7 @@ jobs:
       
       - name: Commit PDFs su main
         run: |
-          git config --global --add safe.directory /__w/Test-swe/Test-swe
+          git config --global --add safe.directory /__w/Documentazione-SWE/Documentazione-SWE
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add Verbali/Interni/*.pdf Verbali/Esterni/*.pdf Candidatura/*.pdf
