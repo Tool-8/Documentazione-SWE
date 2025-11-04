@@ -414,6 +414,7 @@
     <script>
         // Funzione per estrarre la data dal nome del file (se presente)
         function extractDate(filename) {
+            filename = filename.replace(/[_]/g,'-');
             const match = filename.match(/(\d{4})-(\d{2})-(\d{2})/);
             if (match) {
                 return new Date(match[0]);
@@ -426,7 +427,7 @@
             // Rimuove l'estensione
             const name = filename.replace('.pdf', '');
             // Sostituisce underscore e trattini con spazi
-            return name.replace(/[_-]/g, ' ');
+            return name.replace(/[_]/g, ' ');
         }
 
         // Funzione per caricare i PDF da una directory
@@ -474,16 +475,15 @@
                 list.innerHTML = links.map((pdf, index) => {
                     const displayName = formatFilename(pdf);
                     const date = extractDate(pdf);
-                    const badge = date ? 
+                    /*const badge = date ? 
                         `<span class="pdf-badge">${date.toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' })}</span>` : 
                         '';
-                    
+                    */
                     return `
                         <li class="pdf-item">
                             <a href="${directory}/${pdf}" class="pdf-link" target="_blank">
                                 <span class="pdf-icon"></span>
                                 <span class="pdf-name">${displayName}</span>
-                                ${badge}
                             </a>
                         </li>
                     `;
