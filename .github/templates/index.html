@@ -454,13 +454,22 @@
 
                 // Ordina per data (se presente nel nome) o alfabeticamente
                 links.sort((a, b) => {
+                    const isLetteraA = a.toLowerCase().includes("lettera");
+                    const isLetteraB = b.toLowerCase().includes("lettera");
+
+                    if (isLetteraA && !isLetteraB) return -1;
+                    if (!isLetteraA && isLetteraB) return 1;
+
                     const dateA = extractDate(a);
                     const dateB = extractDate(b);
+
                     if (dateA && dateB) {
-                        return dateB - dateA; // Più recenti prima
+                        return dateB - dateA; // più recenti prima
                     }
-                    return b.localeCompare(a); // Alfabetico inverso
+
+                    return a.localeCompare(b); // A → Z
                 });
+
 
                 list.innerHTML = links.map((pdf, index) => {
                     const displayName = formatFilename(pdf);
