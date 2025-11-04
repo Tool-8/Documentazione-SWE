@@ -62,7 +62,7 @@
     \vskip 1em
     {\large \@author \par}
     \vskip 1em
-    {\large31/10/2025 \par}
+    {\large04/11/2025 \par}
   \end{center}
   \vspace*{\fill}
 }
@@ -85,13 +85,15 @@
 \section*{Revisioni}
 \begin{table}[h!]
 \centering
-\begin{tabular}{|M{1cm}|p{3cm}|p{7cm}|M{1.8cm}|}
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
   \hline
-  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} \\
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  1.0  & Niccolò Feltrin & Revisione e conferma documento & 30/10/2025 \\
+  2.0 & Niccolò Feltrin & Aggiunta valutazione del capitolato scelto approfondita & 04/11/2025 & - \\
   \hline
-  0.1 & Stefano Maso & Prima stesura & \slashdate{\displaydate{dataverbale}} \\
+  1.0  & Niccolò Feltrin & Revisione e conferma documento & 30/10/2025 & Giuliano Banchieri\\
+  \hline
+  0.1 & Stefano Maso & Prima stesura & \slashdate{\displaydate{dataverbale}} & Niccolò Feltrin\\
   \hline
 \end{tabular}
 \label{tab:revisioni}
@@ -99,20 +101,43 @@
 
 \newpage
 
-
 \section*{Valutazione capitolati}
-Nella riunione interna del 15/10/2025, il gruppo ha valutato ciascun capitolato e deciso di effettuare la candidatura per il progetto \textit{Second Brain} (C6). Di seguito, ecco le considerazioni su ciascun capitolato:
+Nella riunione interna del 15/10/2025, il gruppo ha valutato ciascun capitolato e deciso di effettuare la candidatura per il progetto \textit{Second Brain} (C6). \\
+
+\subsection*{Capitolato scelto}
+\addcontentsline{toc}{section}{Motivazioni scelta}
+\textbf{Descrizione del capitolato}: il progetto prevede la realizzazione di un'applicazione che permette di creare testi in formato MarkDown, con un'area di scrittura e una di visualizzazione del risultato formattato. In particolare, l'app usufruisce dell'intelligenza artificiale come supporto di scrittura durante l'utilizzo: l'utente avrà una finestra di dialogo dove potrà chiedere ad un LLM di migliorare, riassumere, tradurre o criticare il testo. Le critiche seguono il metodo dei \textit{sei cappelli del pensare} di Edward De Bono, secondo il quale si analizza il testo offrendo sei punti di vista differenti (neutrale, emotivo, ottimistico, critico, creativo e logico). Inoltre, il programma consente di generare testi automaticamente tramite un prompt affidato all'IA (principio di "Distant Writing"). Infine, viene considerata una possibile implementazione di un sistema di persistenza delle note tramite database, che consenta di accedere alle note raggruppate tra di loro in base ad affinità e contenuto.
+
+\vspace{1\baselineskip}
+
+\textbf{Motivazione}: la scelta nasce da una combinazione di motivazioni tecniche, formative e di interesse personale:
+\begin{itemize}
+    \item \textbf{Forte potenziale di apprendimento ed utilizzo reale}\\
+    l'opportunità di sviluppare il prodotto richiesto è un ottimo modo per conoscere ed approfondire la realizzazione ed il funzionamento di applicazioni di note-taking e scrittura assistita MarkDown. Di fatto, software simili sono già ampiamente diffusi ed utilizzati nel mondo reale per una vasta gamma di ambiti professionali e non. Esempi importanti come Obsidian e NotebookLM verranno presi in considerazione come spunto durante lo sviluppo.
+    \item \textbf{Applicazione interessante dell'IA}\\
+    è stata particolarmente stimolante l'introduzione del \textit{metodo dei sei capelli del pensare} per la critica del testo, la quale spinge l'utilizzo dell'IA oltre il comune compito di generare testo fine a se stesso. Inoltre, essendo un tema molto attuale nel mondo informatico, lo sviluppo del prodotto offre la possibilità di sperimentare e comprendere più a fondo il funzionamento di varie LLM generative su una base più applicativa.
+    \item \textbf{Implementazione di tecnologie web moderne}\\
+    il software integra diverse componenti importanti quali: interfaccia web destinata all'utente, gestione delle richieste a livello backend, integrazione con intelligenza artificiale e persistenza dei dati su database. L'azienda dà libertà nella scelta dello stack di sviluppo e dei framework da utilizzare per l'implementazione dell'applicazione, lasciando la possibilità di sperimentare e approfondire varie tecnologie a nostra scelta.
+    \item \textbf{Supporto consolidato dell'azienda}\\
+    la proponente, avendo esperienza nella collaborazione con il corso di Ingegneria del Software, offre una forte base per l'aiuto nella gestione e realizzazione del progetto, dimostrandosi fin da subito comprensiva riguardo ai possibili problemi che possono scaturire dall'inesperienza del gruppo.
+\end{itemize}
+
+\newpage
+
+\subsection*{Altri capitolati}
+Di seguito, ecco le considerazioni sugli altri capitolati:
 \begin{itemize}
     \item \textbf{C1, Automated EN18031 Compliance Verification}: ritenuto poco avvincente dalla maggior parte del gruppo;
     \item \textbf{C2, Code Guardian}: nonostante la grande disponibilità da parte dell'azienda, il progetto richiede tecnologie particolarmente complicate;
     \item \textbf{C3, DIPReader}: l'obiettivo che si pone il progetto ha catturato l'attenzione del gruppo; tuttavia, le tecnologie consigliate non sono familiari ai membri del gruppo;
     \item \textbf{C4, L'app che Protegge e Trasforma}: le tante funzionalità richieste, in particolare quelle sulla sicurezza dei dati, risultano particolarmente difficili da soddisfare;
     \item \textbf{C5, NEXUM}: progetto molto interessante, soprattutto per il problema che si propone di risolvere e anche per l'utilizzo dell'intelligenza artificiale;
-    \item \textbf{C6, Second Brain}: la libertà nella scelta delle tecnologie e l'utilizzo di LLM del progetto hanno fin da subito catturato l'attenzione di tutto il gruppo, anche la velocità nelle risposte e la disponibilità da parte dell'azienda è stata molto apprezzata;
     \item \textbf{C7, Sistema di acquisizione dati da sensori}: molto interessante il contesto e l'obiettivo del progetto;
     \item \textbf{C8, Smart Order}: la richiesta di utilizzo di metodologie di Machine Learning avanzato per la gestione automatizzata di ordini di acquisto rende il progetto ambizioso e interessante;
     \item \textbf{C9, View4Life}: la possibilità di utilizzare i sensori dell'azienda e poterci effettivamente lavorare nella pratica attira sicuramente l'attenzione e l'interesse di cimentarsi in questo progetto; richiede un impegno sostanziale da parte di tutti i membri del gruppo;
 \end{itemize}
+
+
 
 
 \end{document}

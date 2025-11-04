@@ -1,0 +1,178 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{tabularx}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+
+% Pie chart
+\usepackage{pgf-pie}  
+
+\usepackage{tocloft}    % per indice
+\setlength{\cftbeforesecskip}{1em}
+\setlength{\cftbeforesubsecskip}{0.5em}
+\setlength{\cftbeforesubsubsecskip}{0.5em}
+
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+\usepackage{makecell}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{29}{10}{2025}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(3.8cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Lettera di presentazione};
+    \end{tikzpicture}
+  }{}
+}
+
+\newcommand{\pieslice}[6][black!10]{
+%%% Usage: \pieslice[color]{total}{start angle}{end angle}{data value}{label}
+  % calculate start and end points of arc
+  \pgfmathparse{#3/#2*360}
+  \let\a\pgfmathresult
+  \pgfmathparse{#4/#2*360}
+  \let\b\pgfmathresult
+
+  % calculate mid angle of arc
+  \pgfmathparse{0.5*\a+0.5*\b}
+  \let\midangle\pgfmathresult
+
+  % draw slice
+  \draw[fill=#1] (0,0) -- (\a:1) arc (\a:\b:1) -- cycle;
+
+  % outer label
+  \node[label=\midangle:{\tiny#6}] at (\midangle:1) {};
+
+  % inner label
+  \pgfmathparse{min((\b-\a-10)/110*(-0.3),0)}
+  \let\temp\pgfmathresult
+  \pgfmathparse{max(\temp,-0.5) + 0.8}
+  \let\innerpos\pgfmathresult
+  \pgfmathparse{(\b-\a)/3.6} % convert slice size to percentage
+  \let\percentage\pgfmathresult
+  \node at (\midangle:\innerpos) {\tiny\pgfmathprintnumber[fixed,precision=1]{\percentage}\%};
+}
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large04/11/2025 \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Lettera di presentazione}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+Gentili \\ 
+Professor. Vardanega \\
+Professor. Cardin \\
+
+\vspace{0.5\baselineskip}
+
+Siamo il gruppo 15 \textit{Tool-8} del corso di Ingegneria del Software dell'anno 2025/26, composto da 6 membri: \\
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2cm}|}
+  \hline
+  \textbf{Nome} & \textbf{Matricola} \\
+  \hline
+  Besnik Murtezan & 2113195 \\
+  \hline
+  Gabriele Disa & 2075545 \\
+  \hline
+  Giuliano Banchieri & 2101081 \\
+  \hline
+  Niccolò Feltrin & 2111947 \\
+  \hline
+  Ruben Spadiliero & 2075522 \\
+  \hline
+  Stefano Maso & 2110989 \\
+  \hline
+\end{tabular}
+\end{center}
+
+\vspace{1\baselineskip}
+
+Il gruppo, dopo vari riscontri e dialogando con l'azienda, ha deciso di candidarsi per il \textbf{capitolato C6}: \textit{Second Brain} con un preventivo di \textbf{€ 10.950,00}, e prevede di portare a termine il progetto entro il \textbf{15 aprile 2026}. Si citano i seguenti verbali che prendono in considerazione la scelta:
+
+\vspace{1\baselineskip}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\par\vspace{6pt}
+\textbullet\hspace{0.5em} \textbf{Verbale interno del 15/10/2025}: & Discussione dei vari capitolati \\
+\par\vspace{6pt}
+\textbullet\hspace{0.5em} \textbf{Verbale interno del 21/10/2025}: & Conferma sulla preferenza del capitolato C6 e raccolta di dubbi e domande \\
+\par\vspace{6pt}
+\textbullet\hspace{0.5em} \textbf{Verbale esterno del 24/10/2025}: & Incontro con il referente dell'azienda Zucchetti per chiarire i vari dubbi sorti nell'incontro precedente
+\end{tabularx}
+
+\vspace{1\baselineskip}
+
+Nella repository della documentazione (link fornito a fine documento) si possono trovare:
+
+\begin{itemize}
+    \item il documento di \textbf{Dichiarazione di Impegni}, che comprende lo studio dei possibili rischi e la suddivisione oraria dei ruoli;
+    \item il documento di \textbf{Valutazione dei Capitolati}, che esplora in modo più approfondito ogni capitolato disponibile e contiene una motivazione esaustiva sulla scelta dello sviluppo del progetto \textit{Second Brain};
+    \item i verbali interni ed esterni.
+\end{itemize}
+
+\vspace{1\baselineskip}
+
+\textbf{Contatti e link del gruppo} \\
+Si può trovare la repository della documentazione su Github al link: \href{https://github.com/Tool-8/Documentazione-SWE}https://github.com/Tool-8/Documentazione-SWE \\
+Inoltre, si dispone il sito per visualizzare i documenti in modo più accessibile fornito da Github Pages al link: \href{tool-8.github.io/Documentazione-SWE/}tool-8.github.io/Documentazione-SWE/ \\
+
+\end{document}
