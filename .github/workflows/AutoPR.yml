@@ -1,0 +1,31 @@
+name: Auto PR
+
+on:
+  push:
+    branches-ignore:
+      - main   
+
+permissions:
+  contents: write
+  pull-requests: write
+  
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: ${{ github.ref_name }}
+          title: "Pull Request automatica da ${{ github.ref_name }}"
+          body: |
+            PR generata automaticamente dal workflow.
+          labels: |
+            auto-pr
+          draft: false
