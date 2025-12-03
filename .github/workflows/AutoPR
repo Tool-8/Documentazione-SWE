@@ -1,0 +1,29 @@
+name: Auto PR
+
+on:
+  push:
+    branches:
+      - '*'
+      - '!main'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "${{ github.ref_name }}" \
+            --title "Auto PR: ${{ github.ref_name }}" \
+            --body "PR generata automaticamente dal workflow" \
+            || echo "PR già esistente o impossibile creare"
