@@ -1,0 +1,280 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua 
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{20}{11}{2025}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(3.2cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Norme di progetto};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large\slashdate{\displaydate{dataverbale}} \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Norme di progetto}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+  0.4 & Stefano Maso & Continuazione stesura sezione 3, creazione sezione 4 (Processi organizzativi) & 27/11/2025 & Gabriele Disa \\
+  \hline
+  0.3 & Stefano Maso & Terminata sezione 2 (Processi primari), inizio sezione 3 (Processi di supporto) & 27/11/2025 & Gabriele Disa \\
+  \hline
+  0.2 & Stefano Maso & Stesura fino a sezione 2.4 e correzione prima stesura & 25/11/2025 & Gabriele Disa \\
+  \hline
+  0.1 & Stefano Maso & Prima versione & 20/11/2025 & Gabriele Disa \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduzione}
+\subsection{Scopo del documento}
+Lo scopo del seguente documento è quello di definire il Way of Working e tutte le \textit{best practices} adottate da parte del gruppo, così da garantire omogeneità del lavoro.
+
+\subsection{Scopo del prodotto}
+Il prodotto finale propone di realizzare un software che permetta la scrittura di testo con marcatori in formato MarkDown, la sua visualizzazione formattata correttamente e l'interazione con un LLM. In particolare,l'utilizzo di LLM verrà sfruttato da Second Brain per fornire funzionalità di riassunto, riscrittura, traduzione e generazione di testo in aggiunta a una forma di critica secondo il modello dei "Sei Cappelli per Pensare" di Edward De Bono.  
+
+\section{Processi primari}
+\subsection{Descrizione}
+Con "processi primari" si intendono "i processi che hanno come clienti soggetti che sono esterni al gruppo".
+
+\subsection{Acquisizione}
+\subsubsection{Descrizione}
+Nel processo detto di acquisizione avviene la raccolta di tutti i requisiti e la loro comprensione, così da poter individuare un capitolato adatto al gruppo.
+\subsubsection{Valutazione dei capitolati}
+Il gruppo ha esaminato le proposte presentate dai vari proponenti sulla base della loro complessità, delle tecnologie necessarie e dell’effettivo interesse che tali progetti suscitano nei membri del gruppo.
+\subsubsection{Aggiudicazione appalto}
+Il gruppo si è candidato per il capitolato C6 dell'azienda Zucchetti. Dopo un primo riscontro negativo, il gruppo è riuscito ad aggiudicarsi l'appalto desiderato.
+
+\subsection{Fornitura}
+\subsubsection{Descrizione}
+Il processo di fornitura consiste nel chiarire tutti i dubbi del proponente per quanto riguarda il prodotto finale atteso. Il gruppo si impegna nel comunicare con l'azienda così da determinare i requisiti da dover soddisfare e ricevere riscontri in fase di sviluppo su quanto è stato fatto. 
+\subsubsection{Glossario}
+Il documento Glossario ha l'obiettivo di chiarire il significato dei diversi termini utilizzati nella documentazione, in modo da evitare fraintendimenti. È destinato a membri del gruppo, committenti e proponenti.
+\subsubsection{Piano di Progetto}
+Il documento Piano di Progetto si tratta di uno strumento di pianificazione per le attività che devono essere svolte in modo da rispettare la data di consegna prefissata. È composto da:
+\begin{itemize}
+    \item Analisi dei Rischi, ovvero tutte le difficoltà che il gruppo potrebbe incontrare durante lo svolgimento del progetto
+    \item Modello di sviluppo
+    \item Pianificazione
+    \item Preventivo
+    \item Consuntivo, l'andamento del gruppo rispetto al preventivo.
+\end{itemize}
+\subsubsection{Piano di Qualifica}
+Il documento Piano di Qualifica serve a elencare le attività svolte dal verificatore per garantire la qualità del prodotto finale. È composto da:
+\begin{itemize}
+    \item Qualità di processo
+    \item Qualità di prodotto
+    \item Test: eseguiti sul prodotto per garantire che tutti i requisiti siano soddisfatti
+    \item Resoconto
+\end{itemize}
+\subsubsection{Rilascio}
+Una volta terminato, il prodotto verrà collaudato. Se supererà il collaudo verrà consegnato al committente con tutta la documentazione del progetto.
+
+\subsection{Sviluppo}
+\subsubsection{Descrizione}
+L'obiettivo del processo di sviluppo è quello di elencare le attività da svolgere in modo da raggiungere i requisiti del prodotto.
+\subsubsection{Analisi dei Requisiti}
+L'Analisi dei Requisiti è il documento in cui vengono elencati tutti i requisiti del prodotto finale. Serve anche come documentazione del prodotto, in quanto contiene tutte le relative funzionalità. \\
+Il documento di Analisi dei Requisiti contiene: 
+\begin{itemize}
+  \item \textbf{Attori}, vengono definiti gli attori 
+  \item \textbf{Casi d'uso}, vengono descritti i casi d'uso, ciascuno con un diagramma a esso associato e la sua descrizione che segue una struttura standard (Attori, Precondizioni, Postcondzioni, Scenario primario e Scenari alternativi)
+  \item \textbf{Requisiti}, verranno infine definiti i requisiti, che possono essere funzionali, di qualità o requisiti di vincolo
+\end{itemize}
+\subsubsection{Progettazione}
+Va a definire la struttura del progetto a seconda dell'Analisi dei Requisiti. Si suddivide in:
+\begin{itemize}
+  \item Progettazione architetturale
+  \item Design dell'interfaccia
+  \item Progettazione dettagliata 
+\end{itemize}
+\subsubsection{Codifica}
+In seguito all'analisi e alla progettazione, i programmatori si occuperanno d'implementare tutte le funzionalità previste per il prodotto finale, basandosi ovviamente su Analisi dei Requisiti e sui documenti di progettazione. 
+Sempre in questa fase devono essere implementati i vari test per assicurare un corretto funzionamento del prodotto.
+
+\section{Processi di supporto}
+\subsection{Documentazione}
+\subsubsection{Tipi di documenti}
+È possibile distinguere i documenti in due categorie: quelli ad uso interno e quelli ad uso esterno. \\
+Per quanto riguarda quelli ad uso interno abbiamo:
+\begin{itemize}
+  \item Verbali interni 
+  \item Norme di Progetto
+\end{itemize}
+Quelli ad uso esterno invece comprendono:
+\begin{itemize}
+  \item Verbali esterni
+  \item Analisi dei Requisiti
+  \item Piano di Qualifica
+  \item Piano di Progetto
+\end{itemize}
+\subsubsection{Strumenti creazione documento}
+Per la creazione dei documenti inizialmente è stato deciso di utilizzare Overleaf, editor LaTeX online, ma viste le limitazioni sulla stesura collaborativa (limite di due persone per documento), è stato scelto di utilizzare Visual Studio Code con l'estensione LaTeX Workshop per poter lavorare in locale. Ciascun membro del gruppo, in seguito ad una modifica fatta al documento in locale, si impegna ad aggiornare anche il documento presente sulla repository, in modo da rendere sempre disponibile l'ultima versione del documento al resto del gruppo.
+\subsubsection{Struttura documenti}
+Ciascun documento ha una struttura ben definita:
+\begin{itemize}
+  \item Prima pagina: contiene nome e logo del gruppo, informazioni del documento e la data in cui è stato approvato
+  \item Tabella delle revisioni: una tabella che contiene informazioni del versionamento del documento; la versione, l'autore, descrizione delle modifiche apportate, la data, il verificatore delle modifiche
+  \item Indice: elenco dei contenuti del documento
+\end{itemize}
+\subsubsection{Ciclo di vita documenti}
+Un documento ha le seguenti fasi:
+\begin{itemize}
+  \item Stesura: uno o più redattori si occupano della stesura del documento
+  \item Verifica: un membro del gruppo, diversi da quelli che hanno scritto il documento, ha il compito di verifica il documento
+  \item Approvazione: il responsabile del progetto decide se approvare l'entrata di un documento nella repository. Se il documento non viene approvato torna alla fase di stesura
+\end{itemize}
+\subsection{Controllo di configurazione}
+\subsubsection{Versionamento}
+Il versionamento scelto è composto da due numeri: x.y
+\begin{itemize}
+  \item x è un numero intero, parte da zero è viene incrementato ogni volta che il responsabile approverà il documento
+  \item y è un numero intero positivo e rappresenta lo stato di verifica del documento
+\end{itemize}
+\subsubsection{GitHub e Git}
+Il gruppo ha deciso di utilizzare GitHun come strumento di versionamento e Git per collegarsi alla repository GitHub. 
+\subsubsection{Scopo e struttura repository "Documentazine-SWE"}
+La repository ha la funzione di mantere una versione aggiornata dei file che dovranno produrre documentazione, ovvero i file .tex.\\
+La struttura della repository deve essere:
+\begin{itemize}
+  \item Candidatura
+  \item RTB
+  \item Verbali 
+  \begin{itemize}
+    \item Interni
+    \item Esterni
+  \end{itemize}
+\end{itemize}
+\subsubsection{Scopo e struttura "Proof-of-Concept}
+DA FARE!!!
+\subsubsection{Controllo di flusso}
+CHIEDERE PRIMA DI SCRIVERE
+
+\subsection{Gestione della qualità}
+
+\subsection{Verifica}
+
+\subsection{Validazione}
+
+\section{Processi organizzativi}
+Questa sezione è dedicata a dare una breve descrizione di tutti i ruoli e delle responsabilità dei membri del gruppo.
+\subsection{Responsabile}
+Il responsabile è la figura che guida e coordina le attività per la realizzazione di un progetto. Le sue responsabilità includono:
+\begin{itemize}
+  \item Pianificare e coordinare le attività di progetto
+  \item Assegnare le attività a chi le dovrà svolgere
+  \item Gestire lo Sprint e le milestone
+  \item Approvare l'emissione della documentazione
+\end{itemize}
+\subsubsection{Gestione dello sprint}
+All'inizio di ogni sprint il responsabile dovrà:
+\begin{enumerate}
+  \item Determinare la durata dello sprint
+  \item Individuare le attività che si dovranno svolgere durante lo sprint
+  \item Creare le issue, associate alle attività e associarle a chi dovrà svolgerle
+  \item Aggiornare il file Piano di Progetto, con le informazioni relative al nuovo sprint
+\end{enumerate}
+\subsubsection{Verifica dei documenti}
+SCRIVERE PROCEDIMENTO PER APPROVAZIONE DOC
+\subsubsection{Verifica del codice}
+Il responsabile dovrà approvare o rifiutare la pull request.
+\subsection{Amministratore}
+L'amministratore si occupa di:
+\begin{itemize}
+  \item Risolvere problemi riguardanti la gestione dei processi
+  \item Ricercare risorse per migliorare l'ambiente di lavoro
+  \item Attuare piani e procedure per la gestione della qualità
+\end{itemize}
+\subsection{Analista}
+Le responsabilità dell'analista riguardano: 
+\begin{itemize}
+  \item Redigere il documento "Analisi dei requsiti"
+  \item Studiare i casi d'uso
+  \item Aggiornare i documenti Piano di progetto e Piano di Qualifica
+\end{itemize}
+\subsection{Progettista}
+
+\subsection{Verificatore}
+
+\subsection{Programmatore}
+\end{document}
