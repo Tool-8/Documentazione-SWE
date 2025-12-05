@@ -1,0 +1,1387 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua 
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{tikz}
+\usepackage{tikz-uml}
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{11}{11}{2025}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(3.2cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Analisi dei requisiti};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large\slashdate{\displaydate{dataverbale}} \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Analisi dei requisiti}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+
+  0.6 & Besnik Murtezan & Stesura casi d'uso UC9, UC10, UC11  & 24/11/2025 & - \\
+  \hline  
+  0.5 & Besnik Murtezan & Revisione casi d'uso UC4, UC5, UC6, UC7, UC8  & 19/11/2025 & - \\
+  \hline
+  0.4 & Besnik Murtezan & Revisione casi d'uso UC1, UC2, UC3 e verifica Sezioni 1, 2, & 16/11/2025 & - \\
+  \hline
+  0.3 & Stefano Maso & Stesura casi d'uso (UC4, UC5, UC6, UC7, UC8) e correzione sezione 2  & 15/11/2025 & Besnik Murtezan \\
+  \hline
+  0.2 & Stefano Maso & Stesura primi casi d'uso (UC1, UC2, UC3)  & 13/11/2025 & Besnik Murtezan \\
+  \hline
+  0.1 & Stefano Maso & Prima versione, stesura della sezione 1 e 2 (Introduzione e Descrizione) e inizio della sezione 3 (Casi d'uso)  & \slashdate{\displaydate{dataverbale}} & Besnik Murtezan \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduzione}
+\subsection{Scopo del documento}
+Lo scopo del seguente documento è quello di delineare i requisiti e i casi d'uso del
+progetto \textbf{Second Brain} (capitolato d'appalto C6), sulla base della presentazione 
+del capitolato e incontri realizzati direttamente con il proponente, per chiarire i dubbi sorti.
+\subsection{Scopo del prodotto}
+Il prodotto finale propone di realizzare un software che permetta la scrittura di testo con marcatori
+in formato MarkDown, la sua visualizzazione formattata correttamente e l'interazione con un LLM.
+In particolare,l'utilizzo di LLM verrà sfruttato da Second Brain per fornire funzionalità
+di riassunto, riscrittura, traduzione e generazione di testo in aggiunta ad una forma di critica
+secondo il modello dei "Sei Cappelli per Pensare" di Edward De Bono.  
+
+\vfill
+
+\section{Descrizione}
+\subsection{Obiettivi del prodotto}
+Il nostro prodotto punta a sviluppare un'applicazione web che vada ad estendere le possibilità
+di note-taking classiche, andando ad aggiungere le potenzialità dei LLM nel creare e migliorare testi. 
+\subsection{Funzionalità del prodotto}
+Le funzionalità offerte dal prodotto saranno:
+\begin{itemize}
+    \item \textbf{Editing di testo con marcatori MarkDown}: L'utente potrà scrivere in un'area che accetta
+    testo e marcatori in formato MarkDown;
+    \item \textbf{Visualizzazione testo correttamente formattato}: L'utente sarà in grado di vedere lo stile
+    sotteso dai marcatori presenti nel testo;
+    \item \textbf{Utilizzo LLM}; L'utente, tramite un LLM, potrà riassumere, riscrivere o tradurre il testo;
+    \item \textbf{Critica secondo il modello dei "sei cappelli per pensare"}: L'utente, sempre tramite LLM, avrà
+    la possibilità di ricevere critiche sul testo scritto, prendendo spunto dalla tecnica dei "sei cappelli per pensare";
+    \item \textbf{Creazione intero documento tramite LLM}: L'utente potrà far sviluppare l'intero testo all'LLM stesso;
+\end{itemize}
+
+\vfill
+
+\section{Casi d'uso}
+Nella seguente sezione verranno analizzati tutti i casi d'uso individuati esaminando il capitolato d'appalto
+e discutendo con la proponente. \\Ciascun caso d'uso sarà definito da un diagramma UML e da una descrizione
+testuale contenente: attore principale, attori secondari (ove presenti), precondizioni, postcondizioni, scenario
+principale e scenari alternativi (ove presenti).
+
+\clearpage
+
+\subsection{Attori}
+Descrizione attori:
+    \subsubsection{Attori Principali}
+        \begin{itemize}
+            \item \textbf{Utente}: persona che accede al sistema 
+        \end{itemize}
+    \subsubsection{Attori Secondari}
+        \begin{itemize}
+            \item \textbf{LLM}: Large Language Model che verrà integrato per fornire le funzionalità AI
+            \item \textbf{Server Locale}: server in cui vengono salvate le note
+        \end{itemize}
+\bigskip
+
+\subsection{Diagrammi e Descrizioni Testuali}
+
+\medskip
+
+\subsubsection*{UC1 - Visualizzazione Archivio Note}
+\addcontentsline{toc}{subsubsection}{UC1 - Visualizzazione Archivio Note}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4,scale=0.75]{Server Locale}
+
+% Associazioni Utente
+\umlassoc{Utente}{archivio}
+\umlassoc{Server Locale}{archivio}
+
+\end{tikzpicture}
+\end{center}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item Server Locale
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente si trova nella Home
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene visualizzata la lista delle note presenti nel server
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item Il sistema mostra all'utente le note presenti sul server
+\end{enumerate}
+
+
+
+\subsubsection*{UC2 - Creazione Nota}
+\addcontentsline{toc}{subsubsection}{UC2 - Creazione Nota}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=creazione]{UC2 - Creazione Nota}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4,scale=0.75]{Server Locale}
+
+% Associazioni Utente
+\umlassoc{Utente}{creazione}
+\umlassoc{Server Locale}{creazione}
+
+\end{tikzpicture}
+\end{center}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item Server Locale
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente si trova nella Home
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene creata una nota vuota nel Server Locale 
+    \item La nota creata viene aperta
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità di \textit{"Creazione Nota"}
+    \item L'utente specifica il nome della nota
+    \item Il sistema crea una nota nuova nel Server con il nome specificato
+    \item La nota viene aperta
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui nel Server fosse già presente una nota con lo stesso nome:
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della presenza di una nota con lo stesso nome
+        \item Il sistema indica all'utente di specificare un nome differente
+        \item L'utente cambia il nome inizialmente fornito
+        \item Il sistema prosegue con la creazione della nota
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC3 - Apertura Nota}
+\addcontentsline{toc}{subsubsection}{UC3 - Apertura Nota}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=apertura]{UC3 - Apertura Nota}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4,scale=0.75]{Server Locale}
+
+% Associazioni Utente
+\umlassoc{Utente}{apertura}
+\umlassoc{Server Locale}{apertura}
+
+\end{tikzpicture}
+\end{center}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item Server Locale
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente si trova nella Home
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item La nota selezionata viene aperta
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente visualizza le note presenti nel server (UC1)
+    \item L'utente seleziona la nota da aprire
+    \item La nota viene aperta
+\end{enumerate}
+
+
+
+\subsubsection*{UC4 - Salvataggio Nota}
+\addcontentsline{toc}{subsubsection}{UC4 - Salvataggio Nota}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=salvataggio]{UC4 - Salvataggio Nota}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4,scale = 0.75]{Server Locale}
+
+% Associazioni Utente
+\umlassoc{Utente}{salvataggio}
+\umlassoc{Server Locale}{salvataggio}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item Server Locale
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item La nota viene salvata sul Server locale
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Salva Nota"}
+    \item Il sistema salva la nota sul Server
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui la nota inizialmente aperta dall'utente avesse successivamente subito delle modifiche nel Server:
+    \begin{enumerate}
+        \item Il sistema avvisa la presenza di modifiche nel Server non contenute nella versione corrente dell'utente
+        \item Il sistema propone all'utente la scelta tra:
+        \begin{itemize}
+            \item Sovrascrivere la nota presente sul Server con la versione corrente dell'utente
+            \item Salvare la nota con un nome differente
+            \item Aggiornare la nota corrente dell'utente con la versione presente sul Server
+        \end{itemize}
+        \item L'utente seleziona una tra le opzioni
+        \item Il sistema effettua l'operazione scelta dall'utente
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC5 - Chiusura Nota}
+\addcontentsline{toc}{subsubsection}{UC5 - Chiusura Nota}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=chiusura]{UC5 - Chiusura Nota}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4,scale = 0.75]{Server Locale}
+
+% Associazioni Utente
+\umlassoc{Utente}{chiusura}
+\umlassoc{Server Locale}{chiusura}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item Server Locale
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item La nota viene chiusa
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Chiudi Nota"}
+    \item La nota viene chiusa
+    \item L'utente viene riportato alla Home
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui ci siano modifiche non salvate nella nota aperta:
+    \begin{enumerate}
+        \item Il sistema avvisa la presenza di modifiche non salvate
+        \item Il sistema propone all'utente di salvare la nota
+        \item L'utente sceglie se salvare o meno la nota
+        \item Il sistema effettua l'operazione scelta dall'utente
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC6 - Ricerca nota per nome}
+\addcontentsline{toc}{subsubsection}{UC6 - Ricerca nota per nome}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=ricerca]{UC6 - Ricerca nota per nome}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4,scale=0.75]{Server Locale}
+
+% Associazioni Utente
+\umlassoc{Utente}{ricerca}
+\umlassoc{Server Locale}{ricerca}
+
+\end{tikzpicture}
+\end{center}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item Server Locale
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente si trova nella Home
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Il sistema mostra all'utente i risultati della ricerca
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità di \textit{"Ricerca Nota"}
+    \item L'utente specifica il nome di una nota da ricercare 
+    \item Il sistema effettua la ricerca nel server locale
+    \item Il sistema ritorna i risultati della ricerca
+\end{enumerate}
+
+
+
+\subsubsection*{UC7 - Eliminazione nota}
+\addcontentsline{toc}{subsubsection}{UC7 - Eliminazione nota}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=eliminazione]{UC7 - Eliminazione nota}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4,scale=0.75]{Server Locale}
+
+% Associazioni Utente
+\umlassoc{Utente}{eliminazione}
+\umlassoc{Server Locale}{eliminazione}
+
+\end{tikzpicture}
+\end{center}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item Server Locale
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item La nota aperta viene eliminata dal Server Locale
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità di \textit{"Eliminazione Nota"}
+    \item L'utente conferma l'eliminazione della nota
+    \item Il sistema elimina la nota dal Server Locale
+    \item L'utente viene riportato alla Home
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui la nota interessata fosse stata rimossa dal server prima dell'eliminazione da parte dell'utente:
+    \begin{itemize}
+        \item Il sistema avvisa l'utente dell'inesistenza della nota da eliminare 
+        \item L'utente viene riportato Home
+    \end{itemize}
+    \item Nel caso l'utente volesse eliminare una nota mentre si trova nella Home:
+    \begin{itemize}
+        \item L'utente seleziona la nota da voler eliminare
+        \item L'utente attiva la funzionalità di \textit{"Eliminazione Nota"}
+        \item L'utente conferma l'eliminazione
+        \item La nota viene eliminata dal server
+    \end{itemize}
+\end{itemize}
+
+\clearpage
+
+\subsubsection*{UC8 - Scrittura testo}
+\addcontentsline{toc}{subsubsection}{UC8 - Scrittura testo}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=scrittura]{UC8 - Scrittura testo}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+
+% Associazioni Utente
+\umlassoc{Utente}{scrittura}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Il testo aggiunto dall'utente è presente nell'area di editing 
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente scrive del testo nell'area dedicata all'editing secondo la sintassi MarkDown
+\end{enumerate}
+
+
+
+\subsubsection*{UC9 - Visualizzazione testo formattato}
+\addcontentsline{toc}{subsubsection}{UC9 - Visualizzazione testo formattato}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=vis,align=center]{UC9 - Visualizzazione \\ testo formattato}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+
+% Associazioni Utente
+\umlassoc{Utente}{vis}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Il testo presente nell'area di editing viene formattato e visualizzato dentro un'area di output adiacente
+    all'area di editing
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente visualizza il testo formattato nell'area di output
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente volesse focalizzarsi su un aspetto specifico della visualizzazione del testo:
+    \begin{enumerate}
+        \item L'utente sceglie tra:
+            \begin{itemize}
+                \item Nascondere area di output formattazione
+                \item Nascondere area di editing
+            \end{itemize}
+        \item Il sistema effettua l'operazione scelta dall'utente
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC10 - Riassunto testo con LLM}
+\addcontentsline{toc}{subsubsection}{UC10 - Riassunto testo con LLM}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=riassumere]{UC10 - Riassumere testo con LLM}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4]{LLM}
+
+% Associazioni Utente
+\umlassoc{Utente}{riassumere}
+\umlassoc{LLM}{riassumere}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+    \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Il testo selezionato è stato riassunto 
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Riassumi testo"}
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item Il sistema mostra il riassunto suggerito dall'LLM
+    \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente non ritenga opportuno il riassunto suggerito:
+    \begin{enumerate}
+        \item L'utente rifiuta il riassunto suggerito
+        \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo) 
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC11 - Riscrittura testo con LLM}
+\addcontentsline{toc}{subsubsection}{UC11 - Riscrittura testo con LLM}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=riscrittura]{UC11 - Riscrittura testo con LLM}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4]{LLM}
+
+% Associazioni Utente
+\umlassoc{Utente}{riscrittura}
+\umlassoc{LLM}{riscrittura}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+    \item L'utente seleziona una porzione del testo o l'intero testo
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Il testo selezionato viene riscritto in modo diverso
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+    \item L'utente seleziona almeno uno tra i seguenti aspetti per definire la riscrittura: 
+    \begin{itemize}
+        \item Miglioramento Lessico 
+        \item Correzione Grammatica
+        \item Variazione Stile Espositivo
+        \item Modifica Estensione Testo 
+    \end{itemize}
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item Il sistema mostra il risultato all'utente
+    \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente non ritenga opportuna la riscrittura proposta:
+    \begin{enumerate}
+        \item L'utente rifiuta il risultato proposto
+        \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo) 
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC12 - Traduzione testo con LLM}
+\addcontentsline{toc}{subsubsection}{UC12 - Traduzione testo con LLM}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=traduzione]{UC12 - Traduzione testo con LLM}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4]{LLM}
+
+% Associazioni Utente
+\umlassoc{Utente}{traduzione}
+\umlassoc{LLM}{traduzione}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+    \item L'utente seleziona una porzione del testo o l'intero testo
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Il testo viene tradotto nella lingua selezionata
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Traduci Testo"}
+    \item L'utente seleziona la lingua in cui desidera tradurre il testo selezionato
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item Il sistema mostra il risultato all'utente
+    \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente non ritenga opportuna la riscrittura proposta:
+    \begin{enumerate}
+        \item L'utente rifiuta il risultato proposto
+        \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo) 
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC13 - Generazione testo con LLM}
+\addcontentsline{toc}{subsubsection}{UC13 - Generazione testo con LLM}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=creazione]{UC13 - Generazione testo con LLM }
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+\umlactor[x=10, y=4]{LLM}
+
+% Associazioni Utente
+\umlassoc{Utente}{creazione}
+\umlassoc{LLM}{creazione}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+    \item L'utente seleziona il punto in cui vuole che venga generato il testo
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene inserito il testo generato sulla base della descrizione fatta dall'utente
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Genera Testo"}
+    \item L'utente definisce un prompt contenente la descrizione del testo da generare
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item Il sistema mostra il testo generato all'utente
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente non ritenga opportuno il testo generato:
+    \begin{enumerate}
+        \item L'utente rifiuta il risultato proposto
+        \item Il sistema ritorna alle precondizioni
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC14 - Critica Testo secondo modello \textit{"Sei Cappelli"}}
+\addcontentsline{toc}{subsubsection}{UC14 - Critica Testo secondo modello \textit{"Sei Cappelli"}}
+\begin{center}
+
+\begin{tikzpicture}
+    \begin{umlsystem}[x=0,y=0]{UC14 - Critica Testo secondo modello "Sei Cappelli"}
+    \tikzumlset{font=\small}
+        \umlactor[x=-7.5,y=-4,scale=1.5]{Utente}
+        \umlactor[x=6,y=-4,scale=1]{LLM}
+        
+        \umlusecase[name=UC251,x=0,y=0,align=center]{\textbf{UC14.1 - Visione Emotiva} \\ (Cappello Rosso)}
+        \umlusecase[name=UC252,x=0,y=-1.6,align=center]{\textbf{UC14.2 - Visione Neutra} \\ (Cappello Bianco)}
+        \umlusecase[name=UC253,x=0,y=-3.2,align=center]{\textbf{UC14.3 - Visione Ottimista} \\ (Cappello Giallo)}
+        \umlusecase[name=UC254,x=0,y=-4.8,align=center]{\textbf{UC14.4 - Visione \textit{Devil's Advocate}} \\ (Cappello Nero)}
+        \umlusecase[name=UC255,x=0,y=-6.4,align=center]{\textbf{UC14.5 - Visione Originalità} \\ (Cappello Verde)}
+        \umlusecase[name=UC256,x=0,y=-8,align=center]{\textbf{UC14.6 - Visione Logica e Struttura} \\ (Cappello Blu)}
+        
+        \umlassoc{Utente}{UC251}
+        \umlassoc{Utente}{UC252}
+        \umlassoc{Utente}{UC253}
+        \umlassoc{Utente}{UC254}
+        \umlassoc{Utente}{UC255}
+        \umlassoc{Utente}{UC256}
+        \draw [tikzuml association style] (LLM) -- (4.9,-4);
+        
+    \end{umlsystem}
+\end{tikzpicture}
+\end{center}
+
+\paragraph{UC14.1 - Visione Emotiva}~\\
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene fornito un feedback di critica assieme ad una possibile versione riadattata del testo
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Emotiva"} 
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item L'utente visualizza il feedback fornito dall'LLM
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
+    \begin{enumerate}
+        \item L'utente conferma la sostituzione del testo
+        \item Il testo viene sostituito con la versione riadattata
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{UC14.2 - Visione Neutra}~\\
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene fornito un feedback di critica assieme ad una possibile versione riadattata del testo
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Neutra"} 
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item L'utente visualizza il feedback fornito dall'LLM 
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
+    \begin{enumerate}
+        \item L'utente conferma la sostituzione del testo
+        \item Il testo viene sostituito con la versione riadattata
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{UC14.3 - Visione Ottimista}~\\
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene fornito un feedback di critica assieme ad una possibile versione riadattata del testo
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Ottimista"} 
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item L'utente visualizza il feedback fornito dall'LLM  
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
+    \begin{enumerate}
+        \item L'utente conferma la sostituzione del testo
+        \item Il testo viene sostituito con la versione riadattata
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{UC14.4 - Visione Devil's Advocate}~\\
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene fornito un feedback di critica assieme ad una possibile versione riadattata del testo
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Devil's Advocate"} 
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item L'utente visualizza il feedback fornito dall'LLM  
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
+    \begin{enumerate}
+        \item L'utente conferma la sostituzione del testo
+        \item Il testo viene sostituito con la versione riadattata
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{UC14.5 - Visione Originalità}~\\
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene fornito un feedback di critica assieme ad una possibile versione riadattata del testo
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Originalità"} 
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item L'utente visualizza il feedback fornito dall'LLM  
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
+    \begin{enumerate}
+        \item L'utente conferma la sostituzione del testo
+        \item Il testo viene sostituito con la versione riadattata
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{UC14.6 - Visione Logica e Struttura}~\\
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene fornito un feedback di critica assieme ad una possibile versione riadattata del testo
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Logica e Struttura"} 
+    \item Il sistema invia la richiesta all'API dell'LLM
+    \item Il sistema riceve la risposta dall'LLM
+    \item L'utente visualizza il feedback fornito dall'LLM  
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
+    \begin{enumerate}
+        \item L'utente conferma la sostituzione del testo
+        \item Il testo viene sostituito con la versione riadattata
+    \end{enumerate}
+\end{itemize}
+
+\newpage
+
+\subsubsection*{(OPT) UC15 - Associazione Note}
+\addcontentsline{toc}{subsubsection}{(OPT) UC15 - Associazione Note}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=associazione]{(OPT) UC15 - Associazione Note}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+
+% Associazioni Utente
+\umlassoc{Utente}{associazione}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item Viene associata la nota specificata dall'utente tramite il link MarkDown
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente inserisce all'interno del testo un link alla nota da associare
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui venga successivamente effettuata un'operazione sul testo tramite LLM:
+    \begin{enumerate}
+        \item Il sistema fornirà all'LLM un contesto basato anche sulla nota associata
+    \end{enumerate}
+\end{itemize}
+
+\vspace*{\fill}
+
+\clearpage
+
+
+\iffalse
+\subsubsection{UC8.2 - Visione Neutra}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item E' stata aperta una nota
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item L'utente viene informato se il testo da lui scritto è neutro ed imparziale o meno
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva il comando che riguardo il "Cappello Bianco"
+    \item Il sistema mostra se il testo da lui scritto è neutro ed imparziale o meno
+\end{enumerate}
+
+\subsubsection{UC8.3 - Visione Ottimista}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item VERIFICA o RISCRIVE chiedere con MAIL
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva il comando che riguardo il "Cappello Giallo"
+    \item ...
+\end{enumerate}
+
+\subsubsection{UC8.4 - Visione Devil's Advocate}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item VERIFICA o RISCRIVE chiedere con MAIL
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva il comando che riguardo il "Cappello Nero"
+    \item ...
+\end{enumerate}
+
+\subsubsection{UC8.5 - Visione Originalità}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item VERIFICA o RISCRIVE chiedere con MAIL
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva il comando che riguardo il "Cappello Verde"
+    \item ...
+\end{enumerate}
+
+\subsubsection{UC8.5 - Visione Logica e Struttura}
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Attori secondari}
+\begin{itemize}
+    \item LLM
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item VERIFICA o RISCRIVE chiedere con MAIL
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente attiva il comando che riguardo il "Cappello Blu"
+    \item ...
+\end{enumerate}
+
+
+
+
+\newpage
+\begin{center}
+    
+\begin{tikzpicture}
+    \begin{umlsystem}[x=0,y=0]{Sistema}
+    \tikzumlset{font=\small}
+    
+        \umlactor[x=-5,y=-1.5,scale=1.5]{Utente}
+        \umlactor[x=3.5,y=-1.5,scale=0.75]{LLM}
+        \umlactor[x=4.5,y=-3,scale=0.75]{Sistema Persistenza}
+        
+        \umlusecase[name=UC1,x=0,y=0,align=center]{Editor \\ Testo MarkDown}
+        \umlusecase[name=UC2,x=0,y=-1.5,align=center]{Funzioni AI}
+        \umlusecase[name=UC3,x=0,y=-3,align=center]{Persistenza Note}
+        
+        \umlassoc{Utente}{UC1}
+        \umlassoc{Utente}{UC2}
+        \umlassoc{Utente}{UC3}
+        \umlassoc{LLM}{UC2}
+        \umlassoc{Sistema Persistenza}{UC3}
+
+    \end{umlsystem}
+\end{tikzpicture}
+
+\end{center}
+
+\vspace{10mm}
+\begin{center}
+
+\begin{tikzpicture}
+    \begin{umlsystem}[x=0,y=0]{Editor Testo MarkDown}
+    \tikzumlset{font=\small}
+    
+        \umlactor[x=-5,y=-1.5,scale=1.5]{Utente}
+        
+        \umlusecase[name=UC11,x=0,y=0,align=center]{Editing Testo}
+        \umlusecase[name=UC12,x=0,y=-1.5,align=center]{Formattazione Testo} 
+        \umlusecase[name=UC13,x=0,y=-3,align=center]{Gestione Layout}
+        
+        \umlassoc{Utente}{UC11}
+        \umlassoc{Utente}{UC12}
+        \umlassoc{Utente}{UC13}
+    
+    \end{umlsystem}
+\end{tikzpicture}
+
+\end{center}
+
+\vspace{10mm}
+
+\begin{center}
+
+\begin{tikzpicture}
+    \begin{umlsystem}[x=0,y=0]{Funzioni AI}
+    \tikzumlset{font=\small}
+    
+        \umlactor[x=-5,y=-3,scale=1.5]{Utente}
+        \umlactor[x=5,y=-3,scale=1]{LLM}
+
+        \umlusecase[name=UC21,x=0,y=0,align=center]{Generazione Testo \\ da Prompt}
+        \umlusecase[name=UC22,x=0,y=-1.5,align=center]{Riassunto \\ Testo}
+        \umlusecase[name=UC23,x=0,y=-3,align=center]{Riscrittura \\ Testo} 
+        \umlusecase[name=UC24,x=0,y=-4.5,align=center]{Traduzione \\ Testo}
+        \umlusecase[name=UC25,x=0,y=-6,align=center]{Critica \\ Testo}
+        
+        \umlassoc{Utente}{UC21}
+        \umlassoc{Utente}{UC22}
+        \umlassoc{Utente}{UC23}
+        \umlassoc{Utente}{UC24}
+        \umlassoc{Utente}{UC25}
+
+        \draw [tikzuml association style] (LLM) -- (2.6,-3);
+    
+    \end{umlsystem}
+\end{tikzpicture}
+
+\end{center}
+
+\vspace{10mm}
+
+\begin{center}
+
+\begin{tikzpicture}
+    \begin{umlsystem}[x=0,y=0]{Persistenza Note}
+    \tikzumlset{font=\small}
+    
+        \umlactor[x=-5,y=-1.5,scale=1.5]{Utente}
+        \umlactor[x=4.5,y=-1.5,scale=0.75]{Sistema Persistenza}
+        
+        \umlusecase[name=UC31,x=0,y=0,align=center]{Salvataggio Nota}
+        \umlusecase[name=UC32,x=0,y=-1.5,align=center]{Apertura Nota} 
+        \umlusecase[name=UC33,x=0,y=-3,align=center]{Eliminazione Nota}
+        
+        \umlassoc{Utente}{UC31}
+        \umlassoc{Utente}{UC32}
+        \umlassoc{Utente}{UC33}
+
+        \draw [tikzuml association style] (Sistema Persistenza) -- (2.65,-1.5);
+    
+    \end{umlsystem}
+\end{tikzpicture}
+
+\end{center}
+
+\vspace{10mm}
+
+\begin{center}
+
+\begin{tikzpicture}
+    \begin{umlsystem}[x=0,y=0]{Riscrittura Testo}
+    \tikzumlset{font=\small}
+    
+        \umlactor[x=-5,y=-2.3,scale=1.5]{Utente}
+        \umlactor[x=5,y=-2.3,scale=1]{LLM}
+
+        \umlusecase[name=UC231,x=0,y=0,align=center]{Miglioramento \\ Lessico}
+        \umlusecase[name=UC232,x=0,y=-1.5,align=center]{Correzione \\ Grammatica}
+        \umlusecase[name=UC233,x=0,y=-3,align=center]{Variazione \\ Stile Espositivo} 
+        \umlusecase[name=UC234,x=0,y=-4.5,align=center]{Modifica \\ Estensione}
+        
+        \umlassoc{Utente}{UC231}
+        \umlassoc{Utente}{UC232}
+        \umlassoc{Utente}{UC233}
+        \umlassoc{Utente}{UC234}
+
+        \draw [tikzuml association style] (LLM) -- (2.4,-2.3);
+    
+    \end{umlsystem}
+\end{tikzpicture}
+
+\end{center}
+
+\vspace{10mm}
+\fi
+\end{document}
