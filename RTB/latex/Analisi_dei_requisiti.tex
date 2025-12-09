@@ -90,7 +90,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-
+  0.7 & Stefano Maso & Stesura casi d'uso UC15, UC16, UC17  & 9/12/2025 & - \\
+  \hline
   0.6 & Besnik Murtezan & Stesura casi d'uso UC9, UC10, UC11  & 24/11/2025 & Gabriele Disa \\
   \hline  
   0.5 & Besnik Murtezan & Revisione casi d'uso UC4, UC5, UC6, UC7, UC8  & 19/11/2025 & Gabriele Disa \\
@@ -1082,14 +1083,157 @@ Descrizione attori:
     \end{enumerate}
 \end{itemize}
 
-\newpage
-
-\subsubsection*{(OPT) UC15 - Associazione Note}
-\addcontentsline{toc}{subsubsection}{(OPT) UC15 - Associazione Note}
+\subsubsection*{UC15 - Testo grassetto}
+\addcontentsline{toc}{subsubsection}{UC15 - Testo grassetto}
 \begin{center}
 \begin{tikzpicture} 
 \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-  \umlusecase[x=0, y=4, name=associazione]{(OPT) UC15 - Associazione Note}
+  \umlusecase[x=0, y=4, name=associazione]{UC15 - Testo grassetto}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+
+% Associazioni Utente
+\umlassoc{Utente}{associazione}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+    \item L'utente ha selezionato una porzione di testo o il testo intero
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente seleziona una porzione di testo o il testo intero
+    \item L'utente attiva la funzionalità \textit{"Testo in grassetto"} 
+    \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente attivi la funzionalità "Testo in grassetto" sul del testo già in grassetto:
+    \begin{enumerate}
+        \item Il testo non è più compreso tra i marcatori di testo del grassetto
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection*{UC16 - Testo in corsivo}
+\addcontentsline{toc}{subsubsection}{UC16 - Testo in corsivo}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=associazione]{UC16 - Testo in corsivo}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+
+% Associazioni Utente
+\umlassoc{Utente}{associazione}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+    \item L'utente ha selezionato una porzione di testo o il testo intero
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente seleziona una porzione di testo o il testo intero
+    \item L'utente attiva la funzionalità \textit{"Testo in corsivo"} 
+    \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente attivi la funzionalità "Testo in corsivo" sul del testo già in corsivo:
+    \begin{enumerate}
+        \item Il testo non è più compreso tra i marcatori di testo del corsivo
+    \end{enumerate}
+\end{itemize}
+
+
+
+\subsubsection*{UC17 - Testo sottolineato}
+\addcontentsline{toc}{subsubsection}{UC17 - Testo sottolineato}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=associazione]{UC17 - Testo sottolineato}
+\end{umlsystem}
+
+% Attori
+\umlactor[x=0, y=4]{Utente}
+
+% Associazioni Utente
+\umlassoc{Utente}{associazione}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Attori principali}
+\begin{itemize}
+    \item Utente
+\end{itemize}
+\textbf{Precondizioni}
+\begin{itemize}
+    \item L'utente è connesso al sistema
+    \item L'utente ha una nota aperta
+    \item L'utente ha selezionato una porzione di testo o il testo intero
+\end{itemize}
+\textbf{Postcondizioni}
+\begin{itemize}
+    \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
+\end{itemize}
+\textbf{Scenario principale}
+\begin{enumerate}
+    \item L'utente seleziona una porzione di testo o il testo intero
+    \item L'utente attiva la funzionalità \textit{"Testo sottolineato"} 
+    \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
+\end{enumerate}
+\textbf{Estensioni}
+\begin{itemize}
+    \item Nel caso in cui l'utente attivi la funzionalità "Testo sottolineato" sul del testo già sottolineato:
+    \begin{enumerate}
+        \item Il testo non è più compreso tra i marcatori di testo per la sottolineatura
+    \end{enumerate}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection*{(OPT) UC - Associazione Note}
+\addcontentsline{toc}{subsubsection}{(OPT) UC - Associazione Note}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=5, fill=white!10]{Sistema}
+  \umlusecase[x=0, y=4, name=associazione]{(OPT) UC - Associazione Note}
 \end{umlsystem}
 
 % Attori
@@ -1125,9 +1269,6 @@ Descrizione attori:
     \end{enumerate}
 \end{itemize}
 
-\vspace*{\fill}
-
-\clearpage
 
 
 \iffalse
