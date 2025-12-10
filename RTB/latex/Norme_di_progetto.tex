@@ -110,11 +110,13 @@
 
 \section{Introduzione}
 \subsection{Scopo del documento}
-Lo scopo del seguente documento è quello di definire il Way of Working e le \textit{best practices} che tutti i componenti
- del gruppo dovranno adottare al fine di perseguire obiettivi di qualità ed omogeneità del lavoro oltre che del prodotto.
+Lo scopo del seguente documento è quello di definire il Way of Working e le \textit{best practices} che ciascun membro 
+del gruppo dovrà impegnarsi a seguire al fine di perseguire obiettivi di qualità ed omogeneità del lavoro e conseguentemente
+del prodotto. Il documento subirà incrementi con l'avanzare del tempo che richiederanno quindi una visione regolare da parte
+del gruppo.
 
 \subsection{Scopo del prodotto}
-Il prodotto finale,nominato \textit{Second Brain} propone di realizzare un software che permetta la scrittura di testo
+Il prodotto finale,denominato \textit{Second Brain}, propone di realizzare un software che permetta la scrittura di testo
 con marcatori in formato MarkDown, la sua visualizzazione formattata correttamente e l'interazione con un LLM. 
 In particolare,l'utilizzo di LLM verrà sfruttato da \textit{Second Brain} per fornire funzionalità di riassunto,
 riscrittura, traduzione e generazione di testo in aggiunta a una forma di critica secondo il modello dei
@@ -130,19 +132,19 @@ Nel processo detto di acquisizione avviene la raccolta di tutti i requisiti e la
 individuare un capitolato adatto al gruppo.
 \subsubsection{Valutazione dei capitolati}
 Il gruppo ha esaminato le proposte presentate dai vari proponenti sulla base della loro complessità,
-delle tecnologie necessarie e dell’effettivo interesse che tali progetti suscitano nei membri del gruppo.
+delle tecnologie necessarie e dell’effettivo interesse che tali progetti hanno suscitato nei membri del gruppo.
 \subsubsection{Aggiudicazione appalto}
-Il gruppo si è candidato per il capitolato C6 dell'azienda Zucchetti. Dopo un primo riscontro negativo,
+Il gruppo si è candidato per il capitolato C6 dell'azienda Zucchetti. Dopo un primo riscontro negativo con il committente,
 il gruppo è riuscito ad aggiudicarsi l'appalto desiderato.
 
 \subsection{Fornitura}
 \subsubsection{Descrizione}
 Il processo di fornitura consiste nel chiarire tutti i dubbi del proponente per quanto riguarda il prodotto finale atteso.
 Il gruppo si impegna nel comunicare con l'azienda così da determinare i requisiti da dover soddisfare e ricevere riscontri
-in fase di sviluppo su quanto è stato fatto. 
+e consigli in fase di sviluppo su quanto è stato fatto. 
 \subsubsection{Glossario}
-Il documento Glossario ha l'obiettivo di chiarire il significato dei diversi termini utilizzati nella documentazione,
-in modo da evitare fraintendimenti. È destinato a membri del gruppo, committenti e proponenti.
+Il documento Glossario ha l'obiettivo di chiarire il significato dei diversi termini utilizzati nell'intera documentazione,
+in modo da evitare fraintendimenti e ambiguità. È destinato a membri del gruppo, committenti e proponenti.
 \subsubsection{Piano di Progetto}
 Il documento Piano di Progetto contiene la pianificazione temporale per le attività che devono essere svolte 
 in modo da rispettare la data di consegna prefissata. È composto da:
@@ -166,15 +168,16 @@ del prodotto finale. È composto da:
 \subsubsection{Rilascio}
 Una volta terminato, il prodotto verrà collaudato in presenza di committente e referente. 
 In caso di esito positivo il prodotto verrà consegnato al committente assieme a tutta la documentazione del progetto.
+Il gruppo non effettuerà nessuna attività ulteriore sul prodotto.
 
 \subsection{Sviluppo}
 \subsubsection{Descrizione}
-L'obiettivo del processo di sviluppo è quello di elencare le attività da svolgere in modo da
-raggiungere i requisiti del prodotto.
+L'obiettivo del processo di sviluppo è quello di far transitare il prodotto attraverso le fasi necessarie per arrivare
+al rilascio del prodotto in conformità con i requisiti.
 \subsubsection{Analisi dei Requisiti}
 L'Analisi dei Requisiti è l'attività in cui vengono elencati tutti i requisiti del prodotto finale,
 i quali verranno poi confermati con committente e referente ed avranno valenza contrattuale.
-Serve anche come documentazione del prodotto, in quanto contiene tutte le relative funzionalità fornite. \\
+Serve anche come documentazione del prodotto, in quanto contiene tutte le relative funzionalità che verranno fornite. \\
 Il documento di Analisi dei Requisiti contiene: 
 \begin{itemize}
   \item \textbf{Attori}: ruoli dell'utente nell'interazione con il sistema.
@@ -182,7 +185,22 @@ Il documento di Analisi dei Requisiti contiene:
   associato e la sua descrizione che segue una struttura standard 
   (Attori, Precondizioni, Postcondzioni, Scenario primario e Scenari alternativi).
   \item \textbf{Requisiti}: caratteristiche del prodotto mirate a soddisfare le necessità dell'utente; 
-  possono essere funzionali, di qualità o di vincolo.
+  possono essere:
+  \begin{itemize}
+    \item Funzionali: si riferiscono alle funzionalità che dovranno essere disponibili sul prodotto finale.
+    \item Qualitativi: si riferiscono alle caratteristiche di qualità e performance del prodotto 
+    (e.g. Uso Memoria, Tempo, Usabilità, etc).
+    \item Vincolanti: si riferiscono ai limiti imposti sul prodotto che non sono riconducibili a funzionalità o qualità 
+    (e.g. Tecnologie da utilizzare, vincoli legali, etc...)
+  \end{itemize}
+  In base alla lora priorità si suddividono in:
+  \begin{itemize}
+  \item Obbligatori: irrinunciabili per l'approvazione del prodotto finale
+  \item Desiderabili: presentano buon valore aggiunto ma non strettamente necessari 
+  \item Opzionali: contrattabili durante lo sviluppo del prodotto
+  \end{itemize}
+  Ogni requisito sarà formato da un codice univoco, una descrizione testuale ed un riferimento ad uno o più casi d'uso.
+
 \end{itemize}
 \subsubsection{Progettazione}
 Va a definire la struttura del progetto a seconda dell'Analisi dei Requisiti. Si suddivide in:
@@ -193,7 +211,7 @@ Va a definire la struttura del progetto a seconda dell'Analisi dei Requisiti. Si
 \end{itemize}
 \subsubsection{Codifica}
 In seguito all'analisi e alla progettazione, i programmatori si occuperanno d'implementare tutte le funzionalità 
-previste per il prodotto finale, basandosi unicamente sui requisiti specificati e sulla progettazione definita in precedenza. 
+previste per il prodotto finale, basandosi unicamente sui requisiti specificati e sull'architettura definita in precedenza. 
 Sempre in questa fase devono essere implementati i vari test per assicurare un corretto funzionamento del prodotto.
 
 \section{Processi di supporto}
@@ -213,30 +231,39 @@ Quelli ad uso esterno invece comprendono:
   \item Piano di Progetto
 \end{itemize}
 \subsubsection{Strumenti creazione documento}
-Per la creazione dei documenti inizialmente è stato deciso di utilizzare Overleaf, editor LaTeX online, ma viste le limitazioni sulla stesura collaborativa (limite di due persone per documento), è stato scelto di utilizzare Visual Studio Code con l'estensione LaTeX Workshop per poter lavorare in locale. Ciascun membro del gruppo, in seguito ad una modifica fatta al documento in locale, si impegna ad aggiornare anche il documento presente sulla repository, in modo da rendere sempre disponibile l'ultima versione del documento al resto del gruppo.
+Per la creazione dei documenti inizialmente è stato deciso di utilizzare Overleaf, editor LaTeX online, ma viste le limitazioni
+sulla stesura collaborativa (limite di due persone per documento), è stato scelto di utilizzare Visual Studio Code con l'estensione
+LaTeX Workshop per poter lavorare in locale. Ciascun membro del gruppo, in seguito ad una modifica fatta al documento in locale,
+si impegna ad aggiornare anche il documento presente sulla repository, in modo da rendere sempre disponibile l'ultima versione
+del documento al resto del gruppo.
 \subsubsection{Struttura documenti}
 Ciascun documento ha una struttura ben definita:
 \begin{itemize}
-  \item Prima pagina: contiene nome e logo del gruppo, informazioni del documento e la data in cui è stato approvato
-  \item Tabella delle revisioni: una tabella che contiene informazioni del versionamento del documento; la versione, l'autore, descrizione delle modifiche apportate, la data, il verificatore delle modifiche
-  \item Indice: elenco dei contenuti del documento
+  \item Prima pagina: contiene nome e logo del gruppo, informazioni del documento e la data in cui è stato approvato.
+  \item Tabella delle revisioni: una tabella che contiene informazioni del versionamento del documento; la versione,
+  l'autore, descrizione delle modifiche apportate, la data, il verificatore delle modifiche.
+  \item Indice: elenco dei contenuti del documento.
+  \item Sezioni: contenuti effettivi.
 \end{itemize}
 \subsubsection{Ciclo di vita documenti}
-Un documento ha le seguenti fasi:
+Un documento attraversa le seguenti fasi:
 \begin{itemize}
-  \item Stesura: uno o più redattori si occupano della stesura del documento
+  \item Stesura: uno o più redattori si occupano della stesura del documento.
   \item Verifica: un membro del gruppo, diversi da quelli che hanno scritto il documento, ha il compito di verifica il documento
-  \item Approvazione: il responsabile del progetto decide se approvare l'entrata di un documento nella repository. Se il documento non viene approvato torna alla fase di stesura
+  ad ogni aggiornamento.
+  \item Approvazione: il responsabile del progetto decide se approvare l'entrata di un documento nella repository.
+  Se il documento non viene approvato torna alla fase di stesura.
 \end{itemize}
 \subsection{Controllo di configurazione}
 \subsubsection{Versionamento}
 Il versionamento scelto è composto da due numeri: x.y
 \begin{itemize}
-  \item x è un numero intero, parte da zero è viene incrementato ogni volta che il responsabile approverà il documento
-  \item y è un numero intero positivo e rappresenta lo stato di verifica del documento
+  \item \textbf{x} è un numero intero, parte da zero e viene incrementato ogni volta che il responsabile approva un documento.
+  \item \textbf{y} è un numero intero, parte da 1 e rappresenta lo stato di verifica di un documento.
 \end{itemize}
 \subsubsection{GitHub e Git}
-Il gruppo ha deciso di utilizzare GitHun come strumento di versionamento e Git per collegarsi alla repository GitHub. 
+Il gruppo ha deciso di utilizzare Git come strumento di versionamento locale e remoto e GitHub come servizio cloud in cui mantenere la repository
+completa sempre accedibile da tutti i membri del gruppo. 
 \subsubsection{Scopo e struttura repository "Documentazine-SWE"}
 La repository ha la funzione di mantere una versione aggiornata dei file che dovranno produrre documentazione, ovvero i file .tex.\\
 La struttura della repository deve essere:
@@ -252,7 +279,10 @@ La struttura della repository deve essere:
 \subsubsection{Scopo e struttura "Proof-of-Concept}
 DA FARE!!!
 \subsubsection{Controllo di flusso}
-Quando si viene assegnati tramite issue, alla scrittura di codice o quella di documenti, bisognerà lavorare sul branch specifico creato per la feature stessa (ad esempio "NormeDiProgetto"). Una volta implementata la funzionalità bisognerà creare una pull request e mergiare il codice sul main. Per completare la pull request è richiesto l'intervento del verificatore, il quale dopo la verifica, se approvata, sarà incaricato di spostare la issue da "In review" a "Done" e infine il responsabile dovrà accettare la pull request.
+Quando si viene assegnati tramite issue, alla scrittura di codice o quella di documenti, bisognerà lavorare sul branch specifico creato
+per la feature stessa (ad esempio "NormeDiProgetto"). Una volta implementata la funzionalità bisognerà creare una pull request e mergiare il codice sul main.
+Per completare la pull request è richiesto l'intervento del verificatore, il quale dopo la verifica, se approvata, sarà incaricato di spostare
+la issue da "In review" a "Done" e infine il responsabile dovrà accettare la pull request.
 
 
 \subsection{Gestione della qualità}
