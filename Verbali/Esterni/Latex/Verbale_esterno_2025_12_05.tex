@@ -1,0 +1,173 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{tikz}
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{05}{12}{2025}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale \italianformat{\displaydate{dataverbale}}};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large\slashdate{\displaydate{dataverbale}} \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+  1.0 & Niccolò Feltrin & Stesura Motivazioni riunione, Verbale e Conclusioni & \slashdate{\displaydate{dataverbale}} & Gabriele Disa \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Partecipanti}
+\textbf{Orario della riunione}: 14:30 - 15:30
+\\
+\textbf{Sede / piattaforma}: Google Meet
+\\
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Gregorio Piccoli & Referente aziendale \\
+  \hline
+  Michele Tollot & Referente aziendale \\
+  \hline
+  Sofia Vangelista & Referente aziendale \\
+  \hline
+  Giuliano Banchieri & Amministratore \\
+  \hline
+  Gabriele Disa & Verificatore \\
+  \hline
+  Stefano Maso & Analista \\
+  \hline
+  Besnik Murtezan & Analista \\
+  \hline
+  Niccolò Feltrin & Responsabile \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Motivazioni riunione}
+La riunione è stata tenuta per confrontarsi con l'azienda dei casi d'uso individuati durante la fase di analisi.
+
+\newpage
+
+\section*{Verbale}
+Nel corso della riunione si è affrontato quanto segue: \\
+\begin{itemize}
+  \item Sono stati particolarmente apprezzati i casi d’uso relativi alla visualizzazione delle note e alla gestione dei conflitti tra scritture o eliminazioni. Anche se possono sembrare ovvi, è opportuno che siano esplicitati nell’analisi per una corretta redazione del documento di progettazione. \\
+  \item Per quanto riguarda la parte di scrittura delle note:
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item È stata rilevata una mancanza di analisi dettagliata sulle funzionalità di editing in Markdown. I referenti hanno richiesto di specificare nel documento di analisi dei requisiti alcune funzioni principali (ad esempio: sottolineatura, grassetto, formattazione del testo). Questi casi d’uso arricchiranno il documento e renderanno più solido il progetto finale, senza compromettere le tempistiche indicate nel preventivo.
+    \item Occorre specificare per ogni caso d’uso se la nota è visibile o meno. Per ogni interazione con una nota è necessario considerare il layout previsto. Ad esempio, nel caso d’uso relativo alla modifica della nota, può essere incluso anche il caso d’uso della sua visualizzazione.
+    \item Va precisato se il rendering della nota scritta in Markdown debba avvenire in tempo reale oppure tramite una funzione esplicita (ad esempio mediante un apposito bottone). \\
+  \end{itemize}
+  \item Per quanto riguarda le funzionalità comprese nella modalità \textit{Distant Writing}, i referenti hanno chiarito che il dialogo con il LLM avviene sempre tramite Markdown: l’utente avvia un prompt con un tag specifico e l’IA risponde all’interno del blocco marcato, invisibile nella successiva parte di rendering. L’utente può quindi avere più interazioni con il LLM all’interno del documento, suddivise in blocchi delimitati da un marcatore di inizio e uno di fine. Da questa premessa sono emersi alcuni ulteriori punti:
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item Se l’utente modifica manualmente il testo generato dall’IA, tali modifiche devono essere segnalate, così da avvisare il sistema nel caso in cui venga richiesta una nuova rigenerazione del contenuto.
+    \item È necessario analizzare più approfonditamente la funzionalità di traduzione, in particolare stabilendo dove essa debba essere inserita, come gestire i casi in cui una stessa sezione venga tradotta più volte e come comportarsi quando, a seguito di modifiche al testo originale, sia opportuno aggiornare automaticamente la traduzione.
+    \item Se nel documento è presente un collegamento a un’altra nota tramite marcatore, occorre stabilire se durante la chiamata all’IA debba essere fornito l’intero contesto della nota collegata, un riassunto, oppure solo alcune parti.
+    \item Le chat generate durante il dialogo con il LLM vengono salvate insieme all’intero documento.
+    \item Va analizzata la possibilità che l’utente selezioni una parte di testo da passare all’IA quando l’inizio e la fine della selezione si trovano sulla stessa riga; in questo caso è necessario valutare dove inserire l’output dell’IA. Questo punto riguarda in particolare l’implementazione.
+    \item È stata inoltre sollevata la questione della gestione di blocchi “annidati” tra loro: quando un blocco interno subisce modifiche, tali aggiornamenti devono essere notificati anche al blocco che lo contiene, così da garantire la coerenza e l’allineamento dell’intera struttura. \\
+  \end{itemize}
+  \item L’interpretazione dei “6 cappelli di De Bono” è stata confermata come corretta. \\
+  \item È stato precisato che, durante l’analisi, è sempre consigliabile considerare gli utenti finali come potenzialmente inesperti nell’uso dell’applicazione (ad esempio nell’uso del Markdown), così da definire i requisiti nel modo più atomico e chiaro possibile. \\
+\end{itemize}
+\section*{Conclusioni}
+Dopo l’approfondita discussione sull’analisi del progetto, il gruppo ha ora un’idea chiara su come procedere con la stesura del documento. In particolare, sono state individuate le seguenti modifiche:
+\begin{itemize}
+\item Aggiunta di casi d’uso relativi alle principali funzionalità del Markdown (elencate nella sezione precedente)
+\item Revisione dei casi d’uso che prevedono la visualizzazione del testo formattato
+\item Modifiche all’analisi dei requisiti riguardanti l’implementazione del \emph{Distant Writing}
+\end{itemize}
+La successiva e più dettagliata suddivisione dei compiti sarà definita nella prossima riunione interna.
+
+\vspace{2cm}
+\begin{flushright}
+  \noindent\rule{6cm}{0.4pt}\\
+  \textit{Firma del referente aziendale}\\
+  Sig. Piccoli – Zucchetti
+\end{flushright}
+
+\end{document}
