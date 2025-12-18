@@ -1,0 +1,200 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{makecell}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{tikz}
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{09}{12}{2025}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale \italianformat{\displaydate{dataverbale}}};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large\slashdate{\displaydate{dataverbale}} \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+  0.1 & Gabriele Disa & Scrittura Motivazioni, Verbale, To-Do & \slashdate{\displaydate{dataverbale}} & - \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Partecipanti}
+\textbf{Orario della riunione}: 18:20 - 20:00
+\\
+\textbf{Sede / piattaforma}: Discord
+\\
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Giuliano Banchieri & Analista \\
+  \hline
+  Gabriele Disa & Responsabile \\
+  \hline
+  Stefano Maso & Amministratore \\
+  \hline
+  Besnik Murtezan & Amministratore \\
+  \hline
+  Ruben Spadiliero & Verificatore \\
+  \hline
+  Niccolò Feltrin & Analista \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Motivazioni riunione}
+La riunione si è tenuta per discutere i punti emersi a seguito della chiamata con i referenti di Zucchetti, con l'obiettivo di allineare il gruppo sulle attività dello Sprint corrente:
+\begin{itemize}
+    \item Suddivisione dei ruoli per l'avvio dello Sprint.
+    \item Proseguimento e affinamento dell'Analisi dei Requisiti.
+    \item Pianificazione della stesura dei documenti: Glossario, Piano di Progetto e Piano di Qualifica.
+\end{itemize}
+
+\newpage
+
+\section*{Verbale}
+La riunione è stata convocata per consolidare quanto emerso dalla chiamata con i referenti di Zucchetti e tradurlo in indicazioni operative per l'Analisi dei Requisiti e per la produzione della documentazione di progetto. La riunione è stata divisa in tre parti:
+
+\begin{enumerate}
+  \item \textbf{Analisi dei requisiti e chiarimenti funzionali.}
+  In questa prima parte il gruppo ha discusso le specifiche relative alle funzionalità dell'editor e alle modalità di interazione previste. In particolare:
+  \begin{itemize}
+    \item sono stati trattati i \textbf{marcatori} (blocchi, domande, ecc.) e la necessità di definire in modo chiaro le relative regole d'uso;
+    \item è stata evidenziata l'esigenza di supportare funzionalità di formattazione base (es. \textbf{grassetto}, \textit{corsivo}, ecc.);
+    \item è stato richiesto di specificare il comportamento del \textbf{rendering della pagina}, chiarendo se l'aggiornamento debba avvenire \textbf{in tempo reale} (con intervallo definito) oppure tramite un'azione esplicita (es. pulsante);
+    \item per la funzionalità di \emph{distant writing} si è deciso di rivedere l'impostazione: le interazioni dovranno avvenire tramite \textbf{marcatori inseriti nella nota}; di conseguenza, i casi d'uso che la includono dovranno essere aggiornati;
+    \item è stata discussa la necessità di segnalare all'utente quando il testo viene modificato manualmente e, successivamente, si tenta una \textbf{rigenerazione} del contenuto;
+    \item per la \textbf{traduzione} è stato menzionato il requisito di concatenare i blocchi derivati in maniera coerente;
+    \item è stato definito che un collegamento privo di protocollo (es. senza \texttt{https://}) venga interpretato come \textbf{link a un documento interno};
+    \item è stato richiesto di analizzare il comportamento del sistema nel caso in cui l'utente selezioni \textbf{solo una porzione ridotta di testo};
+    \item è stata proposta una dipendenza bidirezionale tra \textbf{prompt} e \textbf{testo generato} (es. tramite hash), in modo da poter tracciare correttamente le versioni e le rigenerazioni.
+  \end{itemize}
+
+  \item \textbf{Avvio stesura della documentazione.}
+  Nella seconda parte sono state pianificate le attività di scrittura dei documenti, concordando l'avvio della stesura di:
+  \begin{itemize}
+    \item Piano di Progetto;
+    \item Norme di Progetto;
+    \item Glossario.
+  \end{itemize}
+
+  \item \textbf{Ruoli e organizzazione dello Sprint.}
+  Nella parte conclusiva il gruppo ha confermato la suddivisione dei ruoli per lo Sprint corrente e le attività operative collegate, riportate nella sezione \textit{To-Do}.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\newpage
+
+\section*{To-Do}
+\begin{itemize}
+  \item \textbf{Assegnato a Gabriele Disa [Responsabile]:}
+  \begin{enumerate}
+    \item Compilare il verbale della riunione del \slashdate{\displaydate{dataverbale}}.
+    \item Creare le issue e la milestone dello Sprint corrente (Issue \#23).
+  \end{enumerate}
+
+  \item \textbf{Assegnato a Giuliano Banchieri, Niccolò Feltrin [Analista]:}
+  \begin{enumerate}
+    \item Aggiornare e integrare i casi d'uso e i contenuti relativi all'Analisi dei Requisiti (Issue \#26).
+  \end{enumerate}
+
+  \item \textbf{Assegnato a Stefano Maso, Besnik Murtezan [Amministratore]:}
+  \begin{enumerate}
+    \item Avviare la stesura del Piano di Progetto (Issue \#8).
+    \item Avviare la stesura del Glossario (Issue \#24).
+    \item Proseguire la stesura delle Norme di Progetto (Issue \#25).
+    \item Stesura/definizione del primo e del secondo Sprint (Issue \#21, \#22).
+  \end{enumerate}
+
+  \item \textbf{Assegnato a Ruben Spadiliero [Verificatore]:}
+  \begin{enumerate}
+    \item Eseguire la verifica della documentazione prodotta nello Sprint corrente.
+  \end{enumerate}
+\end{itemize}
+
+\end{document}
