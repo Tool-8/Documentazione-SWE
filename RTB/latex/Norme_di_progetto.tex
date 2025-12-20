@@ -88,6 +88,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  0.7 & Besnik Murtezan & Stesura sottosezioni (4.3 fino a 4.12) & 20/12/2025 & - \\
+  \hline
   0.6 & Besnik Murtezan & Miglioramento Forma Espositiva e compilazione sottosezioni mancanti (fino a 4.2) & 14/12/2025 & - \\
   \hline
   0.5 & Stefano Maso & Correzione errori e stesura sotto-sezioni mancanti & 8/12/2025 & Gabriele Disa \\
@@ -202,6 +204,9 @@ Il documento di Analisi dei Requisiti contiene:
   \item \textit{Opzionali}: contrattabili durante lo sviluppo del prodotto
   \end{itemize}
   Ogni requisito sarà formato da un codice univoco, una descrizione testuale ed un riferimento ad uno o più casi d'uso.
+  I diagrammi UML dei casi d'uso devono essere inseriti direttamente nel codice sorgente .tex utilizzando il pacchetto
+  \textit{"tikz-uml"} seguendo la sintassi prevista. \\
+  (\href{https://perso.ensta.fr/~kielbasi/tikzuml/var/files/doc/tikzumlmanual.pdf}{\underline{Link Documentazione tikz-uml}})
 
 \end{itemize}
 \subsubsection{Progettazione}
@@ -237,7 +242,7 @@ Per la creazione dei documenti inizialmente è stato deciso di utilizzare Overle
 sulla stesura collaborativa (limite di due persone per documento), è stato scelto di utilizzare Visual Studio Code con l'estensione
 LaTeX Workshop per poter lavorare in locale. Ciascun membro del gruppo, in seguito ad una modifica fatta al documento in locale,
 si impegna ad aggiornare anche il documento presente sulla repository, in modo da rendere sempre disponibile l'ultima versione
-del documento al resto del gruppo.
+del documento al resto del gruppo.(\href{https://www.latex-project.org/help/documentation/}{\underline{Link Documentazione LaTeX}})
 \subsubsection{Struttura documenti}
 Ciascun documento ha una struttura ben definita:
 \begin{itemize}
@@ -379,22 +384,141 @@ Similmente a quanto accade per i documenti, il responsabile deve approvare o rif
 sorgente una volta che sono state verificate dai verificatori.
 
 \subsection{Amministratore}
-L'amministratore si occupa di:
+Il ruolo di amministratore si occupa di definire, mantenere e controllare l'ambiente IT di lavoro del gruppo, in 
+maniera più proattiva possibile. In particolare si focalizza su:
 \begin{itemize}
-  \item Risolvere problemi riguardanti la gestione dei processi
-  \item Ricercare risorse per migliorare l'ambiente di lavoro
+  \item Selezionare ed attivare le risorse informatiche a supporto del \textit{Way of Working}
+  \item Risolvere problemi riguardanti l'ambiente di lavoro su segnalazione degli altri membri
+  \item Ricercare risorse per migliorare continuamente l'ambiente di lavoro
+  \item Automatizzare il più possibile il funzionamento dell'ambiente di lavoro
+  \item Monitorare lo stato del controllo di versione e configurazione 
   \item Attuare piani e procedure per la gestione della qualità
 \end{itemize}
 \subsection{Analista}
+Ruolo essenziale per il successo del progetto; si occupa di analizzare le specifiche del proponente, presenti
+nel capitolato, ed il dominio di interesse del progetto al fine di individuare tutti i requisiti che il prodotto
+finale dovrà soddisfare per essere conforme alle richieste del proponente.
 Le responsabilità dell'analista riguardano: 
 \begin{itemize}
-  \item Redigere il documento "Analisi dei requsiti"
-  \item Studiare i casi d'uso
+  \item Analizzare il problema ed il relativo dominio di utilizzo
+  \item Redigere il documento \textit{"Analisi dei Requisiti"}
+  \item Studiare i casi d'uso e realizzare i relativi diagrammi UML
   \item Aggiornare i documenti Piano di progetto e Piano di Qualifica
 \end{itemize}
+Gli analisti non seguono il progetto fino alla consegna.
 \subsection{Progettista}
+Il progettista si occupa di determinare le scelte realizzative sulla base dei requisiti individuati dagli analisti.
+Ha competenze tecniche e tecnologiche aggiornate. Si impegna a fornire una struttura robusta e semplice per la 
+codifica mantendendo un costo organizzativo ridotto rispetto al beneficio della progettazione in dettaglio.  
+In particolare si occuperà di:
+\begin{itemize}
+  \item Individuare e definire una Architettura generale (progettazione logica)
+  \item Suddividere l'architettura in profondità puntando a modularità e unità il più possibile atomiche 
+  (progettazione di dettaglio)
+  \item Garantire Efficienza ed Efficacia dell'architettura
+  \item Ricercare semplicità ed aumentare la complessità solo se necessario
+  \item Definire la specifica tecnica
+\end{itemize}
 
 \subsection{Verificatore}
+Il verificatore si occupa di monitorare la correttezza del lavoro svolto dagli altri componenti sulla base delle
+proprie competenze tecniche e della norme di progetto.
+Le sue priorità sono:
+\begin{itemize}
+\item Valutare le Pull Request utilizzando gli strumenti di verifica individuati nel \textit{Piano di Qualifica} 
+\item Verificare i documenti prodotti dai relativi redattori
+\item Verificare il codice prodotto dai programmatori
+\item Monitorare ed occuparsi delle Issue in stato di "Review" 
+\end{itemize}
 
 \subsection{Programmatore}
+Il programmatore si occupa di codificare tutte le componenti individuate dalla progettazione insieme agli elementi
+ausiliari di verifica e validazione. Il suo lavoro si focalizza su:
+\begin{itemize}
+  \item Implementare la specifica tecnica realizzata dal progettista in maniera rigorosa
+  \item Implementare gli elementi necessari alla verifica e la loro eventuale integrazione con strumenti terzi
+  \item Realizzare la documentazione relativa al codice prodotto
+  \item Seguire espressamente le norme di progetto per poter produrre codice di qualità
+\end{itemize}
+\subsubsection{Integrazione Codice nella Repository}
+Per ogni funzionalità che richiede la codifica, il programmatore deve creare un branch di sviluppo con il nome
+della funzionalità interessata. Ogni contribuzione di codice va effettuata su tale branch e quando il programmatore
+ritiene di aver completato la codifica per quella funzionalità deve procedere manualmente ad aprire una Pull Request
+di merge sul main, la quale deve poi essere valutata dal verificatore e, in caso di successo, si conclude con  
+l'integrazione del codice sul ramo main della repository. 
+\subsection{Gestione di Progetto}
+\subsubsection{Allineamento Organizzativo}
+Vengono utilizzate due modalità di comunicazione per allinearsi e coordinarsi sulle attività da svolgere:
+  \begin{itemize}
+    \item \textbf{Comunicazioni Interne}: coinvolgono tutti i membri del gruppo e avvengono attraverso i seguenti strumenti:
+    \begin{itemize}
+      \item \textit{WhatsApp}: utilizzato per comunicazioni veloci, segnalazioni, dubbi e organizzazione di incontri formali
+      in forma scritta.\\
+      \href{https://www.whatsapp.com/}{\underline{Sito Ufficiale WhatsApp}}
+      \item \textit{Discord}: utilizzato per incontri interni formali, documentati con un verbale, al fine di discutere delle questioni
+      principali relative al prodotto. Si comunica in forma vocale con eventuali condivisioni di schermo per avere visione 
+      comune sull'argomento in questione.\\ 
+      \href{https://discord.com/}{\underline{Sito Ufficiale Discord}}
+    \end{itemize} 
+    \item \textbf{Comunicazioni Esterne}: coinvolgono gruppo, proponente e/o committente; si usufruisce dei seguenti strumenti:
+    \begin{itemize}
+      \item \textit{Posta Elettronica}: utilizzata per comunicare con proponente o committente a fini organizzativi o per chiariment.\\
+      E-Mail del gruppo: \url{tool8eight@gmail.com} 
+      \item \textit{Google Meet}: utilizzato per riunioni esterne con il proponente in forma di videochiamata.\\
+      \href{https://meet.google.com/}{\underline{Sito Google Meet}} 
+    \end{itemize} 
+  \end{itemize}
+
+\subsection{Organizzazione del Lavoro}
+\subsubsection{Modello di Sviluppo}
+Il gruppo ha deciso di adottare un modello basato su \textit{SCRUM} dove il lavoro è suddiviso in periodi di incremento 
+di due settimane chiamati Sprint. Tale modello permette di avere un riscontro frequente sullo stato del prodotto finale
+così da poter capire se la direzione di sviluppo è corretta o se sono necessari interventi correttivi. 
+Le fasi di uno sprint sono:
+\begin{itemize}
+  \item \textbf{Sprint Planning}: vengono decisi i ruoli per ogni membro del gruppo e lo \textit{Sprint Backlog}, ovvero le attività
+  di lavoro da svolgere nello sprint corrente individuate a partire dal \textit{Backlog} intero del progetto.
+  Ogni attività viene poi assegnata ad uno o più membri. In ultimo luogo si fissa la data di fine sprint, per una
+  durata totale di circa due settimane.
+  Tale fase viene svolta tramite una riunione interna su Discord con la partecipazione di tutti i membri del gruppo e la
+  stesura di un verbale.
+  \item \textbf{Sprint Review}: viene presentato ed analizzato tutto ciò che è stato prodotto al termine dello sprint in presenza di
+  tutto il gruppo.
+  \item \textbf{Sprint Retrospective}: viene valutato il successo dello sprint, analizzando gli aspetti che hanno funzionato maggiormente,
+  gli aspetti che si possono migliorare, novità da introdurre nei prossimi sprint ed eventuali caratteristiche da rimuovere.
+  L'intero gruppo partecipa a questa fase.
+\end{itemize}
+\href{https://scrumguides.org/scrum-guide.html}{\underline{Link Guida Framework SCRUM}}
+\subsubsection{Rotazione Ruoli}
+Ad ogni sprint verranno ruotati i ruoli dei membri del gruppo in maniera equa e ragionevole (in base alle disponibilità e necessità
+di ogni membro) sempre garantendo assenza di conflitti sul lavoro eseguito (e.g. un verificatore non può verificare il codice che 
+aveva scritto quando ricopriva il ruolo di programmatore). Si ricorda in ogni caso che nessun membro può ricoprire più di un ruolo
+allo stesso tempo.
+\subsubsection{Gestione Attività}
+Per gestire e tener traccia delle attività da svolgere viene utilizzata la funzionalità \textit{Projects} all'interno di GitHub. 
+Le attività sono definite tramite \textit{Issue} e contengono vari campi che ne indicano le caratteristiche.
+Ogni Issue può trovarsi in uno dei seguenti stati:
+\begin{itemize}
+  \item \textbf{Backlog}: l'attività è stata individuata e fa quindi parte del progetto
+  \item \textbf{Ready}: l'attività è stata inserita all'interno dello \textit{Sprint Backlog} ed è pronta per essere presa in carico dal
+  relativo assegnatario 
+  \item \textbf{In Progress}: l'assegnatario ha preso in carico l'attività e ci sta lavorando attivamente; vengono compilati i campi della
+  issue relativi al progresso
+  \item \textbf{In Review}: l'attività è stata eseguita dall'assegnatario e attende la verifica
+  \item \textbf{Done}: l'attività è stata definitivamente completata
+\end{itemize}
+Il responsabile si occupa delle transizioni \textit{Backlog -> Ready} e \textit{In Review -> Done} mentre le altre transizioni sono di
+responsabilità dei relativi assegnatari. In seguito all'effettivo cambiamento avvenuto sull'attività legata alla issue è opportuno
+modificare il relativo stato nella sezione \textit{Project}.
+\subsection{Infrastruttura}
+L'intera infrastruttura al momento è basata su GitHub senza l'utilizzo di strumenti esterni che accedono alla repository, tuttavia
+potranno avvenire modifiche future con l'avanzamento del progetto. 
+\subsection{Etica Lavorativa}
+Il gruppo si impegna a seguire il principio di \textit{miglioramento continuo} per tutti gli aspetti del progetto al fine di ottenere
+risultati con qualità incrementale per l'intera durata delle attività. Ogni membro si impegna a svolgere il lavoro al meglio delle proprie
+capacità e disponibilità con la massima trasparenza e collaborazione.
+\subsection{Formazione}
+Ogni membro del gruppo è tenuto ad apprendere in maniera autonoma il funzionamento e l'utilizzo delle varie tecnologie e strumentazioni che
+vengono utilizzati per lo svolgimento del progetto. Qualora si riscontrassero difficoltà è opportuno avvisare il gruppo al fine di poter
+ricevere supporto e allineare il più possibile il gruppo sullo stesso livello.
 \end{document}
