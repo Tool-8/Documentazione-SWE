@@ -92,6 +92,31 @@ jobs:
               cd - > /dev/null
             fi
           done
+
+      - name: Compila documenti RTB
+        run: |
+          for file in RTB/Latex/*.tex; do
+            if [ -f "$file" ]; then
+              echo "Compilo $file..."
+              filename=$(basename "$file" .tex)
+              basedir=$(dirname "$file")
+              
+              # Compila nella cartella temporanea
+              cd "$basedir"
+              latexmk -pdf -interaction=nonstopmode -file-line-error \
+                -aux-directory=/tmp/latex_aux \
+                "$(basename $file)" || true
+              
+              # Sposta solo il PDF nella cartella finale
+              if [ -f "${filename}.pdf" ]; then
+                mkdir -p "$(pwd)/../../RTB"
+                mv "${filename}.pdf" "$(pwd)/../../RTB/"
+                echo "PDF spostato in RTB/${filename}.pdf"
+              fi
+              
+              cd - > /dev/null
+            fi
+          done
       
       - name: Verifica PDFs generati
         run: |
@@ -101,12 +126,15 @@ jobs:
           ls -lh Verbali/Esterni/*.pdf 2>/dev/null || echo "Nessun PDF esterno trovato"
           echo "=== PDFs Documenti candidatura ==="
           ls -lh Candidatura/*.pdf 2>/dev/null || echo "Nessun PDF documento trovato"
+          echo "=== PDFs Documenti RTB ==="
+          ls -lh RTB/*.pdf 2>/dev/null || echo "Nessun PDF documento trovato"
       
       - name: Prepara output per GitHub Pages
         run: |
           mkdir -p output/verbali_interni
           mkdir -p output/verbali_esterni
           mkdir -p output/candidatura
+          mkdir -p output/rtb
           
           # Copia il file index.html e il logo
           cp .github/templates/index.html output/
@@ -127,6 +155,13 @@ jobs:
           if ls Candidatura/*.pdf 1> /dev/null 2>&1; then
             cp Candidatura/*.pdf output/candidatura/
             echo "Copiati $(ls Candidatura/*.pdf | wc -l) documenti"
+          else
+            echo "Nessun documento trovato"
+          fi
+
+          if ls RTB/*.pdf 1> /dev/null 2>&1; then
+            cp RTB/*.pdf output/rtb/
+            echo "Copiati $(ls RTB/*.pdf | wc -l) documenti"
           else
             echo "Nessun documento trovato"
           fi
@@ -162,6 +197,9 @@ jobs:
           
           # Genera JSON per candidatura
           generate_json "output/candidatura" "output/candidatura/index.json"
+
+          # Genera JSON per rtb
+          generate_json "output/rtb" "output/rtb/index.json"
           
           echo "Indici JSON generati"
           echo "=== Verbali Interni ==="
@@ -172,6 +210,8 @@ jobs:
           echo ""
           echo "=== Candidatura ==="
           cat output/candidatura/index.json
+          echo "=== RTB ==="
+          cat output/rtb/index.json
       
       - name: Carica PDFs come artifacts
         uses: actions/upload-artifact@v4
@@ -181,6 +221,7 @@ jobs:
             Verbali/Interni/*.pdf
             Verbali/Esterni/*.pdf
             Candidatura/*.pdf
+            RTB/*.pdf
           if-no-files-found: warn
       
       - name: Commit PDFs su main
@@ -188,7 +229,7 @@ jobs:
           git config --global --add safe.directory /__w/Documentazione-SWE/Documentazione-SWE
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add Verbali/Interni/*.pdf Verbali/Esterni/*.pdf Candidatura/*.pdf
+          git add Verbali/Interni/*.pdf Verbali/Esterni/*.pdf Candidatura/*.pdf RTB/*.pdf
           git diff --staged --quiet || git commit -m "Aggiorna PDFs compilati [skip ci]"
           git push
       
