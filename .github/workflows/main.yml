@@ -95,7 +95,7 @@ jobs:
 
       - name: Compila documenti RTB
         run: |
-          for file in RTB/Latex/*.tex; do
+          for file in RTB/latex/*.tex; do
             if [ -f "$file" ]; then
               echo "Compilo $file..."
               filename=$(basename "$file" .tex)
