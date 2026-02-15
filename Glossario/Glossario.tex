@@ -49,6 +49,16 @@
   }{}
 }
 
+\newcommand{\term}[1]{%
+    \par % chiude il paragrafo precedente
+    \vspace{1.2em} % spazio prima del termine
+    \begin{center}
+        \textbf{\large #1}
+    \end{center}
+    \vspace{0.4em} % piccolo spazio dopo il termine
+    \noindent % inizio della definizione senza rientro
+}
+
 
 %------Ridefinizione maketitle-------
 \makeatletter
@@ -83,9 +93,10 @@
 \begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
-  
   \hline
-  0.1 & Stefano Maso & Prima versione e primi termini & 17/12/2025 &  \\
+  0.2 & Stefano Maso & Aggiunta termini assenti & 15/2/2025 & - \\
+  \hline
+  0.1 & Stefano Maso & Prima versione e primi termini & 17/12/2025 & - \\
   \hline
 \end{tabular}
 \label{tab:revisioni}

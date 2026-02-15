@@ -20,21 +20,71 @@
         "definizione": "È un documento ufficiale che descrive in modo dettagliato le caratteristiche, le condizioni e i requisiti di un progetto fungendo da riferimento durante lo sviluppo del progetto."
     },
     {
+        "termine": "Caption",
+        "definizione": "La caption di una tabella o di una immagine è una breve descrizione che fornisce informazioni sul contenuto della tabello o della immagine stessa. Ha lo scopo di spiegare il contenuto visivo, mentre nel caso delle immagini può produrre una breve descrizione o un titolo per aiutare il lettore a comprendere il contesto della stessa"
+    },
+    {
         "termine": "Casi d'uso",
         "definizione": "Si tratta di una descrizione strutturata che descrive come gli attori (utenti) interagiscano con il sistema, andando a rappresentare sequenze di azioni che mostrano come debba essere utilizzato il sistema."
+    },
+    {
+        "termine": "Consuntivo",
+        "definizione": "Il consuntivo è un rapporto che confronta le previsioni con i dati effettivi, al fine di valutare le variazioni e le differenze tra ciò che era previsto e ciò che è stato effettivamente raggiunto. Il consuntivo può essere utilizzato per analizzare il bilancio finanziario, il tempo impiegato, le risorse utilizzate e altre metriche di progetto. Fornisce una valutazione critica delle prestazioni e dell'efficacia del progetto, consentendo di prendere decisioni informate e di apportare eventuali correzioni necessarie per mantenere il progetto sul giusto percorso."
+    }
+
+  ],
+  "D": [
+    {
+        "termine": "Design",
+        "definizione": "Il design nel contesto dello sviluppo del software è la fase in cui vengono definiti l'architettura, la struttura e le specifiche dettagliate del sistema software. Questo processo include la progettazione dell'interfaccia utente, la scelta delle tecnologie e dei linguaggi di programmazione, nonchè la pianificazione dell'implementazione del sistema. È una fase cruciale che assicura una organizzazione efficiente e logica delle funzionalità del software."
+    }, 
+    {
+        "termine": "Diagramma dei casi d'uso",
+        "definizione": "Il diagramma dei casi d'uso è una rappresentazione della grafica delle interazione tra gli attori esterni al sistema software e il sistema software stesso. È composto da attori, casi d'uso e le relazioni tra di essi e fornisce una panoramica visiva delle funzionalità offerte dal sistema e dei suoi utilizzi da parte degli attori."
     }
   ],
-  "D": [],
   "E": [],
   "F": [],
-  "G": [],
+  "G": [
+    {
+        "termine": "Git",
+        "definizione": "Git è un sistema di controllo di versione distribuito utilizzato principalmente nello sviluppo software. Consente agli sviluppatori di tenere traccia delle modifiche apportate al codice sorgente nel corsto del tempo, coordinare il lavoro con altri membri del team e gestire le diverse versioni di un progetto in modo efficiente. Git consente di creare repository sia localmente che su server remoti, facilitando la collaborazione tra sviluppatori."
+    }, 
+    {
+        "termine": "Gitflow",
+        "definizione": "Gitflow è un modello di branching e di workflow basato su Git, progettato per gestire software con un ciclo di sviluppo complesso e ramificato. Questo approccio fornisce una struttura chiara per la gestione delle diverse fasi dello sviluppo, inclusi i rilasci, le correzioni di bug e le nuove funzionalità. Gitflow prevede l'utilizzo di due branch principali, 'master' e 'develop', oltre a una serie di branch temporanei per le funzionalità in sviluppo, denominati 'feature branch'."
+    },
+    {
+        "termine": "GitHub",
+        "definizione": "GitHub è una piattaforma di hosting di codice sorgente basata su Git, che fornisce strumenti per la gestione dei repository, la collaborazione tra sviluppatori e il controllo delle versioni dei progetti software, Su GitHub, gli sviluppatori possono caricare i propri progetti, tenere traccia delle modifiche tramite commit, creare e gestire branch, collaborare con altri utenti tramite problemi e richieste di pull, e distribuire le proprie applicazioni."
+    }
+  ],
   "H": [],
-  "I": [],
+  "I": [
+    {
+        "termine": "Ingegneria del software",
+        "definizione": "L'ingegneria del software è un insieme di principi e pratiche utilizzati per progettare, sviluppare, mantenere, testare e valutare il software per computer. Le relative tecniche vengono impegate per guidare il processo di sviluppo del software, che comprende la definizione, l'implementazione, la valutazione, la misurazione, la gestione, il cambiamento e il miglioramento del ciclo di vita del software. Questa disciplina pone un forte accento sulla gestione della configurazione del software, che implica il controllo sistematico delle modifiche alla configurazione il mantenimento dell'integrità e della tracciabilità della configurazione e del codice durante tutto il ciclo di vita del sistema, mediante l'uso del versioning del software."
+    }
+  ],
   "J": [],
   "K": [],
   "L": [],
-  "M": [],
-  "N": [],
+  "M": [
+    {
+        "termine": "Milestone",
+        "definizione": "Una milestone è un punto di riferimento significativo o un obiettivo importante all'interno di un progetto, utilizzato per misurare il progresso e il raggiungimento di determinati traguardi. Le milestone sono solitamente associate a date specifiche o a completamenti di specifiche attività o fasi di un progetto. Servono come punti di controllo per valutare se il progetto sta procedendo secondo i piani e per identificare eventuali ritardi o problemi. Le milestone possono essere utilizzate anche per comunicare i progressi del progetto alle parti interessate e per stabiliare scadenze chiare e tangibili per il completamento delle attività."
+    },
+    {
+        "termine": "Modello a V",
+        "definizione": "Il Modello a V è una rappresentazione grafica del ciclo di vita di un progetto di sviluppo software. Esso mostra in maniera dettagliata le relazioni fra le fasi di analisi e progettazione, la produzione e il testing e ciò che permette di minimizzare i rischi di progetto e di migliorare e garantire la qualità del prodotto."
+    }
+  ],
+  "N": [
+    {
+        "termine": "Norme di Progetto",
+        "definizione": "Nel documento Norme di Progetto sono riportate tutte le linee guida tecniche e procedurali stabilite per regolare l'esecuzione e il controllo di un progetto. Questo documento definisce standard e procedure relative all'organizzazione del lavoro, alla metodologia di sviluppo, alla gestione dei documenti, delle configurazioni e dei rischi, nonchè alla pianificazione e al monitoraggio delle attività del progetto."
+    }
+  ],
   "O": [],
   "P": [],
   "Q": [],
