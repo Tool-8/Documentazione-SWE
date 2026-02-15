@@ -17,7 +17,7 @@
 \usepackage{caption}    % per didascalie
 \captionsetup[table]{labelformat=empty}
 \usepackage{ifthen}     % per \ifthenelse
-
+\usepackage{enumitem}   % per indici liste ordinate
 
 \usepackage{array}      % per tabelle
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
@@ -88,9 +88,11 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  0.7 & Besnik Murtezan & Stesura sottosezioni (4.3 fino a 4.12) & 20/12/2025 & - \\
+  0.8 & Besnik Murtezan & Aggiornato controllo di flusso (sez. 3.2.2) & 15/02/2026 & - \\
+  \hline  
+  0.7 & Besnik Murtezan & Stesura sottosezioni (4.3 fino a 4.12) & 20/12/2025 & Ruben Spadiliero \\
   \hline
-  0.6 & Besnik Murtezan & Miglioramento Forma Espositiva e compilazione sottosezioni mancanti (fino a 4.2) & 14/12/2025 & - \\
+  0.6 & Besnik Murtezan & Miglioramento Forma Espositiva e compilazione sottosezioni mancanti (fino a 4.2) & 14/12/2025 & Ruben Spadiliero \\
   \hline
   0.5 & Stefano Maso & Correzione errori e stesura sotto-sezioni mancanti & 8/12/2025 & Gabriele Disa \\
   \hline
@@ -252,36 +254,82 @@ Ciascun documento ha una struttura ben definita:
   \item \textit{Indice}: elenco dei contenuti del documento.
   \item \textit{Sezioni}: contenuti effettivi.
 \end{itemize}
+\subsubsection{Significato versioni}
+Ogni documento presente nella repository è definito dalla sua versione corrente \texttt{x.y} (visibile nella tabella delle revisioni),
+con il seguente significato:
+\begin{itemize}
+  \item \textbf{x}: è un numero intero, parte da zero e viene incrementato ogni volta che il documento raggiunge lo stato finale per una baseline.
+    \texttt{(ex: RTB -> 1.y ; PB -> 2.y)}
+  \item \textbf{y}: è un numero intero, parte da 1 e rappresenta lo stato di verifica di un documento.
+\end{itemize}
+
 \subsubsection{Ciclo di vita documenti}
 Un documento attraversa le seguenti fasi:
 \begin{itemize}
-  \item \textit{Stesura}: uno o più redattori si occupano della stesura del documento.
-  \item \textit{Verifica}: un membro del gruppo, diverso da quelli che hanno scritto il documento, ha il compito di verificare il documento
-  ad ogni aggiornamento.
-  \item \textit{Approvazione}: il responsabile del progetto decide se approvare l'entrata di un documento nella repository.
-  Se il documento non viene approvato torna alla fase di stesura.
+  \item \textit{Pianificazione}: il responsabile pianifica la creazione di un documento nuovo e la assegna ad uno o più redattori.
+  \item \textit{Stesura iniziale}: i redattori incaricati si occupano di creare il documento nella sua versione iniziale \texttt{0.1}.
+  \item \textit{Sviluppo}: il documento attraversa un ciclo di iterazioni composte da:
+  \begin{itemize}
+    \item \textit{Aggiornamento}: i contenuti del documento vengono aggiunti, corretti o eliminati, incrementando la versione \texttt{x.y -> x.y+1}.
+    \item \textit{Verifica}: il documento viene verificato da un membro del gruppo diverso da quelli che hanno lavorato sull'aggiornamento. In caso di
+      successo, la versione del documento presente nella repository viene aggiornata con la versione dell'iterazione di sviluppo. 
+  \end{itemize}
+  \item \textit{Approvazione}: il documento raggiunge lo stato di maturazione sufficiente per la prossima baseline, aggiornando la versione a \texttt{x.0} .
 \end{itemize}
+
 \subsection{Controllo di configurazione}
-\subsubsection{Versionamento}
-Il versionamento scelto è composto da due numeri: x.y
-\begin{itemize}
-  \item \textbf{x} è un numero intero, parte da zero e viene incrementato ogni volta che il responsabile approva un documento.
-  \item \textbf{y} è un numero intero, parte da 1 e rappresenta lo stato di verifica di un documento.
-\end{itemize}
+
 \subsubsection{GitHub e Git}
 Il gruppo ha deciso di utilizzare Git come strumento di versionamento locale e remoto e GitHub come servizio cloud in cui mantenere la repository
-completa sempre accedibile da tutti i membri del gruppo. 
+completa sempre accedibile da tutti i membri del gruppo.
+(\href{https://git-scm.com/}{\underline{Link Sito Ufficiale Git}})
+(\href{https://github.com/}{\underline{Link GitHub}})
+
 \subsubsection{Controllo di flusso}
-Quando si inizia a lavorare ad una issue riguardo ad una determinata feature o documento bisognerà lavorare sul branch specifico creato
-per la feature stessa (ad esempio per il documento "NormeDiProgetto"). Ogni volta che verrà eseguito lavoro su una funzionalità (o un documento)
-verrà effettuato un commit sul branch il quale farà scattare in automatico una Pull Request di merge sul main.
-Per completare la pull request sono richiesti gli interventi di:
-\begin{itemize}
-  \item Verificatore: verifica il lavoro svolto e in caso di esito positivo deve spostare la issue relativa da "In review" a "Done" 
-  \item Responsabile: accetta la Pull Request completando quindi il merge sul main. 
-\end{itemize}
-In caso di esito negativo della PR, il relativo autore verrà notificato e sarà invitato a correggere il lavoro secondo le eventuali indicazioni del
-verificatore.
+Ogni membro dovrà adottare il seguente flusso di lavoro quando si prende in carico una issue dalla sezione \texttt{Ready},
+sia per documentazione che per codice sorgente:
+\begin{enumerate}
+  \item Spostare la issue presa in carico da \texttt{Ready} a \texttt{In progress} su GitHub.
+  \item Assicurarsi di avere la repository sulla propria macchina locale. In caso contrario clonare la repository remota. 
+  (\href{https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository}{\underline{Guida Clonazione GitHub}})  
+  \item Aggiornare la versione locale della repository con l'ultima versione disponibile del ramo remoto \texttt{main} (\textit{comando} \texttt{git pull}).
+  \item Creare un branch locale con il nome della feature/documento a cui si sta lavorando (meglio se riconducibile alla issue presa in carico). 
+    (comando \texttt{git branch})
+  \item Eseguire il lavoro solamente sul branch locale. 
+  \item Tracciare il lavoro del branch locale sulla repository remota (\textit{comando} \texttt{git push -u origin <nome-branch-locale>}) così da attivare il meccanismo
+    automatico di Pull-Request verso il ramo \texttt{main} remoto.
+  \item Spostare la issue da \texttt{In progress} a \texttt{In review} su GitHub. 
+  \item Attendere la verifica della PR da parte di un verificatore. È opportuno non effettuare altre modifiche al branch che sta attendendo la PR.
+    In base al risultato della verifica:
+    \begin{itemize}
+      \item Esito Positivo
+        \begin{enumerate}
+          \item Chiudere il proprio branch locale (utile per evitare confusione con branch di lavoro successivi).
+        \end{enumerate}
+      \item Esito Negativo
+        \begin{enumerate}
+          \item Ritornare al passo 5, correggendo il lavoro in base alle indicazioni del verificatore.
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}
+
+Per i verificatori il flusso di verifica di una determinata issue della sezione \texttt{In review} è il seguente:
+\begin{enumerate}
+  \item Aprire su GitHub la Pull Request relativa alla issue.
+  \item Eseguire la review dei file aggiunti e modificati dalla PR.
+  \item[-] In caso di esito positivo:
+    \begin{enumerate}[start=3, label=\arabic*.]
+      \item \textbf{Solo per documentazione:} inserire il proprio nome nella cella di verifica della versione corrente (tabella delle revisioni). 
+      \item Approvare il merge della Pull Request.
+      \item Eliminare il branch remoto da cui è partita la PR.
+      \item Spostare la issue da \texttt{In review} a \texttt{Done}.
+    \end{enumerate}
+  \item[-] In caso di esito negativo:
+    \begin{enumerate}[start=3, label=\arabic*.]
+      \item Restituire un feedback all'autore con le modifiche da eseguire per correggere gli errori rilevati, \textbf{senza chiudere ne approvare la PR}.
+      \item Spostare la issue da \texttt{In review} a \texttt{In progress}.
+    \end{enumerate}
+\end{enumerate}
 
 \subsubsection{Scopo e struttura repository "Documentazine-SWE"}
 La repository ha la funzione di mantere una versione aggiornata dei file che dovranno produrre documentazione, ovvero i file .tex.\\
@@ -295,9 +343,9 @@ La struttura della repository è la seguente:
     \item Esterni
   \end{itemize}
 \end{itemize}
-\subsubsection{Scopo e struttura "Proof-of-Concept}
-La repository ha lo scopo di mantenere il versionamento dei file relativi alla codifica del prodotto per quanto riguarda il POC.
-Oltre al relativo codice sorgente dovranno essere inseriti i file relativi al manuale utente e alla documentazione del codice. 
+\subsubsection{Scopo e struttura "Proof-of-Concept"}
+La repository ha lo scopo di mantenere il versionamento dei file relativi alla codifica del prodotto per quanto riguarda il PoC.
+Oltre al codice sorgente dovranno essere inseriti i file relativi al manuale utente e alla documentazione del codice. 
 
 \subsection{Gestione della qualità}
 \subsubsection{Descrizione}
@@ -364,7 +412,6 @@ Il responsabile è la figura che guida e coordina le attività per la realizzazi
   \item Assegnare le attività ai membri del gruppo sulla base dei ruoli di ciascuno
   \item Gestire lo Sprint e le milestone
   \item Monitorare lo stato e l'andamento delle attività
-  \item Approvare l'emissione della documentazione
   \item Mantenere aggiornato il \textit{"Piano di Progetto"}
 \end{itemize}
 \subsubsection{Gestione Sprint}
@@ -375,13 +422,9 @@ All'inizio di ogni sprint il responsabile dovrà:
   \item Creare le Issues tramite GitHub, associarle alle attività ed assegnarle ai relativi membri del gruppo  
   \item Aggiornare il documento di \textit{Piano di Progetto} con le informazioni relative al nuovo sprint
 \end{enumerate}
-\subsubsection{Approvazione Documenti}
-Il responsabile deve monitorare le Pull Request di documenti in attesa nella repository e in caso di PR idonee
-(ovvero già verificate dai verificatori) è necessario approvarle al fine di poter inserire il relativo documento
-all'interno della repository. 
-\subsubsection{Approvazione Codice}
-Similmente a quanto accade per i documenti, il responsabile deve approvare o rifiutare le Pull Request di codice
-sorgente una volta che sono state verificate dai verificatori.
+\subsubsection{Approvazione Artefatti Baseline}
+Il responsabile deve valutare quando un documento, o una determinata componente codificata, abbia raggiunto
+uno stato sufficiente per la baseline pianificata ed approvarne la versione finale per tale baseline.
 
 \subsection{Amministratore}
 Il ruolo di amministratore si occupa di definire, mantenere e controllare l'ambiente IT di lavoro del gruppo, in 
@@ -428,7 +471,7 @@ Le sue priorità sono:
 \item Valutare le Pull Request utilizzando gli strumenti di verifica individuati nel \textit{Piano di Qualifica} 
 \item Verificare i documenti prodotti dai relativi redattori
 \item Verificare il codice prodotto dai programmatori
-\item Monitorare ed occuparsi delle Issue in stato di "Review" 
+\item Monitorare ed occuparsi delle Issue nella sezione \texttt{In review} 
 \end{itemize}
 
 \subsection{Programmatore}
