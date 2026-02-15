@@ -1,0 +1,165 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 09 gennaio 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{09/01/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{3cm}|p{8cm}|M{1.8cm}|}
+  \hline
+  \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} \\
+  \hline
+  Giuliano Banchieri & Prima stesura & 09/01/2026 \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di inizio sprint \#4.
+
+Discussione su sistema blocchi di testo IA, casi d'uso$^G$, requisiti, piano di qualifica e repository.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Giuliano Banchieri & Responsabile \\
+  \hline
+  Gabriele Disa & Analista \\
+  \hline
+  Stefano Maso & Verificatore \\
+  \hline
+  Besnik Murtezan & Amministratore \\
+  \hline
+  Ruben Spadiliero & Analista \\
+  \hline
+  Niccolò Feltrin & Analista \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+Il team ha discusso del funzionamento dei blocchi di testo generati da IA all'interno del prodotto:
+\vspace{1\baselineskip}
+
+A seguito della discussione sulla validità dei diagrammi di casi d'uso definiti, il team ha deciso di creare diagrammi alternativi prima di contattare il professor Cardin per un possibile ricevimento.
+
+Si è infine deciso di aumentare il numero di analisti per velocizzare l'ultimazione del documento di Analisi dei Requisiti.
+\vspace{1\baselineskip}
+
+Sono stati poi decisi il ruolo di ciascun membro e le azioni da intraprendere.
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a tutti i membri:}
+\begin{enumerate}
+    \item Ricerca tecnologie
+\end{enumerate}
+\item \textbf{Assegnato a Giuliano Banchieri [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 10/01/2026.
+    \item Contattare Professor Cardin a seguito delle modifiche ai diagrammi di casi d'uso
+    \end{enumerate}
+\item \textbf{Assegnato a Ruben Spadiliero, Gabriele Disa, Niccolò Feltrin [Analisti]:}
+    \begin{enumerate}
+    \item Modifica diagrammi di casi d'uso
+    \item Atomicizzazione casi d'uso
+    \item Scrittura casi d'uso opzionali
+    \item \texttt{[OPT]} Prima stesura requisiti
+    \end{enumerate}
+\item \textbf{Assegnato a Besnik Murtezan [Amministratore]:}
+    \begin{enumerate}
+    \item Adottazione nuovo modello per la repository
+    \item Aggiornamento github$^G$ actions per compilazione file RTB
+    \item Aggiornamento Piano e Norme di Progetto$^G$
+    \item Stesura prima versione Piano di Qualifica
+    \end{enumerate}
+\item \textbf{Assegnato a Stefano Maso [Verificatore]:}
+    \begin{enumerate}
+    \item Verifica dei documenti
+    \end{enumerate}
+\end{itemize}
+
+\section*{Rischi}
+Vista la vicinanza alle date dei primi esami delle sessioni, si prevede la possibilità che alcuni membri del gruppo non riescano a completare i propri compiti senza ritardi.
+
+Si prevede l'eventualità di riaffidare ad altri membri senza problemi di tempo il completamento di questi compiti.
+\end{document}

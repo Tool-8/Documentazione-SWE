@@ -146,8 +146,8 @@ La riunione è stata divisa in due parti:
 \begin{enumerate}
     \item Nella prima parte (17:00-18:15) il gruppo ha discusso su varie piattaforme disponibili per la creazione di una \emph{Project Board} per permettere di assegnare e tracciare l'avanzamento di ogni attività efficientemente. Valutando pro e contro per ogni programma, sono emersi due candidati:
     \begin{itemize}
-        \item \textbf{Jira}: la versione gratuita offre varie funzionalità di base sufficienti al gruppo; ogni membro può essere assegnato ad un sub-gruppo, in modo da poter filtrare le task designate al ruolo specifico, permettendo a chi appartiene a quel ruolo di assegnarsi la task individualmente, aggiornando direttamente il gruppo. Altre funzionalità sono per esempio l'integrazione automatica di git, la gestione avanzata delle ore, e la possiblità di costruire grafici che mostrano l'avanzamento del lavoro in modo da poter misurare la qualità del Way of Working. \\
-        \item \textbf{GitHub Project}: hostato gratuitamente insieme a GitHub, può collegarsi alla repository facilmente; ogni \emph{issue} può essere categorizzata in varie \emph{sub-issue}, permettendo di dividere lavori di portata maggiore in sotto-task misurabili. La piattaforma di base non include un sistema per tracciare il tempo di lavoro su ciascun task; tuttavia è possibile colmare questa mancanza creando semplici attributi personalizzati. Questi, però, devono essere aggiornati manualmente al termine dell’attività.
+        \item \textbf{Jira}: la versione gratuita offre varie funzionalità di base sufficienti al gruppo; ogni membro può essere assegnato ad un sub-gruppo, in modo da poter filtrare le task designate al ruolo specifico, permettendo a chi appartiene a quel ruolo di assegnarsi la task individualmente, aggiornando direttamente il gruppo. Altre funzionalità sono per esempio l'integrazione automatica di git$^G$, la gestione avanzata delle ore, e la possiblità di costruire grafici che mostrano l'avanzamento del lavoro in modo da poter misurare la qualità del Way of Working. \\
+        \item \textbf{GitHub Project}: hostato gratuitamente insieme a GitHub$^G$, può collegarsi alla repository facilmente; ogni \emph{issue} può essere categorizzata in varie \emph{sub-issue}, permettendo di dividere lavori di portata maggiore in sotto-task misurabili. La piattaforma di base non include un sistema per tracciare il tempo di lavoro su ciascun task; tuttavia è possibile colmare questa mancanza creando semplici attributi personalizzati. Questi, però, devono essere aggiornati manualmente al termine dell’attività.
     \end{itemize}
     Il gruppo ha valutato di optare per GitHub Project, avendo più famigliarità con GitHub e cercando un sistema semplice da imparare ed utilizzare. \\
     \par
@@ -167,7 +167,7 @@ La riunione è stata divisa in due parti:
         \end{itemize}
         \item Il branch principale della repository (main) verrà lasciato solo con l'ultima versione dei documenti già verificati, in modo da tenerlo ordinato e per avere successivamente una documentazione accessibile su github-pages. \\
         \item Ogni documento ha il proprio branch di lavoro (ad eccezione dei verbali, che saranno tutti operati in un unico branch); quando si decide di aver finito la task assegnata allora è necessario avviare una pull-request per il merge al branch principale. In questa fase le modifiche vanno valutate dai verificatori, che poi eventualmente rifiuteranno o accetteranno, controllando quindi la protezione del main. \\
-        \item Ogni Sprint equivale ad una milestone su GitHub, insieme alla RTB e PB. \\
+        \item Ogni Sprint equivale ad una milestone$^G$ su GitHub, insieme alla RTB e PB. \\
         \item Ogni issue ha vari attributi che segnano il tempo di lavoro trascorso per ogni individuo del gruppo. Chi ha lavorato su quell'attività deve modificare la variabile equivalente, permettendo così di poter misurare le ore utilizzate da ciascun membro, anche con issue assegnate a più persone. \\
     \end{itemize}
 \end{enumerate}
@@ -185,13 +185,13 @@ Per quanto riguarda a programmi specifici da utilizzare in locale per lo svilupp
     \par
     \item Assegnato a Besnik Murtezan, Stefano Maso \textbf{[Analista]}:
     \begin{enumerate}
-        \item Concludere la ricerca dei casi d'uso per l'Analisi dei Requisiti \\
+        \item Concludere la ricerca dei casi d'uso$^G$ per l'Analisi dei Requisiti$^G$ \\
     \end{enumerate}
     \item Assegnato a Giuliano Banchieri, Ruben Spadiliero \textbf{[Amministratore]}:
     \begin{enumerate}
         \item Creare progetto nella repo di GitHub
         \item Applicare il branch-protection al main
-        \item Creare branch per ogni documento corrente (Analisi dei Requisiti, Norme di Progetto, Piano di Progetto, Verbali, Glossario)
+        \item Creare branch per ogni documento corrente (Analisi dei Requisiti, Norme di Progetto$^G$, Piano di Progetto, Verbali, Glossario)
         \item Creare nel main la cartella \textit{RTB} e aggiornare github-actions per la compilazione dei file LaTeX nella cartella \\
     \end{enumerate}
     \item Assegnato a Gabriele Disa \textbf{[Verificatore]}:
