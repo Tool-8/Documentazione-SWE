@@ -4,9 +4,12 @@ import os
 # ritorna la stringa della sezione del glossario
 def compose_section(letter: str, json_array) -> str:
     section = ""
-    section += "\\section*{" + letter + "} \n" +"\\addcontentsline{toc}{section}{"+letter+"}" + "\n"
+    section += "\\begin{center}\n"
+    section += "\\section*{" + letter + "}\n"
+    section += "\\end{center}\n"
+    section += "\\addcontentsline{toc}{section}{" + letter + "}\n"
     for d in json_array[letter]:
-        section += "\\subsection*{" + d["termine"] + "} \n "+"\\addcontentsline{toc}{subsection}{"+d["termine"]+"}" + "\n"
+        section += "\\term{" + d["termine"] + "}\n"
         section += d["definizione"] + "\n"
     return section
 
