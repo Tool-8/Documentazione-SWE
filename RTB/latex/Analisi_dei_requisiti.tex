@@ -1,6 +1,5 @@
 \documentclass[a4paper,10pt]{article}
 
-\usepackage[hidelinks]{hyperref}
 \usepackage{float}
 
 % Lingua
@@ -35,7 +34,6 @@
 
 % Per logo in ogni pagina
 \usepackage{eso-pic}
-\usepackage{tikz}
 \AddToShipoutPictureBG{%
     \ifthenelse{\value{page}>1}{%
         \begin{tikzpicture}[remember picture, overlay]
@@ -89,6 +87,8 @@
         \begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
             \hline
             \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+            \hline
+            0.10 & Niccolò Feltrin & Divisione casi d'uso in macroaree, rimozione caso d'uso UC2 (modificati casi d'uso che includevano UC2), stesura caso d'uso UC10 (Esportazione nota da archivio) & 23/02/2026 & - \\
             \hline
             0.9 & Niccolò Feltrin & Modificate numerazioni casi d'uso$^G$ e stesura casi d'uso UC2 (Visualizzazione Nota), UC5.1 (Primo Salvataggio Nota), UC9 (Cambio Visualizzazione) e UC10 (Rinominazione Nota) & 9/01/2026 & Stefano Maso \\
             \hline
@@ -172,30 +172,28 @@
     \end{itemize}
     \bigskip
 
-    \subsection{Diagrammi e Descrizioni Testuali}
+    \subsection{Operazioni sulle note}
+
+    \subsubsection*{UC1 - Visualizzazione Archivio Note}
+    \addcontentsline{toc}{subsubsection}{UC1 - Visualizzazione Archivio Note}
 
     \medskip
-
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=0, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=0]{Utente}
-            \umlactor[x=8, y=0,scale=0.75]{Server Locale}
+            \umlactor[x=8.5, y=0,scale=0.75]{Server Locale}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{archivio}
 
             \umlassoc{Server Locale}{archivio}
-
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC1 - Visualizzazione Archivio Note}
-    \addcontentsline{toc}{subsubsection}{UC1 - Visualizzazione Archivio Note}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -219,56 +217,34 @@
         \item Il sistema mostra all'utente le note presenti sul server
     \end{enumerate}
 
-    \newpage
-
     \vspace{1cm}
+
+    \subsubsection*{UC2 - Apertura Nota}
+    \addcontentsline{toc}{subsubsection}{UC2 - Apertura Nota}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
-            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=1, y=2, name=apri, align=center]{UC3 - Apertura Nota}
-                \umlusecase[x=1, y=4, name=visualizzazione_nota, align=center]{UC2 - Visualizzazione \\ Nota}
+            \begin{umlsystem}[x=3, fill=white!10]{Sistema}
+                \umlusecase[x=1, y=2, name=apri, align=center]{UC2 - Apertura Nota}
                 \umlusecase[x=1, y=0, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=2]{Utente}
-            \umlactor[x=10, y=2,scale=0.75]{Server Locale}
+            \umlactor[x=8.5, y=2,scale=0.75]{Server Locale}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{apri}
 
             \umlassoc{Server Locale}{apri}
 
+            % Associazioni Casi d'Uso
             \umlinclude{apri}{archivio}
-            \umlinclude{apri}{visualizzazione_nota}
 
         \end{tikzpicture}
     \end{center}
-
-
-    \subsubsection*{UC2 - Visualizzazione Nota}
-    \addcontentsline{toc}{subsubsection}{UC2 - Visualizzazione Nota}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha aperto o creato una nota
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item Viene visualizzato l'editor markdown della nota
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente visualizza il contenuto della nota  % Da rivedere
-    \end{enumerate}
-
-    \subsubsection*{UC3 - Apertura Nota}
-    \addcontentsline{toc}{subsubsection}{UC3 - Apertura Nota}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -291,7 +267,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona la nota da aprire
-        \item Il contenuto della nota viene visualizzato (UC2)
+        \item Il contenuto della nota viene visualizzato
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -301,31 +277,94 @@
             \item L'utente chiude l'avviso
             \item L'archivio viene aggiornato togliendo la nota mancante
         \end{enumerate}
+        \item Nel caso ci sia una nota già aperta:
+        \begin{enumerate}
+            \item Il sistema chiede conferma per la chiusura della nota
+            \item L'utente conferma
+            \item La nota precedente viene chiusa
+            \item La nuova nota viene aperta
+        \end{enumerate}
     \end{itemize}
 
     \vspace{1cm}
 
+    \subsubsection*{UC3 - Chiusura Nota}
+    \addcontentsline{toc}{subsubsection}{UC3 - Chiusura Nota}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=creazione]{UC4 - Creazione Nota}
-                \umlusecase[x=0, y=2, name=visualizzazione_nota, align=center]{UC2 - Visualizzazione \\ Nota}
+                \umlusecase[x=0, y=4, name=chiusura]{UC3 - Chiusura Nota}
+                \umlusecase[x=0, y=2, name=salvataggio]{UC5 - Salvataggio Nota}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
+            \umlactor[x=10, y=4,scale = 0.75]{Server Locale}
 
-% Associazioni Utente
-            \umlassoc{Utente}{creazione}
+            % Associazioni Utente
+            \umlassoc{Utente}{chiusura}
+            \umlassoc{Server Locale}{chiusura}
 
-% Associazioni Casi d'uso
-            \umlinclude{creazione}{visualizzazione_nota}
+            % Associazioni Casi d'Uso
+            \umlextend{salvataggio}{chiusura}
 
         \end{tikzpicture}
     \end{center}
 
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Attori secondari}
+    \begin{itemize}
+        \item Server Locale
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota (UC2)
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Non è visualizzata alcuna nota
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Chiudi Nota"}
+        \item La visualizzazione viene chiusa
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso in cui la nota non è presente / non è aggiornata nel Server:
+        \begin{enumerate}
+            \item Caso d'uso UC5
+        \end{enumerate}
+    \end{itemize}
+
+    \vspace{1cm}
+
     \subsubsection*{UC4 - Creazione Nota}
     \addcontentsline{toc}{subsubsection}{UC4 - Creazione Nota}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4, name=creazione]{UC4 - Creazione Nota}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=0, y=4]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{creazione}
+
+        \end{tikzpicture}
+    \end{center}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -344,46 +383,45 @@
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Creazione Nota"}
         \item L'utente specifica il nome della nota
-        \item Il contenuto della nota viene visualizzato (UC2)
+        \item Il contenuto della nota viene visualizzato
     \end{enumerate}
-
-% \textbf{Estensioni}
-% \begin{itemize}
-%     \item Nel caso in cui nel Server fosse già presente una nota con lo stesso nome:
-%     \begin{enumerate}
-%         \item Il sistema avvisa l'utente della presenza di una nota con lo stesso nome
-%         \item Il sistema indica all'utente di specificare un nome differente
-%         \item L'utente cambia il nome inizialmente fornito
-%         \item Il sistema prosegue con la creazione della nota
-%     \end{enumerate}
-% \end{itemize}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso ci sia una nota già aperta:
+        \begin{enumerate}
+            \item Il sistema chiede conferma per la chiusura della nota
+            \item L'utente conferma
+            \item La nota precedente viene chiusa
+            \item La nuova nota viene creata
+        \end{enumerate}
+    \end{itemize}
 
     \vspace{1cm}
+
+    \subsubsection*{UC5 - Salvataggio Nota}
+    \addcontentsline{toc}{subsubsection}{UC5 - Salvataggio Nota}
+
+    \medskip
 
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=6, name=visualizzazione_nota, align=center]{UC2 - Visualizzazione \\ Nota}
                 \umlusecase[x=0, y=4, name=salvataggio]{UC5 - Salvataggio Nota}
                 \umlusecase[x=0, y=2, name=primo_salvataggio, align=center]{UC5.1 - Primo Salvataggio \\ Nota}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
             \umlactor[x=10, y=4,scale = 0.75]{Server Locale}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{salvataggio}
             \umlassoc{Server Locale}{salvataggio}
 
-% Associazioni Casi d'uso
+            % Associazioni Casi d'Uso
             \umlextend{primo_salvataggio}{salvataggio}
-            \umlinclude{salvataggio}{visualizzazione_nota}
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC5 - Salvataggio Nota}
-    \addcontentsline{toc}{subsubsection}{UC5 - Salvataggio Nota}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -467,86 +505,32 @@
     \end{itemize}
 
     \vspace{1cm}
+
+    \subsubsection*{UC6 - Ricerca nota per nome}
+    \addcontentsline{toc}{subsubsection}{UC6 - Ricerca nota per nome}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=6, name=visualizzazione_nota, align=center]{UC2 - Visualizzazione \\ Nota}
-                \umlusecase[x=0, y=4, name=chiusura]{UC6 - Chiusura Nota}
-                \umlusecase[x=0, y=2, name=salvataggio]{UC5 - Salvataggio Nota}
-            \end{umlsystem}
-
-% Attori
-            \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4,scale = 0.75]{Server Locale}
-
-% Associazioni Utente
-            \umlassoc{Utente}{chiusura}
-            \umlassoc{Server Locale}{chiusura}
-
-% Associazioni Casi d'uso
-            \umlinclude{chiusura}{visualizzazione_nota}
-            \umlextend{salvataggio}{chiusura}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC6 - Chiusura Nota}
-    \addcontentsline{toc}{subsubsection}{UC6 - Chiusura Nota}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota (UC2)
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item Non è visualizzata alcuna nota
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Chiudi Nota"}
-        \item La visualizzazione viene chiusa
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui la nota non è presente / non è aggiornata nel Server:
-        \begin{enumerate}
-            \item Caso d'uso UC5
-        \end{enumerate}
-    \end{itemize}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=ricerca]{UC7 - Ricerca nota per nome}
+                \umlusecase[x=0, y=4, name=ricerca]{UC6 - Ricerca nota per nome}
                 \umlusecase[x=0, y=2, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
             \umlactor[x=10, y=4,scale=0.75]{Server Locale}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{ricerca}
             \umlassoc{Server Locale}{ricerca}
 
-% Associazioni Casi d'uso
+            % Associazioni Casi d'uso
             \umlinclude{ricerca}{archivio}
 
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC7 - Ricerca nota per nome}
-    \addcontentsline{toc}{subsubsection}{UC7 - Ricerca nota per nome}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -575,26 +559,31 @@
 
     \vspace{1cm}
 
+    \subsubsection*{UC7 - Eliminazione nota}
+    \addcontentsline{toc}{subsubsection}{UC7 - Eliminazione nota}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=eliminazione]{UC8 - Eliminazione nota}
+                \umlusecase[x=0, y=4, name=eliminazione]{UC7 - Eliminazione nota}
+                \umlusecase[x=0, y=2, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
             \end{umlsystem}
 
-
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
             \umlactor[x=10, y=4,scale=0.75]{Server Locale}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{eliminazione}
             \umlassoc{Server Locale}{eliminazione}
 
+            % Associazioni Casi d'Uso
+            \umlinclude{eliminazione}{archivio}
+
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC8 - Eliminazione nota}
-    \addcontentsline{toc}{subsubsection}{UC8 - Eliminazione nota}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -607,175 +596,50 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha selezionato una nota nell'archivio
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota aperta viene eliminata dal Server Locale
+        \item La nota viene eliminata dal Server Locale
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Eliminazione Nota"}
         \item L'utente conferma l'eliminazione della nota
         \item Il sistema elimina la nota dal Server Locale
-        \item L'utente viene riportato alla Home
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
         \item Nel caso in cui la nota interessata fosse stata rimossa dal server prima dell'eliminazione da parte dell'utente:
         \begin{itemize}
             \item Il sistema avvisa l'utente dell'inesistenza della nota da eliminare
-            \item L'utente viene riportato Home
         \end{itemize}
-        \item Nel caso l'utente volesse eliminare una nota mentre si trova nella Home:
+        \item Nel caso la nota eliminata mentre è aperta dall'utente:
         \begin{itemize}
-            \item L'utente seleziona la nota da voler eliminare
-            \item L'utente attiva la funzionalità di \textit{"Eliminazione Nota"}
-            \item L'utente conferma l'eliminazione
-            \item La nota viene eliminata dal server
+            \item Il sistema avvisa l'utente della nota aperta ormai eliminata
+            \item La nota rimane aperta in locale
         \end{itemize}
     \end{itemize}
 
     \vspace{1cm}
+
+    \subsubsection*{UC8 - Rinominazione Nota}
+    \addcontentsline{toc}{subsubsection}{UC8 - Rinominazione Nota}
+
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=cambio_visualizzazione, align=center]{UC9 - Cambio \\ Visualizzazione}
-                \umlusecase[x=6, y=6, name=visualizzazione_markdown, align=center]{UC9.1 - Visualizzazione \\ Markdown}
-                \umlusecase[x=6, y=4, name=visualizzazione_markdown_render, align=center]{UC9.2 - Visualizzazione \\ Markdown e Render}
-                \umlusecase[x=6, y=2, name=visualizzazione_render, align=center]{UC9.3 - Visualizzazione \\ Render}
-                \umlusecase[x=0, y=2, name=visualizzazione_nota, align=center]{UC2 - Visualizzazione \\ Nota}
+                \umlusecase[x=0, y=2, name=rinominazione_nota, align=center]{UC8 - Rinominazione \\ Nota}
             \end{umlsystem}
 
-% Attori
-            \umlactor[x=0, y=4]{Utente}
-
-% Associazioni Utente
-            \umlassoc{Utente}{cambio_visualizzazione}
-
-% Associazioni Casi d'uso
-            \umlinherit{visualizzazione_markdown}{cambio_visualizzazione}
-            \umlinherit{visualizzazione_markdown_render}{cambio_visualizzazione}
-            \umlinherit{visualizzazione_render}{cambio_visualizzazione}
-            \umlinclude{visualizzazione_nota}{cambio_visualizzazione}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC9 - Cambio Visualizzazione}
-    \addcontentsline{toc}{subsubsection}{UC9 - Cambio Visualizzazione}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota (UC2)
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La visualizzazione della nota viene cambiata
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
-        \item L'utente sceglie un formato di visualizzazione
-        \item Il sistema aggiorna la visualizzazione a seconda della scelta
-    \end{enumerate}
-
-    \subsubsection*{UC9.1 - Visualizzazione Markdown}
-    \addcontentsline{toc}{subsubsection}{UC9.1 - Visualizzazione Markdown}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota (UC2)
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La visualizzazione della nota viene cambiata in solo markdown
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
-        \item L'utente sceglie il formato di visualizzazione \textit{"Solo Markdown"}
-        \item Il sistema aggiorna la visualizzazione mostrando solo il markdown della nota
-    \end{enumerate}
-
-    \subsubsection*{UC9.2 - Visualizzazione Markdown e Render}
-    \addcontentsline{toc}{subsubsection}{UC9.2 - Visualizzazione Markdown e Render}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota (UC2)
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La visualizzazione della nota viene cambiata in markdown e render
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
-        \item L'utente sceglie il formato di visualizzazione \textit{"Markdown e Render"}
-        \item Il sistema aggiorna la visualizzazione mostrando le sezioni di markdown e render
-    \end{enumerate}
-
-    \subsubsection*{UC9.3 - Visualizzazione Render}
-    \addcontentsline{toc}{subsubsection}{UC9.3 - Visualizzazione Render}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota (UC2)
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La visualizzazione della nota viene cambiata in solo render
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
-        \item L'utente sceglie il formato di visualizzazione \textit{"Solo Render"}
-        \item Il sistema aggiorna la visualizzazione mostrando solo il render della nota
-    \end{enumerate}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=2, name=rinominazione_nota, align=center]{UC9 - Rinominazione \\ Nota}
-                \umlusecase[x=0, y=0, name=visualizzazione_nota, align=center]{UC2 - Visualizzazione \\ Nota}
-            \end{umlsystem}
-
-% Attori
+            % Attori
             \umlactor[x=0, y=2]{Utente}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{rinominazione_nota}
-
-% Associazioni Casi d'uso
-            \umlinclude{rinominazione_nota}{visualizzazione_nota}
 
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC10 - Rinominazione Nota}
-    \addcontentsline{toc}{subsubsection}{UC10 - Rinominazione Nota}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -798,22 +662,371 @@
     \end{enumerate}
 
     \vspace{1cm}
+
+    \subsubsection*{UC9 - Esportazione nota}
+    \addcontentsline{toc}{subsubsection}{UC9 - Esportazione nota}
+
     \begin{center}
         \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=scrittura]{UC11 - Scrittura testo}
+
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Esporta]{UC9 - Esportazione nota}
+                \umlusecase[x=0, y=3, name=PDF]{UC9.1 - Esporta PDF}
+                \umlusecase[x=6, y=3, name=HTML]{UC9.2 - Esporta HTML}
             \end{umlsystem}
 
-% Attori
-            \umlactor[x=0, y=4]{Utente}
+            % Attore
+            \umlactor[x=0, y=5]{Utente}
 
-% Associazioni Utente
-            \umlassoc{Utente}{scrittura}
+            % Associazione Utente
+            \umlassoc{Utente}{Esporta}
+
+            % Associazione Casi d'Uso
+            \umlinherit{PDF}{Esporta}
+            \umlinherit{HTML}{Esporta}
+
         \end{tikzpicture}
     \end{center}
 
-    \subsubsection*{UC11 - Scrittura testo}
-    \addcontentsline{toc}{subsubsection}{UC11 - Scrittura testo}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente ha una nota aperta
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene esportata nel formato scelto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Esportazione nota"}
+        \item L'utente può scegliere il formato per l'esportazione
+    \end{enumerate}
+
+    \subsubsection*{UC9.1 - Esporta PDF}
+    \addcontentsline{toc}{subsubsection}{UC9.1 - Esporta PDF}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene esportata in formato PDF
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sceglie il formato PDF
+        \item La nota viene convertita in PDF
+        \item L'utente può salvare la nota sul proprio dispositivo
+    \end{enumerate}
+
+    \subsubsection*{UC9.2 - Esporta HTML}
+    \addcontentsline{toc}{subsubsection}{UC9.2 - Esporta HTML}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene esportata in formato HTML
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sceglie il formato HTML
+        \item La nota viene convertita in HTML
+        \item L'utente può salvare la nota sul proprio dispositivo
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC10 - Esportazione nota da archivio}
+    \addcontentsline{toc}{subsubsection}{UC10 - Esportazione nota da archivio}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=4.5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4.5, name=Esporta]{UC9 - Esportazione nota}
+                \umlusecase[x=0, y=2.5, name=Esporta_Archivio, align=center]{UC10 - Esportazione nota \\ da archivio}
+                \umlusecase[x=0, y=0, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=0, y=2.5]{Utente}
+            \umlactor[x=9.5, y=2.5]{Server Locale}
+
+            % Associazione Utente
+            \umlassoc{Utente}{Esporta_Archivio}
+            \umlassoc{Server Locale}{Esporta_Archivio}
+
+            % Associazione Casi d'Uso
+            \umlinclude{Esporta_Archivio}{Esporta}
+            \umlinclude{Esporta_Archivio}{archivio}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Attori secondari}
+    \begin{itemize}
+        \item Server Locale
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha selezionato una nota nell'archivio
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene esportata nel formato scelto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Esportazione nota"}
+        \item L'utente può scegliere il formato per l'esportazione
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC11 - Importazione nota}
+    \addcontentsline{toc}{subsubsection}{UC11 - Importazione nota}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=2.5, name=importa]{UC11 - Importazione nota}
+                \umlusecase[x=0, y=0, name=err_importa, align=center]{UC11.1 - Formato nota \\ non valido}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=0, y=2.5]{Utente}
+            \umlactor[x=8.5, y=2.5, scale=0.75]{Server Locale}
+
+            % Associazione Utente
+            \umlassoc{Utente}{importa}
+            \umlassoc{Server Locale}{importa}
+
+            % Associazione Casi d'Uso
+            \umlextend{err_importa}{importa}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Attori secondari}
+    \begin{itemize}
+        \item Server Locale
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota selezionata viene aggiunta all'archivio
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
+        \item L'utente sceglie la nota da importare
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Se la nota scelta ha un formato invalido
+        \begin{itemize}
+            \item UCB.1 (Formato nota non valido)
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection*{UC11.1 - Formato nota non valido}
+    \addcontentsline{toc}{subsubsection}{UC11.1 - Formato nota non valido}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente ha selezionato una nota da importare con formato non valido
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'archivio non viene aggiornato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente viene avvisato del formato invalido della nota da importare
+        \item L'utente chiude l'avviso
+    \end{enumerate}
+
+    \newpage
+
+    \subsection{Editing Markdown}
+
+    \subsubsection*{UC12 - Cambio Visualizzazione}
+    \addcontentsline{toc}{subsubsection}{UC12 - Cambio Visualizzazione}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=4, fill=white!10]{Cambio Visualizzazione}
+                \umlusecase[x=0, y=4, name=cambio_visualizzazione, align=center]{UC12 - Cambio \\ Visualizzazione}
+                \umlusecase[x=6, y=6, name=visualizzazione_markdown, align=center]{UC12.1 - Visualizzazione \\ Markdown}
+                \umlusecase[x=6, y=4, name=visualizzazione_markdown_render, align=center]{UC12.2 - Visualizzazione \\ Markdown e Render}
+                \umlusecase[x=6, y=2, name=visualizzazione_render, align=center]{UC12.3 - Visualizzazione \\ Render}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=0, y=4]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{cambio_visualizzazione}
+
+            % Associazioni Casi d'Uso
+            \umlinherit{visualizzazione_markdown}{cambio_visualizzazione}
+            \umlinherit{visualizzazione_markdown_render}{cambio_visualizzazione}
+            \umlinherit{visualizzazione_render}{cambio_visualizzazione}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La visualizzazione della nota viene cambiata
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
+        \item L'utente sceglie un formato di visualizzazione
+        \item Il sistema aggiorna la visualizzazione a seconda della scelta
+    \end{enumerate}
+
+    \subsubsection*{UC12.1 - Visualizzazione Markdown}
+    \addcontentsline{toc}{subsubsection}{UC12.1 - Visualizzazione Markdown}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La visualizzazione della nota viene cambiata in solo markdown
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
+        \item L'utente sceglie il formato di visualizzazione \textit{"Solo Markdown"}
+        \item Il sistema aggiorna la visualizzazione mostrando solo il markdown della nota
+    \end{enumerate}
+
+    \subsubsection*{UC12.2 - Visualizzazione Markdown e Render}
+    \addcontentsline{toc}{subsubsection}{UC12.2 - Visualizzazione Markdown e Render}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La visualizzazione della nota viene cambiata in markdown e render
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
+        \item L'utente sceglie il formato di visualizzazione \textit{"Markdown e Render"}
+        \item Il sistema aggiorna la visualizzazione mostrando le sezioni di markdown e render
+    \end{enumerate}
+
+    \subsubsection*{UC12.3 - Visualizzazione Render}
+    \addcontentsline{toc}{subsubsection}{UC12.3 - Visualizzazione Render}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La visualizzazione della nota viene cambiata in solo render
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
+        \item L'utente sceglie il formato di visualizzazione \textit{"Solo Render"}
+        \item Il sistema aggiorna la visualizzazione mostrando solo il render della nota
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC13 - Scrittura testo}
+    \addcontentsline{toc}{subsubsection}{UC13 - Scrittura testo}
+
+    \medskip
+
+    \vspace{1cm}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4, name=scrittura]{UC13 - Scrittura testo}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=0, y=4]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{scrittura}
+        \end{tikzpicture}
+    \end{center}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -834,23 +1047,26 @@
     \end{enumerate}
 
     \vspace{1cm}
+
+    \subsubsection*{UC14 - Visualizzazione testo formattato}
+    \addcontentsline{toc}{subsubsection}{UC14 - Visualizzazione testo formattato}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
 
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=vis,align=center]{UC12 - Visualizzazione \\ testo formattato}
+                \umlusecase[x=0, y=4, name=vis,align=center]{UC14 - Visualizzazione \\ testo formattato}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{vis}
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC12 - Visualizzazione testo formattato}
-    \addcontentsline{toc}{subsubsection}{UC12 - Visualizzazione testo formattato}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -884,24 +1100,531 @@
     \end{itemize}
 
     \vspace{1cm}
+
+    \subsubsection*{UC15 - Formattazione testo}
+    \addcontentsline{toc}{subsubsection}{UC15 - Formattazione testo}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=riassumere]{UC13 - Riassunto testo con LLM}
+                \umlusecase[x=0, y=4, name=associazione]{UC15 - Formattazione testo}
             \end{umlsystem}
 
-% Attori
+            % Attori
+            \umlactor[x=0, y=4]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{associazione}
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha selezionato una porzione di testo o il testo intero
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La parte di testo selezionata è formattata secondo le modalità decise dall'utente
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente attiva la funzionalità \textit{"Formattazione testo"}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo necessari al tipo di formattazione scelto
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC15.1 - Testo grassetto}
+    \addcontentsline{toc}{subsubsection}{UC18 - Testo grassetto}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=5, name=Formattazione]{UC15 - Formattazione testo}
+                \umlusecase[x=0, y=3, name=Grassetto]{UC15.1 - Testo grassetto}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=-3, y=5]{Utente}
+
+            % Associazione
+            \umlassoc{Utente}{Formattazione}
+
+            % Generalizzazione
+            \umlinherit{Grassetto}{Formattazione}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha selezionato una porzione di testo o il testo intero
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente attiva la funzionalità \textit{"Testo in grassetto"}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso in cui l'utente attivi la funzionalità "Testo in grassetto" sul del testo già in grassetto:
+        \begin{enumerate}
+            \item Il testo non è più compreso tra i marcatori di testo del grassetto
+        \end{enumerate}
+    \end{itemize}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC15.2 - Testo in corsivo}
+    \addcontentsline{toc}{subsubsection}{UC15.2 - Testo in corsivo}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=5, name=Formattazione]{UC15 - Formattazione testo}
+                \umlusecase[x=0, y=3, name=Corsivo]{UC15.2 - Testo corsivo}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=-3, y=5]{Utente}
+
+            % Associazione
+            \umlassoc{Utente}{Formattazione}
+
+            % Generalizzazione
+            \umlinherit{Corsivo}{Formattazione}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha selezionato una porzione di testo o il testo intero
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente attiva la funzionalità \textit{"Testo in corsivo"}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso in cui l'utente attivi la funzionalità "Testo in corsivo" sul del testo già in corsivo:
+        \begin{enumerate}
+            \item Il testo non è più compreso tra i marcatori di testo del corsivo
+        \end{enumerate}
+    \end{itemize}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC15.3 - Testo sottolineato}
+    \addcontentsline{toc}{subsubsection}{UC15.3 - Testo sottolineato}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=5, name=Formattazione]{UC15 - Formattazione testo}
+                \umlusecase[x=0, y=3, name=Sottolineato]{UC15.3 - Testo sottolineato}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=-3, y=5]{Utente}
+
+            % Associazione
+            \umlassoc{Utente}{Formattazione}
+
+            % Generalizzazione
+            \umlinherit{Sottolineato}{Formattazione}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha selezionato una porzione di testo o il testo intero
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente attiva la funzionalità \textit{"Testo sottolineato"}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso in cui l'utente attivi la funzionalità "Testo sottolineato" sul del testo già sottolineato:
+        \begin{enumerate}
+            \item Il testo non è più compreso tra i marcatori di testo per la sottolineatura
+        \end{enumerate}
+    \end{itemize}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC15.4 - Testo barrato}
+    \addcontentsline{toc}{subsubsection}{UC15.4 - Testo barrato}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=5, name=Formattazione]{UC15 - Formattazione testo}
+                \umlusecase[x=0, y=3, name=Barrato]{UC15.4 - Testo barrato}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=-3, y=5]{Utente}
+
+            % Associazione
+            \umlassoc{Utente}{Formattazione}
+
+            % Generalizzazione
+            \umlinherit{Barrato}{Formattazione}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha selezionato una porzione di testo o il testo intero
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo per la barrattura
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente attiva la funzionalità \textit{"Testo barrato"}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo per la barratura
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso in cui l'utente attivi la funzionalità "Testo barrato" sul del testo già barrato:
+        \begin{enumerate}
+            \item Il testo non è più compreso tra i marcatori di testo per la barratura
+        \end{enumerate}
+    \end{itemize}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC15.5 - Link ipertestuale}
+    \addcontentsline{toc}{subsubsection}{UC15.5 - Link ipertestuale}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=5, name=Formattazione]{UC15 - Formattazione testo}
+                \umlusecase[x=0, y=3, name=Link]{UC15.5 - Link ipertestuale}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=-3, y=5]{Utente}
+
+            % Associazione
+            \umlassoc{Utente}{Formattazione}
+
+            % Generalizzazione
+            \umlinherit{Link}{Formattazione}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha selezionato una porzione di testo o il testo intero
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo per i collegamenti ipertestuali e seguita dai marcatori in mezzo ai quali dovrà essere inserito il link effettivo
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente attiva la funzionalità \textit{"Link ipertestuale"}
+        \item La parte di testo selezionata è compresa tra i marcatori di testo per i collegamenti ipertestuali e seguita dai marcatori in mezzo ai quali dovrà essere inserito il link effettivo
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso in cui l'utente attivi la funzionalità "Link ipertestuale" sul del testo che presenta già collegamenti ipertestuali:
+        \begin{enumerate}
+            \item Il testo non è più compreso tra i marcatori di testo per i collegamenti ipertestuali
+        \end{enumerate}
+    \end{itemize}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC16 - Creazione elenco}
+    \addcontentsline{toc}{subsubsection}{UC16 - Creazione elenco}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Elenco]{UC16 - Creazione elenco}
+                \umlusecase[x=0, y=3, name=Numerato]{UC16.1 - Elenco numerato}
+                \umlusecase[x=6, y=3, name=Puntato]{UC16.2 - Elenco puntato}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=0, y=5]{Utente}
+
+            % Associazione
+            \umlassoc{Utente}{Elenco}
+
+            % Generalizzazione
+            \umlinherit{Numerato}{Elenco}
+            \umlinherit{Puntato}{Elenco}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente posiziona il cursore di testo nel punto desiderato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene creato un elenco alla posizione corrente del cursore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore di testo nel punto desiderato
+        \item L'utente attiva la funzionalità \textit{"Creazione elenco"}
+        \item Viene creato un elenco alla posizione corrente del cursore
+    \end{enumerate}
+
+    \subsubsection*{UC16.1 - Elenco numerato}
+    \addcontentsline{toc}{subsubsection}{UC16.1 - Elenco numerato}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente posiziona il cursore di testo nel punto desiderato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene creato un elenco numerato alla posizione corrente del cursore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore di testo nel punto desiderato
+        \item L'utente attiva la funzionalità \textit{"Elenco numerato"}
+        \item Viene creato un elenco numerato alla posizione corrente del cursore
+    \end{enumerate}
+
+    \subsubsection*{UC16.2 - Elenco puntato}
+    \addcontentsline{toc}{subsubsection}{UC16.2 - Elenco puntato}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente posiziona il cursore di testo nel punto desiderato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene creato un elenco puntato alla posizione corrente del cursore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore di testo nel punto desiderato
+        \item L'utente attiva la funzionalità \textit{"Elenco puntato"}
+        \item Viene creato un elenco puntato alla posizione corrente del cursore
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC17 - Annullamento modifiche}
+    \addcontentsline{toc}{subsubsection}{UC17 - Annullamento modifiche}
+
+    \medskip
+
+    \vspace{1cm}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4, name=annulla]{UC17 - Annullamento modifiche}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=0, y=4]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{annulla}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta che ha ricevuto almeno una modifica
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota torna alla stato precedente rispetto all'ultima modifica effettuata che non sia di tipo "Annullamento modifiche"
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità di \textit{"Annullamento modifiche"}
+        \item La nota torna alla stato precedente rispetto all'ultima modifica effettuata che non sia di tipo "Annullamento modifiche"
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \subsubsection*{UC18 - Ripristino modifiche}
+    \addcontentsline{toc}{subsubsection}{UC18 - Ripristino modifiche}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4, name=annulla]{UC17 - Annullamento modifiche}
+                \umlusecase[x=0, y=2, name=ripristina]{UC18 - Ripristino modifiche}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=0, y=4]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{annulla}
+
+            % Estensione
+            \umlextend{ripristina}{annulla}
+
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta su cui è stata utilizzata una o più volte la funzionalità \textit{"Annullamento modifiche"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota torna alla stato precedente rispetto all'ultimo utilizzo della funzionalità \textit{"Annullamento modifiche"}
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità di \textit{"Ripristino modifiche"}
+        \item La nota torna alla stato precedente rispetto all'ultimo utilizzo della funzionalità \textit{"Annullamento modifiche"}
+    \end{enumerate}
+
+    \newpage
+
+    \subsection{Interazione con LLM}
+
+    \subsubsection*{UC19 - Riassunto testo con LLM}
+    \addcontentsline{toc}{subsubsection}{UC19 - Riassunto testo con LLM}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4, name=riassumere]{UC19 - Riassunto testo con LLM}
+            \end{umlsystem}
+
+            % Attori
             \umlactor[x=0, y=4]{Utente}
             \umlactor[x=10, y=4]{LLM}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{riassumere}
             \umlassoc{LLM}{riassumere}
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC13 - Riassunto testo con LLM}
-    \addcontentsline{toc}{subsubsection}{UC13 - Riassunto testo con LLM}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -939,24 +1662,27 @@
     \end{itemize}
 
     \vspace{1cm}
+
+    \subsubsection*{UC20 - Riscrittura testo con LLM}
+    \addcontentsline{toc}{subsubsection}{UC20 - Riscrittura testo con LLM}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=riscrittura]{UC14 - Riscrittura testo con LLM}
+                \umlusecase[x=0, y=4, name=riscrittura]{UC20 - Riscrittura testo con LLM}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
             \umlactor[x=10, y=4]{LLM}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{riscrittura}
             \umlassoc{LLM}{riscrittura}
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC14 - Riscrittura testo con LLM}
-    \addcontentsline{toc}{subsubsection}{UC14 - Riscrittura testo con LLM}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1001,24 +1727,27 @@
     \end{itemize}
 
     \vspace{1cm}
+
+    \subsubsection*{UC21 - Traduzione testo con LLM}
+    \addcontentsline{toc}{subsubsection}{UC21 - Traduzione testo con LLM}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=traduzione]{UC15 - Traduzione testo con LLM}
+                \umlusecase[x=0, y=4, name=traduzione]{UC21 - Traduzione testo con LLM}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
             \umlactor[x=10, y=4]{LLM}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{traduzione}
             \umlassoc{LLM}{traduzione}
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC15 - Traduzione testo con LLM}
-    \addcontentsline{toc}{subsubsection}{UC15 - Traduzione testo con LLM}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1057,24 +1786,27 @@
     \end{itemize}
 
     \vspace{1cm}
+
+    \subsubsection*{UC22 - Generazione testo con LLM}
+    \addcontentsline{toc}{subsubsection}{UC22 - Generazione testo con LLM}
+
+    \medskip
+
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=creazione]{UC16 - Generazione testo con LLM }
+                \umlusecase[x=0, y=4, name=creazione]{UC22 - Generazione testo con LLM }
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
             \umlactor[x=10, y=4]{LLM}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{creazione}
             \umlassoc{LLM}{creazione}
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{UC16 - Generazione testo con LLM}
-    \addcontentsline{toc}{subsubsection}{UC16 - Generazione testo con LLM}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1111,23 +1843,27 @@
         \end{enumerate}
     \end{itemize}
 
-    \subsubsection*{UC17 - Critica Testo secondo modello \textit{"Sei Cappelli"}}
-    \addcontentsline{toc}{subsubsection}{UC17 - Critica Testo secondo modello \textit{"Sei Cappelli"}}
+    \vspace{1cm}
+
+    \subsubsection*{UC23 - Critica Testo secondo modello \textit{"Sei Cappelli"}}
+    \addcontentsline{toc}{subsubsection}{UC23 - Critica Testo secondo modello \textit{"Sei Cappelli"}}
+
+    \medskip
 
     \begin{center}
 
         \begin{tikzpicture}
-            \begin{umlsystem}[x=0,y=0]{UC17 - Critica Testo secondo modello "Sei Cappelli"}
+            \begin{umlsystem}[x=0,y=0]{UC23 - Critica Testo secondo modello "Sei Cappelli"}
                 \tikzumlset{font=\small}
                 \umlactor[x=-7.5,y=-4,scale=1.5]{Utente}
                 \umlactor[x=6,y=-4,scale=1]{LLM}
 
-                \umlusecase[name=UC251,x=0,y=0,align=center]{\textbf{UC17.1 - Visione Emotiva} \\ (Cappello Rosso)}
-                \umlusecase[name=UC252,x=0,y=-1.6,align=center]{\textbf{UC17.2 - Visione Neutra} \\ (Cappello Bianco)}
-                \umlusecase[name=UC253,x=0,y=-3.2,align=center]{\textbf{UC17.3 - Visione Ottimista} \\ (Cappello Giallo)}
-                \umlusecase[name=UC254,x=0,y=-4.8,align=center]{\textbf{UC17.4 - Visione \textit{Devil's Advocate}} \\ (Cappello Nero)}
-                \umlusecase[name=UC255,x=0,y=-6.4,align=center]{\textbf{UC17.5 - Visione Originalità} \\ (Cappello Verde)}
-                \umlusecase[name=UC256,x=0,y=-8,align=center]{\textbf{UC17.6 - Visione Logica e Struttura} \\ (Cappello Blu)}
+                \umlusecase[name=UC251,x=0,y=0,align=center]{\textbf{UC23.1 - Visione Emotiva} \\ (Cappello Rosso)}
+                \umlusecase[name=UC252,x=0,y=-1.6,align=center]{\textbf{UC23.2 - Visione Neutra} \\ (Cappello Bianco)}
+                \umlusecase[name=UC253,x=0,y=-3.2,align=center]{\textbf{UC23.3 - Visione Ottimista} \\ (Cappello Giallo)}
+                \umlusecase[name=UC254,x=0,y=-4.8,align=center]{\textbf{UC23.4 - Visione \textit{Devil's Advocate}} \\ (Cappello Nero)}
+                \umlusecase[name=UC255,x=0,y=-6.4,align=center]{\textbf{UC23.5 - Visione Originalità} \\ (Cappello Verde)}
+                \umlusecase[name=UC256,x=0,y=-8,align=center]{\textbf{UC23.6 - Visione Logica e Struttura} \\ (Cappello Blu)}
 
                 \umlassoc{Utente}{UC251}
                 \umlassoc{Utente}{UC252}
@@ -1141,7 +1877,7 @@
         \end{tikzpicture}
     \end{center}
 
-    \paragraph{UC17.1 - Visione Emotiva}~\\
+    \paragraph{UC23.1 - Visione Emotiva}~\\
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1176,7 +1912,7 @@
         \end{enumerate}
     \end{itemize}
 
-    \paragraph{UC17.2 - Visione Neutra}~\\
+    \paragraph{UC23.2 - Visione Neutra}~\\
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1211,7 +1947,7 @@
         \end{enumerate}
     \end{itemize}
 
-    \paragraph{UC17.3 - Visione Ottimista}~\\
+    \paragraph{UC23.3 - Visione Ottimista}~\\
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1246,7 +1982,7 @@
         \end{enumerate}
     \end{itemize}
 
-    \paragraph{UC17.4 - Visione Devil's Advocate}~\\
+    \paragraph{UC23.4 - Visione Devil's Advocate}~\\
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1281,7 +2017,7 @@
         \end{enumerate}
     \end{itemize}
 
-    \paragraph{UC17.5 - Visione Originalità}~\\
+    \paragraph{UC23.5 - Visione Originalità}~\\
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1316,7 +2052,7 @@
         \end{enumerate}
     \end{itemize}
 
-    \paragraph{UC17.6 - Visione Logica e Struttura}~\\
+    \paragraph{UC23.6 - Visione Logica e Struttura}~\\
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1352,579 +2088,13 @@
     \end{itemize}
 
     \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=associazione]{UC18 - Formattazione testo}
-            \end{umlsystem}
 
-% Attori
-            \umlactor[x=0, y=4]{Utente}
+    \subsection{Casi d'uso opzionali}
 
-% Associazioni Utente
-            \umlassoc{Utente}{associazione}
-        \end{tikzpicture}
-    \end{center}
+    \subsubsection*{(OPT) UC - Associazione Note}
+    \addcontentsline{toc}{subsubsection}{(OPT) UC - Associazione Note}
 
-    \subsubsection*{UC18 - Formattazione testo}
-    \addcontentsline{toc}{subsubsection}{UC18 - Formattazione testo}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La parte di testo selezionata è formattata secondo le modalità decise dall'utente
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
-        \item L'utente attiva la funzionalità \textit{"Formattazione testo"}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo necessari al tipo di formattazione scelto
-    \end{enumerate}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{UC18 - Formattazione testo}
-                \umlusecase[x=0, y=3, name=Grassetto]{UC18.1 - Testo grassetto}
-            \end{umlsystem}
-
-% Attore
-            \umlactor[x=-3, y=5]{Utente}
-
-% Associazione
-            \umlassoc{Utente}{Formattazione}
-
-% Generalizzazione
-            \umlinherit{Grassetto}{Formattazione}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC18.1 - Testo grassetto}
-    \addcontentsline{toc}{subsubsection}{UC18 - Testo grassetto}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
-        \item L'utente attiva la funzionalità \textit{"Testo in grassetto"}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo in grassetto" sul del testo già in grassetto:
-        \begin{enumerate}
-            \item Il testo non è più compreso tra i marcatori di testo del grassetto
-        \end{enumerate}
-    \end{itemize}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{UC18 - Formattazione testo}
-                \umlusecase[x=0, y=3, name=Corsivo]{UC18.2 - Testo corsivo}
-            \end{umlsystem}
-
-% Attore
-            \umlactor[x=-3, y=5]{Utente}
-
-% Associazione
-            \umlassoc{Utente}{Formattazione}
-
-% Generalizzazione
-            \umlinherit{Corsivo}{Formattazione}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC18.2 - Testo in corsivo}
-    \addcontentsline{toc}{subsubsection}{UC18.2 - Testo in corsivo}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
-        \item L'utente attiva la funzionalità \textit{"Testo in corsivo"}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo in corsivo" sul del testo già in corsivo:
-        \begin{enumerate}
-            \item Il testo non è più compreso tra i marcatori di testo del corsivo
-        \end{enumerate}
-    \end{itemize}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{UC18 - Formattazione testo}
-                \umlusecase[x=0, y=3, name=Sottolineato]{UC18.3 - Testo sottolineato}
-            \end{umlsystem}
-
-% Attore
-            \umlactor[x=-3, y=5]{Utente}
-
-% Associazione
-            \umlassoc{Utente}{Formattazione}
-
-% Generalizzazione
-            \umlinherit{Sottolineato}{Formattazione}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC18.3 - Testo sottolineato}
-    \addcontentsline{toc}{subsubsection}{UC18.3 - Testo sottolineato}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
-        \item L'utente attiva la funzionalità \textit{"Testo sottolineato"}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo sottolineato" sul del testo già sottolineato:
-        \begin{enumerate}
-            \item Il testo non è più compreso tra i marcatori di testo per la sottolineatura
-        \end{enumerate}
-    \end{itemize}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{UC18 - Formattazione testo}
-                \umlusecase[x=0, y=3, name=Barrato]{UC18.4 - Testo barrato}
-            \end{umlsystem}
-
-% Attore
-            \umlactor[x=-3, y=5]{Utente}
-
-% Associazione
-            \umlassoc{Utente}{Formattazione}
-
-% Generalizzazione
-            \umlinherit{Barrato}{Formattazione}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC18.4 - Testo barrato}
-    \addcontentsline{toc}{subsubsection}{UC18.4 - Testo barrato}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo per la barrattura
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
-        \item L'utente attiva la funzionalità \textit{"Testo barrato"}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo per la barratura
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo barrato" sul del testo già barrato:
-        \begin{enumerate}
-            \item Il testo non è più compreso tra i marcatori di testo per la barratura
-        \end{enumerate}
-    \end{itemize}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{UC18 - Formattazione testo}
-                \umlusecase[x=0, y=3, name=Link]{UC18.5 - Link ipertestuale}
-            \end{umlsystem}
-
-% Attore
-            \umlactor[x=-3, y=5]{Utente}
-
-% Associazione
-            \umlassoc{Utente}{Formattazione}
-
-% Generalizzazione
-            \umlinherit{Link}{Formattazione}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC18.5 - Link ipertestuale}
-    \addcontentsline{toc}{subsubsection}{UC18.5 - Link ipertestuale}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo per i collegamenti ipertestuali e seguita dai marcatori in mezzo ai quali dovrà essere inserito il link effettivo
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
-        \item L'utente attiva la funzionalità \textit{"Link ipertestuale"}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo per i collegamenti ipertestuali e seguita dai marcatori in mezzo ai quali dovrà essere inserito il link effettivo
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Link ipertestuale" sul del testo che presenta già collegamenti ipertestuali:
-        \begin{enumerate}
-            \item Il testo non è più compreso tra i marcatori di testo per i collegamenti ipertestuali
-        \end{enumerate}
-    \end{itemize}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-
-            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-                \umlusecase[x=3, y=5, name=Elenco]{UC19 - Creazione elenco}
-                \umlusecase[x=0, y=3, name=Numerato]{UC19.1 - Elenco numerato}
-                \umlusecase[x=6, y=3, name=Puntato]{UC19.2 - Elenco puntato}
-            \end{umlsystem}
-
-% Attore
-            \umlactor[x=0, y=5]{Utente}
-
-% Associazione
-            \umlassoc{Utente}{Elenco}
-
-% Generalizzazione
-            \umlinherit{Numerato}{Elenco}
-            \umlinherit{Puntato}{Elenco}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC19 - Creazione elenco}
-    \addcontentsline{toc}{subsubsection}{UC19 - Creazione elenco}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente posiziona il cursore di testo nel punto desiderato
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item Viene creato un elenco alla posizione corrente del cursore
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente posiziona il cursore di testo nel punto desiderato
-        \item L'utente attiva la funzionalità \textit{"Creazione elenco"}
-        \item Viene creato un elenco alla posizione corrente del cursore
-    \end{enumerate}
-
-    \subsubsection*{UC19.1 - Elenco numerato}
-    \addcontentsline{toc}{subsubsection}{UC19.1 - Elenco numerato}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente posiziona il cursore di testo nel punto desiderato
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item Viene creato un elenco numerato alla posizione corrente del cursore
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente posiziona il cursore di testo nel punto desiderato
-        \item L'utente attiva la funzionalità \textit{"Elenco numerato"}
-        \item Viene creato un elenco numerato alla posizione corrente del cursore
-    \end{enumerate}
-
-    \subsubsection*{UC19.2 - Elenco puntato}
-    \addcontentsline{toc}{subsubsection}{UC19.2 - Elenco puntato}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente posiziona il cursore di testo nel punto desiderato
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item Viene creato un elenco puntato alla posizione corrente del cursore
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente posiziona il cursore di testo nel punto desiderato
-        \item L'utente attiva la funzionalità \textit{"Elenco puntato"}
-        \item Viene creato un elenco puntato alla posizione corrente del cursore
-    \end{enumerate}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-
-            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-                \umlusecase[x=3, y=5, name=Esporta]{UC20 - Esportazione nota}
-                \umlusecase[x=0, y=3, name=PDF]{UC20.1 - Esporta PDF}
-                \umlusecase[x=6, y=3, name=HTML]{UC20.2 - Esporta HTML}
-            \end{umlsystem}
-
-% Attore
-            \umlactor[x=0, y=5]{Utente}
-
-% Associazione
-            \umlassoc{Utente}{Esporta}
-
-% Estensione
-            \umlextend{PDF}{Esporta}
-            \umlextend{HTML}{Esporta}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC20 - Esportazione nota}
-    \addcontentsline{toc}{subsubsection}{UC20 - Esportazione nota}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta o selezionata
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La nota viene esportata nel formato scelto
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Esportazione nota"}
-        \item L'utente può scegliere il formato per l'esportazione
-    \end{enumerate}
-
-    \subsubsection*{UC20.1 - Esporta PDF}
-    \addcontentsline{toc}{subsubsection}{UC20.1 - Esporta PDF}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La nota viene esportata in formato PDF
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente sceglie il formato PDF
-        \item La nota viene convertita in PDF
-        \item L'utente può salvare la nota sul proprio dispositivo
-    \end{enumerate}
-
-    \subsubsection*{UC20.2 - Esporta HTML}
-    \addcontentsline{toc}{subsubsection}{UC20.2 - Esporta HTML}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La nota viene esportata in formato HTML
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente sceglie il formato HTML
-        \item La nota viene convertita in HTML
-        \item L'utente può salvare la nota sul proprio dispositivo
-    \end{enumerate}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=annulla]{UC21 - Annullamento modifiche}
-            \end{umlsystem}
-
-% Attori
-            \umlactor[x=0, y=4]{Utente}
-
-% Associazioni Utente
-            \umlassoc{Utente}{annulla}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC21 - Annullamento modifiche}
-    \addcontentsline{toc}{subsubsection}{UC21 - Annullamento modifiche}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta che ha ricevuto almeno una modifica
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La nota torna alla stato precedente rispetto all'ultima modifica effettuata che non sia di tipo "Annullamento modifiche"
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Annullamento modifiche"}
-        \item La nota torna alla stato precedente rispetto all'ultima modifica effettuata che non sia di tipo "Annullamento modifiche"
-    \end{enumerate}
-
-    \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=annulla]{UC21 - Annullamento modifiche}
-                \umlusecase[x=0, y=2, name=ripristina]{UC22 - Ripristino modifiche}
-            \end{umlsystem}
-
-% Attori
-            \umlactor[x=0, y=4]{Utente}
-
-% Associazioni Utente
-            \umlassoc{Utente}{annulla}
-
-% Estensione
-            \umlextend{ripristina}{annulla}
-
-        \end{tikzpicture}
-    \end{center}
-
-    \subsubsection*{UC22 - Ripristino modifiche}
-    \addcontentsline{toc}{subsubsection}{UC22 - Ripristino modifiche}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta su cui è stata utilizzata una o più volte la funzionalità \textit{"Annullamento modifiche"}
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La nota torna alla stato precedente rispetto all'ultimo utilizzo della funzionalità \textit{"Annullamento modifiche"}
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Ripristino modifiche"}
-        \item La nota torna alla stato precedente rispetto all'ultimo utilizzo della funzionalità \textit{"Annullamento modifiche"}
-    \end{enumerate}
-
-
-
-
-
-
-
-    \newpage
-
-
+    \medskip
 
     \begin{center}
         \begin{tikzpicture}
@@ -1932,16 +2102,13 @@
                 \umlusecase[x=0, y=4, name=associazione]{(OPT) UC - Associazione Note}
             \end{umlsystem}
 
-% Attori
+            % Attori
             \umlactor[x=0, y=4]{Utente}
 
-% Associazioni Utente
+            % Associazioni Utente
             \umlassoc{Utente}{associazione}
         \end{tikzpicture}
     \end{center}
-
-    \subsubsection*{(OPT) UC - Associazione Note}
-    \addcontentsline{toc}{subsubsection}{(OPT) UC - Associazione Note}
 
     \textbf{Attori principali}
     \begin{itemize}
