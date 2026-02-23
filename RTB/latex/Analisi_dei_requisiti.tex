@@ -228,7 +228,6 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=3, fill=white!10]{Sistema}
                 \umlusecase[x=1, y=2, name=apri, align=center]{UC2 - Apertura Nota}
-                \umlusecase[x=1, y=0, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
             \end{umlsystem}
 
             % Attori
@@ -239,9 +238,6 @@
             \umlassoc{Utente}{apri}
 
             \umlassoc{Server Locale}{apri}
-
-            % Associazioni Casi d'Uso
-            \umlinclude{apri}{archivio}
 
         \end{tikzpicture}
     \end{center}
@@ -309,7 +305,7 @@
             \umlassoc{Server Locale}{chiusura}
 
             % Associazioni Casi d'Uso
-            \umlextend{salvataggio}{chiusura}
+            \umlinclude{chiusura}{salvataggio}
 
         \end{tikzpicture}
     \end{center}
@@ -385,16 +381,20 @@
         \item L'utente specifica il nome della nota
         \item Il contenuto della nota viene visualizzato
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso ci sia una nota già aperta:
-        \begin{enumerate}
-            \item Il sistema chiede conferma per la chiusura della nota
-            \item L'utente conferma
-            \item La nota precedente viene chiusa
-            \item La nuova nota viene creata
-        \end{enumerate}
-    \end{itemize}
+
+    % realisticamente si potrà creare una nota solo quando si è nell'archivio
+    % non credo serva l'estensione qui sotto
+
+    %\textbf{Estensioni}
+    %\begin{itemize}
+    %    \item Nel caso ci sia una nota già aperta:
+    %    \begin{enumerate}
+    %        \item Il sistema chiede conferma per la chiusura della nota
+    %        \item L'utente conferma
+    %       \item La nota precedente viene chiusa
+    %        \item La nuova nota viene creata
+    %    \end{enumerate}
+    %\end{itemize}
 
     \vspace{1cm}
 
@@ -408,6 +408,7 @@
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=salvataggio]{UC5 - Salvataggio Nota}
                 \umlusecase[x=0, y=2, name=primo_salvataggio, align=center]{UC5.1 - Primo Salvataggio \\ Nota}
+                \umlusecase[x=0, y=0, name=err_salvataggio, align=center]{UC5.1.1 - Errore Salvataggio \\ Nota}
             \end{umlsystem}
 
             % Attori
@@ -419,7 +420,8 @@
             \umlassoc{Server Locale}{salvataggio}
 
             % Associazioni Casi d'Uso
-            \umlextend{primo_salvataggio}{salvataggio}
+            \umlextend{primo_salvataggio}{err_salvataggio}
+            \umlinherit{primo_salvataggio}{salvataggio}
         \end{tikzpicture}
     \end{center}
 
@@ -447,10 +449,6 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso la nota visualizzata non è ancora presente nel Server:
-        \begin{enumerate}
-            \item Caso d'uso UC5.1
-        \end{enumerate}
         \item Nel caso in cui la nota inizialmente visualizzata dall'utente avesse successivamente subito delle modifiche nel Server:
         \begin{enumerate}
             \item Il sistema avvisa la presenza di modifiche nel Server non contenute nella versione corrente dell'utente
@@ -489,20 +487,36 @@
         \item L'utente conferma il salvataggio
         \item La nota viene salvata nel Server
     \end{enumerate}
-    \textbf{Estensioni}
+
+     \subsubsection*{UC5.1.1 - Errore Salvataggio Nota}
+    \addcontentsline{toc}{subsubsection}{UC5.1.1 - Errore Salvataggio Nota}
+    \textbf{Attori principali}
     \begin{itemize}
-        \item Nel caso in cui ci sia una nota già presente con lo stesso nome
-        \begin{enumerate}
-            \item Il sistema avvisa la presenza di una nota con lo stesso nome
-            \item Il sistema propone all'utente la scelta tra:
+        \item Utente
+    \end{itemize}
+    \textbf{Attori secondari}
+    \begin{itemize}
+        \item Server Locale
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item La nota non è salvata nel server
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota è presente nell'archivio note del Server
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa la presenza di una nota con lo stesso nome
+        \item Il sistema propone all'utente la scelta tra:
             \begin{itemize}
                 \item Sovrascrivere la nota presente sul Server
                 \item Cambiare il nome della nota corrente  % Da rivedere: serve includere il caso d'uso della rinominazione?
             \end{itemize}
             \item L'utente sceglie una tra le opzioni
             \item Il sistema effettua l'operazione scelta dall'utente
-        \end{enumerate}
-    \end{itemize}
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -515,7 +529,6 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=ricerca]{UC6 - Ricerca nota per nome}
-                \umlusecase[x=0, y=2, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
             \end{umlsystem}
 
             % Attori
@@ -525,9 +538,6 @@
             % Associazioni Utente
             \umlassoc{Utente}{ricerca}
             \umlassoc{Server Locale}{ricerca}
-
-            % Associazioni Casi d'uso
-            \umlinclude{ricerca}{archivio}
 
         \end{tikzpicture}
     \end{center}
@@ -543,7 +553,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando l'archivio note {UC1}
+        \item L'utente sta visualizzando l'archivio note (UC1)
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -568,7 +578,6 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=eliminazione]{UC7 - Eliminazione nota}
-                \umlusecase[x=0, y=2, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
             \end{umlsystem}
 
             % Attori
@@ -578,9 +587,6 @@
             % Associazioni Utente
             \umlassoc{Utente}{eliminazione}
             \umlassoc{Server Locale}{eliminazione}
-
-            % Associazioni Casi d'Uso
-            \umlinclude{eliminazione}{archivio}
 
         \end{tikzpicture}
     \end{center}
@@ -596,6 +602,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente sta visualizzand l'archivio note (UC1)
         \item L'utente ha selezionato una nota nell'archivio
     \end{itemize}
     \textbf{Postcondizioni}
@@ -694,7 +701,7 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -716,6 +723,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
@@ -739,6 +747,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
@@ -762,23 +771,21 @@
     \begin{center}
         \begin{tikzpicture}
 
-            \begin{umlsystem}[x=4.5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4.5, name=Esporta]{UC9 - Esportazione nota}
-                \umlusecase[x=0, y=2.5, name=Esporta_Archivio, align=center]{UC10 - Esportazione nota \\ da archivio}
-                \umlusecase[x=0, y=0, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Esporta_Archivio, align=center]{UC10 - Esportazione nota \\ da archivio}
+                \umlusecase[x=0, y=3, name=PDF]{UC10.1 - Esporta PDF}
+                \umlusecase[x=6, y=3, name=HTML]{UC10.2 - Esporta HTML}
             \end{umlsystem}
 
             % Attore
-            \umlactor[x=0, y=2.5]{Utente}
-            \umlactor[x=9.5, y=2.5]{Server Locale}
+            \umlactor[x=0, y=5]{Utente}
 
             % Associazione Utente
             \umlassoc{Utente}{Esporta_Archivio}
-            \umlassoc{Server Locale}{Esporta_Archivio}
 
             % Associazione Casi d'Uso
-            \umlinclude{Esporta_Archivio}{Esporta}
-            \umlinclude{Esporta_Archivio}{archivio}
+            \umlinherit{PDF}{Esporta_Archivio}
+            \umlinherit{HTML}{Esporta_Archivio}
 
         \end{tikzpicture}
     \end{center}
@@ -794,6 +801,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio note (UC1)
         \item L'utente ha selezionato una nota nell'archivio
     \end{itemize}
     \textbf{Postcondizioni}
@@ -804,6 +812,55 @@
     \begin{enumerate}
         \item L'utente attiva la funzionalità \textit{"Esportazione nota"}
         \item L'utente può scegliere il formato per l'esportazione
+    \end{enumerate}
+
+
+    \subsubsection*{UC10.1 - Esporta PDF}
+    \addcontentsline{toc}{subsubsection}{UC10.1 - Esporta PDF}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio note (UC1)
+        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene esportata in formato PDF
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sceglie il formato PDF
+        \item La nota viene convertita in PDF
+        \item L'utente può salvare la nota sul proprio dispositivo
+    \end{enumerate}
+
+    \subsubsection*{UC10.2 - Esporta HTML}
+    \addcontentsline{toc}{subsubsection}{UC10.2 - Esporta HTML}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio note (UC1)
+        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene esportata in formato HTML
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sceglie il formato HTML
+        \item La nota viene convertita in HTML
+        \item L'utente può salvare la nota sul proprio dispositivo
     \end{enumerate}
 
     \vspace{1cm}
@@ -860,7 +917,7 @@
     \begin{itemize}
         \item Se la nota scelta ha un formato invalido
         \begin{itemize}
-            \item UCB.1 (Formato nota non valido)
+            \item UC11.1 (Formato nota non valido)
         \end{itemize}
     \end{itemize}
 
@@ -924,7 +981,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota
+        \item L'utente sta visualizzando una nota (UC2)
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -947,7 +1004,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota
+        \item L'utente sta visualizzando una nota (UC2)
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -970,7 +1027,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota
+        \item L'utente sta visualizzando una nota (UC2)
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1035,7 +1092,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1075,7 +1132,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1127,7 +1184,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente ha selezionato una porzione di testo o il testo intero
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1175,7 +1232,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente ha selezionato una porzione di testo o il testo intero
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1230,7 +1287,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente ha selezionato una porzione di testo o il testo intero
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1285,7 +1342,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente ha selezionato una porzione di testo o il testo intero
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1340,7 +1397,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente ha selezionato una porzione di testo o il testo intero
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1395,7 +1452,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente ha selezionato una porzione di testo o il testo intero
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1452,7 +1509,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente posiziona il cursore di testo nel punto desiderato
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1475,8 +1532,8 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente è connesso al sistema 
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente posiziona il cursore di testo nel punto desiderato
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1500,7 +1557,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
+        \item L'utente ha una nota aperta (UC2)
         \item L'utente posiziona il cursore di testo nel punto desiderato
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1544,7 +1601,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta che ha ricevuto almeno una modifica
+        \item L'utente ha una nota aperta (UC2)
+        \item La nota aperta ha ricevuto almeno una modifica
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1566,18 +1624,14 @@
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=annulla]{UC17 - Annullamento modifiche}
-                \umlusecase[x=0, y=2, name=ripristina]{UC18 - Ripristino modifiche}
+                \umlusecase[x=0, y=4, name=ripristina]{UC18 - Ripristino modifiche}
             \end{umlsystem}
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
 
             % Associazioni Utente
-            \umlassoc{Utente}{annulla}
-
-            % Estensione
-            \umlextend{ripristina}{annulla}
+            \umlassoc{Utente}{ripristina}
 
         \end{tikzpicture}
     \end{center}
