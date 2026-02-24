@@ -174,24 +174,32 @@
 
     \subsection{Operazioni sulle note}
 
-    \subsubsection*{UC1 - Visualizzazione Archivio Note}
+    \subsubsection*{UC1 - Visualizza Archivio Note}
     \addcontentsline{toc}{subsubsection}{UC1 - Visualizzazione Archivio Note}
 
     \medskip
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=0, name=archivio, align=center]{UC1 - Visualizzazione \\ Archivio Note}
+                \umlusecase[x=0, y=0, name=archivio, align=center]{UC1 - Visualizza \\ Archivio Note}
+                \umlusecase[x=0, y=-2, name=nota, align=center]{UC1.1 - Visualizza \\ Singola Nota}
+                \umlusecase[x=-4, y=-4, name=nome, align=center]{UC1.1.1 - Visualizza \\ Nome Nota}
+                \umlusecase[x=0, y=-6, name=data, align=center]{UC1.1.2 - Visualizza \\ Data Creazione Nota}
+                \umlusecase[x=4, y=-4, name=data_mod, align=center]{UC1.1.3 - Visualizza \\ Data Ultima \\ Modifica Nota}
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=0]{Utente}
-            \umlactor[x=8.5, y=0,scale=0.75]{Server Locale}
+            \umlactor[x=-4, y=0]{Utente}
+            \umlactor[x=12, y=0]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{archivio}
-
             \umlassoc{Server Locale}{archivio}
+
+            \umlinclude{archivio}{nota}
+            \umlinclude{nota}{nome}
+            \umlinclude{nota}{data}
+            \umlinclude{nota}{data_mod}
         \end{tikzpicture}
     \end{center}
 
@@ -217,6 +225,89 @@
         \item Il sistema mostra all'utente le note presenti sul server
     \end{enumerate}
 
+    \subsubsection*{UC1.1 - Visualizza Singola Nota}
+    \addcontentsline{toc}{subsubsection}{UC1.1 - Visualizza Singola Nota}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente visualizza l'archivio delle note (UC1)
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza una singola nota all'interno dell'archivio
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema mostra le singole note dell'archivio delle note
+    \end{enumerate}
+
+    \subsubsection*{UC1.1.1 - Visualizza Nome Nota}
+    \addcontentsline{toc}{subsubsection}{UC1.1.1 - Visualizza Nome Nota}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente visualizza l'archivio delle note (UC1)
+        \item L'utente visualizza una singola nota all'interno dell'archivio (UC1.1)
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza il nome della singola nota all'interno dell'archivio
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema mostra il nome delle singole note dell'archivio delle note
+    \end{enumerate}
+
+    \subsubsection*{UC1.1.2 - Visualizza Data Creazione Nota}
+    \addcontentsline{toc}{subsubsection}{UC1.1.2 - Visualizza Data Creazione Nota}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente visualizza l'archivio delle note (UC1)
+        \item L'utente visualizza una singola nota all'interno dell'archivio (UC1.1)
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza la data di creazione della singola nota all'interno dell'archivio
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema mostra la data di creazione delle singole note dell'archivio delle note
+    \end{enumerate}
+
+    \subsubsection*{UC1.1.3 - Visualizza Data Ultima Modifica Nota}
+    \addcontentsline{toc}{subsubsection}{UC1.1.3 - Visualizza Data Ultima Modifica Nota}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente visualizza l'archivio delle note (UC1)
+        \item L'utente visualizza una singola nota all'interno dell'archivio (UC1.1)
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza la data di ultima modifica della singola nota all'interno dell'archivio
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema mostra la data di ultima modifica delle singole note dell'archivio delle note
+    \end{enumerate}
+
     \vspace{1cm}
 
     \subsubsection*{UC2 - Apertura Nota}
@@ -228,17 +319,17 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=3, fill=white!10]{Sistema}
                 \umlusecase[x=1, y=2, name=apri, align=center]{UC2 - Apertura Nota}
+                \umlusecase[x=1, y=0, name=err, align=center]{UC2.1 - Errore Nota \\ Inesistente}
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=2]{Utente}
-            \umlactor[x=8.5, y=2,scale=0.75]{Server Locale}
+            \umlactor[x=-1, y=2]{Utente}
+            \umlactor[x=8.5, y=2]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{apri}
-
             \umlassoc{Server Locale}{apri}
-
+            \umlextend{err}{apri}
         \end{tikzpicture}
     \end{center}
 
@@ -268,11 +359,9 @@
     \textbf{Estensioni}
     \begin{itemize}
         \item Nel caso in cui la nota non è presente nel server:
-        \begin{enumerate}
-            \item Il sistema avvisa l'utente della mancanza della nota
-            \item L'utente chiude l'avviso
-            \item L'archivio viene aggiornato togliendo la nota mancante
-        \end{enumerate}
+        \begin{itemize}
+            \item UC2.1
+        \end{itemize}
         \item Nel caso ci sia una nota già aperta:
         \begin{enumerate}
             \item Il sistema chiede conferma per la chiusura della nota
@@ -280,6 +369,29 @@
             \item La nota precedente viene chiusa
             \item La nuova nota viene aperta
         \end{enumerate}
+    \end{itemize}
+
+    \subsubsection*{UC2.1 - Errore Nota Inesistente}
+    \addcontentsline{toc}{subsubsection}{UC2.1 - Errore Nota Inesistente}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio delle note sul server (UC1)
+        \item Nell'archivio è presente almeno una nota salvata
+        \item L'utente apre una nota (UC2)
+        \item La nota seleziona è stata eliminata o non è più presente nel server
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza un messaggio di errore
+    \end{itemize}
+    \textbf{Scenario Principale}
+    \begin{itemize}
+        \item L'utente apre una nota eliminata o non più presente nel server
     \end{itemize}
 
     \vspace{1cm}
@@ -351,14 +463,17 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=creazione]{UC4 - Creazione Nota}
+                \umlusecase[x=0, y=2, name=ins_nome, align=center]{UC4.1 - Inserisci \\ Nome Nota}
+                \umlusecase[x=0, y=0, name=err_nome, align=center]{UC4.1.1 - Errore \\ Nome Utilizzato}
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=4]{Utente}
+            \umlactor[x=-1, y=4]{Utente}
 
             % Associazioni Utente
             \umlassoc{Utente}{creazione}
-
+            \umlinclude{creazione}{ins_nome}
+            \umlextend{err_nome}{ins_nome}
         \end{tikzpicture}
     \end{center}
 
@@ -372,7 +487,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Viene aperta una nota vuota
+        \item Viene creata una nota vuota
         \item L'utente può iniziare a scrivere il markdown
     \end{itemize}
     \textbf{Scenario principale}
@@ -395,6 +510,48 @@
     %        \item La nuova nota viene creata
     %    \end{enumerate}
     %\end{itemize}
+
+    \subsubsection*{UC4.1 - Inserisci Nome Nota}
+    \addcontentsline{toc}{subsubsection}{UC4.1 - Inserisci Nome Nota}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente crea una nuova nota (UC4)
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente inserisce il nome della nota e visualizza il contenuto
+    \end{itemize}
+    \textbf{Scenario Principale}
+    \begin{itemize}
+        \item L'utente inscerisce il nome alla nota da creare
+    \end{itemize}
+
+    \subsubsection*{UC4.1.1 - Errore Nome utilizzato}
+    \addcontentsline{toc}{subsubsection}{UC4.1.1 - Errore Nome utilizzato}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente crea una nuova nota (UC4)
+        \item L'utente insersce il nome della nota (UC4.1)
+        \item È già presente una nota con lo stesso nome
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza un messaggio di errore
+    \end{itemize}
+    \textbf{Scenario Principale}
+    \begin{itemize}
+        \item L'utente inscerisce un nome già utilizzato da un'altra nota
+    \end{itemize}
 
     \vspace{1cm}
 
@@ -578,6 +735,7 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=eliminazione]{UC7 - Eliminazione nota}
+                \umlusecase[x=0, y=2, name=conferma, align=center]{UC7.1 - Conferma \\ Eliminazione nota}
             \end{umlsystem}
 
             % Attori
@@ -587,7 +745,7 @@
             % Associazioni Utente
             \umlassoc{Utente}{eliminazione}
             \umlassoc{Server Locale}{eliminazione}
-
+            \umlinclude{eliminazione}{conferma}
         \end{tikzpicture}
     \end{center}
 
@@ -628,6 +786,27 @@
         \end{itemize}
     \end{itemize}
 
+    \subsubsection*{UC7.1 - Conferma Eliminazione Nota}
+    \addcontentsline{toc}{subsubsection}{UC7.1 - Conferma Eliminazione Nota}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente ha avviata la procedura di 'Eliminazione Nota' (UC7)
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente autoriazza definitivamente l'eliminazione della nota
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema visualizza un pop-up di conferma per l'eliminazione definitiva della nota
+        \item L'utente seleziona l'opzione per confermare l'eliminazione
+    \end{enumerate}
+
+
     \vspace{1cm}
 
     \subsubsection*{UC8 - Rinominazione Nota}
@@ -637,6 +816,7 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=2, name=rinominazione_nota, align=center]{UC8 - Rinominazione \\ Nota}
+                \umlusecase[x=0, y=0, name=err_rin, align=center]{UC8.1 - Errore Nome \\ Utilizzato}
             \end{umlsystem}
 
             % Attori
@@ -644,7 +824,7 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{rinominazione_nota}
-
+            \umlextend{err_rin}{rinominazione_nota}
         \end{tikzpicture}
     \end{center}
 
@@ -666,6 +846,32 @@
         \item L'utente attiva la funzionalità di \textit{"Rinomina"}
         \item L'utente cambia il nome della nota
         \item Il sistema cambia il nome della nota
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Il nome scelto è già utilizzato da un'altra nota:
+        \begin{itemize}
+            \item UC8.1
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection*{UC8.1 - Errore Nome Utilizzato}
+    \addcontentsline{toc}{subsubsection}{UC8.1 - Errore Nome Utilizzato}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza un messaggio di errore e il nome della nota rimane uguale
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente ha inserito un nome già utilizzato da un'altra nota
     \end{enumerate}
 
     \vspace{1cm}
@@ -938,7 +1144,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente viene avvisato del formato invalido della nota da importare
+        \item L'utente viene visualizza il messaggio di errore
         \item L'utente chiude l'avviso
     \end{enumerate}
 
