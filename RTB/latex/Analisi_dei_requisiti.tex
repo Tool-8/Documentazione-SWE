@@ -13,6 +13,9 @@
 
 \usepackage{graphicx}   % per immagini
 \usepackage{hyperref}   % per link
+\pdfstringdefDisableCommands{%
+  \def\UCText#1{UC\csname UCnum@#1\endcsname\space--\space\csname UCclean@#1\endcsname}%
+}
 \usepackage{caption}    % per didascalie
 \captionsetup[table]{labelformat=empty}
 \usepackage{ifthen}     % per \ifthenelse
@@ -111,7 +114,6 @@
 }
 
 % Definizione caso d'uso principale
-
 \NewDocumentCommand{\UCdef}{m m}{%
     \stepcounter{UCmain}%
     \setcounter{UCsub}{0}%
@@ -124,6 +126,12 @@
     \xdef\uctemp{#2}%
     \endgroup
     \expandafter\xdef\csname UCclean@#1\endcsname{\uctemp}%
+    \begingroup
+      \edef\ucnum{\csname UCnum@#1\endcsname}%
+      \edef\ucclean{\csname UCclean@#1\endcsname}%
+      \xdef\ucpdfstring{UC\ucnum\space--\space\ucclean}%
+    \endgroup
+    \expandafter\xdef\csname UCpdf@#1\endcsname{\ucpdfstring}%
 }
 
 
@@ -140,6 +148,12 @@
     \xdef\uctemp{#2}%
     \endgroup
     \expandafter\xdef\csname UCclean@#1\endcsname{\uctemp}%
+    \begingroup
+      \edef\ucnum{\csname UCnum@#1\endcsname}%
+      \edef\ucclean{\csname UCclean@#1\endcsname}%
+      \xdef\ucpdfstring{UC\ucnum\space--\space\ucclean}%
+    \endgroup
+    \expandafter\xdef\csname UCpdf@#1\endcsname{\ucpdfstring}%
 }
 
 % Definizione sotto-sotto-caso d'uso
@@ -154,6 +168,12 @@
     \xdef\uctemp{#2}%
     \endgroup
     \expandafter\xdef\csname UCclean@#1\endcsname{\uctemp}%
+    \begingroup
+      \edef\ucnum{\csname UCnum@#1\endcsname}%
+      \edef\ucclean{\csname UCclean@#1\endcsname}%
+      \xdef\ucpdfstring{UC\ucnum\space--\space\ucclean}%
+    \endgroup
+    \expandafter\xdef\csname UCpdf@#1\endcsname{\ucpdfstring}%
 }
 
 % \UCRef{label} → stampa "UCX" (es. UC1, UC1.2, UC1.2.3)
@@ -169,8 +189,8 @@
 % \UCText{label} → stampa "UCX - Nome Caso D'Uso"
 \NewDocumentCommand{\UCText}{m}{%
   \texorpdfstring%
-    {UC\csuse{UCnum@#1} - \csuse{UCclean@#1}}%
-    {UC\csuse{UCnum@#1} - \csuse{UCclean@#1}}%
+    {UC\csuse{UCnum@#1} - \csuse{UCclean@#1}}%  % nel documento
+    {\csuse{UCpdf@#1}}%                           % nei bookmark PDF
 }
 
 % Definizio casi d'uso
