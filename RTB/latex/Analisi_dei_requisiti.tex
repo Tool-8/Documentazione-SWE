@@ -205,8 +205,6 @@
     \UCdefsub{apri_err}{Errore Nota\\Inesistente}
 \UCdef{chiudi}{Chiusura Nota}
 \UCdef{crea}{Creazione Nota}
-    \UCdefsub{crea_nome}{Inserisci\\Nome Nota}
-        \UCdefsubsub{crea_nome_err}{Errore\\Nome Utilizzato}
 \UCdef{salva}{Salvataggio Nota}
     \UCdefsub{salva_primo}{Primo Salvataggio\\Nota}
         \UCdefsubsub{salva_primo_err}{Errore Salvataggio\\Nota}
@@ -216,9 +214,11 @@
 \UCdef{rinomina}{Rinominazione\\Nota}
     \UCdefsub{rinom_err}{Errore Nome\\Utilizzato}
 \UCdef{esporta}{Esportazione\\Nota}
+    \UCdefsub{esporta_md}{Esporta MD}
     \UCdefsub{esporta_pdf}{Esporta PDF}
     \UCdefsub{esporta_html}{Esporta HTML}
 \UCdef{esporta_archivio}{Esportazione Nota\\Da Archivio}
+    \UCdefsub{esporta_arch_md}{Esporta MD}
     \UCdefsub{esporta_arch_pdf}{Esporta PDF}
     \UCdefsub{esporta_arch_html}{Esporta HTML}
 \UCdef{importa}{Importazione Nota}
@@ -252,6 +252,7 @@
 \UCdef{riassumi}{Riassunto Testo Con LLM}
 \UCdef{riscrivi}{Riscrittura Testo Con LLM}
 \UCdef{traduci}{Traduzione Testo Con LLM}
+    \UCdefsub{mod_traduzione}{Gestione Modifica Traduzione}
 \UCdef{genera}{Generazione Testo Con LLM}
 \UCdef{critica}{Critica Testo\\Secondo Modello\\"Sei Cappelli"}
     \UCdefsub{critica_rosso}{Visione Emotiva}
@@ -272,7 +273,10 @@
         \UCdefsubsub{reg_pwd_err}{Errore\\Password Non\\Abbastanza Robusta}
 \UCdef{logout}{Logout}
 \UCdef{elimina_acc}{Eliminazione Account}
-    \UCdefsub{elim_acc_err}{Errore\\Password Non Valida}
+    \UCdefsub{pwd_elimina}{Inserisci Password}
+        \UCdefsubsub{elim_acc_err}{Errore\\Password Non Valida}
+        \UCdefsubsub{conf_elim}{Conferma eliminazione account}
+    
 \UCdef{associa}{Associazione Note}
 
 \title{%
@@ -651,9 +655,9 @@
         \item L'utente attiva la funzionalità \textit{"Chiudi Nota"}
         \item La visualizzazione viene chiusa
     \end{enumerate}
-    \textbf{Estensioni}
+    \textbf{Inclusioni}
     \begin{itemize}
-        \item Nel caso in cui la nota non è presente / non è aggiornata nel Server:
+        \item Nel caso in cui vi siano delle modifiche non salvate:
         \begin{enumerate}
             \item Caso d'uso UC5
         \end{enumerate}
@@ -670,8 +674,6 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=creazione]{\UCName{crea}}
-                \umlusecase[x=0, y=2, name=ins_nome, align=center]{\UCName{crea_nome}}
-                \umlusecase[x=0, y=0, name=err_nome, align=center]{\UCName{crea_nome_err}}
             \end{umlsystem}
 
             % Attori
@@ -679,8 +681,6 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{creazione}
-            \umlinclude{creazione}{ins_nome}
-            \umlextend{err_nome}{ins_nome}
         \end{tikzpicture}
     \end{center}
 
@@ -700,7 +700,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Creazione Nota"}
-        \item L'utente specifica il nome della nota
         \item Il contenuto della nota viene visualizzato
     \end{enumerate}
 
@@ -717,48 +716,6 @@
     %        \item La nuova nota viene creata
     %    \end{enumerate}
     %\end{itemize}
-
-    \paragraph*{\UCText{crea_nome}}
-    \addcontentsline{toc}{paragraph}{\UCText{crea_nome}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente crea una nuova nota (\UCRef{crea})
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente inserisce il nome della nota e visualizza il contenuto
-    \end{itemize}
-    \textbf{Scenario Principale}
-    \begin{itemize}
-        \item L'utente inscerisce il nome alla nota da creare
-    \end{itemize}
-
-    \subparagraph*{\UCText{crea_nome_err}}
-    \addcontentsline{toc}{subparagraph}{\UCText{crea_nome_err}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente crea una nuova nota (\UCRef{crea})
-        \item L'utente insersce il nome della nota (\UCRef{crea_nome})
-        \item È già presente una nota con lo stesso nome
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente visualizza un messaggio di errore
-    \end{itemize}
-    \textbf{Scenario Principale}
-    \begin{itemize}
-        \item L'utente inscerisce un nome già utilizzato da un'altra nota
-    \end{itemize}
 
     \vspace{1cm}
 
@@ -847,8 +804,8 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente inserisce il nome della nota
         \item Il sistema avvisa all'utente del salvataggio della nota nel Server
-        \item L'utente conferma il salvataggio
         \item La nota viene salvata nel Server
     \end{enumerate}
 
@@ -865,10 +822,11 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item La nota non è salvata nel server
+        \item L'utente ha inserito il nome della nota
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota è presente nell'archivio note del Server
+        \item L'utente viene avvisato che è presente un'altra nota con il nome scelto
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -1093,6 +1051,7 @@
                 \umlusecase[x=3, y=5, name=Esporta, align=center]{\UCName{esporta}}
                 \umlusecase[x=0, y=3, name=PDF]{\UCName{esporta_pdf}}
                 \umlusecase[x=6, y=3, name=HTML]{\UCName{esporta_html}}
+                \umlusecase[x=3, y=1, name=MD]{\UCName{esporta_md}}
             \end{umlsystem}
 
             % Attore
@@ -1104,7 +1063,7 @@
             % Associazione Casi d'Uso
             \umlinherit{PDF}{Esporta}
             \umlinherit{HTML}{Esporta}
-
+            \umlinherit{MD}{Esporta}
         \end{tikzpicture}
     \end{center}
 
@@ -1124,6 +1083,30 @@
     \begin{enumerate}
         \item L'utente attiva la funzionalità \textit{"Esportazione nota"}
         \item L'utente può scegliere il formato per l'esportazione
+    \end{enumerate}
+
+    \paragraph*{\UCText{esporta_md}}
+    \addcontentsline{toc}{paragraph}{\UCText{esporta_md}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene esportata in formato MD
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sceglie il formato MD
+        \item La nota viene convertita in MD
+        \item L'utente può salvare la nota sul proprio dispositivo
     \end{enumerate}
 
     \paragraph*{\UCText{esporta_pdf}}
@@ -1188,6 +1171,7 @@
                 \umlusecase[x=3, y=5, name=Esporta_Archivio, align=center]{\UCName{esporta_archivio}}
                 \umlusecase[x=0, y=3, name=PDF]{\UCName{esporta_arch_pdf}}
                 \umlusecase[x=6, y=3, name=HTML]{\UCName{esporta_arch_html}}
+                \umlusecase[x=3, y=1, name=MD]{\UCName{esporta_arch_md}}
             \end{umlsystem}
 
             % Attore
@@ -1199,7 +1183,7 @@
             % Associazione Casi d'Uso
             \umlinherit{PDF}{Esporta_Archivio}
             \umlinherit{HTML}{Esporta_Archivio}
-
+            \umlinherit{MD}{Esporta_Archivio}
         \end{tikzpicture}
     \end{center}
 
@@ -1227,6 +1211,29 @@
         \item L'utente può scegliere il formato per l'esportazione
     \end{enumerate}
 
+    \paragraph*{\UCText{esporta_arch_md}}
+    \addcontentsline{toc}{paragraph}{\UCText{esporta_arch_md}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio note (\UCRef{archivio})
+        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene esportata in formato MD
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sceglie il formato MD
+        \item La nota viene convertita in MD
+        \item L'utente può salvare la nota sul proprio dispositivo
+    \end{enumerate}
 
     \paragraph*{\UCText{esporta_arch_pdf}}
     \addcontentsline{toc}{paragraph}{\UCText{esporta_arch_pdf}}
@@ -2471,15 +2478,17 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=traduzione]{\UCName{traduci}}
+                \umlusecase[x=0, y=2, name=mod]{\UCName{mod_traduzione}}
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4]{LLM}
+            \umlactor[x=-1, y=4]{Utente}
+            \umlactor[x=11, y=4]{LLM}
 
             % Associazioni Utente
             \umlassoc{Utente}{traduzione}
             \umlassoc{LLM}{traduzione}
+            \umlextend{mod}{traduzione}
         \end{tikzpicture}
     \end{center}
 
@@ -2519,6 +2528,27 @@
         \end{enumerate}
     \end{itemize}
 
+    \subsubsection*{\UCText{mod_traduzione}}
+    \addcontentsline{toc}{subsubsection}{\UCText{mod_traduzione}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente tradotto una porzione di testo tramite LLM (\UCRef{traduci})
+        \item L'utente ha modificato una porzione del testo che ha generato il testo tradotto
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente viene avvisato che sta modificando del testo che ha generato una traduzione
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente visualizza l'avviso che sta modificando del testo che ha generato una traduzione
+    \end{enumerate}
     \vspace{1cm}
 
     \subsubsection*{\UCText{genera}}
@@ -3197,7 +3227,9 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=6, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=2, name=elimina_acc]{(OPT) \UCName{elimina_acc}}
-                \umlusecase[x=0, y=0, name=elim_acc_err, align=center]{(OPT) \UCName{elim_acc_err}}
+                \umlusecase[x=0, y=-0.5, name=elim_acc_err, align=center]{(OPT) \UCName{elim_acc_err}}
+                \umlusecase[x=6, y=1, name=pwd_elimina]{(OPT) \UCName{pwd_elimina}}
+                \umlusecase[x=6, y=-2, name=conf_elim]{(OPT) \UCName{conf_elim}}
             \end{umlsystem}
 
             % Attori
@@ -3207,7 +3239,9 @@
             \umlassoc{Utente}{elimina_acc}
 
             % Associazioni Casi d'Uso
-            \umlextend{elim_acc_err}{elimina_acc}
+            \umlextend{elim_acc_err}{pwd_elimina}
+            \umlHVinclude[pos stereo=1.3]{elimina_acc}{pwd_elimina}
+            \umlinclude{pwd_elimina}{conf_elim}
         \end{tikzpicture}
     \end{center}
 
@@ -3240,6 +3274,28 @@
         \end{itemize}
     \end{itemize}
 
+    \paragraph*{(OPT) \UCText{pwd_elimina}}
+    \addcontentsline{toc}{paragraph}{(OPT) \UCText{pwd_elimina}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente inserisce la password per eliminare il proprio account
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzinalità "Elimina Account"
+        \item L'utente inserisce la propria password
+    \end{enumerate}
+
+
     \paragraph*{(OPT) \UCText{elim_acc_err}}
     \addcontentsline{toc}{paragraph}{(OPT) \UCText{elim_acc_err}}
 
@@ -3252,6 +3308,7 @@
         \item L'utente è connesso al sistema
         \item L'utente è autenticato (\UCRef{autentica})
         \item L'utente sta eliminando il proprio account (\UCRef{elimina_acc})
+        \item L'utente ha inserito la propria password (\UCRef{pwd_elimina})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3261,6 +3318,31 @@
     \begin{enumerate}
         \item Il sistema avvisa l'utente che la password non è corretta
         \item L'utente chiude l'avviso
+    \end{enumerate}
+
+    \paragraph*{(OPT) \UCText{conf_elim}}
+    \addcontentsline{toc}{paragraph}{(OPT) \UCText{conf_elim}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente sta eliminando il proprio account (\UCRef{elimina_acc})
+        \item L'utente ha inserito la propria password (\UCRef{pwd_elimina})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'account associato al nome utente viene eliminato
+        \item L'utente non è più autenticato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema chiede conferma per l'eliminazione del proprio account
+        \item L'utente conferma l'eliminazione dell'account
     \end{enumerate}
 
     \vspace{1cm}
@@ -3367,11 +3449,36 @@
             RF-O-23 & Il sistema deve consentire l'inserimento di elenchi puntati & \UCRef{elenco_punt} \\ \hline
             RF-O-24 & Il sistema deve permettere all'utente di annullare l'ultima modifica fatta & \UCRef{annulla} \\ \hline
             RF-O-25 & Il sistema deve permettere all'utente di ripristinare la modifica precdentemente annullata & \UCRef{ripristina} \\ \hline
-            RF-O-26 & Il sistema deve permettere all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & \UCRef{selezione} \\ \hline
+            RF-O-26 & Il sistema deve permettere all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & \UCRef{seleziona} \\ \hline
             RF-O-27 & Il sistema deve permettere all'utente di copiare il testo selezionato & \UCRef{copia} \\ \hline
             RF-O-28 & Il sistema deve permettere all'utente di tagliare il testo selezionato & \UCRef{taglia} \\ \hline
             RF-O-29 & Il sistema deve permettere all'utente di incollare del testo nell'area di testo & \UCRef{incolla} \\ \hline
+            RF-O-30 & Il sistema deve permettere all'utente di esportare una nota aperta in MD & \UCRef{esporta_md} \\ \hline
+            RF-O-31 & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in MD & \UCRef{esporta_arch_md} \\ \hline
+            RF-O-32 & Il sistema deve avvisare l'utente della presenza di una nota con lo stesso nome in seguito al primo salvataggio & \UCRef{salva_primo_err} \\ \hline
+            RF-0-33 & Il sistema deve permettere all'utente di criticare il testo secondo il modello dei "Sei Cappelli" & \UCRef{critica} \\ \hline
+            RF-0-34 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Emotiva" (Cappello Rosso) & \UCRef{critica_rosso} \\ \hline
+            RF-0-35 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Neutra" (Cappello Bianco) & \UCRef{critica_bianco} \\ \hline
+            RF-0-36 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Ottimista" (Cappello Giallo) & \UCRef{critica_giallo} \\ \hline
+            RF-0-37 & Il sistema deve permettere all'utente di criticare il testo con una "Visione dell'avvocato del Diavolo" (Cappello Nero) & \UCRef{critica_nero} \\ \hline
+            RF-0-38 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Originale" (Cappello Verde) & \UCRef{critica_verde} \\ \hline
+            RF-0-39 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & \UCRef{critica_blu} \\ \hline
+            RF-O-40 & Il sistema permette all'utente di riassumere del testo tramite un agente esterno & \UCRef{riassumi} \\ \hline
+            RF-O-41 & Il sistema permette all'utente di riscrivere del testo tramite un agente esterno & \UCRef{riscrivi} \\ \hline
+            RF-O-41 & Il sistema permette all'utente di tradurre del testo tramite un agente esterno & \UCRef{traduci} \\ \hline
+            RF-O-42 & Il sistema permette l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & \UCRef{genera} \\ \hline
+            RF-O-43 & Il sistema deve avvisare l'utente se viene modificato del testo che ha generato una traduzione  & \UCRef{mod_traduzione} \\ \hline
+            RF-O-44 & Il sistema deve avvisare l'utente che il nome scelto per la nota è già utilizzato & \UCRef{salva_primo_err} \\ \hline
+            RF-O-45 & Il sistema alla chiusura di una nota, se presenti delle modifiche non salvate deve avvisare l'utente della presenza di modifiche & \UCRef{chiudi} \\ \hline
             & & \\ \hline
+            & & \\ \hline
+            & & \\ \hline
+
+            RF-D-1 & Il sistema deve all'utente di esportare una nota aperta in PDF & \UCRef{esporta_pdf} \\ \hline
+            RF-D-2 & Il sistema deve all'utente di esportare una nota aperta in HTML & \UCRef{esporta_html} \\ \hline
+            RF-D-3 & Il sistema deve all'utente di esportare una nota direttamente dall'archivio in PDF & \UCRef{esporta_arch_pdf} \\ \hline
+            RF-D-4 & Il sistema deve all'utente di esportare una nota direttamente dall'archivio in HTML & \UCRef{esporta_arch_html} \\ \hline
+            RF-D-5 & Il sistema deve permettere all'utente di utilizzare scorciatoie da tastiera per formattare il testo & \UCRef{formatta} \\ \hline
             & & \\ \hline
             & & \\ \hline
             & & \\ \hline
@@ -3379,6 +3486,11 @@
             RF-OP-2 & Se password o nome utente non sono corrette il sistema non deve permettere la registrazione & \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
             RF-OP-3 & Il sistema deve permettere all'utente di accedere al proprio account & \UCRef{autentica}, \UCRef{auth_nome}, \UCRef{auth_pwd} \\ \hline
             RF-OP-4 & Se password o nome utente non sono corrette il sistema non deve permettere l'autenticazione & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err} \\ \hline
+            RF-OP-5 & L'utente può effettuare il logout e terminare la sessione & \UCRef{logout} \\ \hline
+            RF-OP-6 & Il sistema deve permettere ad un utente autenticato di eliminare il proprio account  & \UCRef{elimina_acc} \\ \hline
+            RF-OP-7 & Il sistema deve richiedere la password dell'utente per l'eliminazione del suo account  & \UCRef{pwd_elimina} \\ \hline
+            RF-OP-8 & Il sistema deve avvisare l'utente che la password inserita per l'eliminazione dell'account è sbagliata  & \UCRef{pwd_elimina} \\ \hline
+            RF-OP-9 & Il sistema deve richiedere la conferma all'utente per l'eliminazione del suo account  & \UCRef{conf_elim} \\ \hline
             \caption{Tabella Requisiti Funzionali}
         \end{longtable}
     \subsection{Requisiti di qualità}
