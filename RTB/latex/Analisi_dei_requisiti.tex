@@ -20,6 +20,8 @@
 \captionsetup[table]{labelformat=empty}
 \usepackage{ifthen}     % per \ifthenelse
 
+\usepackage{longtable}
+
 \usepackage{tikz}
 \usepackage{tikz-uml}
 \usepackage{adjustbox}  % Scala automaticamente i grafici UML
@@ -3335,11 +3337,11 @@
             Numero progressivo che identifica il requisito appartenente ad una tipologia. 
     \end{itemize}
     \subsection{Requisiti funzionali}
-        \begin{table}[H]
-            \centering
-            \begin{tabular}{|l|p{8cm}|p{3.5cm}|}
+        \begin{longtable}{|l|p{8cm}|p{3.5cm}|}
             \hline
             \textbf{Requisito} & \textbf{Descrizione} & \textbf{Casi d’uso correlati} \\ \hline
+            \endfirsthead
+            \hline
             RF-O-1 & Il sistema deve permettere all'utente di visualizzare l'archivio delle note presenti  & \UCRef{archivio}, \UCRef{arch_sing}, \UCRef{arch_nome}, \UCRef{arch_data}, \UCRef{arch_ult_data} \\ \hline
             RF-O-2 & Il sistema deve permettere all'utente di aprire un nota & \UCRef{apri} \\ \hline
             RF-O-3 & Il sistema deve permettere all'utente di uscire da una nota & \UCRef{chiudi} \\ \hline
@@ -3360,20 +3362,25 @@
             RF-O-18 & Il sistema deve permettere l'applicazione della formattazione testo corsivo senza scrivere manualmente la sintassi & \UCRef{corsivo} \\ \hline
             RF-O-19 & Il sistema deve permettere l'applicazione della formattazione testo sottolineato senza scrivere manualmente la sintassi & \UCRef{sottolineato} \\ \hline
             RF-O-20 & Il sistema deve consentire l’applicazione della formattazione testo barrato senza richiedere l’inserimento manuale della sintassi & \UCRef{barrato} \\ \hline
-            RF-O-21 & Il testo deve consentire l'inserimento di link ipertestuali senza richiedere l'inserimento manuale della sintassi & \UCRef{link} \\ \hline
+            RF-O-21 & Il sistema deve consentire l'inserimento di link ipertestuali senza richiedere l'inserimento manuale della sintassi & \UCRef{link} \\ \hline
+            RF-O-22 & Il sistema deve consentire l'inserimento di elenchi numerati & \UCRef{elenco_num} \\ \hline
+            RF-O-23 & Il sistema deve consentire l'inserimento di elenchi puntati & \UCRef{elenco_punt} \\ \hline
+            RF-O-24 & Il sistema deve permettere all'utente di annullare l'ultima modifica fatta & \UCRef{annulla} \\ \hline
+            RF-O-25 & Il sistema deve permettere all'utente di ripristinare la modifica precdentemente annullata & \UCRef{ripristina} \\ \hline
+            RF-O-26 & Il sistema deve permettere all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & \UCRef{selezione} \\ \hline
+            RF-O-27 & Il sistema deve permettere all'utente di copiare il testo selezionato & \UCRef{copia} \\ \hline
+            RF-O-28 & Il sistema deve permettere all'utente di tagliare il testo selezionato & \UCRef{taglia} \\ \hline
+            RF-O-29 & Il sistema deve permettere all'utente di incollare del testo nell'area di testo & \UCRef{incolla} \\ \hline
             & & \\ \hline
             & & \\ \hline
             & & \\ \hline
             & & \\ \hline
-            & & \\ \hline
-            & & \\ \hline
-            & & \\ \hline
-            & & \\ \hline
-            & & \\ \hline
-            
-            \end{tabular}
+            RF-OP-1 & Il sistema deve permettere all'utente di registrarsi tramite nome utente e password & \UCRef{registra}, \UCRef{reg_nome}, \UCRef{reg_pwd} \\ \hline
+            RF-OP-2 & Se password o nome utente non sono corrette il sistema non deve permettere la registrazione & \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
+            RF-OP-3 & Il sistema deve permettere all'utente di accedere al proprio account & \UCRef{autentica}, \UCRef{auth_nome}, \UCRef{auth_pwd} \\ \hline
+            RF-OP-4 & Se password o nome utente non sono corrette il sistema non deve permettere l'autenticazione & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err} \\ \hline
             \caption{Tabella Requisiti Funzionali}
-        \end{table}
+        \end{longtable}
     \subsection{Requisiti di qualità}
     \subsection{Requisiti di vincolo}
 
