@@ -321,7 +321,9 @@
             \hline
             \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
             \hline
-            0.10 & Niccolò Feltrin & Divisione casi d'uso in macroaree, rimozione caso d'uso UC2 (modificati casi d'uso che includevano UC2), stesura caso d'uso UC10 (Esportazione nota da archivio) & 23/02/2026 & - \\
+            0.11 & Ruben Spadiliero & Stesura casi d'uso opzionali (\UCRef{autentica}, \UCRef{registra}, \UCRef{logout}, \UCRef{elimina_acc}) & 24/02/2026 & Stefano Maso \\
+            \hline
+            0.10 & Niccolò Feltrin & Divisione casi d'uso in macroaree, rimozione caso d'uso UC2 (modificati casi d'uso che includevano UC2), stesura caso d'uso UC10 (Esportazione nota da archivio) & 23/02/2026 & Stefano Maso \\
             \hline
             0.9 & Niccolò Feltrin & Modificate numerazioni casi d'uso$^G$ e stesura casi d'uso UC2 (Visualizzazione Nota), UC5.1 (Primo Salvataggio Nota), UC9 (Cambio Visualizzazione) e UC10 (Rinominazione Nota) & 9/01/2026 & Stefano Maso \\
             \hline
@@ -397,6 +399,7 @@
     \subsubsection{Attori Principali}
     \begin{itemize}
         \item \textbf{Utente}: persona che accede al sistema
+        \item \textbf{Utente autenticato}: utente che ha effettuato l'accesso al proprio account
     \end{itemize}
     \subsubsection{Attori Secondari}
     \begin{itemize}
@@ -3917,10 +3920,10 @@
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=0]{Utente}
+            \umlactor[x=-1, y=0]{Utente autenticato}
 
             % Associazioni Utente
-            \umlassoc{Utente}{logout}
+            \umlassoc{Utente autenticato}{logout}
         \end{tikzpicture}
     \end{center}
 
@@ -3962,10 +3965,10 @@
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=2]{Utente}
+            \umlactor[x=-1, y=2]{Utente autenticato}
 
             % Associazioni Utente
-            \umlassoc{Utente}{elimina_acc}
+            \umlassoc{Utente autenticato}{elimina_acc}
 
             % Associazioni Casi d'Uso
             \umlVHextend{elim_acc_err}{pwd_elimina}
@@ -4228,7 +4231,7 @@
             RF-O-43 & Il sistema deve avvisare l'utente se viene modificato del testo che ha generato una traduzione  & \UCRef{mod_traduzione} \\ \hline
             RF-O-44 & Il sistema deve avvisare l'utente che il nome scelto per la nota è già utilizzato & \UCRef{salva_primo_err} \\ \hline
             RF-O-45 & Il sistema alla chiusura di una nota, se presenti delle modifiche non salvate deve avvisare l'utente della presenza di modifiche & \UCRef{chiudi} \\ \hline
-            & & \\ \hline
+            RF-O-46 & Il sistema in caso di problemi di connessione con l'agente esterno deve avvisare l'utente & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
             & & \\ \hline
             & & \\ \hline
 
@@ -4266,7 +4269,21 @@
             RQ-D-1 & L'archivio deve aggiornarsi con i risultati della ricerca ogni volta che l'utente aggiorna l'input di ricerca &  \UCRef{ricerca} \\ \hline
             \caption{Tabella Requisiti di Qualità}
         \end{longtable}
-    \subsection{Requisiti di vincolo}
 
+    \subsection{Requisiti di vincolo}
+        \begin{longtable}{|l|p{8cm}|p{3.5cm}|}
+            \hline
+            \textbf{Requisito} & \textbf{Descrizione} & \textbf{Casi d’uso correlati} \\ \hline
+            \endfirsthead
+            \hline
+            RV-O-1 & L'applicazione deve essere accessibile via browser e tramite connessione internet & \UCRef{scrivi} \\ \hline
+            RV-O-2 & Il testo generato dall'agente esterno, se accettato dall'utente, deve essere inserito nella posizione del cursore & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}  \\ \hline
+            RV-0-& & \\ \hline
+            & & \\ \hline
+            & & \\ \hline
+            RV-OP-1 & La password inserita dall'utente deve avere almeno 8 caratteri e contenere un carattere speciale & \UCRef{reg_pwd} \\ \hline
+            RV-OP-2 & Il nome utente deve essere almeno di 4 caratteri e non può contenere caratteri speciali & \UCRef{reg_nome} \\ \hline
+            \caption{Tabella Requisiti di Vincolo}
+        \end{longtable}
     
 \end{document}
