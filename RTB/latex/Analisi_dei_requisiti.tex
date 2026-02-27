@@ -202,9 +202,10 @@
         \UCdefsubsub{arch_nome}{Visualizza\\Nome Nota}
         \UCdefsubsub{arch_data}{Visualizza\\Data Creazione Nota}
         \UCdefsubsub{arch_ult_data}{Visualizza\\Data Ultima\\Modifica Nota}
-    \UCdefsub{arch_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{arch_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{apri}{Apertura Nota}
     \UCdefsub{apri_err}{Errore Nota\\Inesistente}
+    \UCdefsub{apri_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{chiudi}{Chiusura Nota}
 \UCdef{crea}{Creazione Nota}
 \UCdef{salva}{Salvataggio Nota}
@@ -212,13 +213,18 @@
         \UCdefsubsub{salva_primo_err}{Errore Salvataggio\\Nota}
     \UCdefsub{salva_nuovo}{Nuovo Salvataggio\\Nota}
         \UCdefsubsub{salva_nuovo_err}{Errore Nuovo\\Salvataggio Nota}
+    \UCdefsub{salva_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{clona}{Clonazione Nota}
     \UCdefsub{clona_err}{Errore Clonazione\\Nota Inesistente}
+    \UCdefsub{clona_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{ricerca}{Ricerca Nota Per Nome}
+    \UCdefsub{ricerca_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{elimina}{Eliminazione Nota}
     \UCdefsub{elim_conf}{Conferma\\Eliminazione Nota}
+    \UCdefsub{elim_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{rinomina}{Rinominazione\\Nota}
     \UCdefsub{rinom_err}{Errore Nome\\Utilizzato}
+    \UCdefsub{rinom_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{esporta}{Esportazione\\Nota}
     \UCdefsub{esporta_md}{Esporta MD}
     \UCdefsub{esporta_pdf}{Esporta PDF}
@@ -227,8 +233,10 @@
     \UCdefsub{esporta_arch_md}{Esporta MD}
     \UCdefsub{esporta_arch_pdf}{Esporta PDF}
     \UCdefsub{esporta_arch_html}{Esporta HTML}
+    \UCdefsub{esporta_arch_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{importa}{Importazione Nota}
     \UCdefsub{importa_err}{Formato Nota\\Non Valido}
+    \UCdefsub{importa_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{visua_formattato}{Visualizza\\Testo Formattato}
 \UCdef{cambio_visua}{Cambio\\Visualizzazione}
     \UCdefsub{cambio_visua_markdown}{Visualizzazione\\Markdown}
@@ -256,10 +264,15 @@
 \UCdef{taglia}{Taglia Testo}
 \UCdef{incolla}{Incolla Testo}
 \UCdef{riassumi}{Riassunto Testo Con LLM}
+    \UCdefsub{riassumi_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{riscrivi}{Riscrittura Testo Con LLM}
-\UCdef{traduci}{Traduzione Testo Con LLM}
-    \UCdefsub{mod_traduzione}{Gestione Modifica Traduzione}
+    \UCdefsub{riscrivi_llm_err}{Errore LLM\\Non Raggiungibile}
+\UCdef{traduci}{Traduzione\\Testo Con LLM}
+    \UCdefsub{mod_traduzione}{Gestione\\Modifica Traduzione}
+        \UCdefsubsub{traduci_redo}{Ritraduzione Testo\\Con LLM}
+    \UCdefsub{traduci_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{genera}{Generazione Testo Con LLM}
+    \UCdefsub{genera_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{critica}{Critica Testo\\Secondo Modello\\"Sei Cappelli"}
     \UCdefsub{critica_rosso}{Visione Emotiva}
     \UCdefsub{critica_bianco}{Visione Neutra}
@@ -267,22 +280,25 @@
     \UCdefsub{critica_nero}{Visione "Devil's Advocate"}
     \UCdefsub{critica_verde}{Visione Originalità}
     \UCdefsub{critica_blu}{Visione Logica E Struttura}
+    \UCdefsub{critica_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{autentica}{Autenticazione}
     \UCdefsub{auth_nome}{Inserimento\\Nome Utente}
         \UCdefsubsub{auth_nome_err}{Errore\\Nome Non Valido}
     \UCdefsub{auth_pwd}{Inserimento\\Password}
         \UCdefsubsub{auth_pwd_err}{Errore\\Password Non Valida}
+    \UCdefsub{auth_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{registra}{Registrazione}
     \UCdefsub{reg_nome}{Inserimento\\Nome Utente}
         \UCdefsubsub{reg_nome_err}{Errore\\Nome Già Utilizzato}
     \UCdefsub{reg_pwd}{Inserimento\\Password}
         \UCdefsubsub{reg_pwd_err}{Errore\\Password Non\\Abbastanza Robusta}
+    \UCdefsub{reg_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{logout}{Logout}
 \UCdef{elimina_acc}{Eliminazione Account}
     \UCdefsub{pwd_elimina}{Inserisci Password}
         \UCdefsubsub{elim_acc_err}{Errore\\Password Non Valida}
         \UCdefsubsub{conf_elim}{Conferma\\Eliminazione Account}
-
+    \UCdefsub{elim_acc_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{associa}{Associazione Note}
 
 \title{%
@@ -398,6 +414,7 @@
     \begin{center}
         \begin{tikzauto}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=4, y=2.5, name=server_err, align=center]{\UCName{arch_server_err}}
                 \umlusecase[x=0, y=0.5, name=archivio, align=center]{\UCName{archivio}}
                 \umlusecase[x=0, y=-2, name=nota, align=center]{\UCName{arch_sing}}
                 \umlusecase[x=-4, y=-4, name=nome, align=center]{\UCName{arch_nome}}
@@ -407,7 +424,7 @@
 
             % Attori
             \umlactor[x=-4, y=0.5]{Utente}
-            \umlactor[x=12, y=0.5, scale=0.75]{Server Locale}
+            \umlactor[x=12.5, y=0.5, scale=0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{archivio}
@@ -417,6 +434,7 @@
             \umlHVinclude[pos stereo=1.3]{nota}{nome}
             \umlinclude{nota}{data}
             \umlHVinclude[pos stereo=1.3]{nota}{data_mod}
+            \umlextend{server_err}{archivio}
         \end{tikzauto}
     \end{center}
 
@@ -441,6 +459,13 @@
     \begin{enumerate}
         \item Il sistema mostra all'utente le note presenti sul server
     \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{arch_server_err}
+        \end{itemize}
+    \end{itemize}
 
     \paragraph*{\UCText{arch_sing}}
     \addcontentsline{toc}{paragraph}{\UCText{arch_sing}}
@@ -525,6 +550,32 @@
         \item Il sistema mostra la data di ultima modifica delle singole note dell'archivio delle note
     \end{enumerate}
 
+    \paragraph*{\UCText{arch_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{arch_server_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'archivio delle note rimane vuoto
+        \item Il sistema mostra le due opzioni disponibili
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+        \item Il sistema offre all'utente due opzioni:
+        \begin{itemize}
+            \item Rimandare richiesta di connessione al Server
+            \item Ignorare l'avviso e non popolare l'archivio
+        \end{itemize}
+    \end{enumerate}
+
     \vspace{1cm}
 
     \subsubsection*{\UCText{apri}}
@@ -535,18 +586,20 @@
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=3, fill=white!10]{Sistema}
-                \umlusecase[x=1, y=2, name=apri, align=center]{\UCName{apri}}
-                \umlusecase[x=1, y=0, name=err, align=center]{\UCName{apri_err}}
+                \umlusecase[x=2.5, y=2, name=apri, align=center]{\UCName{apri}}
+                \umlusecase[x=0, y=0, name=err, align=center]{\UCName{apri_err}}
+                \umlusecase[x=5, y=0, name=err_server, align=center]{\UCName{apri_server_err}}
             \end{umlsystem}
 
             % Attori
             \umlactor[x=-1, y=2]{Utente}
-            \umlactor[x=8.5, y=2]{Server Locale}
+            \umlactor[x=12.3, y=2, scale=0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{apri}
             \umlassoc{Server Locale}{apri}
             \umlextend{err}{apri}
+            \umlextend{err_server}{apri}
         \end{tikzpicture}
     \end{center}
 
@@ -579,6 +632,10 @@
         \begin{itemize}
             \item \UCRef{apri_err}
         \end{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{apri_server_err}
+        \end{itemize}
         \item Nel caso ci sia una nota già aperta:
         \begin{enumerate}
             \item Il sistema chiede conferma per la chiusura della nota
@@ -610,6 +667,26 @@
     \begin{itemize}
         \item L'utente apre una nota eliminata o non più presente nel server
     \end{itemize}
+
+    \paragraph*{\UCText{apri_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{apri_server_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Nessuna nota viene aperta
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -733,6 +810,7 @@
     \begin{center}
         \begin{tikzauto}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=6, y=6, name=err_server, align=center]{\UCName{salva_server_err}}
                 \umlusecase[x=3, y=4, name=salvataggio]{\UCName{salva}}
                 \umlusecase[x=0, y=2, name=primo_salvataggio, align=center]{\UCName{salva_primo}}
                 \umlusecase[x=0, y=0, name=err_salvataggio, align=center]{\UCName{salva_primo_err}}
@@ -753,6 +831,7 @@
             \umlinherit{primo_salvataggio}{salvataggio}
             \umlextend{err_nuovo_salvataggio}{nuovo_salvataggio}
             \umlinherit{nuovo_salvataggio}{salvataggio}
+            \umlextend{err_server}{salvataggio}
         \end{tikzauto}
     \end{center}
 
@@ -780,6 +859,10 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{salva_server_err}
+        \end{itemize}
         \item Nel caso in cui la nota inizialmente visualizzata dall'utente avesse successivamente subito delle modifiche nel Server:
         \begin{enumerate}
             \item Il sistema avvisa la presenza di modifiche nel Server non contenute nella versione corrente dell'utente
@@ -924,6 +1007,28 @@
         \item Il sistema effettua l'operazione scelta dall'utente
     \end{enumerate}
 
+    \paragraph*{\UCText{salva_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_server_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota rimane aperta
+        \item Le modifiche non sono salvate nel server
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+        \item La nota viene lasciata aperta
+    \end{enumerate}
+
     \vspace{1cm}
 
     \subsubsection*{\UCText{clona}}
@@ -932,15 +1037,16 @@
     \medskip
 
     \begin{center}
-        \begin{tikzpicture}
+        \begin{tikzauto}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=clonazione]{\UCName{clona}}
+                \umlusecase[x=3, y=4, name=clonazione]{\UCName{clona}}
                 \umlusecase[x=0, y=2, name=clona_err, align=center]{\UCName{clona_err}}
+                \umlusecase[x=6, y=2, name=server_err, align=center]{\UCName{clona_server_err}}
             \end{umlsystem}
 
             % Attori
             \umlactor[x=-1, y=4]{Utente}
-            \umlactor[x=9, y=4, scale = 0.75]{Server Locale}
+            \umlactor[x=14.5, y=4, scale = 0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{clonazione}
@@ -948,8 +1054,9 @@
 
             % Associazioni Casi d'Uso
             \umlextend{clona_err}{clonazione}
+            \umlextend{server_err}{clonazione}
 
-        \end{tikzpicture}
+        \end{tikzauto}
     \end{center}
 
     \textbf{Attori principali}
@@ -977,10 +1084,14 @@
         \begin{itemize}
             \item \UCRef{clona_err}
         \end{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{clona_server_err}
+        \end{itemize}
     \end{itemize}
 
-    \subsubsection*{\UCText{clona_err}}
-    \addcontentsline{toc}{subsubsection}{\UCText{clona_err}}
+    \paragraph*{\UCText{clona_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{clona_err}}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -1003,6 +1114,27 @@
         \item Il sistema ri-aggiorna l'archivio rimuovendo la nota mancante
     \end{enumerate}
 
+    \paragraph*{\UCText{clona_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{clona_server_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Nel Server non è presente il clone della nota
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+    \end{enumerate}
+
     \vspace{1cm}
 
     \subsubsection*{\UCText{ricerca}}
@@ -1014,6 +1146,7 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=ricerca]{\UCName{ricerca}}
+                \umlusecase[x=0, y=2, name=server_err, align=center]{\UCName{ricerca_server_err}}
             \end{umlsystem}
 
             % Attori
@@ -1023,6 +1156,9 @@
             % Associazioni Utente
             \umlassoc{Utente}{ricerca}
             \umlassoc{Server Locale}{ricerca}
+
+            % Associazioni Casi d'Uso
+            \umlextend{server_err}{ricerca}
 
         \end{tikzpicture}
     \end{center}
@@ -1051,6 +1187,34 @@
         \item Il sistema effettua la ricerca nel server locale
         \item Il sistema ritorna i risultati della ricerca
     \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{ricerca_server_err}
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph*{\UCText{ricerca_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{ricerca_server_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'archivio rimane senza filtri applicati
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -1061,19 +1225,21 @@
 
     \begin{center}
         \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=eliminazione]{\UCName{elimina}}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=2.5, y=4, name=eliminazione]{\UCName{elimina}}
                 \umlusecase[x=0, y=2, name=conferma, align=center]{\UCName{elim_conf}}
+                \umlusecase[x=5, y=2, name=server_err, align=center]{\UCName{elim_server_err}}
             \end{umlsystem}
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4,scale=0.75]{Server Locale}
+            \umlactor[x=13.3, y=4,scale=0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{eliminazione}
             \umlassoc{Server Locale}{eliminazione}
             \umlinclude{eliminazione}{conferma}
+            \umlextend{server_err}{eliminazione}
         \end{tikzpicture}
     \end{center}
 
@@ -1103,6 +1269,10 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{elim_server_err}
+        \end{itemize}
         \item Nel caso in cui la nota interessata fosse stata rimossa dal server prima dell'eliminazione da parte dell'utente:
         \begin{itemize}
             \item Il sistema avvisa l'utente dell'inesistenza della nota da eliminare
@@ -1134,6 +1304,27 @@
         \item L'utente seleziona l'opzione per confermare l'eliminazione
     \end{enumerate}
 
+    \paragraph*{\UCText{elim_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{elim_server_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota non viene eliminata dal Server
+        \item L'archivio non viene aggiornato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -1143,8 +1334,9 @@
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=2, name=rinominazione_nota, align=center]{\UCName{rinomina}}
+                \umlusecase[x=2.5, y=2, name=rinominazione_nota, align=center]{\UCName{rinomina}}
                 \umlusecase[x=0, y=0, name=err_rin, align=center]{\UCName{rinom_err}}
+                \umlusecase[x=5, y=0, name=server_err, align=center]{\UCName{rinom_server_err}}
             \end{umlsystem}
 
             % Attori
@@ -1152,7 +1344,11 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{rinominazione_nota}
+
+            % Associazioni Casi d'Uso
             \umlextend{err_rin}{rinominazione_nota}
+            \umlextend{server_err}{rinominazione_nota}
+
         \end{tikzpicture}
     \end{center}
 
@@ -1177,6 +1373,10 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{rinom_server_err}
+        \end{itemize}
         \item Il nome scelto è già utilizzato da un'altra nota:
         \begin{itemize}
             \item \UCRef{rinom_err}
@@ -1200,6 +1400,29 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente ha inserito un nome già utilizzato da un'altra nota
+    \end{enumerate}
+
+    \paragraph*{\UCText{rinom_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{rinom_server_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha inserto il nome della nota
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota ha un nome diverso
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+        \item Il sistema cambia il nome della nota
     \end{enumerate}
 
     \vspace{1cm}
@@ -1335,6 +1558,7 @@
                 \umlusecase[x=0, y=3, name=PDF]{\UCName{esporta_arch_pdf}}
                 \umlusecase[x=6, y=3, name=HTML]{\UCName{esporta_arch_html}}
                 \umlusecase[x=3, y=1, name=MD]{\UCName{esporta_arch_md}}
+                \umlusecase[x=6, y=7, name=server_err, align=center]{\UCName{esporta_arch_server_err}}
             \end{umlsystem}
 
             % Attore
@@ -1347,6 +1571,7 @@
             \umlinherit{PDF}{Esporta_Archivio}
             \umlinherit{HTML}{Esporta_Archivio}
             \umlinherit{MD}{Esporta_Archivio}
+            \umlextend{server_err}{Esporta_Archivio}
         \end{tikzpicture}
     \end{center}
 
@@ -1373,6 +1598,13 @@
         \item L'utente attiva la funzionalità \textit{"Esportazione nota"}
         \item L'utente può scegliere il formato per l'esportazione
     \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{esporta_arch_server_err}
+        \end{itemize}
+    \end{itemize}
 
     \paragraph*{\UCText{esporta_arch_md}}
     \addcontentsline{toc}{paragraph}{\UCText{esporta_arch_md}}
@@ -1446,6 +1678,27 @@
         \item L'utente può salvare la nota sul proprio dispositivo
     \end{enumerate}
 
+    \paragraph*{\UCText{esporta_arch_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{esporta_arch_server_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota non viene esportata
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+    \end{enumerate}
+
     \vspace{1cm}
 
     \subsubsection*{\UCText{importa}}
@@ -1454,16 +1707,17 @@
     \medskip
 
     \begin{center}
-        \begin{tikzpicture}
+        \begin{tikzauto}
 
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=2.5, name=importa]{\UCName{importa}}
+                \umlusecase[x=3, y=2.5, name=importa]{\UCName{importa}}
                 \umlusecase[x=0, y=0, name=err_importa, align=center]{\UCName{importa_err}}
+                \umlusecase[x=6, y=0, name=server_err, align=center]{\UCName{importa_server_err}}
             \end{umlsystem}
 
             % Attore
             \umlactor[x=0, y=2.5]{Utente}
-            \umlactor[x=8.5, y=2.5, scale=0.75]{Server Locale}
+            \umlactor[x=14.5, y=2.5, scale=0.75]{Server Locale}
 
             % Associazione Utente
             \umlassoc{Utente}{importa}
@@ -1471,8 +1725,9 @@
 
             % Associazione Casi d'Uso
             \umlextend{err_importa}{importa}
+            \umlextend{server_err}{importa}
 
-        \end{tikzpicture}
+        \end{tikzauto}
     \end{center}
 
     \textbf{Attori principali}
@@ -1502,6 +1757,10 @@
         \begin{itemize}
             \item \UCRef{importa_err}
         \end{itemize}
+        \item In caso il sistema non riesce a connettersi con il Server:
+        \begin{itemize}
+            \item \UCRef{importa_server_err}
+        \end{itemize}
     \end{itemize}
 
     \paragraph*{\UCText{importa_err}}
@@ -1522,6 +1781,27 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente viene visualizza il messaggio di errore
+        \item L'utente chiude l'avviso
+    \end{enumerate}
+
+    \paragraph*{\UCText{importa_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{importa_server_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota non viene importata
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
         \item L'utente chiude l'avviso
     \end{enumerate}
 
@@ -2518,15 +2798,19 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=riassumere]{\UCName{riassumi}}
+                \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{riassumi_llm_err}}
             \end{umlsystem}
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4]{LLM}
+            \umlactor[x=10, y=4, scale=0.75]{LLM}
 
             % Associazioni Utente
             \umlassoc{Utente}{riassumere}
             \umlassoc{LLM}{riassumere}
+
+            % Associazioni Casi d'Uso
+            \umlextend{llm_err}{riassumere}
         \end{tikzpicture}
     \end{center}
 
@@ -2563,7 +2847,34 @@
             \item L'utente rifiuta il riassunto suggerito
             \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo)
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{riassumi_llm_err}
+        \end{itemize}
     \end{itemize}
+
+    \paragraph*{\UCText{riassumi_llm_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{riassumi_llm_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato non è stato riassunto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente chiude l'avviso
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -2576,15 +2887,19 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=riscrittura]{\UCName{riscrivi}}
+                \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{riscrivi_llm_err}}
             \end{umlsystem}
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4]{LLM}
+            \umlactor[x=10, y=4, scale=0.75]{LLM}
 
             % Associazioni Utente
             \umlassoc{Utente}{riscrittura}
             \umlassoc{LLM}{riscrittura}
+
+            % Associazioni Casi d'Uso
+            \umlextend{llm_err}{riscrittura}
         \end{tikzpicture}
     \end{center}
 
@@ -2628,7 +2943,34 @@
             \item L'utente rifiuta il risultato proposto
             \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo)
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{riscrivi_llm_err}
+        \end{itemize}
     \end{itemize}
+
+    \paragraph*{\UCText{riscrivi_llm_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_llm_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente seleziona una porzione del testo o l'intero testo
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato non è stato riscritto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente chiude l'avviso
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -2638,21 +2980,28 @@
     \medskip
 
     \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=traduzione]{\UCName{traduci}}
-                \umlusecase[x=0, y=2, name=mod]{\UCName{mod_traduzione}}
+        \begin{tikzauto}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4, name=traduzione, align=center]{\UCName{traduci}}
+                \umlusecase[x=0, y=2, name=mod, align=center]{\UCName{mod_traduzione}}
+                \umlusecase[x=0, y=0, name=traduzione_redo, align=center]{\UCName{traduci_redo}}
+                \umlusecase[x=6, y=2, name=llm_err, align=center]{\UCName{traduci_llm_err}}
             \end{umlsystem}
 
             % Attori
             \umlactor[x=-1, y=4]{Utente}
-            \umlactor[x=11, y=4]{LLM}
+            \umlactor[x=14, y=4, scale=0.75]{LLM}
 
             % Associazioni Utente
             \umlassoc{Utente}{traduzione}
             \umlassoc{LLM}{traduzione}
-            \umlextend{mod}{traduzione}
-        \end{tikzpicture}
+
+            % Associazioni Casi d'Uso
+            \umlinclude{mod}{traduzione}
+            \umlextend{traduzione_redo}{mod}
+            \umlextend{llm_err}{traduzione}
+            \umlextend{llm_err}{traduzione_redo}
+        \end{tikzauto}
     \end{center}
 
     \textbf{Attori principali}
@@ -2689,6 +3038,10 @@
             \item L'utente rifiuta il risultato proposto
             \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo)
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{traduci_llm_err}
+        \end{itemize}
     \end{itemize}
 
     \paragraph*{\UCText{mod_traduzione}}
@@ -2711,7 +3064,76 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente visualizza l'avviso che sta modificando del testo che ha generato una traduzione
+        \item Il sistema mostra all'utente tre opzioni:
+        \begin{itemize}
+            \item opzione di ignorare le modifiche
+            \item opzione di ritradurre il testo (funzionalità di \textit{"Ritraduzione Testo"})
+            \item opzione di annullare le modiche del testo
+        \end{itemize}
     \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Se l'utente avvia la funzionalità di \textit{"Ritraduzione Testo"}
+        \begin{itemize}
+            \item \UCRef{traduci_redo}
+        \end{itemize}
+    \end{itemize}
+
+    \subparagraph*{\UCText{traduci_redo}}
+    \addcontentsline{toc}{subparagraph}{\UCText{traduci_redo}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente tradotto una porzione di testo tramite LLM (\UCRef{traduci})
+        \item L'utente ha modificato una porzione del testo che ha generato il testo tradotto
+        \item L'utente ha avviato la funzionalità di \textit{"Ritraduzione Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo viene ritradotto nella lingua selezionata
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema sostituisce la traduzione obsoleta con quella nuovamente tradotta
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{traduci_llm_err}
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph*{\UCText{traduci_llm_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{traduci_llm_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato non è stato tradotto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente chiude l'avviso
+    \end{enumerate}
+
     \vspace{1cm}
 
     \subsubsection*{\UCText{genera}}
@@ -2723,15 +3145,19 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=creazione]{\UCName{genera}}
+                \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{genera_llm_err}}
             \end{umlsystem}
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4]{LLM}
+            \umlactor[x=10, y=4, scale=0.75]{LLM}
 
             % Associazioni Utente
             \umlassoc{Utente}{creazione}
             \umlassoc{LLM}{creazione}
+
+            % Associazioni Casi d'Uso
+            \umlextend{llm_err}{creazione}
         \end{tikzpicture}
     \end{center}
 
@@ -2768,7 +3194,34 @@
             \item L'utente rifiuta il risultato proposto
             \item Il sistema ritorna alle precondizioni
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{genera_llm_err}
+        \end{itemize}
     \end{itemize}
+
+    \paragraph*{\UCText{genera_llm_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{genera_llm_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente seleziona il punto in cui vuole che venga generato il testo
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo non è stato generato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente chiude l'avviso
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -2788,7 +3241,7 @@
                 \umlusecase[x=7, y=3, name=nero, align=center]{\textbf{\UCName{critica_nero}} \\ (Cappello Nero)}
                 \umlusecase[x=7, y=1.5, name=verde, align=center]{\textbf{\UCName{critica_verde}} \\ (Cappello Verde)}
                 \umlusecase[x=7, y=0, name=blu, align=center]{\textbf{\UCName{critica_blu}} \\ (Cappello Blu)}
-
+                \umlusecase[x=7, y=11, name=llm_err, align=center]{\UCName{critica_llm_err}}
                 % Attori
                 \umlactor[x=-3, y=9]{Utente}
                 \umlactor[x=13, y=9, scale=0.75]{LLM}
@@ -2804,6 +3257,7 @@
                 \umlVHinherit{critica}{nero}
                 \umlVHinherit{critica}{verde}
                 \umlVHinherit{critica}{blu}
+                \umlextend{llm_err}{critica}
 
             \end{umlsystem}
         \end{tikzauto}
@@ -2842,6 +3296,10 @@
             \item L'utente conferma la sostituzione del testo
             \item Il testo viene sostituito con la versione riadattata
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{critica_llm_err}
+        \end{itemize}
     \end{itemize}
 
     \paragraph{\UCText{critica_bianco}}
@@ -2877,6 +3335,10 @@
             \item L'utente conferma la sostituzione del testo
             \item Il testo viene sostituito con la versione riadattata
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{critica_llm_err}
+        \end{itemize}
     \end{itemize}
 
     \paragraph{\UCText{critica_giallo}}
@@ -2912,6 +3374,10 @@
             \item L'utente conferma la sostituzione del testo
             \item Il testo viene sostituito con la versione riadattata
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{critica_llm_err}
+        \end{itemize}
     \end{itemize}
 
     \paragraph{\UCText{critica_nero}}
@@ -2947,6 +3413,10 @@
             \item L'utente conferma la sostituzione del testo
             \item Il testo viene sostituito con la versione riadattata
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{critica_llm_err}
+        \end{itemize}
     \end{itemize}
 
     \paragraph{\UCText{critica_verde}}
@@ -2982,6 +3452,10 @@
             \item L'utente conferma la sostituzione del testo
             \item Il testo viene sostituito con la versione riadattata
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{critica_llm_err}
+        \end{itemize}
     \end{itemize}
 
     \paragraph{\UCText{critica_blu}}
@@ -3017,7 +3491,33 @@
             \item L'utente conferma la sostituzione del testo
             \item Il testo viene sostituito con la versione riadattata
         \end{enumerate}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{critica_llm_err}
+        \end{itemize}
     \end{itemize}
+
+    \paragraph*{\UCText{genera_llm_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{genera_llm_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo non è stato criticato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente chiude l'avviso
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -3036,6 +3536,7 @@
                 \umlusecase[x=8, y=2.5, name=auth_pwd, align=center]{(OPT) \UCName{auth_pwd}}
                 \umlusecase[x=0, y=0, name=err_nome, align=center]{(OPT) \UCName{auth_nome_err}}
                 \umlusecase[x=8, y=0, name=err_pwd, align=center]{(OPT) \UCName{auth_pwd_err}}
+                \umlusecase[x=8, y=6.5, name=server_err, align=center]{(OPT) \UCName{auth_server_err}}
             \end{umlsystem}
 
             % Attori
@@ -3049,6 +3550,7 @@
             \umlinclude{autenticazione}{auth_pwd}
             \umlextend{err_nome}{auth_nome}
             \umlextend{err_pwd}{auth_pwd}
+            \umlextend{server_err}{autenticazione}
 
         \end{tikzauto}
     \end{center}
@@ -3071,6 +3573,13 @@
         \item L'utente inserisce le proprie credenziali (\UCRef{auth_nome} e \UCRef{auth_pwd})
         \item L'utente avvia il processo di autenticazione al server
     \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{auth_server_err}
+        \end{itemize}
+    \end{itemize}
 
     \paragraph*{(OPT) \UCText{auth_nome}}
     \addcontentsline{toc}{paragraph}{(OPT) \UCText{auth_nome}}
@@ -3182,6 +3691,27 @@
         \item L'utente chiude l'avviso
     \end{enumerate}
 
+    \paragraph*{\UCText{auth_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{auth_server_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente non è autenticato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente non è autenticato al sistema
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+    \end{enumerate}
+
     \vspace{1cm}
 
     \subsubsection*{(OPT) \UCText{registra}}
@@ -3192,11 +3722,12 @@
     \begin{center}
         \begin{tikzauto}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=4, y=4.5, name=autenticazione]{(OPT) \UCName{registra}}
-                \umlusecase[x=0, y=2.5, name=auth_nome, align=center]{(OPT) \UCName{reg_nome}}
-                \umlusecase[x=8, y=2.5, name=auth_pwd, align=center]{(OPT) \UCName{reg_pwd}}
+                \umlusecase[x=4, y=4.5, name=registrazione]{(OPT) \UCName{registra}}
+                \umlusecase[x=0, y=2.5, name=reg_nome, align=center]{(OPT) \UCName{reg_nome}}
+                \umlusecase[x=8, y=2.5, name=reg_pwd, align=center]{(OPT) \UCName{reg_pwd}}
                 \umlusecase[x=0, y=0, name=err_nome, align=center]{(OPT) \UCName{reg_nome_err}}
                 \umlusecase[x=8, y=0, name=err_pwd, align=center]{(OPT) \UCName{reg_pwd_err}}
+                \umlusecase[x=8, y=6.5, name=server_err, align=center]{(OPT) \UCName{reg_server_err}}
             \end{umlsystem}
 
             % Attori
@@ -3206,10 +3737,11 @@
             \umlassoc{Utente}{autenticazione}
 
             % Associazioni Casi d'Uso
-            \umlinclude{autenticazione}{auth_nome}
-            \umlinclude{autenticazione}{auth_pwd}
-            \umlextend{err_nome}{auth_nome}
-            \umlextend{err_pwd}{auth_pwd}
+            \umlinclude{registrazione}{reg_nome}
+            \umlinclude{registrazione}{reg_pwd}
+            \umlextend{err_nome}{reg_nome}
+            \umlextend{err_pwd}{reg_pwd}
+            \umlextend{server_err}{registrazione}
 
         \end{tikzauto}
     \end{center}
@@ -3232,6 +3764,13 @@
         \item L'utente inserisce le proprie credenziali (\UCRef{reg_nome} e \UCRef{reg_pwd})
         \item L'utente avvia il processo di registrazione al server
     \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{reg_server_error}
+        \end{itemize}
+    \end{itemize}
 
     \paragraph*{(OPT) \UCText{reg_nome}}
     \addcontentsline{toc}{paragraph}{(OPT) \UCText{reg_nome}}
@@ -3343,6 +3882,27 @@
         \item L'utente chiude l'avviso
     \end{enumerate}
 
+    \paragraph*{\UCText{reg_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{auth_server_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente non è registrato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente non è registrato al sistema
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
+    \end{enumerate}
+
     \vspace{1cm}
 
     \subsubsection*{(OPT) \UCText{logout}}
@@ -3398,6 +3958,7 @@
                 \umlusecase[x=0, y=-1, name=elim_acc_err, align=center]{(OPT) \UCName{elim_acc_err}}
                 \umlusecase[x=6, y=0.5, name=pwd_elimina]{(OPT) \UCName{pwd_elimina}}
                 \umlusecase[x=6, y=-2.5, name=conf_elim, align=center]{(OPT) \UCName{conf_elim}}
+                \umlusecase[x=0, y=4, name=server_err, align=center]{(OPT) \UCName{elim_acc_server_err}}
             \end{umlsystem}
 
             % Attori
@@ -3410,6 +3971,7 @@
             \umlVHextend{elim_acc_err}{pwd_elimina}
             \umlHVinclude[pos stereo=1.3]{elimina_acc}{pwd_elimina}
             \umlinclude{pwd_elimina}{conf_elim}
+            \umlextend{server_err}{elimina_acc}
         \end{tikzauto}
     \end{center}
 
@@ -3436,9 +3998,9 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso la password inserita non è valida (non è uguale a quella associata all'utente sul server):
+        \item In caso il sistema non riesce a connettersi con la LLM:
         \begin{itemize}
-            \item \UCRef{elim_acc_err}
+            \item \UCRef{elim_acc_server_err}
         \end{itemize}
     \end{itemize}
 
@@ -3462,10 +4024,17 @@
         \item L'utente attiva la funzinalità "Elimina Account"
         \item L'utente inserisce la propria password
     \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso la password inserita non è valida (non è uguale a quella associata all'utente sul server):
+        \begin{itemize}
+            \item \UCRef{elim_acc_err}
+        \end{itemize}
+    \end{itemize}
 
 
-    \paragraph*{(OPT) \UCText{elim_acc_err}}
-    \addcontentsline{toc}{paragraph}{(OPT) \UCText{elim_acc_err}}
+    \subparagraph*{(OPT) \UCText{elim_acc_err}}
+    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{elim_acc_err}}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3488,8 +4057,8 @@
         \item L'utente chiude l'avviso
     \end{enumerate}
 
-    \paragraph*{(OPT) \UCText{conf_elim}}
-    \addcontentsline{toc}{paragraph}{(OPT) \UCText{conf_elim}}
+    \subparagraph*{(OPT) \UCText{conf_elim}}
+    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{conf_elim}}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3511,6 +4080,27 @@
     \begin{enumerate}
         \item Il sistema chiede conferma per l'eliminazione del proprio account
         \item L'utente conferma l'eliminazione dell'account
+    \end{enumerate}
+
+    \paragraph*{\UCText{elim_acc_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{elim_acc_server_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente è ancora autenticato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
