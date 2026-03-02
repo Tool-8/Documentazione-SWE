@@ -88,6 +88,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  0.9 & Besnik Murtezan & Aggiornato sezioni 3.2.2, 3.2.4, 4.7.1 & 02/03/2026 & - \\
+  \hline
   0.8 & Besnik Murtezan & Aggiornato controllo di flusso (sez. 3.2.2) & 15/02/2026 & Stefano Maso \\
   \hline  
   0.7 & Besnik Murtezan & Stesura sottosezioni (4.3 fino a 4.12) & 20/12/2025 & Ruben Spadiliero \\
@@ -331,6 +333,14 @@ Per i verificatori il flusso di verifica di una determinata issue della sezione 
     \end{enumerate}
 \end{enumerate}
 
+Per quanto riguarda il Glossario, l'aggiunta di un termine viene svolta nella seguente maniera:
+\begin{enumerate}
+  \item[0.] Installare Python (\href{https://python.org}{\underline{Sito Ufficiale Python}}).
+  \item Aprire il file \texttt{glossario.json}.
+  \item Aggiungere un nuovo dizionario termine-definizione all'interno dell'array relativo all'iniziale del termine.
+  \item Eseguire lo script \texttt{entry\_point.py}.
+\end{enumerate}
+
 \subsubsection{Scopo e struttura repository "Documentazine-SWE"}
 La repository ha la funzione di mantere una versione aggiornata dei file che dovranno produrre documentazione, ovvero i file .tex.\\
 La struttura della repository è la seguente:
@@ -343,9 +353,17 @@ La struttura della repository è la seguente:
     \item Esterni
   \end{itemize}
 \end{itemize}
-\subsubsection{Scopo e struttura "Proof-of-Concept"}
-La repository ha lo scopo di mantenere il versionamento dei file relativi alla codifica del prodotto per quanto riguarda il PoC.
-Oltre al codice sorgente dovranno essere inseriti i file relativi al manuale utente e alla documentazione del codice. 
+\subsubsection{Scopo e struttura repository "Proof-of-Concept"}
+La repository ha lo scopo di mantenere il versionamento dei file relativi al Proof-of-Concept.
+La struttura è la seguente:
+\begin{itemize}
+  \item \texttt{docker/nginx} : cartella contenente file di configurazione per integrazione nginx-docker.
+  \item \texttt{src} : cartella del codice sorgente (molti file sono ausiliari al framework Laravel).
+  \item \texttt{.dockerignore} : file ausiliario per docker.
+  \item \texttt{Dockerfile} : file di configurazione per generare immagine Docker della business logic.
+  \item \texttt{README.md} : file di istruzioni per il corretto avvio dell'applicazione.
+  \item \texttt{docker-compose.yml} : file di configurazione per generare i container dell'applicazione.
+\end{itemize}
 
 \subsection{Gestione della qualità}
 \subsubsection{Descrizione}
@@ -488,7 +506,7 @@ Per ogni funzionalità che richiede la codifica, il programmatore deve creare un
 della funzionalità interessata. Ogni contribuzione di codice va effettuata su tale branch e quando il programmatore
 ritiene di aver completato la codifica per quella funzionalità deve procedere manualmente ad aprire una Pull Request
 di merge sul main, la quale deve poi essere valutata dal verificatore e, in caso di successo, si conclude con  
-l'integrazione del codice sul ramo main della repository. 
+l'integrazione del codice sul ramo main della repository.
 \subsection{Gestione di Progetto}
 \subsubsection{Allineamento Organizzativo}
 Vengono utilizzate due modalità di comunicazione per allinearsi e coordinarsi sulle attività da svolgere:
@@ -505,13 +523,21 @@ Vengono utilizzate due modalità di comunicazione per allinearsi e coordinarsi s
     \end{itemize} 
     \item \textbf{Comunicazioni Esterne}: coinvolgono gruppo, proponente e/o committente; si usufruisce dei seguenti strumenti:
     \begin{itemize}
-      \item \textit{Posta Elettronica}: utilizzata per comunicare con proponente o committente a fini organizzativi o per chiariment.\\
+      \item \textit{Posta Elettronica}: utilizzata per comunicare con proponente o committente a fini organizzativi o per chiarimenti.\\
       E-Mail del gruppo: \url{tool8eight@gmail.com} 
       \item \textit{Google Meet}: utilizzato per riunioni esterne con il proponente in forma di videochiamata.\\
       \href{https://meet.google.com/}{\underline{Sito Google Meet}} 
     \end{itemize} 
   \end{itemize}
-
+Per la codifica del prodotto viene richiesto l'utilizzo di:
+\begin{itemize}
+  \item \texttt{Laravel} : framework PHP per lo sviluppo del prodotto (sia per PoC che MVP); è necessario
+    seguire il più possibile le metodologie proprie del framework.\\
+    \href{https://laravel.com/}{\underline{Sito Ufficiale Laravel}}
+  \item \texttt{Docker Desktop} : strumento che permette l'utilizzo di container al fine di avere un ambiente di sviluppo
+    uguale per tutti.\\
+    \href{https://docker.com/}{\underline{Sito Ufficiale Docker}}  
+\end{itemize}
 \subsection{Organizzazione del Lavoro}
 \subsubsection{Modello di Sviluppo}
 Il gruppo ha deciso di adottare un modello basato su \textit{SCRUM} dove il lavoro è suddiviso in periodi di incremento 
