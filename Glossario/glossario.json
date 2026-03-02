@@ -2,11 +2,11 @@
   "A": [
     {
       "termine": "Analisi dei Requisiti",
-      "definizione": "L'analisi dei requisiti è il processo di raccolta, documentazione e analisi delle esigenze e delle funzionalità di un sistema software. Questo processo coinvolge la comprensione approfondita dei requisiti dell'utente, delle necessità del business e delle specifiche tecniche per sviluppare un sistema che soddisfi le aspettative degli stakeholder. Gli obiettivi principali dell'analisi dei requisiti includono la definizione chiara e completa delle funzionalità del sistema, la specifica dei vincoli e delle restrizioni, e l'identificazione dei requisiti non funzionali come quelli relativi alle prestazioni, sicurezza e usabilità."
+      "definizione": "L'analisi dei requisiti è il processo di raccolta, documentazione e analisi delle esigenze e delle funzionalità di un sistema software. Questo processo coinvolge la comprensione approfondita dei requisiti dell'utente, delle necessità del business e delle specifiche tecniche per sviluppare un sistema che soddisfi le aspettative degli stakeholders. Gli obiettivi principali dell'analisi dei requisiti includono la definizione chiara e completa delle funzionalità del sistema, la specifica dei vincoli e delle restrizioni, e l'identificazione dei requisiti non funzionali come quelli relativi a prestazioni, sicurezza e usabilità."
     },
     {
       "termine": "Analisi dei Rischi",
-      "definizione": "L'analisi dei rischi è il processo di identificazione, valutazione e gestione dei potenziali problemi e delle minacce che potrebbero influenzare il successo di un progetto o di un'attività. Questo processo coinvolge la valutazione dei rischi potenziali, la determinazione della loro probabilità di accadere e dell'impatto che potrebbero avere sul progetto, nonché lo sviluppo di strategie per mitigare o gestire tali rischi. L'obiettivo dell'analisi dei rischi è identificare precocemente le potenziali problematiche e adottare misure preventive o correttive per ridurre al minimo gli impatti negativi sul progetto."
+      "definizione": "L'analisi dei rischi è il processo di identificazione, valutazione e gestione dei potenziali problemi e delle minacce che potrebbero influenzare il successo di un progetto o di un'attività. Questo processo coinvolge la valutazione dei rischi potenziali, la determinazione della loro probabilità di accadere e dell'impatto che potrebbero avere sul progetto, nonché lo sviluppo di strategie per mitigare o gestire tali rischi. L'obiettivo dell'analisi dei rischi è identificare proattivamente le potenziali problematiche e adottare misure preventive o correttive per ridurre al minimo gli impatti negativi sul progetto."
     }
     ],
   "B": [],
@@ -21,34 +21,43 @@
     },
     {
         "termine": "Caption",
-        "definizione": "La caption di una tabella o di una immagine è una breve descrizione che fornisce informazioni sul contenuto della tabello o della immagine stessa. Ha lo scopo di spiegare il contenuto visivo, mentre nel caso delle immagini può produrre una breve descrizione o un titolo per aiutare il lettore a comprendere il contesto della stessa"
+        "definizione": "La caption di una tabella o di una immagine è una breve descrizione che fornisce informazioni sul contenuto della tabello o della immagine stessa. Ha lo scopo di spiegare il contenuto visivo, mentre nel caso delle immagini può produrre una breve descrizione o un titolo per aiutare il lettore a comprendere il contesto della stessa."
     },
     {
         "termine": "Casi d'uso",
-        "definizione": "Si tratta di una descrizione strutturata che descrive come gli attori (utenti) interagiscano con il sistema, andando a rappresentare sequenze di azioni che mostrano come debba essere utilizzato il sistema."
+        "definizione": "Si tratta di una descrizione strutturata che indica come gli attori (utenti) interagiscano con il sistema, andando a rappresentare sequenze di azioni che mostrano come possa essere utilizzato il sistema."
     },
     {
         "termine": "Consuntivo",
         "definizione": "Il consuntivo è un rapporto che confronta le previsioni con i dati effettivi, al fine di valutare le variazioni e le differenze tra ciò che era previsto e ciò che è stato effettivamente raggiunto. Il consuntivo può essere utilizzato per analizzare il bilancio finanziario, il tempo impiegato, le risorse utilizzate e altre metriche di progetto. Fornisce una valutazione critica delle prestazioni e dell'efficacia del progetto, consentendo di prendere decisioni informate e di apportare eventuali correzioni necessarie per mantenere il progetto sul giusto percorso."
+    },
+        {
+        "termine": "Container",
+        "definizione": "I container sono una tecnologia che consente di raggruppare e isolare le applicazioni con l'intero ambiente di runtime. In questo modo è più semplice mantenere un comportamento e una funzionalità coerenti, spostando al contempo l'applicazione posta all'interno del container tra ambienti (sviluppo, test, produzione) e tra cloud pubblico, privato, ibrido e on premise. Essendo leggeri e portabili, i container offrono la possibilità di uno sviluppo più rapido per venire incontro alle esigenze aziendali quando emergono."
     }
 
   ],
   "D": [
     {
         "termine": "Design",
-        "definizione": "Il design nel contesto dello sviluppo del software è la fase in cui vengono definiti l'architettura, la struttura e le specifiche dettagliate del sistema software. Questo processo include la progettazione dell'interfaccia utente, la scelta delle tecnologie e dei linguaggi di programmazione, nonchè la pianificazione dell'implementazione del sistema. È una fase cruciale che assicura una organizzazione efficiente e logica delle funzionalità del software."
+        "definizione": "Il design nel contesto dello sviluppo del software è la fase in cui vengono definite l'architettura, la struttura e le specifiche dettagliate del sistema software. Questo processo include la progettazione dell'interfaccia utente, la scelta delle tecnologie e dei linguaggi di programmazione, nonchè la pianificazione dell'implementazione del sistema. È una fase cruciale che assicura una organizzazione efficiente e logica delle funzionalità del software."
     }, 
     {
         "termine": "Diagramma dei casi d'uso",
-        "definizione": "Il diagramma dei casi d'uso è una rappresentazione della grafica delle interazione tra gli attori esterni al sistema software e il sistema software stesso. È composto da attori, casi d'uso e le relazioni tra di essi e fornisce una panoramica visiva delle funzionalità offerte dal sistema e dei suoi utilizzi da parte degli attori."
+        "definizione": "Il diagramma dei casi d'uso è una rappresentazione grafica delle interazioni tra gli attori esterni al sistema software e il sistema software stesso. È composto da attori, casi d'uso e le relazioni tra di essi e fornisce una panoramica visiva delle funzionalità offerte dal sistema e dei suoi utilizzi da parte degli attori."
     }
   ],
   "E": [],
-  "F": [],
+  "F": [
+    {
+        "termine": "Framework",
+        "definizione": "Un framework software è un'impalcatura predefinita di componenti, librerie di codice e linee guida che fornisce una base strutturata per lo sviluppo di applicazioni, semplificando ed organizzando in maniera omogenea il lavoro degli sviluppatori. Consente di riutilizzare codice, aumentare la velocità di sviluppo ed imporre standard di progettazione."
+    }
+  ],
   "G": [
     {
         "termine": "Git",
-        "definizione": "Git è un sistema di controllo di versione distribuito utilizzato principalmente nello sviluppo software. Consente agli sviluppatori di tenere traccia delle modifiche apportate al codice sorgente nel corsto del tempo, coordinare il lavoro con altri membri del team e gestire le diverse versioni di un progetto in modo efficiente. Git consente di creare repository sia localmente che su server remoti, facilitando la collaborazione tra sviluppatori."
+        "definizione": "Git è un sistema di controllo di versione distribuito utilizzato principalmente nello sviluppo software. Consente agli sviluppatori di tenere traccia delle modifiche apportate al codice sorgente nel corso del tempo, coordinare il lavoro con altri membri del team e gestire le diverse versioni di un progetto in modo efficiente. Git consente di creare repository sia localmente che su server remoti, facilitando la collaborazione tra sviluppatori."
     }, 
     {
         "termine": "Gitflow",
@@ -56,14 +65,14 @@
     },
     {
         "termine": "GitHub",
-        "definizione": "GitHub è una piattaforma di hosting di codice sorgente basata su Git, che fornisce strumenti per la gestione dei repository, la collaborazione tra sviluppatori e il controllo delle versioni dei progetti software, Su GitHub, gli sviluppatori possono caricare i propri progetti, tenere traccia delle modifiche tramite commit, creare e gestire branch, collaborare con altri utenti tramite problemi e richieste di pull, e distribuire le proprie applicazioni."
+        "definizione": "GitHub è una piattaforma di hosting di codice sorgente basata su Git, che fornisce strumenti per la gestione dei repository, la collaborazione tra sviluppatori e il controllo delle versioni dei progetti software. Su GitHub, gli sviluppatori possono caricare i propri progetti, tenere traccia delle modifiche tramite commit, creare e gestire branch, collaborare con altri utenti tramite problemi e richieste di pull, e distribuire le proprie applicazioni."
     }
   ],
   "H": [],
   "I": [
     {
         "termine": "Ingegneria del software",
-        "definizione": "L'ingegneria del software è un insieme di principi e pratiche utilizzati per progettare, sviluppare, mantenere, testare e valutare il software per computer. Le relative tecniche vengono impegate per guidare il processo di sviluppo del software, che comprende la definizione, l'implementazione, la valutazione, la misurazione, la gestione, il cambiamento e il miglioramento del ciclo di vita del software. Questa disciplina pone un forte accento sulla gestione della configurazione del software, che implica il controllo sistematico delle modifiche alla configurazione il mantenimento dell'integrità e della tracciabilità della configurazione e del codice durante tutto il ciclo di vita del sistema, mediante l'uso del versioning del software."
+        "definizione": "L'ingegneria del software è un insieme di principi e pratiche utilizzati per progettare, sviluppare, mantenere, testare e valutare il software per computer. Le relative tecniche vengono impiegate per guidare il processo di sviluppo del software, che comprende la definizione, l'implementazione, la valutazione, la misurazione, la gestione, il cambiamento e il miglioramento del ciclo di vita del software. Questa disciplina pone un forte accento sulla gestione della configurazione del software, che implica il controllo sistematico delle modifiche alla configurazione, il mantenimento dell'integrità e della tracciabilità della configurazione e del codice durante tutto il ciclo di vita del sistema, mediante l'uso del versionamento del software."
     }
   ],
   "J": [],
