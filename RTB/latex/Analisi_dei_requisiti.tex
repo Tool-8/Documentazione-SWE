@@ -323,7 +323,7 @@
             \hline
             \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
             \hline
-            0.13 & Niccolò Feltrin & Aggiunta caso d'uso \UCRef{commento}, aggiunta requisiti RF-O-27, RF-O-50, RF-O-51, RF-O-52, RF-O-53, RF-O-54, RF-O-55, modificati requisiti RF-O-22, RF-O-23, RF-O-24, RF-O-25, RF-O-26 (aggiunto "e la rimozione"), rimozione requisito ridondante riferito al caso d'uso UC5.1.1 & 02/03/2026 & - \\
+            0.13 & Niccolò Feltrin & Aggiunta caso d'uso \UCRef{commento}, aggiunta requisiti RF-O-27, RF-O-50, RF-O-51, RF-O-52, RF-O-53, RF-O-54, RF-O-55, modificati requisiti RF-O-22, RF-O-23, RF-O-24, RF-O-25, RF-O-26 (aggiunto "e la rimozione"), rimozione requisito ridondante riferito al caso d'uso UC5.1.1 & 02/03/2026 & Stefano Maso \\
             \hline
             0.12 & Niccolò Feltrin & Stesura requisiti funzionali, di qualità e di vincolo & 26/02/2026 & Stefano Maso \\
             \hline
@@ -4435,8 +4435,12 @@
             \hline
             \reqV{O} & L'applicazione deve essere accessibile via browser e tramite connessione internet & \UCRef{scrivi} \\ \hline
             \reqV{O} & Il testo generato dall'agente esterno, se accettato dall'utente, deve essere inserito nella posizione del cursore & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}  \\ \hline
-            & & \\ \hline
-            & & \\ \hline
+            \reqV{O} & L'agente esterno deve produrre testo grammaticalmente, sintatticamente e semanticamente corretto & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{critica} \\ \hline
+            \reqV{O} & Il sistema deve avvisare l'utente in caso dell'impossibilità nell'eseguire una richiesta & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
+            \reqV{O} & Il sistema deve comunicare con l'agente esterno tramite chiamate HTTP standard, seguendo l'architettura REST & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline 
+            \reqV{O} & L'agente deve produrre traduzioni accurate nella lingua selezionata & \UCRef{traduci} \\ \hline
+            \reqV{O} & Il sistema deve permettere l'importazione di file markdown (.md) & \UCRef{importa} \\ \hline
+            \reqV{O} & Il sistema deve supportare la codifica dei caratteri Unicode (UTF-8) in modo da garantire la leggibilità di testi multilingua & \UCRef{scrivi} \\ \hline
             \reqV{OP} & La password inserita dall'utente deve avere almeno 8 caratteri e contenere un carattere speciale & \UCRef{reg_pwd} \\ \hline
             \reqV{OP} & Il nome utente deve essere almeno di 4 caratteri e non può contenere caratteri speciali & \UCRef{reg_nome} \\ \hline
             \caption{Tabella Requisiti di Vincolo}
