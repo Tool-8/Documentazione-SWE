@@ -322,6 +322,8 @@
         \begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
             \hline
             \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+            \hline 
+            0.14 & Stefano Maso & Aggiunta requisiti RF-O-51, RF-O-52, RF-O-53, RF-O-59, RF-O-60, RF-O-61, RV-O-3, RV-O-4, RV-O-11, RQ-D-6, modifica requisiti RF-O-50 & 4/3/2026 & - \\ 
             \hline
             0.13 & Niccolò Feltrin & Aggiunta caso d'uso \UCRef{commento}, aggiunta requisiti RF-O-27, RF-O-50, RF-O-51, RF-O-52, RF-O-53, RF-O-54, RF-O-55, modificati requisiti RF-O-22, RF-O-23, RF-O-24, RF-O-25, RF-O-26 (aggiunto "e la rimozione"), rimozione requisito ridondante riferito al caso d'uso UC5.1.1 & 02/03/2026 & Stefano Maso \\
             \hline
@@ -4355,12 +4357,17 @@
             \reqF{O} & Il sistema deve permettere all'utente di tradurre del testo tramite un agente esterno & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & \UCRef{genera} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di sostituire nell'editor il testo originale con quello generate dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in seguito alla selezione del testo originale, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in coda a tutto il testo presente nell'editor, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di "rifiutare" il testo generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & \UCRef{riassumi}, \UCRef{traduci}, \UCRef{riscrivi}, \UCRef{genera} \\ \hline
             \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione & \UCRef{genera} \\ \hline
-            \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo originale viene modificato & \UCRef{mod_traduzione} \\ \hline
             \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo tradotto viene modificato & \UCRef{mod_traduzione} \\ \hline
-            \reqF{O} & Il sistema deve consentire all’utente di aggiornare una traduzione precedentemente inserita & \UCRef{traduci_redo} \\ \hline
+            \reqF{O} & Il sistema deve consentire all’utente di aggiornare una traduzione precedentemente inserita se il testo originale è presente ed è stato modificato & \UCRef{traduci_redo} \\ \hline
             \reqF{O} & Il sistema deve consentire all'utente di rimuovere una traduzione precedentemente inserita & \UCRef{traduci} \\ \hline
+            \reqF{O} & Il sistema deve consentire all'utente di rimuovere il testo originale di una traduzione precedentemente inserita & \UCRef{traduci} \\ \hline
+            \reqF{O} & Il sistema deve notificare all'utente la perdita del testo originale di riferimento qualore venga eliminato, lasciando la traduzione priva di collegamento & \UCRef{mod_traduzione} \\ \hline
+            \reqF{O} & Il sistema non deve consentire l'inserimento di una traduzione all'interno di una porzione di testo già tradotta & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema alla chiusura di una nota, se presenti delle modifiche non salvate deve avvisare l'utente della presenza di modifiche & \UCRef{chiudi} \\ \hline
             \reqF{O} & Il sistema in caso di problemi di connessione con l'agente esterno deve avvisare l'utente & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
             \reqF{D} & Il sistema deve aggiornare automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & \UCRef{ricerca} \\ \hline
@@ -4416,6 +4423,7 @@
             \reqQ{D} & Il sistema deve preservare correttamente i caratteri Unicode durante la scrittura e il salvataggio, senza corruzione del testo & \UCRef{salva}, \UCRef{scrivi} \\ \hline
             \reqQ{D} & L'editor deve annullare e ripristinare le modifiche nel testo in modo fluido, senza ritardi percepibili & \UCRef{annulla}, \UCRef{ripristina} \\ \hline
             \reqQ{D} & In caso di incollaggio di contenuti non testuali, l’editor deve mantenere la reattività e mostrare una notifica non bloccante che spieghi l’azione effettuata (rifiuto o conversione in testo) & \UCRef{incolla} \\ \hline
+            \reqQ{D} & L'editor deve evidenziare in modo chiaro e distinguibile la porzione di testo utilizzato come prompt per l'interrogazione del LLM, così da renderla immediatamente riconoscibile all'utente & \UCRef{genera} \\ \hline
             \reqQ{OP} & Le credenziali dell'utente devon essere trasmesse in modo sicuro durante l'autenticazione e la registrazione & \UCRef{autentica}, \UCRef{registra} \\ \hline
             \reqQ{OP} & Il sistema deve completare una richiesta di autenticazione e registrazione in un breve lasso di tempo & \UCRef{autentica}, \UCRef{registra} \\ \hline
             \reqQ{OP} & Il sistema non deve memorizzare né mostrare password in chiaro & \UCRef{autentica}, \UCRef{auth_pwd}, \UCRef{registra}, \UCRef{reg_pwd}, \UCRef{elim_acc_err} \\ \hline
@@ -4435,12 +4443,15 @@
             \hline
             \reqV{O} & L'applicazione deve essere accessibile via browser e tramite connessione internet & \UCRef{scrivi} \\ \hline
             \reqV{O} & Il testo generato dall'agente esterno, se accettato dall'utente, deve essere inserito nella posizione del cursore & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}  \\ \hline
+            \reqV{O} & Il sistema deve consentire la selezione esclusivamente all'interno delle porzioni di testo tradotte, impedendo la selezione di altre parti del testo durante tale operazione & \UCRef{traduci} \\ \hline
+            \reqV{O} & Il sistema deve consentire la selezione esclusivamente all'interno delle porzioni di testo originale (associato ad una traduzione), impedendo la selezione di altre parti del testo durante tale operazione & \UCRef{traduci} \\ \hline
             \reqV{O} & L'agente esterno deve produrre testo grammaticalmente, sintatticamente e semanticamente corretto & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{critica} \\ \hline
             \reqV{O} & Il sistema deve avvisare l'utente in caso dell'impossibilità nell'eseguire una richiesta & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
             \reqV{O} & Il sistema deve comunicare con l'agente esterno tramite chiamate HTTP standard, seguendo l'architettura REST & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline 
             \reqV{O} & L'agente deve produrre traduzioni accurate nella lingua selezionata & \UCRef{traduci} \\ \hline
             \reqV{O} & Il sistema deve permettere l'importazione di file markdown (.md) & \UCRef{importa} \\ \hline
             \reqV{O} & Il sistema deve supportare la codifica dei caratteri Unicode (UTF-8) in modo da garantire la leggibilità di testi multilingua & \UCRef{scrivi} \\ \hline
+            \reqV{O} & Il sistema deve impedire la selezione contemporanea di porzioni di testo appartenenti a una traduzione (testo originale o testo tradotto) e porzioni di testo non appartenenti ad alcuna traduzione & \UCRef{traduci}, \UCRef{seleziona} \\ \hline
             \reqV{OP} & La password inserita dall'utente deve avere almeno 8 caratteri e contenere un carattere speciale & \UCRef{reg_pwd} \\ \hline
             \reqV{OP} & Il nome utente deve essere almeno di 4 caratteri e non può contenere caratteri speciali & \UCRef{reg_nome} \\ \hline
             \caption{Tabella Requisiti di Vincolo}
