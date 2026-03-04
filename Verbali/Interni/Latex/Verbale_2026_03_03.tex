@@ -1,0 +1,150 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 03 Marzo 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{03/03/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
+  \hline
+  1.0 & Spadiliero Ruben & Prima stesura & 03/03/2026 & Banchieri Giuliano\\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di inizio sprint \#5. Discussione sui task da fare e organizzazione per il nuovo sprint. 
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Giuliano Banchieri & Verificatore \\
+  \hline
+  Gabriele Disa & Amministratore \\
+  \hline
+  Stefano Maso & Analista \\
+  \hline
+  Besnik Murtezan & Analista \\
+  \hline
+  Ruben Spadiliero & Responsabile \\
+  \hline
+  Niccolò Feltrin & Amministratore \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l’obiettivo di analizzare lo stato attuale del Proof of Concept (PoC) e valutare eventuali integrazioni o miglioramenti da apportare. In particolare, è stato discusso quali funzionalità aggiungere per rendere il PoC maggiormente allineato agli obiettivi del progetto e alle aspettative definite in fase iniziale.
+
+È stata inoltre condotta un’analisi dettagliata dei requisiti, confrontandoli con quanto effettivamente implementato nel PoC. Questo confronto ha permesso di individuare eventuali elementi mancanti, funzionalità incomplete e aspetti che necessitano di ulteriori approfondimenti o sviluppi.
+
+La riunione è stata anche finalizzata all’organizzazione delle attività in vista della consegna dell’RTB, prevista per la prossima settimana. Sono state quindi definite le priorità operative, chiarite le responsabilità e pianificati i prossimi passi per garantire il rispetto delle tempistiche.
+
+Infine, sono stati assegnati nuovi ruoli per lo Sprint \#5, con l’obiettivo di migliorare la distribuzione delle attività e ottimizzare l’efficienza del team.
+
+
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Ruben Spadiliero [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 03/03/2026 (Issue \#73)
+    \end{enumerate}
+\item \textbf{Assegnato a Stefano Maso, Besnik Murtezan [Analisti]:}
+    \begin{enumerate}
+    \item Controllo finale dell'Analisi dei Requisiti (Issue \#68)
+    \end{enumerate}
+\item \textbf{Assegnato a Niccolò Feltrin, Gabriele Disa [Amministratori]:}
+    \begin{enumerate}
+    \item Completamento glossario (Issue \#69)
+    \item Aggiornare Piano di Qualifica(Aggiornare cruscotto di valutazione e
+Aggiungere l'indice di Gulpease) (Issue \#71)
+    \item Aggiornare Piano di Progetto (Issue \#70)
+    \end{enumerate}
+\item \textbf{Assegnato a Banchieri Giuliano [Verificatore]:}
+    \begin{enumerate}
+    \item Verifica del PoC (Issue \#72)
+    \end{enumerate}
+\end{itemize}
+\end{document}
