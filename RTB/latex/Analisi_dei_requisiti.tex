@@ -254,6 +254,8 @@
         \UCdefsubsub{barrato_rim}{Rimozione Barrato}
     \UCdefsub{link}{Link Ipertestuale}
         \UCdefsubsub{link_rim}{Rimozione\\Link Ipertestuale}
+    \UCdefsub{commento}{Testo Commentato}
+        \UCdefsubsub{commento_rim}{Rimozione Commento}
 \UCdef{elenco}{Creazione Elenco}
     \UCdefsub{elenco_num}{Elenco Numerato}
     \UCdefsub{elenco_punt}{Elenco Puntato}
@@ -321,13 +323,15 @@
             \hline
             \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
             \hline
+            0.13 & Niccolò Feltrin & Aggiunta caso d'uso \UCRef{commento}, aggiunta requisiti RF-O-27, RF-O-50, RF-O-51, RF-O-52, RF-O-53, RF-O-54, RF-O-55, modificati requisiti RF-O-22, RF-O-23, RF-O-24, RF-O-25, RF-O-26 (aggiunto "e la rimozione"), rimozione requisito ridondante riferito al caso d'uso UC5.1.1 & 02/03/2026 & Stefano Maso \\
+            \hline
             0.12 & Niccolò Feltrin & Stesura requisiti funzionali, di qualità e di vincolo & 26/02/2026 & Stefano Maso \\
             \hline
             0.11 & Ruben Spadiliero & Stesura casi d'uso opzionali (\UCRef{autentica}, \UCRef{registra}, \UCRef{logout}, \UCRef{elimina_acc}) & 24/02/2026 & Stefano Maso \\
             \hline
             0.10 & Niccolò Feltrin & Divisione casi d'uso in macroaree, rimozione caso d'uso UC2 (modificati casi d'uso che includevano UC2), stesura caso d'uso UC10 (Esportazione nota da archivio) & 23/02/2026 & Stefano Maso \\
             \hline
-            0.9 & Niccolò Feltrin & Modificate numerazioni casi d'uso$^G$ e stesura casi d'uso UC2 (Visualizzazione Nota), UC5.1 (Primo Salvataggio Nota), UC9 (Cambio Visualizzazione) e UC10 (Rinominazione Nota) & 9/01/2026 & Stefano Maso \\
+            0.9 & Niccolò Feltrin & Modificate numerazioni casi d'uso e stesura casi d'uso UC2 (Visualizzazione Nota), UC5.1 (Primo Salvataggio Nota), UC9 (Cambio Visualizzazione) e UC10 (Rinominazione Nota) & 9/01/2026 & Stefano Maso \\
             \hline
             0.8 & Giuliano Banchieri & Riscrittura casi d'uso (UC15, UC16, UC17) e stesura casi d'uso UC15, UC15.2, UC15.3, UC15.4, UC15.5, UC16, UC16.1, UC16.2, UC17, UC18, UC19 & 8/01/2026 & Stefano Maso \\
             \hline
@@ -716,7 +720,7 @@
             \umlassoc{Server Locale}{chiusura}
 
             % Associazioni Casi d'Uso
-            \umlinclude{chiusura}{salvataggio}
+            \umlextend{chiusura}{salvataggio}
 
         \end{tikzpicture}
     \end{center}
@@ -2447,6 +2451,84 @@
 
     \vspace{1cm}
 
+    \paragraph*{\UCText{commento}}
+    \addcontentsline{toc}{paragraph}{\UCText{commento}}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=5, name=Formattazione]{\UCName{formatta}}
+                \umlusecase[x=0, y=3, name=Commento]{\UCName{commento}}
+                \umlusecase[x=0, y=1, name=err_comm]{\UCName{commento_rim}}
+            \end{umlsystem}
+
+            % Attore
+            \umlactor[x=0, y=5]{Utente}
+
+            % Associazione
+            \umlassoc{Utente}{Formattazione}
+
+            % Generalizzazione
+            \umlinherit{Commento}{Formattazione}
+            \umlextend{err_comm}{Commento}
+        \end{tikzpicture}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha selezionato una porzione di testo o il testo intero (\UCRef{seleziona})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La porzione di testo selezionata è delimitata dai marcatori di commento
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente attiva la funzionalità \textit{"Testo commentato"}
+        \item La porzione di testo selezionata viene delimitata dai marcatori di commento
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso in cui l'utente attivi la funzionalità "Testo commentato" sul del testo già commentato:
+        \begin{enumerate}
+            \item \UCRef{commento_rim}
+        \end{enumerate}
+    \end{itemize}
+
+    \subparagraph*{\UCText{commento_rim}}
+    \addcontentsline{toc}{subparagraph}{\UCText{commento_rim}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente ha utilizzato la funzione \textit{"Testo commentato"} su del testo già commentato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La porzione di testo selezionata non è più delimitata dai marcatori di commento
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Testo commentato"} su del testo già commentato
+        \item La porzione di testo selezionata non è più delimitata dai marcatori di commento
+    \end{enumerate}
+
+    \vspace{1cm}
+
     \subsubsection*{\UCText{elenco}}
     \addcontentsline{toc}{subsubsection}{\UCText{elenco}}
 
@@ -3191,6 +3273,8 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il testo generato all'utente
+        \item L'utente accetta l'inserimento del testo generato
+        \item Il sistema inserisce il testo generato nella nota
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -4181,86 +4265,124 @@
         \item \textbf{Numero}\\
             Numero progressivo che identifica il requisito appartenente ad una tipologia. 
     \end{itemize}
+
+    % Auto counter per i requisiti
+    \newcounter{RF@O}
+    \newcounter{RF@D}
+    \newcounter{RF@OP}
+
+    \newcounter{RQ@O}
+    \newcounter{RQ@D}
+    \newcounter{RQ@OP}
+
+    \newcounter{RV@O}
+    \newcounter{RV@D}
+    \newcounter{RV@OP}
+
+    \newcounter{reqTotal}
+
+    \newcommand{\reqF}[2]{%
+        \refstepcounter{RF@#1}%
+        \stepcounter{reqTotal}%
+        \noindent{RF-#1-\arabic{RF@#1}}\quad #2\par
+    }
+
+    \newcommand{\reqQ}[2]{%
+        \refstepcounter{RQ@#1}%
+        \stepcounter{reqTotal}%
+        \noindent{RQ-#1-\arabic{RQ@#1}}\quad #2\par
+    }
+
+    \newcommand{\reqV}[2]{%
+        \refstepcounter{RV@#1}%
+        \stepcounter{reqTotal}%
+        \noindent{RV-#1-\arabic{RV@#1}}\quad #2\par
+    }
+
     \subsection{Requisiti funzionali}
         \begin{longtable}{|l|p{8cm}|p{3.5cm}|}
             \hline
             \textbf{Requisito} & \textbf{Descrizione} & \textbf{Casi d’uso correlati} \\ \hline
             \endfirsthead
             \hline
-            RF-O-1 & Il sistema deve permettere all'utente di visualizzare l'archivio delle note presenti  & \UCRef{archivio}, \UCRef{arch_sing}, \UCRef{arch_nome}, \UCRef{arch_data}, \UCRef{arch_ult_data} \\ \hline
-            RF-O-2 & Il sistema deve permettere all'utente di aprire un nota & \UCRef{apri} \\ \hline
-            RF-O-3 & Il sistema deve permettere all'utente di uscire da una nota & \UCRef{chiudi} \\ \hline
-            RF-O-4 & Il sistema deve permettere all'utente di creare una nuova nota & \UCRef{crea} \\ \hline
-            RF-O-5 & Il sistema deve permettere all'utente di salvare la nota su cui sta lavorando & \UCRef{salva} \\ \hline
-            RF-O-6 & Il sistema deve permettere all'utente di salvare la nota su cui sta lavorando per la prima volta, chiedendo il nome della nota da associare nell'archivio & \UCRef{salva_primo} \\ \hline
-            RF-O-7 & Il sistema deve permettere all'utente di salvare nuovamente la nota su cui sta lavorando con un altro nome & \UCRef{salva_nuovo} \\ \hline
-            RF-O-8 & Il sistema deve permettere all'utente di clonare una nota & \UCRef{clona} \\ \hline
-            RF-O-9 & Alla clonazione di una nota, il sistema deve assegnare automaticamente un nome di default (es. "Nota \textit{data-ora}") che l’utente può modificare & \UCRef{clona} \\ \hline
-            RF-O-10 & Il sistema deve permettere all'utente di ricercare le note per nome nell'archivio & \UCRef{ricerca} \\ \hline
-            RF-O-11 & Il sistema deve permettere all'utente di eliminare una nota & \UCRef{elimina} \\ \hline
-            RF-O-12 & Il sistema deve permettere all'utente di rinominare una nota & \UCRef{rinomina} \\ \hline
-            RF-O-13 & Il sistema deve permettere all'utente di esportare una nota aperta & \UCRef{esporta} \\ \hline
-            RF-O-14 & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio & \UCRef{esporta_archivio} \\ \hline
-            RF-O-15 & Il sistema deve permettere all'utente di importare una nota & \UCRef{importa} \\ \hline
-            RF-O-16 & Il sistema deve permettere all’utente di scrivere nell'editor con caratteri Unicode (es. lettere accentate e simboli) & \UCRef{scrivi} \\ \hline
-            RF-O-17 & Il sistema deve compilare la sintassi Markdown  & \UCRef{visua_formattato} \\ \hline
-            RF-O-18 & Il sistema deve permettere la visualizzazione del documento formattato secondo la sintassi Markdown &  \UCRef{visua_formattato} \\ \hline
-            RF-O-19 & Il sistema deve permettere di cambiare modalità di visualizzazione & \UCRef{cambio_visua}, \UCRef{cambio_visua_markdown}, \UCRef{cambio_visua_mark_render}, \UCRef{cambio_visua_render} \\ \hline
-            RF-O-20 & Il sistema deve fornire un'area di editing di testo in cui è possibile inserire e modificare del testo per la compilazione Markdown & \UCRef{scrivi} \\ \hline
-            RF-O-21 & Il sistema deve permettere l'applicazione di formattazioni Markdown senza scrivere manualmente la sintassi & \UCRef{formatta} \\ \hline
-            RF-O-22 & Il sistema deve permettere l'applicazione della formattazione testo grassetto senza scrivere manualmente la sintassi & \UCRef{grassetto} \\ \hline
-            RF-O-23 & Il sistema deve permettere l'applicazione della formattazione testo corsivo senza scrivere manualmente la sintassi & \UCRef{corsivo} \\ \hline
-            RF-O-24 & Il sistema deve permettere l'applicazione della formattazione testo sottolineato senza scrivere manualmente la sintassi & \UCRef{sottolineato} \\ \hline
-            RF-O-25 & Il sistema deve consentire l’applicazione della formattazione testo barrato senza richiedere l’inserimento manuale della sintassi & \UCRef{barrato} \\ \hline
-            RF-O-26 & Il sistema deve consentire l'inserimento di link ipertestuali senza richiedere l'inserimento manuale della sintassi & \UCRef{link} \\ \hline
-            RF-O-27 & Il sistema deve consentire l'inserimento di elenchi numerati & \UCRef{elenco_num} \\ \hline
-            RF-O-28 & Il sistema deve consentire l'inserimento di elenchi puntati & \UCRef{elenco_punt} \\ \hline
-            RF-O-29 & Il sistema deve permettere all'utente di annullare l'ultima modifica fatta & \UCRef{annulla} \\ \hline
-            RF-O-30 & Il sistema deve permettere all'utente di ripristinare la modifica precdentemente annullata & \UCRef{ripristina} \\ \hline
-            RF-O-31 & Il sistema deve permettere all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & \UCRef{seleziona} \\ \hline
-            RF-O-32 & Il sistema deve permettere all'utente di copiare il testo selezionato & \UCRef{copia} \\ \hline
-            RF-O-33 & Il sistema deve permettere all'utente di tagliare il testo selezionato & \UCRef{taglia} \\ \hline
-            RF-O-34 & Il sistema deve permettere all'utente di incollare del testo nell'area di testo & \UCRef{incolla} \\ \hline
-            RF-O-35 & Il sistema deve permettere all'utente di esportare una nota aperta in MD & \UCRef{esporta_md} \\ \hline
-            RF-O-36 & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in MD & \UCRef{esporta_arch_md} \\ \hline
-            RF-O-37 & Il sistema deve avvisare l'utente della presenza di una nota con lo stesso nome in seguito al primo salvataggio & \UCRef{salva_primo_err} \\ \hline
-            RF-0-38 & Il sistema deve permettere all'utente di criticare il testo secondo il modello dei "Sei Cappelli" & \UCRef{critica} \\ \hline
-            RF-0-39 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Emotiva" (Cappello Rosso) & \UCRef{critica_rosso} \\ \hline
-            RF-0-40 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Neutra" (Cappello Bianco) & \UCRef{critica_bianco} \\ \hline
-            RF-0-41 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Ottimista" (Cappello Giallo) & \UCRef{critica_giallo} \\ \hline
-            RF-0-42 & Il sistema deve permettere all'utente di criticare il testo con una "Visione dell'avvocato del Diavolo" (Cappello Nero) & \UCRef{critica_nero} \\ \hline
-            RF-0-43 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Originale" (Cappello Verde) & \UCRef{critica_verde} \\ \hline
-            RF-0-44 & Il sistema deve permettere all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & \UCRef{critica_blu} \\ \hline
-            RF-O-45 & Il sistema permette all'utente di riassumere del testo tramite un agente esterno & \UCRef{riassumi} \\ \hline
-            RF-O-46 & Il sistema permette all'utente di riscrivere del testo tramite un agente esterno & \UCRef{riscrivi} \\ \hline
-            RF-O-47 & Il sistema permette all'utente di tradurre del testo tramite un agente esterno & \UCRef{traduci} \\ \hline
-            RF-O-48 & Il sistema permette l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & \UCRef{genera} \\ \hline
-            RF-O-49 & Il sistema deve avvisare l'utente se viene modificato del testo che ha generato una traduzione  & \UCRef{mod_traduzione} \\ \hline
-            RF-O-50 & Il sistema deve avvisare l'utente che il nome scelto per la nota è già utilizzato & \UCRef{salva_primo_err} \\ \hline
-            RF-O-51 & Il sistema alla chiusura di una nota, se presenti delle modifiche non salvate deve avvisare l'utente della presenza di modifiche & \UCRef{chiudi} \\ \hline
-            RF-O-52 & Il sistema in caso di problemi di connessione con l'agente esterno deve avvisare l'utente & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
-            & & \\ \hline
-            & & \\ \hline
-            RF-D-1 & Il sistema deve aggiornare automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & \UCRef{ricerca} \\ \hline
-            RF-D-2 & Il sistema deve permettere all'utente di esportare una nota aperta in PDF & \UCRef{esporta_pdf} \\ \hline
-            RF-D-3 & Il sistema deve permettere all'utente di esportare una nota aperta in HTML & \UCRef{esporta_html} \\ \hline
-            RF-D-4 & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in PDF & \UCRef{esporta_arch_pdf} \\ \hline
-            RF-D-5 & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in HTML & \UCRef{esporta_arch_html} \\ \hline
-            RF-D-6 & Il sistema deve permettere all'utente di utilizzare scorciatoie da tastiera per formattare il testo & \UCRef{formatta} \\ \hline
-            RF-D-7 & Il sistema deve consentire all’utente di eseguire un minimo di 20 operazioni consecutive di annullamento e di ripristino delle modifiche sull’editor della nota corrente & \UCRef{annulla}, \UCRef{ripristina} \\ \hline
-            & & \\ \hline
-            & & \\ \hline
-            & & \\ \hline
-            RF-OP-1 & Il sistema deve aggiornare automaticamente la visualizzazione del testo formattato ad ogni modifica del Markdown, senza richiedere un’azione esplicita & \UCRef{formatta} \\ \hline
-            RF-OP-2 & Il sistema deve permettere all'utente di registrarsi tramite nome utente e password & \UCRef{registra}, \UCRef{reg_nome}, \UCRef{reg_pwd} \\ \hline
-            RF-OP-3 & Se password o nome utente non sono corrette il sistema non deve permettere la registrazione & \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
-            RF-OP-4 & Il sistema deve permettere all'utente di accedere al proprio account & \UCRef{autentica}, \UCRef{auth_nome}, \UCRef{auth_pwd} \\ \hline
-            RF-OP-5 & Se password o nome utente non sono corrette il sistema non deve permettere l'autenticazione & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err} \\ \hline
-            RF-OP-6 & L'utente può effettuare il logout e terminare la sessione & \UCRef{logout} \\ \hline
-            RF-OP-7 & Il sistema deve permettere ad un utente autenticato di eliminare il proprio account  & \UCRef{elimina_acc} \\ \hline
-            RF-OP-8 & Il sistema deve richiedere la password dell'utente per l'eliminazione del suo account  & \UCRef{pwd_elimina} \\ \hline
-            RF-OP-9 & Il sistema deve avvisare l'utente che la password inserita per l'eliminazione dell'account è sbagliata  & \UCRef{pwd_elimina} \\ \hline
-            RF-OP-10 & Il sistema deve richiedere la conferma all'utente per l'eliminazione del suo account  & \UCRef{conf_elim} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di visualizzare l'archivio delle note presenti  & \UCRef{archivio}, \UCRef{arch_sing}, \UCRef{arch_nome}, \UCRef{arch_data}, \UCRef{arch_ult_data} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di aprire un nota & \UCRef{apri} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di uscire da una nota & \UCRef{chiudi} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di creare una nuova nota & \UCRef{crea} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di salvare la nota su cui sta lavorando & \UCRef{salva} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di salvare la nota su cui sta lavorando per la prima volta, chiedendo il nome della nota da associare nell'archivio & \UCRef{salva_primo} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di salvare nuovamente la nota su cui sta lavorando con un altro nome & \UCRef{salva_nuovo} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di clonare una nota & \UCRef{clona} \\ \hline
+            \reqF{O} & Alla clonazione di una nota, il sistema deve assegnare automaticamente un nome di default (es. "Nota \textit{data-ora}") che l’utente può modificare & \UCRef{clona} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di ricercare le note per nome nell'archivio & \UCRef{ricerca} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di eliminare una nota & \UCRef{elimina} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di rinominare una nota & \UCRef{rinomina} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota aperta & \UCRef{esporta} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio & \UCRef{esporta_archivio} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di importare una nota & \UCRef{importa} \\ \hline
+            \reqF{O} & Il sistema deve permettere all’utente di scrivere nell'editor con caratteri Unicode (es. lettere accentate e simboli) & \UCRef{scrivi} \\ \hline
+            \reqF{O} & Il sistema deve compilare la sintassi Markdown  & \UCRef{visua_formattato} \\ \hline
+            \reqF{O} & Il sistema deve permettere la visualizzazione del documento formattato secondo la sintassi Markdown &  \UCRef{visua_formattato} \\ \hline
+            \reqF{O} & Il sistema deve permettere di cambiare modalità di visualizzazione & \UCRef{cambio_visua}, \UCRef{cambio_visua_markdown}, \UCRef{cambio_visua_mark_render}, \UCRef{cambio_visua_render} \\ \hline
+            \reqF{O} & Il sistema deve fornire un'area di editing di testo in cui è possibile inserire e modificare del testo per la compilazione Markdown & \UCRef{scrivi} \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione di formattazioni Markdown senza scrivere manualmente la sintassi & \UCRef{formatta} \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo grassetto senza scrivere manualmente la sintassi & \UCRef{grassetto}, \UCRef{grassetto_rim} \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo corsivo senza scrivere manualmente la sintassi & \UCRef{corsivo}, \UCRef{corsivo_rim} \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo sottolineato senza scrivere manualmente la sintassi & \UCRef{sottolineato}, \UCRef{sottolineato_rim} \\ \hline
+            \reqF{O} & Il sistema deve consentire l’applicazione e la rimozione della formattazione testo barrato senza richiedere l’inserimento manuale della sintassi & \UCRef{barrato}, \UCRef{barrato_rim} \\ \hline
+            \reqF{O} & Il sistema deve consentire l'inserimento e la rimozione di link ipertestuali senza richiedere l'inserimento manuale della sintassi & \UCRef{link}, \UCRef{link_rim} \\ \hline
+            \reqF{O} & Il sistema deve consentire l'applicazione e la rimozione della formattazione testo commentato senza richiede l'inserimento manuale della sintassi & \UCRef{commento}, \UCRef{commento_rim} \\ \hline
+            \reqF{O} & Il sistema deve consentire l'inserimento di elenchi numerati & \UCRef{elenco_num} \\ \hline
+            \reqF{O} & Il sistema deve consentire l'inserimento di elenchi puntati & \UCRef{elenco_punt} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di annullare l'ultima modifica fatta & \UCRef{annulla} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di ripristinare la modifica precedentemente annullata & \UCRef{ripristina} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & \UCRef{seleziona} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di copiare il testo selezionato & \UCRef{copia} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di tagliare il testo selezionato & \UCRef{taglia} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di incollare del testo nell'area di testo & \UCRef{incolla} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota aperta in MD & \UCRef{esporta_md} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in MD & \UCRef{esporta_arch_md} \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente della presenza di una nota con lo stesso nome in seguito al primo salvataggio & \UCRef{salva_primo_err} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo secondo il modello dei "Sei Cappelli" & \UCRef{critica} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Emotiva" (Cappello Rosso) & \UCRef{critica_rosso} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Neutra" (Cappello Bianco) & \UCRef{critica_bianco} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Ottimista" (Cappello Giallo) & \UCRef{critica_giallo} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione dell'avvocato del Diavolo" (Cappello Nero) & \UCRef{critica_nero} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Originale" (Cappello Verde) & \UCRef{critica_verde} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & \UCRef{critica_blu} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di riassumere del testo tramite un agente esterno & \UCRef{riassumi} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di riscrivere del testo tramite un agente esterno & \UCRef{riscrivi} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di tradurre del testo tramite un agente esterno & \UCRef{traduci} \\ \hline
+            \reqF{O} & Il sistema deve permettere l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & \UCRef{genera} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di sostituire nell'editor il testo originale con quello generate dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & \UCRef{riassumi}, \UCRef{traduci}, \UCRef{riscrivi}, \UCRef{genera} \\ \hline
+            \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione & \UCRef{genera} \\ \hline
+            \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo originale viene modificato & \UCRef{mod_traduzione} \\ \hline
+            \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo tradotto viene modificato & \UCRef{mod_traduzione} \\ \hline
+            \reqF{O} & Il sistema deve consentire all’utente di aggiornare una traduzione precedentemente inserita & \UCRef{traduci_redo} \\ \hline
+            \reqF{O} & Il sistema deve consentire all'utente di rimuovere una traduzione precedentemente inserita & \UCRef{traduci} \\ \hline
+            \reqF{O} & Il sistema alla chiusura di una nota, se presenti delle modifiche non salvate deve avvisare l'utente della presenza di modifiche & \UCRef{chiudi} \\ \hline
+            \reqF{O} & Il sistema in caso di problemi di connessione con l'agente esterno deve avvisare l'utente & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
+            \reqF{D} & Il sistema deve aggiornare automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & \UCRef{ricerca} \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in PDF & \UCRef{esporta_pdf} \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in HTML & \UCRef{esporta_html} \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in PDF & \UCRef{esporta_arch_pdf} \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in HTML & \UCRef{esporta_arch_html} \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di utilizzare scorciatoie da tastiera per formattare il testo & \UCRef{formatta} \\ \hline
+            \reqF{D} & Il sistema deve comunicare all'utente eventuali errori grammaticali nell'editor & \UCRef{scrivi} \\ \hline
+            \reqF{D} & Il sistema deve consentire all’utente di eseguire un minimo di 20 operazioni consecutive di annullamento e di ripristino delle modifiche sull’editor della nota corrente & \UCRef{annulla}, \UCRef{ripristina} \\ \hline
+            \reqF{OP} & Il sistema deve aggiornare automaticamente la visualizzazione del testo formattato ad ogni modifica del Markdown, senza richiedere un’azione esplicita & \UCRef{formatta} \\ \hline
+            \reqF{OP} & Il sistema deve comunicare all'utente eventuali errori di sintassi nei marcatori nell'editor & \UCRef{scrivi} \\ \hline
+            \reqF{OP} & L'editor deve permettere all'utente di interagire direttamente con la LLM tramite marcatori & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline
+            \reqF{OP} & Il sistema deve permettere all'utente di registrarsi tramite nome utente e password & \UCRef{registra}, \UCRef{reg_nome}, \UCRef{reg_pwd} \\ \hline
+            \reqF{OP} & Se password o nome utente non sono corrette il sistema non deve permettere la registrazione & \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
+            \reqF{OP} & Il sistema deve permettere all'utente di accedere al proprio account & \UCRef{autentica}, \UCRef{auth_nome}, \UCRef{auth_pwd} \\ \hline
+            \reqF{OP} & Se password o nome utente non sono corrette il sistema non deve permettere l'autenticazione & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err} \\ \hline
+            \reqF{OP} & L'utente può effettuare il logout e terminare la sessione & \UCRef{logout} \\ \hline
+            \reqF{OP} & Il sistema deve permettere ad un utente autenticato di eliminare il proprio account  & \UCRef{elimina_acc} \\ \hline
+            \reqF{OP} & Il sistema deve richiedere la password dell'utente per l'eliminazione del suo account  & \UCRef{pwd_elimina} \\ \hline
+            \reqF{OP} & Il sistema deve avvisare l'utente che la password inserita per l'eliminazione dell'account è sbagliata  & \UCRef{pwd_elimina} \\ \hline
+            \reqF{OP} & Il sistema deve richiedere la conferma all'utente per l'eliminazione del suo account  & \UCRef{conf_elim} \\ \hline
             \caption{Tabella Requisiti Funzionali}
         \end{longtable}
     \subsection{Requisiti di qualità}
@@ -4269,39 +4391,39 @@
             \textbf{Requisito} & \textbf{Descrizione} & \textbf{Casi d’uso correlati} \\ \hline
             \endfirsthead
             \hline
-            RQ-O-1 & Il sistema deve caricare la lista delle note presenti nel server (insieme alle proprie informazioni) in un breve lasso di tempo & \UCRef{archivio}, \UCRef{arch_sing}, \UCRef{arch_nome}, \UCRef{arch_data}, \UCRef{arch_ult_data} \\ \hline
-            RQ-O-2 & Il sistema deve aprire una nota dall'archivio in un lasso di tempo adeguatamente veloce & \UCRef{apri} \\ \hline
-            RQ-O-3 & Il sistema deve ricercare le note nell'archivio in un breve lasso di tempo & \UCRef{ricerca} \\ \hline
-            RQ-O-4 & Il nome di default generato nella clonazione di una nota deve essere univoco all'interno dell'archivio e facilmente riconoscibile all'utente & \UCRef{clona} \\ \hline
-            RQ-O-5 & L’esportazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri & \UCRef{esporta}, \UCRef{esporta_archivio} \\ \hline
-            RQ-O-6 & L’esportazione deve preservare correttamente i caratteri Unicode del testo (es. accenti e simboli), senza sostituzioni o corruzione & \UCRef{esporta}, \UCRef{esporta_archivio} \\ \hline
-            RQ-O-7 & Al termine dell’esportazione, il sistema deve notificare esplicitamente l’errore di esportazione all'utente & \UCRef{esporta}, \UCRef{esporta_archivio} \\ \hline
-            RQ-O-8 & L’importazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri (incl. Unicode) & \UCRef{importa} \\ \hline
-            RQ-O-9 & In caso di file non valido o corrotto, il sistema deve interrompere l’importazione senza creare note parziali e deve notificare chiaramente l’errore all’utente & \UCRef{importa_err} \\ \hline
-            RQ-O-10 & Nel caso in cui il Server delle note è irraggiungibile, il sistema deve gestire l’errore in modo robusto senza crash, mantenendo lo stato consistente dell’interfaccia e notificando chiaramente il problema all’utente & \UCRef{arch_server_err}, \UCRef{apri_server_err}, \UCRef{salva_server_err}, \UCRef{clona_server_err}, \UCRef{ricerca_server_err}, \UCRef{elim_server_err}, \UCRef{rinom_server_err}, \UCRef{esporta_arch_server_err}, \UCRef{importa_server_err} \\ \hline
-            RQ-O-11 & L'aggiornamento della visualizzazione formattata deve avvenire in un tempo adeguatamente veloce & \UCRef{formatta} \\ \hline
-            RQ-O-12 & L’editor deve rispondere all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & \UCRef{scrivi}, \UCRef{formatta}.* \\ \hline
-            RQ-O-13 & L’editor deve rendere i link ipertestuali facilmente riconoscibili (es. evidenziandoli graficamente) e distinguibili dal testo normale & \UCRef{link} \\ \hline
-            RQ-O-14 & L'editor deve poter fare copiare e tagliare all'utente il testo in modo fluido, senza ritardi percepibili & \UCRef{copia}, \UCRef{taglia} \\ \hline
-            RQ-O-15 & L'editor deve preservare correttamente il contenuto e la struttura del testo copiato e tagliato, senza perdita o alterazioni di caratteri & \UCRef{copia}, \UCRef{taglia} \\ \hline
-            RQ-O-16 & L'editor deve poter fare incollare all'utente il testo in modo fluido, senza ritardi percepibili & \UCRef{incolla} \\ \hline
-            RQ-O-17 & L'editor deve preservare e incollare correttamente il contenuto e la struttura del testo, senza perdita o alterazioni di caratterri & \UCRef{incolla} \\ \hline
-            RQ-O-18 & Il sistema deve poter comunicare con il LLM in un lasso di tempo adeguatamente veloce & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline
-            RQ-O-19 & Durante una richiesta alla LLM, il sistema deve fornire all’utente un feedback chiaro sullo stato dell’operazione (es. indicatore di caricamento/elaborazione) fino al completamento o alla segnalazione di errore & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
-            RQ-O-20 & Il feedback sullo stato della comunicazione con la LLM deve essere non bloccante e deve evitare che l’utente avvii richieste duplicate inconsapevolmente & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline
-            RQ-D-1 & L'archivio deve aggiornarsi dinamicamente con i risultati della ricerca ad ogni modifica dell’input con una risposta percepita come immediata dall’utente &  \UCRef{ricerca} \\ \hline
-            RQ-D-2 & L’aggiornamento della visualizzazione formattata non deve bloccare l’input dell’utente durante la digitazione & \UCRef{formatta} \\ \hline
-            RQ-D-3 & Il sistema deve preservare correttamente i caratteri Unicode durante la scrittura e il salvataggio, senza corruzione del testo & \UCRef{salva}, \UCRef{scrivi} \\ \hline
-            RQ-D-4 & L'editor deve annullare e ripristinare le modifiche nel testo in modo fluido, senza ritardi percepibili & \UCRef{annulla}, \UCRef{ripristina} \\ \hline
-            RQ-D-5 & In caso di incollaggio di contenuti non testuali, l’editor deve mantenere la reattività e mostrare una notifica non bloccante che spieghi l’azione effettuata (rifiuto o conversione in testo) & \UCRef{incolla} \\ \hline
-            RQ-OP-1 & Le credenziali dell'utente devon essere trasmesse in modo sicuro durante l'autenticazione e la registrazione & \UCRef{autentica}, \UCRef{registra} \\ \hline
-            RQ-OP-2 & Il sistema deve completare una richiesta di autenticazione e registrazione in un breve lasso di tempo & \UCRef{autentica}, \UCRef{registra} \\ \hline
-            RQ-OP-3 & Il sistema non deve memorizzare né mostrare password in chiaro & \UCRef{autentica}, \UCRef{auth_pwd}, \UCRef{registra}, \UCRef{reg_pwd}, \UCRef{elim_acc_err} \\ \hline
-            RQ-OP-4 & Il sistema deve limitare ad un massimo di 3 tentativi di accesso falliti per ridurre il rischio di attacchi a forza bruta & \UCRef{autentica} \\ \hline
-            RQ-OP-5 & In caso di credenziali errate, il messaggio di errore non deve rivelare se sia il nome utente o la password ad essere errata & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err}, \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
-            RQ-OP-6 & I messaggi di errore in autenticazione e registrazione devono essere chiari e indicare all’utente come correggere l’input & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err}, \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
-            RQ-OP-7 & I campi di inserimento credenziali devono fornire feedback immediato su validità del formato (es. vincoli su nome utente/password), senza attendere l’invio del form & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err}, \UCRef{reg_nome_err}, \UCRef{reg_pwd_err}, \UCRef{elim_acc_err} \\ \hline
-            RQ-OP-8 & Dopo l’autenticazione, la sessione deve scadere automaticamente dopo un periodo di inattività pari a 1 mese & \UCRef{autentica} \\ \hline
+            \reqQ{O} & Il sistema deve caricare la lista delle note presenti nel server (insieme alle proprie informazioni) in un breve lasso di tempo & \UCRef{archivio}, \UCRef{arch_sing}, \UCRef{arch_nome}, \UCRef{arch_data}, \UCRef{arch_ult_data} \\ \hline
+            \reqQ{O} & Il sistema deve aprire una nota dall'archivio in un lasso di tempo adeguatamente veloce & \UCRef{apri} \\ \hline
+            \reqQ{O} & Il sistema deve ricercare le note nell'archivio in un breve lasso di tempo & \UCRef{ricerca} \\ \hline
+            \reqQ{O} & Il nome di default generato nella clonazione di una nota deve essere univoco all'interno dell'archivio e facilmente riconoscibile all'utente & \UCRef{clona} \\ \hline
+            \reqQ{O} & L’esportazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri & \UCRef{esporta}, \UCRef{esporta_archivio} \\ \hline
+            \reqQ{O} & L’esportazione deve preservare correttamente i caratteri Unicode del testo (es. accenti e simboli), senza sostituzioni o corruzione & \UCRef{esporta}, \UCRef{esporta_archivio} \\ \hline
+            \reqQ{O} & Al termine dell’esportazione, il sistema deve notificare esplicitamente l’errore di esportazione all'utente & \UCRef{esporta}, \UCRef{esporta_archivio} \\ \hline
+            \reqQ{O} & L’importazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri (incl. Unicode) & \UCRef{importa} \\ \hline
+            \reqQ{O} & In caso di file non valido o corrotto, il sistema deve interrompere l’importazione senza creare note parziali e deve notificare chiaramente l’errore all’utente & \UCRef{importa_err} \\ \hline
+            \reqQ{O} & Nel caso in cui il Server delle note è irraggiungibile, il sistema deve gestire l’errore in modo robusto senza crash, mantenendo lo stato consistente dell’interfaccia e notificando chiaramente il problema all’utente & \UCRef{arch_server_err}, \UCRef{apri_server_err}, \UCRef{salva_server_err}, \UCRef{clona_server_err}, \UCRef{ricerca_server_err}, \UCRef{elim_server_err}, \UCRef{rinom_server_err}, \UCRef{esporta_arch_server_err}, \UCRef{importa_server_err} \\ \hline
+            \reqQ{O} & L'aggiornamento della visualizzazione formattata deve avvenire in un tempo adeguatamente veloce & \UCRef{formatta} \\ \hline
+            \reqQ{O} & L’editor deve rispondere all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & \UCRef{scrivi}, \UCRef{formatta}.* \\ \hline
+            \reqQ{O} & L’editor deve rendere i link ipertestuali facilmente riconoscibili (es. evidenziandoli graficamente) e distinguibili dal testo normale & \UCRef{link} \\ \hline
+            \reqQ{O} & L'editor deve poter fare copiare e tagliare all'utente il testo in modo fluido, senza ritardi percepibili & \UCRef{copia}, \UCRef{taglia} \\ \hline
+            \reqQ{O} & L'editor deve preservare correttamente il contenuto e la struttura del testo copiato e tagliato, senza perdita o alterazioni di caratteri & \UCRef{copia}, \UCRef{taglia} \\ \hline
+            \reqQ{O} & L'editor deve poter fare incollare all'utente il testo in modo fluido, senza ritardi percepibili & \UCRef{incolla} \\ \hline
+            \reqQ{O} & L'editor deve preservare e incollare correttamente il contenuto e la struttura del testo, senza perdita o alterazioni di caratterri & \UCRef{incolla} \\ \hline
+            \reqQ{O} & Il sistema deve poter comunicare con il LLM in un lasso di tempo adeguatamente veloce & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline
+            \reqQ{O} & Durante una richiesta alla LLM, il sistema deve fornire all’utente un feedback chiaro sullo stato dell’operazione (es. indicatore di caricamento/elaborazione) fino al completamento o alla segnalazione di errore & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
+            \reqQ{O} & Il feedback sullo stato della comunicazione con la LLM deve essere non bloccante e deve evitare che l’utente avvii richieste duplicate inconsapevolmente & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline
+            \reqQ{D} & L'archivio deve aggiornarsi dinamicamente con i risultati della ricerca ad ogni modifica dell’input con una risposta percepita come immediata dall’utente &  \UCRef{ricerca} \\ \hline
+            \reqQ{D} & L’aggiornamento della visualizzazione formattata non deve bloccare l’input dell’utente durante la digitazione & \UCRef{formatta} \\ \hline
+            \reqQ{D} & Il sistema deve preservare correttamente i caratteri Unicode durante la scrittura e il salvataggio, senza corruzione del testo & \UCRef{salva}, \UCRef{scrivi} \\ \hline
+            \reqQ{D} & L'editor deve annullare e ripristinare le modifiche nel testo in modo fluido, senza ritardi percepibili & \UCRef{annulla}, \UCRef{ripristina} \\ \hline
+            \reqQ{D} & In caso di incollaggio di contenuti non testuali, l’editor deve mantenere la reattività e mostrare una notifica non bloccante che spieghi l’azione effettuata (rifiuto o conversione in testo) & \UCRef{incolla} \\ \hline
+            \reqQ{OP} & Le credenziali dell'utente devon essere trasmesse in modo sicuro durante l'autenticazione e la registrazione & \UCRef{autentica}, \UCRef{registra} \\ \hline
+            \reqQ{OP} & Il sistema deve completare una richiesta di autenticazione e registrazione in un breve lasso di tempo & \UCRef{autentica}, \UCRef{registra} \\ \hline
+            \reqQ{OP} & Il sistema non deve memorizzare né mostrare password in chiaro & \UCRef{autentica}, \UCRef{auth_pwd}, \UCRef{registra}, \UCRef{reg_pwd}, \UCRef{elim_acc_err} \\ \hline
+            \reqQ{OP} & Il sistema deve limitare ad un massimo di 3 tentativi di accesso falliti per ridurre il rischio di attacchi a forza bruta & \UCRef{autentica} \\ \hline
+            \reqQ{OP} & In caso di credenziali errate, il messaggio di errore non deve rivelare se sia il nome utente o la password ad essere errata & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err}, \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
+            \reqQ{OP} & I messaggi di errore in autenticazione e registrazione devono essere chiari e indicare all’utente come correggere l’input & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err}, \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
+            \reqQ{OP} & I campi di inserimento credenziali devono fornire feedback immediato su validità del formato (es. vincoli su nome utente/password), senza attendere l’invio del form & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err}, \UCRef{reg_nome_err}, \UCRef{reg_pwd_err}, \UCRef{elim_acc_err} \\ \hline
+            \reqQ{OP} & Dopo l’autenticazione, la sessione deve scadere automaticamente dopo un periodo di inattività pari a 1 mese & \UCRef{autentica} \\ \hline
             \caption{Tabella Requisiti di Qualità}
         \end{longtable}
 
@@ -4311,14 +4433,17 @@
             \textbf{Requisito} & \textbf{Descrizione} & \textbf{Casi d’uso correlati} \\ \hline
             \endfirsthead
             \hline
-            RV-O-1 & L'applicazione deve essere accessibile via browser e tramite connessione internet & \UCRef{scrivi} \\ \hline
-            RV-O-2 & Il testo generato dall'agente esterno, se accettato dall'utente, deve essere inserito nella posizione del cursore & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}  \\ \hline
-            RV-0-& & \\ \hline
-            & & \\ \hline
-            & & \\ \hline
-            RV-OP-1 & La password inserita dall'utente deve avere almeno 8 caratteri e contenere un carattere speciale & \UCRef{reg_pwd} \\ \hline
-            RV-OP-2 & Il nome utente deve essere almeno di 4 caratteri e non può contenere caratteri speciali & \UCRef{reg_nome} \\ \hline
+            \reqV{O} & L'applicazione deve essere accessibile via browser e tramite connessione internet & \UCRef{scrivi} \\ \hline
+            \reqV{O} & Il testo generato dall'agente esterno, se accettato dall'utente, deve essere inserito nella posizione del cursore & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}  \\ \hline
+            \reqV{O} & L'agente esterno deve produrre testo grammaticalmente, sintatticamente e semanticamente corretto & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{critica} \\ \hline
+            \reqV{O} & Il sistema deve avvisare l'utente in caso dell'impossibilità nell'eseguire una richiesta & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
+            \reqV{O} & Il sistema deve comunicare con l'agente esterno tramite chiamate HTTP standard, seguendo l'architettura REST & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline 
+            \reqV{O} & L'agente deve produrre traduzioni accurate nella lingua selezionata & \UCRef{traduci} \\ \hline
+            \reqV{O} & Il sistema deve permettere l'importazione di file markdown (.md) & \UCRef{importa} \\ \hline
+            \reqV{O} & Il sistema deve supportare la codifica dei caratteri Unicode (UTF-8) in modo da garantire la leggibilità di testi multilingua & \UCRef{scrivi} \\ \hline
+            \reqV{OP} & La password inserita dall'utente deve avere almeno 8 caratteri e contenere un carattere speciale & \UCRef{reg_pwd} \\ \hline
+            \reqV{OP} & Il nome utente deve essere almeno di 4 caratteri e non può contenere caratteri speciali & \UCRef{reg_nome} \\ \hline
             \caption{Tabella Requisiti di Vincolo}
         \end{longtable}
-    
+
 \end{document}
