@@ -412,7 +412,6 @@
     \subsubsection{Attori Secondari}
     \begin{itemize}
         \item \textbf{LLM}: Large Language Model che verrà integrato per fornire le funzionalità AI
-        \item \textbf{Server Locale}: server in cui vengono salvate le note
     \end{itemize}
     \bigskip
 
@@ -435,11 +434,9 @@
 
             % Attori
             \umlactor[x=-4, y=0.5]{Utente}
-            \umlactor[x=12.5, y=0.5, scale=0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{archivio}
-            \umlassoc{Server Locale}{archivio}
 
             \umlinclude{archivio}{nota}
             \umlHVinclude[pos stereo=1.3]{nota}{nome}
@@ -453,10 +450,6 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
@@ -468,11 +461,11 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra all'utente le note presenti sul server
+        \item Il sistema mostra all'utente le note presenti
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema non riesca a visualizzare le note presenti:
         \begin{itemize}
             \item \UCRef{arch_server_err}
         \end{itemize}
@@ -579,10 +572,9 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
         \item Il sistema offre all'utente due opzioni:
         \begin{itemize}
-            \item Rimandare richiesta di connessione al Server
+            \item Rimandare richiesta di connessione
             \item Ignorare l'avviso e non popolare l'archivio
         \end{itemize}
     \end{enumerate}
@@ -604,11 +596,9 @@
 
             % Attori
             \umlactor[x=-1, y=2]{Utente}
-            \umlactor[x=12.3, y=2, scale=0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{apri}
-            \umlassoc{Server Locale}{apri}
             \umlextend{err}{apri}
             \umlextend{err_server}{apri}
         \end{tikzpicture}
@@ -618,14 +608,10 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando l'archivio delle note sul server (\UCRef{archivio})
+        \item L'utente sta visualizzando l'archivio delle note (\UCRef{archivio})
         \item Nell'archivio è presente almeno una nota salvata
     \end{itemize}
     \textbf{Postcondizioni}
@@ -639,11 +625,11 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui la nota non è presente nel server:
+        \item Nel caso in cui la nota non è sia più presente:
         \begin{itemize}
             \item \UCRef{apri_err}
         \end{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema non riesce a connettersi:
         \begin{itemize}
             \item \UCRef{apri_server_err}
         \end{itemize}
@@ -665,10 +651,10 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando l'archivio delle note sul server (\UCRef{archivio})
+        \item L'utente sta visualizzando l'archivio delle note (\UCRef{archivio})
         \item Nell'archivio è presente almeno una nota salvata
         \item L'utente apre una nota (\UCRef{apri})
-        \item La nota seleziona è stata eliminata o non è più presente nel server
+        \item La nota seleziona è stata eliminata o non è più presente nell'archivio
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -676,7 +662,7 @@
     \end{itemize}
     \textbf{Scenario Principale}
     \begin{itemize}
-        \item L'utente apre una nota eliminata o non più presente nel server
+        \item L'utente apre una nota eliminata o non più presente nell'archivio
     \end{itemize}
 
     \paragraph*{\UCText{apri_server_err}}
@@ -715,11 +701,9 @@
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4,scale = 0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{chiusura}
-            \umlassoc{Server Locale}{chiusura}
 
             % Associazioni Casi d'Uso
             \umlextend{chiusura}{salvataggio}
@@ -730,10 +714,6 @@
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
-    \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -831,11 +811,9 @@
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=16, y=4,scale = 0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{salvataggio}
-            \umlassoc{Server Locale}{salvataggio}
 
             % Associazioni Casi d'Uso
             \umlextend{err_salvataggio}{primo_salvataggio}
@@ -850,10 +828,6 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
@@ -861,27 +835,27 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota viene salvata sul Server locale
+        \item La nota viene salvata nell'archivio delle note
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità \textit{"Salva Nota"}
-        \item Il sistema salva la nota sul Server
+        \item Il sistema salva la nota nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema abbia perso la connessione:
         \begin{itemize}
             \item \UCRef{salva_server_err}
         \end{itemize}
-        \item Nel caso in cui la nota inizialmente visualizzata dall'utente avesse successivamente subito delle modifiche nel Server:
+        \item Nel caso in cui la nota inizialmente visualizzata dall'utente avesse successivamente subito delle modifiche:
         \begin{enumerate}
-            \item Il sistema avvisa la presenza di modifiche nel Server non contenute nella versione corrente dell'utente
+            \item Il sistema avvisa la presenza di modifiche non contenute nella versione corrente dell'utente
             \item Il sistema propone all'utente la scelta tra:
             \begin{itemize}
-                \item Sovrascrivere la nota presente sul Server con la versione corrente dell'utente
+                \item Sovrascrivere la nota presente nell'archivio con la versione corrente dell'utente
                 \item Salvare la nota con un nome differente
-                \item Aggiornare la nota corrente dell'utente con la versione presente sul Server
+                \item Aggiornare la nota corrente dell'utente con la versione presente nell'archivio
             \end{itemize}
             \item L'utente seleziona una tra le opzioni
             \item Il sistema effettua l'operazione scelta dall'utente
@@ -894,23 +868,19 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item La nota non è presente nel Server
+        \item La nota non è presente nell'archivio delle note
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota è presente nell'archivio note del Server
+        \item La nota è presente nell'archivio delle note
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente inserisce il nome della nota
-        \item Il sistema avvisa all'utente del salvataggio della nota nel Server
-        \item La nota viene salvata nel Server
+        \item Il sistema avvisa all'utente del salvataggio della nota nell'archivio
+        \item La nota viene salvata nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -932,7 +902,7 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item La nota non è salvata nel server
+        \item La nota non è salvata nell'archivio
         \item L'utente ha inserito il nome della nota
     \end{itemize}
     \textbf{Postcondizioni}
@@ -944,7 +914,7 @@
         \item Il sistema avvisa la presenza di una nota con lo stesso nome
         \item Il sistema propone all'utente la scelta tra:
             \begin{itemize}
-                \item Sovrascrivere la nota presente sul Server
+                \item Sovrascrivere la nota presente nell'archivio
                 \item Cambiare il nome della nota corrente  % Da rivedere: serve includere il caso d'uso della rinominazione?
             \end{itemize}
             \item L'utente sceglie una tra le opzioni
@@ -957,26 +927,22 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item La nota è presente nel Server
-        \item La nota visualizzata ha modifiche non presenti nel Server
+        \item La nota è presente nell'archivio
+        \item La nota visualizzata ha modifiche rispetto alla nota presente dell'archivio 
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota originale è presente nel Server con nessuna modifica applicata
-        \item La nuova nota è presente nel Server
+        \item La nota originale è presente nell'archivio con nessuna modifica applicata
+        \item È presente una nuova nota nell'archivio
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Salva Con Nome"}
         \item L'utente inserisce il nuovo nome della nota
-        \item Il sistema avvisa all'utente del salvataggio della nuova nota nel Server
-        \item La nuova nota viene salvata nel Server
+        \item Il sistema avvisa all'utente del salvataggio della nuova nota nell'archivio
+        \item La nuova nota viene salvata nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -998,8 +964,8 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item La nota è presente nel Server
-        \item La nota visualizzata ha modifiche non presenti nel Server
+        \item La nota è presente nell'archivio
+        \item La nota visualizzata ha modifiche non presenti nell'archivio
         \item L'utente ha inserito il nuovo nome della nota
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1011,7 +977,7 @@
         \item Il sistema avvisa la presenza di una nota con lo stesso nome
         \item Il sistema propone all'utente la scelta tra:
         \begin{itemize}
-            \item Sovrascrivere la nota presente sul Server
+            \item Sovrascrivere la nota presente nell'archivio
             \item Cambiare il nome della nota corrente  % Da rivedere: serve includere il caso d'uso della rinominazione?
         \end{itemize}
         \item L'utente sceglie una tra le opzioni
@@ -1031,7 +997,7 @@
     \textbf{Postcondizioni}
     \begin{itemize}
         \item La nota rimane aperta
-        \item Le modifiche non sono salvate nel server
+        \item Le modifiche non sono salvate
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -1057,11 +1023,9 @@
 
             % Attori
             \umlactor[x=-1, y=4]{Utente}
-            \umlactor[x=14.5, y=4, scale = 0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{clonazione}
-            \umlassoc{Server Locale}{clonazione}
 
             % Associazioni Casi d'Uso
             \umlextend{clona_err}{clonazione}
@@ -1087,15 +1051,15 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Clonazione Nota"}
-        \item Il sistema clona la nota nel Server con un nome differente
+        \item Il sistema clona la nota nell'archivio con un nome differente
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso la nota da clonare non fosse più presente nel Server:
+        \item Nel caso la nota da clonare non fosse più presente nell'archivio:
         \begin{itemize}
             \item \UCRef{clona_err}
         \end{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{clona_server_err}
         \end{itemize}
@@ -1116,7 +1080,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Nel Server non è presente il clone della nota
+        \item Nell'archivio non è presente il clone della nota
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -1138,7 +1102,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Nel Server non è presente il clone della nota
+        \item Nell'archivio non è presente il clone della nota
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -1162,11 +1126,9 @@
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4,scale=0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{ricerca}
-            \umlassoc{Server Locale}{ricerca}
 
             % Associazioni Casi d'Uso
             \umlextend{server_err}{ricerca}
@@ -1177,10 +1139,6 @@
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
-    \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -1195,12 +1153,12 @@
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Ricerca Nota"}
         \item L'utente specifica il nome di una nota da ricercare
-        \item Il sistema effettua la ricerca nel server locale
-        \item Il sistema ritorna i risultati della ricerca
+        \item Il sistema effettua la ricerca nell'archivio
+        \item Il sistema mostra i risultati della ricerca
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{ricerca_server_err}
         \end{itemize}
@@ -1244,11 +1202,9 @@
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=13.3, y=4,scale=0.75]{Server Locale}
 
             % Associazioni Utente
             \umlassoc{Utente}{eliminazione}
-            \umlassoc{Server Locale}{eliminazione}
             \umlinclude{eliminazione}{conferma}
             \umlextend{server_err}{eliminazione}
         \end{tikzpicture}
@@ -1258,10 +1214,6 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
@@ -1270,25 +1222,25 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota viene eliminata dal Server Locale
+        \item La nota viene eliminata dall'archivio
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Eliminazione Nota"}
         \item L'utente conferma l'eliminazione della nota
-        \item Il sistema elimina la nota dal Server Locale
+        \item Il sistema elimina la nota dall'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{elim_server_err}
         \end{itemize}
-        \item Nel caso in cui la nota interessata fosse stata rimossa dal server prima dell'eliminazione da parte dell'utente:
+        \item Nel caso in cui la nota interessata fosse stata rimossa dall'archivio prima dell'eliminazione da parte dell'utente:
         \begin{itemize}
             \item Il sistema avvisa l'utente dell'inesistenza della nota da eliminare
         \end{itemize}
-        \item Nel caso la nota eliminata mentre è aperta dall'utente:
+        \item Nel caso la nota venga eliminata mentre è aperta dall'utente:
         \begin{itemize}
             \item Il sistema avvisa l'utente della nota aperta ormai eliminata
             \item La nota rimane aperta in locale
@@ -1328,7 +1280,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota non viene eliminata dal Server
+        \item La nota non viene eliminata dall'archivio
         \item L'archivio non viene aggiornato
     \end{itemize}
     \textbf{Scenario principale}
@@ -1384,7 +1336,7 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{rinom_server_err}
         \end{itemize}
@@ -1611,7 +1563,7 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{esporta_arch_server_err}
         \end{itemize}
@@ -1728,11 +1680,9 @@
 
             % Attore
             \umlactor[x=0, y=2.5]{Utente}
-            \umlactor[x=14.5, y=2.5, scale=0.75]{Server Locale}
 
             % Associazione Utente
             \umlassoc{Utente}{importa}
-            \umlassoc{Server Locale}{importa}
 
             % Associazione Casi d'Uso
             \umlextend{err_importa}{importa}
@@ -1744,10 +1694,6 @@
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
-    \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -1768,7 +1714,7 @@
         \begin{itemize}
             \item \UCRef{importa_err}
         \end{itemize}
-        \item In caso il sistema non riesce a connettersi con il Server:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{importa_server_err}
         \end{itemize}
@@ -3342,12 +3288,12 @@
                 \umlassoc{LLM}{critica}
 
                 % Associazioni Casi d'Uso
-                \umlVHinherit{critica}{rosso}
-                \umlVHinherit{critica}{bianco}
-                \umlVHinherit{critica}{giallo}
-                \umlVHinherit{critica}{nero}
-                \umlVHinherit{critica}{verde}
-                \umlVHinherit{critica}{blu}
+                \umlHVinherit{rosso}{critica}
+                \umlHVinherit{bianco}{critica}
+                \umlHVinherit{giallo}{critica}
+                \umlHVinherit{nero}{critica}
+                \umlHVinherit{verde}{critica}
+                \umlHVinherit{blu}{critica}
                 \umlextend{llm_err}{critica}
 
             \end{umlsystem}
@@ -3666,7 +3612,7 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{auth_server_err}
         \end{itemize}
@@ -3692,12 +3638,12 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente inserisce il proprio nome utente
-        \item L'utente avvia il processo di autenticazione al server
-        \item Il server valida il nome utente immesso
+        \item L'utente avvia il processo di autenticazione
+        \item Il nome utente inserito viene validato
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il nome non è riconosciuto dal server come valido:
+        \item In caso il nome sia valido:
         \begin{itemize}
             \item \UCRef{auth_nome_err}
         \end{itemize}
@@ -3747,12 +3693,12 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente inserisce la propria password
-        \item L'utente avvia il processo di autenticazione al server
-        \item Il server valida la password immessa
+        \item L'utente avvia il processo di autenticazione
+        \item La password inserita viene validata
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso la password non è riconosciuta dal server come valida:
+        \item In caso la password non sia valida:
         \begin{itemize}
             \item \UCRef{auth_pwd_err}
         \end{itemize}
@@ -3857,9 +3803,9 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
-            \item \UCRef{reg_server_error}
+            \item \UCRef{reg_server_err}
         \end{itemize}
     \end{itemize}
 
@@ -3878,17 +3824,17 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente è registrato e autenticato al sistema
+        \item L'utente è registrato nel sistema
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente inserisce il proprio nome utente
-        \item L'utente avvia il processo di registrazione al server
-        \item Il server controlla se il nome utente è già stato registrato
+        \item L'utente avvia il processo di registrazione
+        \item Il sistema controlla se il nome utente è già stato utilizatto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il nome è già registrato nel server:
+        \item In caso il nome è già utilizzato:
         \begin{itemize}
             \item \UCRef{reg_nome_err}
         \end{itemize}
@@ -3933,13 +3879,13 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente è registrato e autenticato al sistema
+        \item L'utente è registrato nel sistema
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente inserisce la propria password
-        \item L'utente avvia il processo di registrazione al server
-        \item Il server valida la password immessa
+        \item L'utente avvia il processo di registrazione
+        \item Il sistema valida la password immessa
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -4083,13 +4029,12 @@
     \begin{enumerate}
         \item L'utente attiva la funzinalità "Elimina Account"
         \item L'utente inserisce la propria password
-        \item Il sistema conferma l'eliminazione dell'account
         \item L'utente conferma l'eliminazione
-        \item Il sistema elimina dal server l'account associato a nome dell'utente
+        \item Il sistema elimina l'account associato al nome dell'utente
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{elim_acc_server_err}
         \end{itemize}
@@ -4117,7 +4062,7 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso la password inserita non è valida (non è uguale a quella associata all'utente sul server):
+        \item In caso la password inserita non è valida (non è uguale a quella associata all'utente):
         \begin{itemize}
             \item \UCRef{elim_acc_err}
         \end{itemize}
@@ -4161,6 +4106,7 @@
         \item L'utente è autenticato (\UCRef{autentica})
         \item L'utente sta eliminando il proprio account (\UCRef{elimina_acc})
         \item L'utente ha inserito la propria password (\UCRef{pwd_elimina})
+        \item La password è corretta
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
