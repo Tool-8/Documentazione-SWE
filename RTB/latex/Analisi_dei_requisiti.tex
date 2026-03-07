@@ -202,10 +202,10 @@
         \UCdefsubsub{arch_nome}{Visualizza\\Nome Nota}
         \UCdefsubsub{arch_data}{Visualizza\\Data Creazione Nota}
         \UCdefsubsub{arch_ult_data}{Visualizza\\Data Ultima\\Modifica Nota}
-    \UCdefsub{arch_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{arch_server_err}{Errore Perdita\\Connessione}
 \UCdef{apri}{Apertura Nota}
     \UCdefsub{apri_err}{Errore Nota\\Inesistente}
-    \UCdefsub{apri_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{apri_server_err}{Errore Perdita\\Conessione}
 \UCdef{chiudi}{Chiusura Nota}
 \UCdef{crea}{Creazione Nota}
 \UCdef{salva}{Salvataggio Nota}
@@ -213,18 +213,18 @@
         \UCdefsubsub{salva_primo_err}{Errore Salvataggio\\Nota}
     \UCdefsub{salva_nuovo}{Nuovo Salvataggio\\Nota}
         \UCdefsubsub{salva_nuovo_err}{Errore Nuovo\\Salvataggio Nota}
-    \UCdefsub{salva_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{salva_server_err}{Errore Perdita\\Connessione}
 \UCdef{clona}{Clonazione Nota}
     \UCdefsub{clona_err}{Errore Clonazione\\Nota Inesistente}
-    \UCdefsub{clona_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{clona_server_err}{Errore Perdita\\Connessione}
 \UCdef{ricerca}{Ricerca Nota Per Nome}
-    \UCdefsub{ricerca_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{ricerca_server_err}{Errore Perdita\\Connessione}
 \UCdef{elimina}{Eliminazione Nota}
     \UCdefsub{elim_conf}{Conferma\\Eliminazione Nota}
-    \UCdefsub{elim_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{elim_server_err}{Errore Perdita\\Connessione}
 \UCdef{rinomina}{Rinominazione\\Nota}
     \UCdefsub{rinom_err}{Errore Nome\\Utilizzato}
-    \UCdefsub{rinom_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{rinom_server_err}{Errore Perdita\\Connessione}
 \UCdef{esporta}{Esportazione\\Nota}
     \UCdefsub{esporta_md}{Esporta MD}
     \UCdefsub{esporta_pdf}{Esporta PDF}
@@ -233,10 +233,10 @@
     \UCdefsub{esporta_arch_md}{Esporta MD}
     \UCdefsub{esporta_arch_pdf}{Esporta PDF}
     \UCdefsub{esporta_arch_html}{Esporta HTML}
-    \UCdefsub{esporta_arch_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{esporta_arch_server_err}{Errore Perdita\\Connessione}
 \UCdef{importa}{Importazione Nota}
     \UCdefsub{importa_err}{Formato Nota\\Non Valido}
-    \UCdefsub{importa_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{importa_server_err}{Errore Perdita\\Connessione}
 \UCdef{visua_formattato}{Visualizza\\Testo Formattato}
 \UCdef{cambio_visua}{Cambio\\Visualizzazione}
     \UCdefsub{cambio_visua_markdown}{Visualizzazione\\Markdown}
@@ -268,6 +268,10 @@
 \UCdef{riassumi}{Riassunto Testo Con LLM}
     \UCdefsub{riassumi_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{riscrivi}{Riscrittura Testo Con LLM}
+    \UCdefsub{riscrivi_variazione}{Riscrittura Con\\Variazione Stilistica}
+    \UCdefsub{riscrivi_modifica}{Riscrittura Con\\Modifica Estensione Testo} 
+    \UCdefsub{riscrivi_grammatica}{Riscrittura Con\\Correzione Grammatica}   
+    \UCdefsub{riscrivi_lessico}{Riscrittura Con\\Miglioramento Lessico}
     \UCdefsub{riscrivi_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{traduci}{Traduzione\\Testo Con LLM}
     \UCdefsub{mod_traduzione}{Gestione\\Modifica Traduzione}
@@ -288,19 +292,19 @@
         \UCdefsubsub{auth_nome_err}{Errore\\Nome Non Valido}
     \UCdefsub{auth_pwd}{Inserimento\\Password}
         \UCdefsubsub{auth_pwd_err}{Errore\\Password Non Valida}
-    \UCdefsub{auth_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{auth_server_err}{Errore Perdita\\Connessione}
 \UCdef{registra}{Registrazione}
     \UCdefsub{reg_nome}{Inserimento\\Nome Utente}
         \UCdefsubsub{reg_nome_err}{Errore\\Nome Già Utilizzato}
     \UCdefsub{reg_pwd}{Inserimento\\Password}
         \UCdefsubsub{reg_pwd_err}{Errore\\Password Non\\Abbastanza Robusta}
-    \UCdefsub{reg_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{reg_server_err}{Errore Perdita\\Connessione}
 \UCdef{logout}{Logout}
 \UCdef{elimina_acc}{Eliminazione Account}
     \UCdefsub{pwd_elimina}{Inserisci Password}
         \UCdefsubsub{elim_acc_err}{Errore\\Password Non Valida}
         \UCdefsubsub{conf_elim}{Conferma\\Eliminazione Account}
-    \UCdefsub{elim_acc_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{elim_acc_server_err}{Errore Perdita\\Connesione}
 \UCdef{associa}{Associazione Note}
 
 \title{%
@@ -322,8 +326,10 @@
         \begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
             \hline
             \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+            \hline
+            0.16 & Stefano Maso & Aggiunta casi d'uso \UCRef{riscrivi_variazione}, \UCRef{riscrivi_modifica}, \UCRef{riscrivi_grammatica}, \UCRef{riscrivi_lessico}  & 7/3/2026 & - \\ 
             \hline 
-            0.15 & Stefano Maso & Fix Attore secondario & 5/3/2026 & Giuliano Banchieri \\
+            0.15 & Stefano Maso & Modifica Attore secondario & 5/3/2026 & Giuliano Banchieri \\
             \hline
             0.14 & Stefano Maso & Aggiunta requisiti RF-O-51, RF-O-52, RF-O-53, RF-O-59, RF-O-60, RF-O-61, RV-O-3, RV-O-4, RV-O-11, RQ-D-6, modifica requisiti RF-O-50 & 4/3/2026 & Giuliano Banchieri \\ 
             \hline
@@ -574,11 +580,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item Il sistema offre all'utente due opzioni:
-        \begin{itemize}
-            \item Rimandare richiesta di connessione
-            \item Ignorare l'avviso e non popolare l'archivio
-        \end{itemize}
     \end{enumerate}
 
     \vspace{1cm}
@@ -684,7 +685,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1004,8 +1004,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
-        \item La nota viene lasciata aperta
     \end{enumerate}
 
     \vspace{1cm}
@@ -1109,7 +1107,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1364,7 +1361,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente ha inserito un nome già utilizzato da un'altra nota
+        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente inserisce un nome già utilizzato da un'altra nota
+        \item Il sistema avvisa l'utente dell'errore 
+        \item Il sistema permette all'utente di inserire un altro nome
     \end{enumerate}
 
     \paragraph*{\UCText{rinom_server_err}}
@@ -1381,13 +1381,13 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota ha un nome diverso
+        \item La nota ha lo stesso nome
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente inserisce il nuovo nome della nota
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
-        \item Il sistema cambia il nome della nota
     \end{enumerate}
 
     \vspace{1cm}
@@ -1739,7 +1739,9 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente viene visualizza il messaggio di errore
+        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
+        \item L'utente sceglie di importare una nota dal formato non valido
+        \item L'utente visualizza il messaggio di errore
         \item L'utente chiude l'avviso
     \end{enumerate}
 
@@ -1799,12 +1801,11 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Il testo presente nell'area di editing viene formattato e visualizzato dentro un'area di output adiacente
-        all'area di editing
+        \item Il testo presente nell'area di editing viene formattato e visualizzato dentro un'area di preview
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente visualizza l'anteprima del testo nell'area di output
+        \item L'utente visualizza l'anteprima del testo nell'area di preview
     \end{enumerate}
 
     \vspace{1cm}
@@ -2284,7 +2285,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo per la barrattura
+        \item La parte di testo selezionata è compresa tra i marcatori di testo per la barratura
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -2818,7 +2819,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente ha incolla del testo nella posizione corrente del puntatore 
+        \item L'utente ha incollato del testo nella posizione corrente del puntatore 
     \end{enumerate}
 
 
@@ -2921,15 +2922,20 @@
     \medskip
 
     \begin{center}
+        \resizebox{0.98\textwidth}{!}{
         \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=riscrittura]{\UCName{riscrivi}}
-                \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{riscrivi_llm_err}}
+                \umlusecase[x=0, y=6, name=llm_err, align=center]{\UCName{riscrivi_llm_err}}
+                \umlusecase[x=5, y=2, name=ris_lessico, align=center]{\UCName{riscrivi_lessico}}
+                \umlusecase[x=3, y=0, name=ris_grammatica, align=center]{\UCName{riscrivi_grammatica}}
+                \umlusecase[x=-5, y=2, name=ris_variazione, align=center]{\UCName{riscrivi_variazione}}
+                \umlusecase[x=-3, y=0, name=ris_modifica, align=center]{\UCName{riscrivi_modifica}}
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4, scale=0.75]{LLM}
+            \umlactor[x=-3, y=4]{Utente}
+            \umlactor[x=15, y=4, scale=0.75]{LLM}
 
             % Associazioni Utente
             \umlassoc{Utente}{riscrittura}
@@ -2937,7 +2943,11 @@
 
             % Associazioni Casi d'Uso
             \umlextend{llm_err}{riscrittura}
-        \end{tikzpicture}
+            \umlinclude{riscrittura}{ris_lessico}
+            \umlinclude{riscrittura}{ris_grammatica}
+            \umlinclude{riscrittura}{ris_variazione}
+            \umlinclude{riscrittura}{ris_modifica}
+        \end{tikzpicture}}
     \end{center}
 
     \textbf{Attori principali}
@@ -2985,6 +2995,114 @@
             \item \UCRef{riscrivi_llm_err}
         \end{itemize}
     \end{itemize}
+
+    \paragraph*{\UCText{riscrivi_variazione}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_variazione}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente seleziona una porzione del testo o l'intero testo
+        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato viene riscritto con una variazione stilistica
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente seleziona l'opzione \textit{"Variaziazione Stilistica"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema mostra il risultato all'utente
+        \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+    \end{enumerate}
+
+    \paragraph*{\UCText{riscrivi_modifica}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_modifica}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente seleziona una porzione del testo o l'intero testo
+        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato viene riscritto con maggiori dettagli 
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente seleziona l'opzione \textit{"Estensione Testo"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema mostra il risultato all'utente
+        \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+    \end{enumerate}
+
+    \paragraph*{\UCText{riscrivi_grammatica}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_grammatica}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente seleziona una porzione del testo o l'intero testo
+        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato viene riscritto in modo corretto grammaticalmente 
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente seleziona l'opzione \textit{"Correzione Grammatica"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema mostra il risultato all'utente
+        \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+    \end{enumerate}
+
+    \paragraph*{\UCText{riscrivi_lessico}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_lessico}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente seleziona una porzione del testo o l'intero testo
+        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato viene riscritto con un lessico migliorato 
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente seleziona l'opzione \textit{"Miglioramento Lessico"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema mostra il risultato all'utente
+        \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+    \end{enumerate}
 
     \paragraph*{\UCText{riscrivi_llm_err}}
     \addcontentsline{toc}{paragraph}{\UCText{riscrivi_llm_err}}
@@ -4302,6 +4420,7 @@
             \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & \UCRef{critica_blu} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di riassumere del testo tramite un agente esterno & \UCRef{riassumi} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di riscrivere del testo tramite un agente esterno & \UCRef{riscrivi} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di scegliere il modo in cui verrà riscritto il testo (correzione grammaticale, estensione del testo, miglioramento del lessico, variazione stilistica) & \UCRef{riscrivi}, \UCRef{riscrivi_variazione}, \UCRef{riscrivi_modifica}, \UCRef{riscrivi_grammatica}, \UCRef{riscrivi_lessico}  \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di tradurre del testo tramite un agente esterno & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & \UCRef{genera} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di sostituire nell'editor il testo originale con quello generate dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
