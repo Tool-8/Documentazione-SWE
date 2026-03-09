@@ -208,6 +208,7 @@
     \UCdefsub{apri_server_err}{Errore Perdita\\Conessione}
 \UCdef{chiudi}{Chiusura Nota}
 \UCdef{crea}{Creazione Nota}
+\UCdef{vis-editor}{Visualizza Editor\\Nota} %sistemare
 \UCdef{salva}{Salvataggio Nota}
     \UCdefsub{salva_primo}{Primo Salvataggio\\Nota}
         \UCdefsubsub{salva_primo_err}{Errore Salvataggio\\Nota}
@@ -385,7 +386,7 @@
 
     \section{Descrizione}
     \subsection{Obiettivi del prodotto}
-    Il nostro prodotto punta a sviluppare un'applicazione web che vada ad estendere le possibilità
+    Il nostro prodotto è un'applicazione web che punta ad estendere le possibilità
     di note-taking classiche, andando ad aggiungere le potenzialità dei LLM nel creare e migliorare testi.
     \subsection{Funzionalità del prodotto}
     Le funzionalità offerte dal prodotto saranno:
@@ -394,7 +395,7 @@
         testo e marcatori in formato MarkDown;
         \item \textbf{Visualizzazione testo correttamente formattato}: L'utente sarà in grado di vedere lo stile
         sotteso dai marcatori presenti nel testo;
-        \item \textbf{Utilizzo LLM}; L'utente, tramite un LLM, potrà riassumere, riscrivere o tradurre il testo;
+        \item \textbf{Utilizzo LLM}; L'utente, tramite supporto di un LLM, potrà riassumere, riscrivere o tradurre il testo;
         \item \textbf{Critica secondo il modello dei "sei cappelli per pensare"}: L'utente, sempre tramite LLM, avrà
         la possibilità di ricevere critiche sul testo scritto, prendendo spunto dalla tecnica dei "sei cappelli per pensare";
         \item \textbf{Creazione intero documento tramite LLM}: L'utente potrà far sviluppare l'intero testo all'LLM stesso;
@@ -403,8 +404,8 @@
     \vfill
 
     \section{Casi d'uso}
-    Nella seguente sezione verranno analizzati tutti i casi d'uso individuati esaminando il capitolato d'appalto
-    e discutendo con la proponente. \\Ciascun caso d'uso sarà definito da un diagramma UML e da una descrizione
+    Nella seguente sezione verranno analizzati tutti i casi d'uso individuati esaminando il capitolato d'appalto e discutendo con la proponente. \\
+    Ciascun caso d'uso sarà definito da un diagramma UML e da una descrizione
     testuale contenente: attore principale, attori secondari (ove presenti), precondizioni, postcondizioni, scenario
     principale e scenari alternativi (ove presenti).
 
@@ -414,7 +415,7 @@
     Descrizione attori:
     \subsubsection{Attori Principali}
     \begin{itemize}
-        \item \textbf{Utente}: persona che accede al sistema
+        \item \textbf{Utente}: persona che si connette al sistema
         \item \textbf{Utente autenticato}: utente che ha effettuato l'accesso al proprio account
     \end{itemize}
     \subsubsection{Attori Secondari}
@@ -492,11 +493,11 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente visualizza una singola nota all'interno dell'archivio
+        \item L'utente visualizza i metadati di una nota presente nella lista dell'archivio
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra le singole note dell'archivio delle note
+        \item Il sistema mostra le info di una nota della lista
     \end{enumerate}
 
     \subparagraph*{\UCText{arch_nome}}
@@ -517,7 +518,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra il nome delle singole note dell'archivio delle note
+        \item Il sistema mostra il nome della nota 
     \end{enumerate}
 
     \subparagraph*{\UCText{arch_data}}
@@ -538,7 +539,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra la data di creazione delle singole note dell'archivio delle note
+        \item Il sistema mostra la data di creazione della nota
     \end{enumerate}
 
     \subparagraph*{\UCText{arch_ult_data}}
@@ -559,7 +560,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra la data di ultima modifica delle singole note dell'archivio delle note
+        \item Il sistema mostra la data di ultima modifica della nota
     \end{enumerate}
 
     \paragraph*{\UCText{arch_server_err}}
@@ -575,7 +576,7 @@
     \textbf{Postcondizioni}
     \begin{itemize}
         \item L'archivio delle note rimane vuoto
-        \item Il sistema mostra le due opzioni disponibili
+        \item Il sistema mostra le due opzioni disponibili %sistemare
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -632,7 +633,7 @@
         \begin{itemize}
             \item \UCRef{apri_err}
         \end{itemize}
-        \item In caso il sistema non riesce a connettersi:
+        \item In caso il sistema non riesca a connettersi:
         \begin{itemize}
             \item \UCRef{apri_server_err}
         \end{itemize}
@@ -657,15 +658,17 @@
         \item L'utente sta visualizzando l'archivio delle note (\UCRef{archivio})
         \item Nell'archivio è presente almeno una nota salvata
         \item L'utente apre una nota (\UCRef{apri})
-        \item La nota seleziona è stata eliminata o non è più presente nell'archivio
+        \item La nota selezionata non è effettivamente presente nell'archivio
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
+        \item Nessuna nota viene aperta
         \item L'utente visualizza un messaggio di errore
     \end{itemize}
     \textbf{Scenario Principale}
     \begin{itemize}
-        \item L'utente apre una nota eliminata o non più presente nell'archivio
+        \item Il sistema rileva che la nota che l'utente vuole aprire non è presente nell'archivio
+        \item Il sistema avvisa l'utente dell'inesistenza della nota 
     \end{itemize}
 
     \paragraph*{\UCText{apri_server_err}}
@@ -677,13 +680,18 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio delle note (\UCRef{archivio})
+        \item Nell'archivio è presente almeno una nota salvata
+        \item L'utente apre una nota (\UCRef{apri})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
         \item Nessuna nota viene aperta
+        \item L'utente visualizza un messaggio di errore
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item La connessione dell'utente al server viene interrotta
         \item Il sistema avvisa l'utente della perdita di connessione
     \end{enumerate}
 
@@ -735,7 +743,7 @@
     \begin{itemize}
         \item Nel caso in cui vi siano delle modifiche non salvate:
         \begin{enumerate}
-            \item Caso d'uso UC5
+            \item Caso d'uso \UCName{salva}
         \end{enumerate}
     \end{itemize}
 
