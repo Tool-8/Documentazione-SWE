@@ -202,14 +202,18 @@
         \UCdefsubsub{arch_nome}{Visualizza\\Nome Nota}
         \UCdefsubsub{arch_data}{Visualizza\\Data Creazione Nota}
         \UCdefsubsub{arch_ult_data}{Visualizza\\Data Ultima\\Modifica Nota}
-    \UCdefsub{arch_server_err}{Errore Perdita\\Connessione}
 \UCdef{apri}{Apertura Nota}
+    \UCdefsub{vis-editor-apri}{Visualizza Editor\\Nota}
     \UCdefsub{apri_err}{Errore Nota\\Inesistente}
     \UCdefsub{apri_server_err}{Errore Perdita\\Conessione}
 \UCdef{chiudi}{Chiusura Nota}
 \UCdef{crea}{Creazione Nota}
-\UCdef{vis-editor}{Visualizza Editor\\Nota} %sistemare
+    \UCdefsub{vis-editor-crea}{Visualizza Editor\\Nota}
 \UCdef{salva}{Salvataggio Nota}
+    \UCdefsub{salva_err}{Errore Nota\\Non Aggiornata}
+        \UCdefsubsub{salva_err_sovra}{Sovrascrivi\\Nota}
+        \UCdefsubsub{salva_err_diff}{Salva Con\\Nome Differente}
+        \UCdefsubsub{salva_err_agg}{Aggiorna Nota\\Corrente}
     \UCdefsub{salva_primo}{Primo Salvataggio\\Nota}
         \UCdefsubsub{salva_primo_err}{Errore Salvataggio\\Nota}
     \UCdefsub{salva_nuovo}{Nuovo Salvataggio\\Nota}
@@ -219,7 +223,6 @@
     \UCdefsub{clona_err}{Errore Clonazione\\Nota Inesistente}
     \UCdefsub{clona_server_err}{Errore Perdita\\Connessione}
 \UCdef{ricerca}{Ricerca Nota Per Nome}
-    \UCdefsub{ricerca_server_err}{Errore Perdita\\Connessione}
 \UCdef{elimina}{Eliminazione Nota}
     \UCdefsub{elim_conf}{Conferma\\Eliminazione Nota}
     \UCdefsub{elim_server_err}{Errore Perdita\\Connessione}
@@ -433,7 +436,6 @@
     \begin{center}
         \begin{tikzauto}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=4, y=2.5, name=server_err, align=center]{\UCName{arch_server_err}}
                 \umlusecase[x=0, y=0.5, name=archivio, align=center]{\UCName{archivio}}
                 \umlusecase[x=0, y=-2, name=nota, align=center]{\UCName{arch_sing}}
                 \umlusecase[x=-4, y=-4, name=nome, align=center]{\UCName{arch_nome}}
@@ -451,7 +453,6 @@
             \umlHVinclude[pos stereo=1.3]{nota}{nome}
             \umlinclude{nota}{data}
             \umlHVinclude[pos stereo=1.3]{nota}{data_mod}
-            \umlextend{server_err}{archivio}
         \end{tikzauto}
     \end{center}
 
@@ -472,13 +473,6 @@
     \begin{enumerate}
         \item Il sistema mostra all'utente le note presenti
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso il sistema non riesca a visualizzare le note presenti:
-        \begin{itemize}
-            \item \UCRef{arch_server_err}
-        \end{itemize}
-    \end{itemize}
 
     \paragraph*{\UCText{arch_sing}}
     \addcontentsline{toc}{paragraph}{\UCText{arch_sing}}
@@ -563,26 +557,6 @@
         \item Il sistema mostra la data di ultima modifica della nota
     \end{enumerate}
 
-    \paragraph*{\UCText{arch_server_err}}
-    \addcontentsline{toc}{paragraph}{\UCText{arch_server_err}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'archivio delle note rimane vuoto
-        \item Il sistema mostra le due opzioni disponibili %sistemare
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente della perdita di connessione
-    \end{enumerate}
-
     \vspace{1cm}
 
     \subsubsection*{\UCText{apri}}
@@ -593,6 +567,7 @@
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=3, fill=white!10]{Sistema}
+                \umlusecase[x=2.5, y=4, name=editor, align=center]{\UCName{vis-editor-apri}}
                 \umlusecase[x=2.5, y=2, name=apri, align=center]{\UCName{apri}}
                 \umlusecase[x=0, y=0, name=err, align=center]{\UCName{apri_err}}
                 \umlusecase[x=5, y=0, name=err_server, align=center]{\UCName{apri_server_err}}
@@ -603,6 +578,7 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{apri}
+            \umlinclude{apri}{editor}
             \umlextend{err}{apri}
             \umlextend{err_server}{apri}
         \end{tikzpicture}
@@ -625,7 +601,8 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona la nota da aprire
-        \item Il contenuto della nota viene visualizzato
+        \item L'utente visualizza l'editor
+        \item Il contenuto della nota viene visualizzato nell'editor
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -637,14 +614,32 @@
         \begin{itemize}
             \item \UCRef{apri_server_err}
         \end{itemize}
-        \item Nel caso ci sia una nota già aperta:
-        \begin{enumerate}
-            \item Il sistema chiede conferma per la chiusura della nota
-            \item L'utente conferma
-            \item La nota precedente viene chiusa
-            \item La nuova nota viene aperta
-        \end{enumerate}
     \end{itemize}
+
+    \paragraph*{\UCText{vis-editor-apri}}
+    \addcontentsline{toc}{paragraph}{\UCText{vis-editor-apri}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio delle note (\UCRef{archivio})
+        \item Nell'archivio è presente almeno una nota salvata
+        \item L'utente apre una nota (\UCRef{apri})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza l'editor con il contenuto della nota
+    \end{itemize}
+    \textbf{Scenario Principale}
+    \begin{itemize}
+        \item L'utente apre una nota dall'archivio 
+        \item L'utente visualizzza l'editor
+        \item Il contenuto della nota viene visualizzato nell'editor
+    \end{itemize}
+
 
     \paragraph*{\UCText{apri_err}}
     \addcontentsline{toc}{paragraph}{\UCText{apri_err}}
@@ -707,6 +702,7 @@
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=chiusura]{\UCName{chiudi}}
                 \umlusecase[x=0, y=2, name=salvataggio]{\UCName{salva}}
+                \umlusecase[x=0, y=6, name=arch, align=center]{\UCName{archivio}}
             \end{umlsystem}
 
             % Attori
@@ -717,7 +713,7 @@
 
             % Associazioni Casi d'Uso
             \umlextend{chiusura}{salvataggio}
-
+            \umlinclude{chiusura}{arch}
         \end{tikzpicture}
     \end{center}
 
@@ -732,12 +728,13 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Non è visualizzata alcuna nota
+        \item L'utente visualizza l'archivio delle note (\UCRef{archivio})
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità \textit{"Chiudi Nota"}
         \item La visualizzazione viene chiusa
+        \item L'utente visualizza l'archivio delle note
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -757,7 +754,7 @@
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=creazione]{\UCName{crea}}
+                \umlusecase[x=0, y=4, name=creazione]{\UCName{crea}}ù\umlusecase[x=0, y=2, name=vis-edit, align=center]{\UCName{vis-editor-crea}}
             \end{umlsystem}
 
             % Attori
@@ -765,6 +762,7 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{creazione}
+            \umlinclude{creazione}{vis-edit}
         \end{tikzpicture}
     \end{center}
 
@@ -775,16 +773,37 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente visualizza l'archivio delle note (\UCRef{archivio})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
         \item Viene creata una nota vuota
-        \item L'utente può iniziare a scrivere il markdown
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente visualizza l'archivio delle note
         \item L'utente attiva la funzionalità di \textit{"Creazione Nota"}
-        \item Il contenuto della nota viene visualizzato
+        \item L'utente visualizza l'editor vuoto
+    \end{enumerate}
+
+    \subsubsection*{\UCText{vis-editor-crea}}
+    \addcontentsline{toc}{subsubsection}{\UCText{vis-editor-crea}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha creato una nuova nota (\UCRef{crea})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza l'editor vuoto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente visualizza l'editor di testo senza nessun contenuto
     \end{enumerate}
 
     % realisticamente si potrà creare una nota solo quando si è nell'archivio
@@ -817,6 +836,7 @@
                 \umlusecase[x=0, y=0, name=err_salvataggio, align=center]{\UCName{salva_primo_err}}
                 \umlusecase[x=6, y=2, name=nuovo_salvataggio, align=center]{\UCName{salva_nuovo}}
                 \umlusecase[x=6, y=0, name=err_nuovo_salvataggio, align=center]{\UCName{salva_nuovo_err}}
+                \umlusecase[x=0, y=6, name=err_salva, align=center]{\UCName{salva_err}}
             \end{umlsystem}
 
             % Attori
@@ -831,6 +851,7 @@
             \umlextend{err_nuovo_salvataggio}{nuovo_salvataggio}
             \umlinherit{nuovo_salvataggio}{salvataggio}
             \umlextend{err_server}{salvataggio}
+            \umlextend{err_salva}{salvataggio}
         \end{tikzauto}
     \end{center}
 
@@ -859,18 +880,134 @@
             \item \UCRef{salva_server_err}
         \end{itemize}
         \item Nel caso in cui la nota inizialmente visualizzata dall'utente avesse successivamente subito delle modifiche:
-        \begin{enumerate}
-            \item Il sistema avvisa la presenza di modifiche non contenute nella versione corrente dell'utente
-            \item Il sistema propone all'utente la scelta tra:
+        \begin{itemize}
+            \item \UCRef{salva_err}
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph*{\UCText{salva_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_err}}
+
+    \begin{center}
+        \begin{tikzauto}
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                
+                \umlusecase[x=-1, y=4, name=err_salva, align=center]{\UCName{salva_err}}
+                \umlusecase[x=-4, y=2, name=sovra, align=center]{\UCName{salva_err_sovra}}
+                \umlusecase[x=-0.5, y=0, name=diff, align=center]{\UCName{salva_err_diff}}
+                \umlusecase[x=3, y=2, name=agg, align=center]{\UCName{salva_err_agg}}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=-3, y=4]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{err_salva}
+            
+            \umlextend{sovra}{err_salva}
+            \umlextend{agg}{err_salva}
+            \umlextend{diff}{err_salva}
+        \end{tikzauto}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene salvata nell'archivio delle note
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Salva Nota"}
+        \item Il sistema avvisa la presenza di modifiche non contenute nella versione corrente dell'utente
+        \item Il sistema propone all'utente la scelta tra:
             \begin{itemize}
-                \item Sovrascrivere la nota presente nell'archivio con la versione corrente dell'utente
-                \item Salvare la nota con un nome differente
-                \item Aggiornare la nota corrente dell'utente con la versione presente nell'archivio
+                \item \UCRef{salva_err_sovra}
+                \item \UCRef{salva_err_diff}
+                \item \UCRef{salva_err_agg}
             \end{itemize}
             \item L'utente seleziona una tra le opzioni
             \item Il sistema effettua l'operazione scelta dall'utente
-        \end{enumerate}
+    \end{enumerate}
+
+    \paragraph*{\UCText{salva_err_sovra}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_err_sovra}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
     \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene salvata nell'archivio delle note
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{itemize}
+        \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
+        \item La nota viene aggiornata con la versione dell'utente
+    \end{itemize}
+
+    \paragraph*{\UCText{salva_err_diff}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_err_diff}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha scelto l'opzione di salvare la nota con un nome differente
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene salvata nell'archivio delle note
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{itemize}
+        \item L'utente ha scelto l'opzione di salvare la nota con un altro nome
+        \item L'utente inserisce il nome della nota 
+        \item La nota viene salvata nell'archivio delle note
+    \end{itemize}
+
+    \paragraph*{\UCText{salva_err_agg}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_err_agg}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha scelto l'opzione di aggiornare la nota aperta con la versione presente in archivio
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il contenuto della nota aperta viene aggiornato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{itemize}
+        \item L'utente ha scelto l'opzione di aggiornare la nota aperta
+        \item Il contenuto della nota viene aggiornato con quello della nota presente nell'archivio
+    \end{itemize}
+
 
     \paragraph*{\UCText{salva_primo}}
     \addcontentsline{toc}{paragraph}{\UCText{salva_primo}}
@@ -889,8 +1026,8 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente inserisce il nome della nota
-        \item Il sistema avvisa all'utente del salvataggio della nota nell'archivio
         \item La nota viene salvata nell'archivio
+        \item Il sistema avvisa l'utente del salvataggio della nota nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -906,10 +1043,6 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
         \item La nota non è salvata nell'archivio
@@ -922,13 +1055,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa la presenza di una nota con lo stesso nome
-        \item Il sistema propone all'utente la scelta tra:
-            \begin{itemize}
-                \item Sovrascrivere la nota presente nell'archivio
-                \item Cambiare il nome della nota corrente  % Da rivedere: serve includere il caso d'uso della rinominazione?
-            \end{itemize}
-            \item L'utente sceglie una tra le opzioni
-            \item Il sistema effettua l'operazione scelta dall'utente
     \end{enumerate}
 
     \paragraph*{\UCText{salva_nuovo}}
@@ -940,19 +1066,19 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item La nota è presente nell'archivio
-        \item La nota visualizzata ha modifiche rispetto alla nota presente dell'archivio 
+        \item La nota visualizzata ha modifiche rispetto alla nota presente nell'archivio 
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota originale è presente nell'archivio con nessuna modifica applicata
-        \item È presente una nuova nota nell'archivio
+        \item La nota originale nell'archivio non ha subito alcuna modifica 
+        \item È presente una nuova nota nell'archivio generata a partire dalla nota aperta 
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Salva Con Nome"}
         \item L'utente inserisce il nuovo nome della nota
-        \item Il sistema avvisa all'utente del salvataggio della nuova nota nell'archivio
         \item La nuova nota viene salvata nell'archivio
+        \item Il sistema avvisa all'utente del salvataggio della nuova nota nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -968,15 +1094,11 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item La nota è presente nell'archivio
-        \item La nota visualizzata ha modifiche non presenti nell'archivio
-        \item L'utente ha inserito il nuovo nome della nota
+        \item L'utente attiva la funzionalità di \textit{"Salva Con Nome"}
+        \item L'utente inserisce il nuovo nome della nota
+        \item L'utente ha inserito un nome già utilizzato da un'altra nota
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -985,13 +1107,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa la presenza di una nota con lo stesso nome
-        \item Il sistema propone all'utente la scelta tra:
-        \begin{itemize}
-            \item Sovrascrivere la nota presente nell'archivio
-            \item Cambiare il nome della nota corrente  % Da rivedere: serve includere il caso d'uso della rinominazione?
-        \end{itemize}
-        \item L'utente sceglie una tra le opzioni
-        \item Il sistema effettua l'operazione scelta dall'utente
     \end{enumerate}
 
     \paragraph*{\UCText{salva_server_err}}
@@ -1003,6 +1118,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1054,7 +1170,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Nel Server è presente il clone della nota
+        \item Nell'archivio è presente il clone della nota
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -1107,6 +1223,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente ha attivato la funzionalità \textit{"Clonazione Nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1128,7 +1245,6 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=ricerca]{\UCName{ricerca}}
-                \umlusecase[x=0, y=2, name=server_err, align=center]{\UCName{ricerca_server_err}}
             \end{umlsystem}
 
             % Attori
@@ -1136,10 +1252,6 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{ricerca}
-
-            % Associazioni Casi d'Uso
-            \umlextend{server_err}{ricerca}
-
         \end{tikzpicture}
     \end{center}
 
@@ -1162,34 +1274,6 @@
         \item L'utente specifica il nome di una nota da ricercare
         \item Il sistema effettua la ricerca nell'archivio
         \item Il sistema mostra i risultati della ricerca
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso il sistema perda la connessione:
-        \begin{itemize}
-            \item \UCRef{ricerca_server_err}
-        \end{itemize}
-    \end{itemize}
-
-    \paragraph*{\UCText{ricerca_server_err}}
-    \addcontentsline{toc}{paragraph}{\UCText{ricerca_server_err}}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'archivio rimane senza filtri applicati
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1243,15 +1327,6 @@
         \begin{itemize}
             \item \UCRef{elim_server_err}
         \end{itemize}
-        \item Nel caso in cui la nota interessata fosse stata rimossa dall'archivio prima dell'eliminazione da parte dell'utente:
-        \begin{itemize}
-            \item Il sistema avvisa l'utente dell'inesistenza della nota da eliminare
-        \end{itemize}
-        \item Nel caso la nota venga eliminata mentre è aperta dall'utente:
-        \begin{itemize}
-            \item Il sistema avvisa l'utente della nota aperta ormai eliminata
-            \item La nota rimane aperta in locale
-        \end{itemize}
     \end{itemize}
 
     \paragraph*{\UCText{elim_conf}}
@@ -1293,7 +1368,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1338,7 +1412,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Rinomina"}
-        \item L'utente cambia il nome della nota
+        \item L'utente inserisce un nuovo nome per la nota
         \item Il sistema cambia il nome della nota
     \end{enumerate}
     \textbf{Estensioni}
@@ -1362,6 +1436,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente ha inserito un nuovo nome per la nota
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1385,15 +1461,14 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha inserto il nome della nota
+        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota ha lo stesso nome
+        \item Il nome della nota rimane invariato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
         \item L'utente inserisce il nuovo nome della nota
         \item Il sistema avvisa l'utente della perdita di connessione
     \end{enumerate}
@@ -1432,6 +1507,7 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
+        \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1552,10 +1628,6 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
@@ -1661,6 +1733,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente visualizza l'archivio (\UCRef{archivio})
+        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1669,7 +1743,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1750,7 +1823,6 @@
         \item L'utente attiva la funzionalità \textit{"Importazione nota"}
         \item L'utente sceglie di importare una nota dal formato non valido
         \item L'utente visualizza il messaggio di errore
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \paragraph*{\UCText{importa_server_err}}
@@ -1771,7 +1843,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \newpage
@@ -2919,7 +2990,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3132,7 +3202,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3294,7 +3363,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3385,7 +3453,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3681,7 +3748,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3798,7 +3864,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente del nome non valido
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \paragraph*{(OPT) \UCText{auth_pwd}}
@@ -3853,7 +3918,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della password non valida
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \paragraph*{\UCText{auth_server_err}}
@@ -3874,7 +3938,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3989,7 +4052,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente del nome non disponibile
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \paragraph*{(OPT) \UCText{reg_pwd}}
@@ -4044,7 +4106,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della password non valida
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \paragraph*{\UCText{reg_server_err}}
@@ -4065,7 +4126,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -4218,7 +4278,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente che la password non è corretta
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \subparagraph*{(OPT) \UCText{conf_elim}}
@@ -4265,7 +4324,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -4435,8 +4493,8 @@
             \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in seguito alla selezione del testo originale, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in coda a tutto il testo presente nell'editor, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di "rifiutare" il testo generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & \UCRef{riassumi}, \UCRef{traduci}, \UCRef{riscrivi}, \UCRef{genera} \\ \hline
-            \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione & \UCRef{genera} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di copiare negli appunti il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & \UCRef{riassumi}, \UCRef{traduci}, \UCRef{riscrivi}, \UCRef{genera} \\ \hline
+            \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione (Distant Writing) & \UCRef{genera} \\ \hline
             \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo tradotto viene modificato & \UCRef{mod_traduzione} \\ \hline
             \reqF{O} & Il sistema deve consentire all’utente di aggiornare una traduzione precedentemente inserita se il testo originale è presente ed è stato modificato & \UCRef{traduci_redo} \\ \hline
             \reqF{O} & Il sistema deve consentire all'utente di rimuovere una traduzione precedentemente inserita & \UCRef{traduci} \\ \hline
@@ -4482,7 +4540,7 @@
             \reqQ{O} & Al termine dell’esportazione, il sistema deve notificare esplicitamente l’errore di esportazione all'utente & \UCRef{esporta}, \UCRef{esporta_archivio} \\ \hline
             \reqQ{O} & L’importazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri (incl. Unicode) & \UCRef{importa} \\ \hline
             \reqQ{O} & In caso di file non valido o corrotto, il sistema deve interrompere l’importazione senza creare note parziali e deve notificare chiaramente l’errore all’utente & \UCRef{importa_err} \\ \hline
-            \reqQ{O} & Nel caso in cui il Server delle note è irraggiungibile, il sistema deve gestire l’errore in modo robusto senza crash, mantenendo lo stato consistente dell’interfaccia e notificando chiaramente il problema all’utente & \UCRef{arch_server_err}, \UCRef{apri_server_err}, \UCRef{salva_server_err}, \UCRef{clona_server_err}, \UCRef{ricerca_server_err}, \UCRef{elim_server_err}, \UCRef{rinom_server_err}, \UCRef{esporta_arch_server_err}, \UCRef{importa_server_err} \\ \hline
+            \reqQ{O} & Nel caso in cui il Server delle note è irraggiungibile, il sistema deve gestire l’errore in modo robusto senza crash, mantenendo lo stato consistente dell’interfaccia e notificando chiaramente il problema all’utente & \UCRef{apri_server_err}, \UCRef{salva_server_err}, \UCRef{clona_server_err}, \UCRef{elim_server_err}, \UCRef{rinom_server_err}, \UCRef{esporta_arch_server_err}, \UCRef{importa_server_err} \\ \hline
             \reqQ{O} & L'aggiornamento della visualizzazione formattata deve avvenire in un tempo adeguatamente veloce & \UCRef{formatta} \\ \hline
             \reqQ{O} & L’editor deve rispondere all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & \UCRef{scrivi}, \UCRef{formatta}.* \\ \hline
             \reqQ{O} & L’editor deve rendere i link ipertestuali facilmente riconoscibili (es. evidenziandoli graficamente) e distinguibili dal testo normale & \UCRef{link} \\ \hline
