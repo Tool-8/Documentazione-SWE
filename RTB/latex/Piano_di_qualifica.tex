@@ -91,6 +91,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  0.3 & Niccolò Feltrin & Aggiornati grafici del cruscotto con Sprint 4 (insieme all'analisi), e aggiunto calcolo dell'indice di Gulpease su verbali e documenti per RTB & 06/03/2026 & Giuliano Banchieri \\
+  \hline
   0.2 & Stefano Maso & Aggiornamento Cruscotto di valutazione a seguito del terzo sprint & 17/02/2026 & Besnik Murtezan \\
   \hline
   0.1 & Stefano Maso & Prima stesura documento completo & \slashdate{\displaydate{dataverbale}} & Besnik Murtezan \\
@@ -239,7 +241,7 @@ Obiettivi per tali metriche:
 \textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
 \hline
 PC13-EO & Errori ortografici & 0 & 0 \\
-PC14-IG  & Indice Gulpease & 30-100      & 50-100 \\
+PC14-IG  & Indice Gulpease & 40-100      & 55-100 \\
 \hline
 \end{tabular}
 \caption{Metriche per i processi di supporto}
@@ -508,34 +510,49 @@ Diagrammi dei casi d'uso$^G$ erronei & I diagrammi dei casi d'uso devono riporta
 \subsection{PC01-EAC (Estimated at Completion)}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{resources/EAC.png}
+    \includegraphics[width=0.9\linewidth]{resources/EAC.pdf}
     \caption{Estimated at Completion}
 \end{figure}
-Dal grafico si può notare come l'EAC, al termine del terzo sprint, si trovi all'interno del limite superiore ma comunque al di sopra di BAC. Il team è consapevole che l'andamento è dovuto ad una gestione errata del progetto, perciò tutti i membri dovranno impegnarsi per rientrare nel valore ottimale.
+Dal grafico si osserva l'andamento dell'EAC nei quattro sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato. Tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. È necessario continuare a ottimizzare le stime per rientrare entro i limiti accettabili (±5\% BAC) nei periodi successivi.
 
 \subsection{PC02-PV (Planned Value) e PC04-EV (Earned Value)}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{resources/EV rispetto a PV.png}
+    \includegraphics[width=0.9\linewidth]{resources/EV rispetto a PV.pdf}
     \caption{Planned Value - Earned Value}
 \end{figure}
-Le linee del PV e dell'EV sono praticamente sovrapposte, ciò significa che il gruppo negli ultimi due periodi sta svolgendo esattamente quanto pianificato.
+Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) ed Earned Value (EV) nel corso dei quattro sprint. Le due curve risultano quasi sovrapposte, a conferma che il gruppo sta producendo valore in linea con quanto pianificato. Questo indica una buona capacità di rispettare la pianificazione e di mantenere il ritmo di avanzamento previsto.
 
 \subsection{PC05-ETC (Estimated to Complete)}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{resources/ETC.png}
+    \includegraphics[width=0.9\linewidth]{resources/ETC.pdf}
     \caption{Estimated to Complete}
 \end{figure}
-Dal grafico si evince che è necessario produrre più valore in ciascun periodo in modo da rientrare nel costo pianificato. Ora come ora il progetto rischia di chiudere sopra budget di circa 3-4\%.
+Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso dei quattro sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per quasi tutti i periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, al termine del quarto periodo si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
 
 \subsection{PC06-CV (Cost Variance), PC07-SV (Schedule Variance) e PC08-BV (Budget Variance)}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{resources/CV, SV, BV.png}
+    \includegraphics[width=0.9\linewidth]{resources/CV, SV, BV.pdf}
     \caption{Cost Variance, Schedula Variance e Budget Variance}
 \end{figure}
-Il gruppo deve impegnarsi come sta facendo per mantenere la \textit{Cost Variance}, la \textit{Schedule Variance} e la \textit{Budget Variance} all'interno dei limiti accettabili. Al termine del terzo sprint tutte e tre le metriche hanno valori accettabili.
+Il grafico illustra l'andamento delle tre varianze nei quattro sprint: al termine del terzo sprint si osserva un avvicinamento di CV e BV al limite inferiore, dovuto al periodo di sessione universitaria parzialmente previsto; la SV rimane è rimasta stabile, suggerendo che il team ha deliberatamente pianificato meno lavoro in quel periodo per far fronte alla sessione, contenendo il ritardo sulla pianificazione a scapito però dell'efficienza economica. Nel quarto sprint CV e BV recuperano correttamente, tuttavia la SV mostra un leggero decremento, indicando che il rallentamento del terzo sprint non è stato pienamente recuperato in termini di valore prodotto; il team dovrà colmare questo ritardo nei periodi successivi.
+
+\subsection{Indice di Gulpease}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/Andamento indice di Gulpease verbali.pdf}
+    \caption{Andamento indice di Gulpease verbali}
+\end{figure}
+I risultati mostrano che tutti i verbali analizzati superano ampiamente la soglia minima accettabile di 40 punti nell'Indice di Gulpease, attestandosi su un valore medio di circa 62, a indicare una leggibilità complessivamente buona.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/Indice di Gulpease documenti RTB.pdf}
+    \caption{Indice di Gulpease documenti RTB}
+\end{figure}
+Il grafico illustra i valori dell'Indice di Gulpease calcolati per i documenti relativi alla milestone$^G$ RTB: Analisi dei Requisiti, Norme di Progetto, Piano di Progetto e Piano di Qualifica. Tutti i documenti superano abbondantemente la soglia minima di 40 punti. In particolare, l'Analisi dei Requisiti registra un valore particolarmente elevato, riconducibile alla natura stessa del documento, caratterizzato da una struttura ricca di elementi grafici (Casi d'uso) e da un uso esteso di elenchi puntati, fattori che incidono positivamente sul calcolo dell'indice.
 
 \section{Valutazioni per il miglioramento}
 Questa sezione è dedicata alla valutazione generale del lavoro, con lo scopo di inserire osservazioni sui problemi riscontrati e sulle possibili correzioni da adottare.
