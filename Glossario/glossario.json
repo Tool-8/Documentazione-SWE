@@ -86,7 +86,7 @@
       "definizione": "Indica il modo con cui un insieme di attività raggiunge gli obiettivi attesi."
     },
     {
-      "termine": "Effiienza",
+      "termine": "Efficienza",
       "definizione": "Rapporto tra risultati ottenuti e risorse utilizzate per ottenerli."
     }
   ],
@@ -189,7 +189,7 @@
     }, 
     {
       "termine": "Proof of Concept",
-      "definizione": "Prodotto dimostrativo atto a presentare la fattibilità dell'idea."
+      "definizione": "Prodotto dimostrativo atto a dimostrare la fattibilità dell'idea."
     },
     {
       "termine": "Proponente",
@@ -251,7 +251,7 @@
     },
     {
       "termine": "Verifica",
-      "definizione": "Insieme di processi per garantire che una funzione all'interno di un prodotto soddisfi determinati requisiti."
+      "definizione": "Insieme di processi per garantire che un prodotto soddisfi determinati requisiti."
     },
     {
       "termine": "Verificatore",
