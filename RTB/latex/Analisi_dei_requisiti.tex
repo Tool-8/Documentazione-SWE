@@ -335,7 +335,7 @@
             \hline
             \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
             \hline
-            0.16 & Stefano Maso & Aggiunta casi d'uso \UCRef{riscrivi_variazione}, \UCRef{riscrivi_modifica}, \UCRef{riscrivi_grammatica}, \UCRef{riscrivi_lessico}; controllo e correzione casi d'uso e requisiti & 7/3/2026 & - \\ 
+            1.0 & Stefano Maso & Aggiunta casi d'uso \UCRef{riscrivi_variazione}, \UCRef{riscrivi_modifica}, \UCRef{riscrivi_grammatica}, \UCRef{riscrivi_lessico}; controllo e correzione casi d'uso e requisiti & 7/3/2026 & Giuliano Banchieri \\ 
             \hline 
             0.15 & Stefano Maso & Modifica Attore secondario & 5/3/2026 & Giuliano Banchieri \\
             \hline
@@ -931,7 +931,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità \textit{"Salva Nota"}
-        \item Il sistema avvisa la presenza di modifiche non contenute nella versione corrente dell'utente
+        \item Il sistema avvisa della presenza di modifiche non contenute nella versione corrente dell'utente
         \item Il sistema propone all'utente la scelta tra:
             \begin{itemize}
                 \item \UCRef{salva_err_sovra}
@@ -1082,7 +1082,7 @@
         \item L'utente attiva la funzionalità di \textit{"Salva Con Nome"}
         \item L'utente inserisce il nuovo nome della nota
         \item La nuova nota viene salvata nell'archivio
-        \item Il sistema avvisa all'utente del salvataggio della nuova nota nell'archivio
+        \item Il sistema avvisa l'utente del salvataggio della nuova nota nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -2968,7 +2968,7 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il riassunto suggerito dall'LLM
-        \item L'utente decide se sostituire il riassunto con il testo selezionato, aggiungere il riassunto in seguito alla selezione, aggiungere il riassunto in coda o rifiutare il riassunto
+        \item L'utente decide se sostituire con il riassunto il testo selezionato, aggiungere il riassunto in seguito alla selezione, aggiungere il riassunto in coda o rifiutare il riassunto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -3071,7 +3071,7 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il risultato all'utente
-        \item L'utente decide se sostituire il testo riscritto con il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -3105,7 +3105,7 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il risultato all'utente
-        \item L'utente decide se sostituire il testo riscritto con il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
 
     \paragraph*{\UCText{riscrivi_modifica}}
@@ -3132,7 +3132,7 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il risultato all'utente
-        \item L'utente decide se sostituire il testo riscritto con il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
 
     \paragraph*{\UCText{riscrivi_grammatica}}
@@ -3159,7 +3159,7 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il risultato all'utente
-        \item L'utente decide se sostituire il testo riscritto con il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
 
     \paragraph*{\UCText{riscrivi_lessico}}
@@ -3186,7 +3186,7 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il risultato all'utente
-        \item L'utente decide se sostituire il testo riscritto con il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
 
     \paragraph*{\UCText{riscrivi_llm_err}}
@@ -3271,7 +3271,7 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il risultato all'utente
-        \item L'utente decide se sostituire la traduzione con il testo selezionato, aggiungere la traduzione in seguito alla selezione, aggiungere la traduzione in coda o rifiutare la traduzione
+        \item L'utente decide se sostituire con la traduzione il testo selezionato, aggiungere la traduzione in seguito alla selezione, aggiungere la traduzione in coda o rifiutare la traduzione
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -3717,7 +3717,7 @@
     \begin{enumerate}
         \item L'utente attiva la funzionalità \textit{"Critica testo"}
         \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema non ricevela risposta dell'LLM
+        \item Il sistema non riceve la risposta dell'LLM
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
     \end{enumerate}
 
@@ -3809,7 +3809,7 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il nome è già utilizzato:
+        \item In caso il nome sia già utilizzato:
         \begin{itemize}
             \item \UCRef{reg_nome_err}
         \end{itemize}
@@ -3863,7 +3863,7 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso la password non soddisfa i requisiti minimi di robustezza:
+        \item In caso la password non soddisfi i requisiti minimi di robustezza:
         \begin{itemize}
             \item \UCRef{reg_pwd_err}
         \end{itemize}
@@ -3958,7 +3958,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente è autenticato al sistema
+        \item L'utente è autenticato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -4015,12 +4015,12 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente non è autenticato
-        \item L'utente sta effettuando la autenticazione (\UCRef{autentica})
+        \item L'utente sta effettuando l'autenticazione (\UCRef{autentica})
         \item L'utente ha inserito il proprio nome (\UCRef{auth_nome})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente non è autenticato al sistema
+        \item L'utente non è autenticato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -4069,12 +4069,12 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente non è autenticato
-        \item L'utente sta effettuando la autenticazione (\UCRef{autentica})
+        \item L'utente sta effettuando l'autenticazione (\UCRef{autentica})
         \item L'utente ha inserito la propria password (\UCRef{auth_pwd})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente non è autenticato al sistema
+        \item L'utente non è autenticato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -4094,7 +4094,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente non è autenticato al sistema
+        \item L'utente non è autenticato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -4132,11 +4132,11 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota viene salvata nel DataBase ed è accessibile solo all'utente che l'ha salvata
+        \item La nota viene salvata nel DataBase ed è accessibile solo dall'utente che l'ha salvata
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente ha una nota apert
+        \item L'utente ha una nota aperta
         \item L'utente attiva la funzionalità \textit{"Salva nel DataBase"}
         \item La nota viene salvata nel DataBase e solo l'utente può accedervi
     \end{enumerate}
@@ -4169,7 +4169,7 @@
     \begin{enumerate}
         \item L'utente ha una nota aperta
         \item L'utente attiva la funzionalità \textit{"Salva nel DataBase"}
-        \item La nota viene non salvata nel DataBase 
+        \item La nota non viene salvata nel DataBase 
         \item L'utente visualizza un messaggio di errore
     \end{enumerate}
 
