@@ -1,15 +1,44 @@
 {
   "A": [
     {
+      "termine": "Agile",
+      "definizione": "Agile è un approccio di lavoro basato su iterazioni brevi e feedback. Utilizzato dal metodo Scrum, il lavoro viene suddiviso in Sprint di una o due settimane, ciascun Sprint inizia con lo Sprint Planning, dove vengono definiti obiettivi, e si conclude con lo Sprint Retrospective, dove il team valuta cosa è andato bene e cosa è necessario migliorare. Durante lo Sprint vengono svolte riunioni giornaliere per monitorare lo stato di avanzamento."
+    },
+    {
+      "termine": "Amministratore",
+      "definizione": "È la figura che si occupa della configurazione e gestione dell'infrastruttura IT di supporto a un progetto."
+    },
+    {
       "termine": "Analisi dei Requisiti",
       "definizione": "L'analisi dei requisiti è il processo di raccolta, documentazione e analisi delle esigenze e delle funzionalità di un sistema software. Questo processo coinvolge la comprensione approfondita dei requisiti dell'utente, delle necessità del business e delle specifiche tecniche per sviluppare un sistema che soddisfi le aspettative degli stakeholders. Gli obiettivi principali dell'analisi dei requisiti includono la definizione chiara e completa delle funzionalità del sistema, la specifica dei vincoli e delle restrizioni, e l'identificazione dei requisiti non funzionali come quelli relativi a prestazioni, sicurezza e usabilità."
     },
     {
       "termine": "Analisi dei Rischi",
       "definizione": "L'analisi dei rischi è il processo di identificazione, valutazione e gestione dei potenziali problemi e delle minacce che potrebbero influenzare il successo di un progetto o di un'attività. Questo processo coinvolge la valutazione dei rischi potenziali, la determinazione della loro probabilità di accadere e dell'impatto che potrebbero avere sul progetto, nonché lo sviluppo di strategie per mitigare o gestire tali rischi. L'obiettivo dell'analisi dei rischi è identificare proattivamente le potenziali problematiche e adottare misure preventive o correttive per ridurre al minimo gli impatti negativi sul progetto."
+    },
+    {
+      "termine": "Analista", 
+      "definizione": "Figura che si occupa di identificare e chiarire i requisiti, interpretando le esigenze degli utilizzatori finali così da assicurare una corretta definizione delle funzionalità."
+    },
+    {
+      "termine": "API",
+      "definizione": "Acronimo di Application Programming Interface, è un'interfaccia utile a permettere o facilitare la comunicazione tra software o parti di un singolo software."
+    },
+    {
+      "termine": "Attore",
+      "definizione": "Entità esterna e non controllabile dal progetto ma che va ad intergaire con esso."
     }
     ],
-  "B": [],
+  "B": [
+    {
+      "termine": "Baseline", 
+      "definizione": "Stato fissato di artefatti considerato stabile e sufficientemente maturo."
+    },
+    {
+      "termine": "Branch",
+      "definizione": "Uno specifico ramo di lavoro all'interno di una repository, atta a mantenere una distinzione tra ramo principale e rami di lavoro in cui ciascun membro del gruppo può lavorare in maniera asincora evitando conflitti."
+    }
+  ],
   "C": [
     {
         "termine": "Candidatura",
@@ -45,13 +74,30 @@
     {
         "termine": "Diagramma dei casi d'uso",
         "definizione": "Il diagramma dei casi d'uso è una rappresentazione grafica delle interazioni tra gli attori esterni al sistema software e il sistema software stesso. È composto da attori, casi d'uso e le relazioni tra di essi e fornisce una panoramica visiva delle funzionalità offerte dal sistema e dei suoi utilizzi da parte degli attori."
+    },
+    {
+      "termine": "Docker",
+      "definizione": "Software per l'esecuzione di applicazioni in ambienti isolati detti container."
     }
   ],
-  "E": [],
+  "E": [
+    {
+      "termine": "Efficacia",
+      "definizione": "Indica il modo con cui un insieme di attività raggiunge gli obiettivi attesi."
+    },
+    {
+      "termine": "Effiienza",
+      "definizione": "Rapporto tra risultati ottenuti e risorse utilizzate per ottenerli."
+    }
+  ],
   "F": [
     {
         "termine": "Framework",
         "definizione": "Un framework software è un'impalcatura predefinita di componenti, librerie di codice e linee guida che fornisce una base strutturata per lo sviluppo di applicazioni, semplificando ed organizzando in maniera omogenea il lavoro degli sviluppatori. Consente di riutilizzare codice, aumentare la velocità di sviluppo ed imporre standard di progettazione."
+    },
+    {
+      "termine": "Funzionalità",
+      "definizione": "Una caratteristica offerta da un sistema, con lo scopo di soddisfare un bisogno."
     }
   ],
   "G": [
@@ -73,11 +119,24 @@
     {
         "termine": "Ingegneria del software",
         "definizione": "L'ingegneria del software è un insieme di principi e pratiche utilizzati per progettare, sviluppare, mantenere, testare e valutare il software per computer. Le relative tecniche vengono impiegate per guidare il processo di sviluppo del software, che comprende la definizione, l'implementazione, la valutazione, la misurazione, la gestione, il cambiamento e il miglioramento del ciclo di vita del software. Questa disciplina pone un forte accento sulla gestione della configurazione del software, che implica il controllo sistematico delle modifiche alla configurazione, il mantenimento dell'integrità e della tracciabilità della configurazione e del codice durante tutto il ciclo di vita del sistema, mediante l'uso del versionamento del software."
+    },
+    {
+      "termine": "Issue",
+      "definizione": "All'interno di GitHub, indica un'attività che richiede modifiche al codice sorgente per essere svolta, può essere un bug, una feature da aggiungere o qualcosa definito dagli sviluppatori."
     }
   ],
   "J": [],
   "K": [],
-  "L": [],
+  "L": [
+    {
+      "termine": "LaTeX",
+      "definizione": "Linguaggio di markup utilizzato per produrre i documenti."
+    }, 
+    {
+      "termine": "LLM",
+      "definizione": "Large Language Models, cioè i modelli addestrati su grandi quantità di testo (ChatGPT o DeepSeek)."
+    }
+  ],
   "M": [
     {
         "termine": "Milestone",
@@ -86,6 +145,10 @@
     {
         "termine": "Modello a V",
         "definizione": "Il Modello a V è una rappresentazione grafica del ciclo di vita di un progetto di sviluppo software. Esso mostra in maniera dettagliata le relazioni fra le fasi di analisi e progettazione, la produzione e il testing e ciò che permette di minimizzare i rischi di progetto e di migliorare e garantire la qualità del prodotto."
+    },
+    {
+      "termine": "MVP",
+      "definizione": "Minimum Viable Product, la prima versione di un prodotto che offre le funzionalità minime per rispettare i requisiti obbligatori stabiliti."
     }
   ],
   "N": [
@@ -95,14 +158,116 @@
     }
   ],
   "O": [],
-  "P": [],
+  "P": [
+    {
+      "termine": "Piano di Progetto",
+      "definizione": "Documento che si occupa di definire l'organizzazione del gruppo, andando a specificare l'assegnazione dei ruoli, il monte ore previsto per ogni risorsa, le tempistiche e il costo economico preventivo in funzione dell'avanzamento del progetto."
+    },
+    {
+      "termine": "Piano di Qualifica",
+      "definizione": "Documento che si occupa di garantire il rispetto dei requisiti del progetto definendo le strategie di verifica e validazione affinchè vengano rispettate le attese del proponente."
+    },
+    {
+      "termine": "Product Baseline",
+      "definizione": "Fase finale del progetto che prevede la realizzazione di un MVP, a seguito del superamento dei test concordati nella Requirements and Technology Baseline."
+    },
+    {
+      "termine": "Progettazione",
+      "definizione": "Processo che definisce la struttura di un sistema, identificandone componenti, relazioni e livello di dettaglio necessario per la realizzazione."
+    },
+    {
+      "termine": "Progettista",
+      "definizione": "Ruolo dedito alla progettazione dell'architettura di un progetto, in modo da assicurarsi codice corretto e manutenibile."
+    },
+    {
+      "termine": "Progetto",
+      "definizione": "Insieme ordinato di attività, istanziate dai processi di ciclo di vita che soddisfano gli obiettivi dati."
+    }, 
+    {
+      "termine": "Programmatore",
+      "definizione": "Persona incaricata di svolgere le attività di codifica."
+    }, 
+    {
+      "termine": "Proof of Concept",
+      "definizione": "Prodotto dimostrativo atto a presentare la fattibilità dell'idea."
+    },
+    {
+      "termine": "Proponente",
+      "definizione": "Persona, gruppo o organizzazione che propone un progetto, idea o iniziativa e ne definisce obiettivi, requisiti e motivazioni."
+    }
+  ],
   "Q": [],
-  "R": [],
-  "S": [],
-  "T": [],
+  "R": [
+    {
+      "termine": "Repository",
+      "definizione": "Uno spazio condiviso tra i membri del gruppo, in cui viene memorizzato e versionato il codice sorgente prodotto."
+    },
+    {
+      "termine": "Requisiti di vincolo",
+      "definizione": "Requisito che descrive le restrizioni imposte dall'azienda proponente che il progetto deve rispettare."
+    },
+    {
+      "termine": "Requisito funzionale",
+      "definizione": "Definiscono cosa il sistema deve fare, descrivendo le azioni e funzioni specifiche che deve offrire."
+    },
+    {
+      "termine": "Requisito non funzionale",
+      "definizione": "Specifica come il sistema deve comportarsi mentre svolge quelle funzioni, si concentrano su qualità come le prestazioni, la sicurezza o l'affidabilità."
+    }, 
+    {
+      "termine": "Responsabile",
+      "definizione": "Figura che coordina le attività del gruppo e garantisce una pianificazione efficace."
+    },
+    {
+      "termine": "REST",
+      "definizione": "Representational State Transfer, è uno stile architetturale per lo sviluppo di servizi web che utilizza protocolli standard (solitamente HTTP) per operazioni su risorse identificate tramite URL, basandosi su metodi come GET, POST, PUT, DELETE."
+    },
+    {
+      "termine": "RTB",
+      "definizione": "Baseline iniziale e vincolante di requisiti e tecnologie approvate per il progetto. Comprende requisiti funzionali e non funzionali, insieme a strumenti, linguaggi e infrastrutture scelte. Costituisce il riferimento stabile per verificare coerenza e avanzamento."
+    }
+  ],
+  "S": [
+    {
+      "termine": "Sprint",
+      "definizione": "Ciclo di lavoro di durata fissa, tipico dello sviluppo Agile, durante il quale il team si impegna a completare degli obiettivi prefissati."
+    }, 
+    {
+      "termine": "Sviluppo",
+      "definizione": "Attività pratica di scrittura, test e integrazione del codice necessaria a implementare funzionalità definite durante la fase di progettazione."
+    }
+  ],
+  "T": [
+    {
+      "termine": "Test",
+      "definizione": "Processo dello sviluppo software che si occupa di verificare la funzionalità di una o più parti del prodotto."
+    }
+  ],
   "U": [],
-  "V": [],
-  "W": [],
+  "V": [
+    {
+      "termine": "Validazione",
+      "definizione": "Insieme di controlli per assicurarsi che un prodotto soddisfi in modo congruo ciò per cui è stato creato."
+    },
+    {
+      "termine": "Verifica",
+      "definizione": "Insieme di processi per garantire che una funzione all'interno di un prodotto soddisfi determinati requisiti."
+    },
+    {
+      "termine": "Verificatore",
+      "definizione": "Figura che si occupa di assicurare la qualità dei prodotti e dei processi adottati, effettuando revisioni e test."
+    }
+  ],
+  "W": [
+    {
+      "termine": "Walkthrough",
+      "definizione": "Revisione guidata di un documento, codice o progetto, in cui l'autore mostra il lavoro al gruppo per ricevere commenti, chiarire dubbi e individuare errori prima della consegna."
+    },
+    {
+      "termine": "Way of Working",
+      "definizione": "Insieme di metodologie e strutture organizzative approvate dal gruppo per svolgere in modo coerente i propri compiti."
+    }
+  ],
   "X": [],
   "Y": [],
   "Z": []
