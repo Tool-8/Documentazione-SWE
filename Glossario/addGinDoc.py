@@ -122,6 +122,14 @@ def apply_tags_to_text(text: str, patterns: List[Tuple[str, Pattern]], tex_file:
         start, end = m.start(1), m.end(1)
         link_ranges.append((start, end))
 
+    # Ambienti tabella  <-- NUOVO
+    for m in re.finditer(
+        r'\\begin\{(tabular|table|longtable|tabularx|tabulary|array)\*?\}.*?\\end\{\1\*?\}',
+        text,
+        flags=re.MULTILINE | re.DOTALL
+    ):
+        link_ranges.append((m.start(), m.end()))
+
     # \node TikZ
     for m in re.finditer(r'\\node\b.*?;', text, flags=re.MULTILINE | re.DOTALL):
         start, end = m.start(), m.end()
