@@ -303,6 +303,10 @@
     \UCdefsub{auth_pwd}{Inserimento\\Password}
         \UCdefsubsub{auth_pwd_err}{Errore\\Password Non Valida}
     \UCdefsub{auth_server_err}{Errore Perdita\\Connessione}
+\UCdef{salva_db}{Salvataggio Nota\\Nel DataBase}
+    \UCdefsub{salva_db_err}{Errore Salvataggio\\Nota DataBase}
+\UCdef{apri_nota_db}{Apertura Nota\\Da DataBase}
+    \UCdefsub{apri_nota_db_err}{Errore Apertura\\Nota DataBase}
 \UCdef{logout}{Logout}
 \UCdef{elimina_acc}{Eliminazione Account}
     \UCdefsub{pwd_elimina}{Inserisci Password}
@@ -4099,6 +4103,146 @@
 
     \vspace{1cm}
 
+    \subsubsection*{(OPT) \UCText{salva_db}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{salva_db}}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=0, name=salva_db, align=center]{(OPT) \UCName{salva_db}}
+                \umlusecase[x=0, y=-2, name=err_db, align=center]{(OPT) \UCName{salva_db_err}}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=-2, y=0]{Utente autenticato}
+
+            % Associazioni Utente
+            \umlassoc{Utente autenticato}{salva_db}
+            \umlextend{err_db}{salva_db}
+        \end{tikzpicture}
+    \end{center}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha una nota aperta (\UCRef{apri})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene salvata nel DataBase ed è accessibile solo all'utente che l'ha salvata
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente ha una nota apert
+        \item L'utente attiva la funzionalità \textit{"Salva nel DataBase"}
+        \item La nota viene salvata nel DataBase e solo l'utente può accedervi
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{enumerate}
+        \item Nel caso in cui il DataBase non sia raggiungibile:
+        \begin{itemize}
+            \item \UCRef{salva_db_err}
+        \end{itemize}
+    \end{enumerate}
+
+    \subsubsection*{(OPT) \UCText{salva_db_err}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{salva_db_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente ha attivato la funzionalità \textit{"Salva nel DataBase"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota non viene salvata nel DataBase e l'utente visualizza un errore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente ha una nota aperta
+        \item L'utente attiva la funzionalità \textit{"Salva nel DataBase"}
+        \item La nota viene non salvata nel DataBase 
+        \item L'utente visualizza un messaggio di errore
+    \end{enumerate}
+
+    \subsubsection*{(OPT) \UCText{apri_nota_db}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{apri_nota_db}}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=0, name=apri_db, align=center]{(OPT) \UCName{apri_nota_db}}
+                \umlusecase[x=0, y=-2, name=err_db, align=center]{(OPT) \UCName{apri_nota_db_err}}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=-2, y=0]{Utente autenticato}
+
+            % Associazioni Utente
+            \umlassoc{Utente autenticato}{apri_db}
+            \umlextend{err_db}{apri_db}
+        \end{tikzpicture}
+    \end{center}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha almeno una nota salvata nel proprio account
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota selezionata viene aperta nell'editor 
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema mostra le note salvate dall'utente autenticato
+        \item L'utente seleziona la nota da aprire
+        \item Il sistema mostra la nota selezionata nell'editor
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{enumerate}
+        \item Nel caso in cui il DataBase non sia raggiungibile:
+        \begin{itemize}
+            \item \UCRef{apri_nota_db_err}
+        \end{itemize}
+    \end{enumerate}
+
+    \subsubsection*{(OPT) \UCText{apri_nota_db_err}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{apri_nota_db_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha almeno una nota salvata nel proprio account
+        \item L'utente ha selezionato una nota da aprire
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota selezionata non viene aperta nell'editor 
+        \item Viene visualizzato un messaggio di errore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una nota da aprire
+        \item La nota non viene aperta 
+        \item L'utente visualizza un messaggio di errore
+    \end{enumerate}
+
     \subsubsection*{(OPT) \UCText{logout}}
     \addcontentsline{toc}{subsubsection}{(OPT) \UCText{logout}}
 
@@ -4494,8 +4638,13 @@
             \reqF{OP} & Il sistema deve richiedere la password dell'utente per l'eliminazione del suo account  & \UCRef{pwd_elimina} \\ \hline
             \reqF{OP} & Il sistema deve avvisare l'utente che la password inserita per l'eliminazione dell'account è sbagliata  & \UCRef{pwd_elimina} \\ \hline
             \reqF{OP} & Il sistema deve richiedere la conferma all'utente per l'eliminazione del suo account  & \UCRef{conf_elim} \\ \hline
+            \reqF{OP} & Il sistema deve permettere all'utente autenticato di salvare note nel proprio account & \UCRef{salva_db} \\ \hline
+            \reqF{OP} & Il sistema deve permettere all'utente autenticato di aprire una delle note salvate nel proprio account & \UCRef{apri_nota_db} \\ \hline
+            \reqF{OP} & Il sistema durante il salvataggio, nel caso in cui il DataBase non sia raggiungibile, deve visualizzare un messaggio d'errore & \UCRef{salva_db_err} \\ \hline
+            \reqF{OP} & Il sistema durante l'apertura di una nota, nel caso in cui il DataBase non sia raggiungibile, deve visualizzare un messaggio d'errore & \UCRef{apri_nota_db_err} \\ \hline
             \caption{Tabella Requisiti Funzionali}
         \end{longtable}
+
     \subsection{Requisiti di qualità}
         \begin{longtable}{|l|p{8cm}|p{3.5cm}|}
             \hline
