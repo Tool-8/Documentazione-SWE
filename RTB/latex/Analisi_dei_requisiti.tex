@@ -202,29 +202,33 @@
         \UCdefsubsub{arch_nome}{Visualizza\\Nome Nota}
         \UCdefsubsub{arch_data}{Visualizza\\Data Creazione Nota}
         \UCdefsubsub{arch_ult_data}{Visualizza\\Data Ultima\\Modifica Nota}
-    \UCdefsub{arch_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{apri}{Apertura Nota}
+    \UCdefsub{vis-editor-apri}{Visualizza Editor\\Nota}
     \UCdefsub{apri_err}{Errore Nota\\Inesistente}
-    \UCdefsub{apri_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{apri_server_err}{Errore Perdita\\Conessione}
 \UCdef{chiudi}{Chiusura Nota}
 \UCdef{crea}{Creazione Nota}
+    \UCdefsub{vis-editor-crea}{Visualizza Editor\\Nota}
 \UCdef{salva}{Salvataggio Nota}
+    \UCdefsub{salva_err}{Errore Nota\\Non Aggiornata}
+        \UCdefsubsub{salva_err_sovra}{Sovrascrivi\\Nota}
+        \UCdefsubsub{salva_err_diff}{Salva Con\\Nome Differente}
+        \UCdefsubsub{salva_err_agg}{Aggiorna Nota\\Corrente}
     \UCdefsub{salva_primo}{Primo Salvataggio\\Nota}
         \UCdefsubsub{salva_primo_err}{Errore Salvataggio\\Nota}
     \UCdefsub{salva_nuovo}{Nuovo Salvataggio\\Nota}
         \UCdefsubsub{salva_nuovo_err}{Errore Nuovo\\Salvataggio Nota}
-    \UCdefsub{salva_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{salva_server_err}{Errore Perdita\\Connessione}
 \UCdef{clona}{Clonazione Nota}
     \UCdefsub{clona_err}{Errore Clonazione\\Nota Inesistente}
-    \UCdefsub{clona_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{clona_server_err}{Errore Perdita\\Connessione}
 \UCdef{ricerca}{Ricerca Nota Per Nome}
-    \UCdefsub{ricerca_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{elimina}{Eliminazione Nota}
     \UCdefsub{elim_conf}{Conferma\\Eliminazione Nota}
-    \UCdefsub{elim_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{elim_server_err}{Errore Perdita\\Connessione}
 \UCdef{rinomina}{Rinominazione\\Nota}
     \UCdefsub{rinom_err}{Errore Nome\\Utilizzato}
-    \UCdefsub{rinom_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{rinom_server_err}{Errore Perdita\\Connessione}
 \UCdef{esporta}{Esportazione\\Nota}
     \UCdefsub{esporta_md}{Esporta MD}
     \UCdefsub{esporta_pdf}{Esporta PDF}
@@ -233,10 +237,10 @@
     \UCdefsub{esporta_arch_md}{Esporta MD}
     \UCdefsub{esporta_arch_pdf}{Esporta PDF}
     \UCdefsub{esporta_arch_html}{Esporta HTML}
-    \UCdefsub{esporta_arch_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{esporta_arch_server_err}{Errore Perdita\\Connessione}
 \UCdef{importa}{Importazione Nota}
     \UCdefsub{importa_err}{Formato Nota\\Non Valido}
-    \UCdefsub{importa_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{importa_server_err}{Errore Perdita\\Connessione}
 \UCdef{visua_formattato}{Visualizza\\Testo Formattato}
 \UCdef{cambio_visua}{Cambio\\Visualizzazione}
     \UCdefsub{cambio_visua_markdown}{Visualizzazione\\Markdown}
@@ -268,6 +272,10 @@
 \UCdef{riassumi}{Riassunto Testo Con LLM}
     \UCdefsub{riassumi_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{riscrivi}{Riscrittura Testo Con LLM}
+    \UCdefsub{riscrivi_variazione}{Riscrittura Con\\Variazione Stilistica}
+    \UCdefsub{riscrivi_modifica}{Riscrittura Con\\Modifica Estensione Testo} 
+    \UCdefsub{riscrivi_grammatica}{Riscrittura Con\\Correzione Grammatica}   
+    \UCdefsub{riscrivi_lessico}{Riscrittura Con\\Miglioramento Lessico}
     \UCdefsub{riscrivi_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{traduci}{Traduzione\\Testo Con LLM}
     \UCdefsub{mod_traduzione}{Gestione\\Modifica Traduzione}
@@ -283,24 +291,28 @@
     \UCdefsub{critica_verde}{Visione Originalità}
     \UCdefsub{critica_blu}{Visione Logica E Struttura}
     \UCdefsub{critica_llm_err}{Errore LLM\\Non Raggiungibile}
-\UCdef{autentica}{Autenticazione}
-    \UCdefsub{auth_nome}{Inserimento\\Nome Utente}
-        \UCdefsubsub{auth_nome_err}{Errore\\Nome Non Valido}
-    \UCdefsub{auth_pwd}{Inserimento\\Password}
-        \UCdefsubsub{auth_pwd_err}{Errore\\Password Non Valida}
-    \UCdefsub{auth_server_err}{Errore Server\\Non Raggiungibile}
 \UCdef{registra}{Registrazione}
     \UCdefsub{reg_nome}{Inserimento\\Nome Utente}
         \UCdefsubsub{reg_nome_err}{Errore\\Nome Già Utilizzato}
     \UCdefsub{reg_pwd}{Inserimento\\Password}
         \UCdefsubsub{reg_pwd_err}{Errore\\Password Non\\Abbastanza Robusta}
-    \UCdefsub{reg_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{reg_server_err}{Errore Perdita\\Connessione}
+\UCdef{autentica}{Autenticazione}
+    \UCdefsub{auth_nome}{Inserimento\\Nome Utente}
+        \UCdefsubsub{auth_nome_err}{Errore\\Nome Non Valido}
+    \UCdefsub{auth_pwd}{Inserimento\\Password}
+        \UCdefsubsub{auth_pwd_err}{Errore\\Password Non Valida}
+    \UCdefsub{auth_server_err}{Errore Perdita\\Connessione}
+\UCdef{salva_db}{Salvataggio Nota\\Nel DataBase}
+    \UCdefsub{salva_db_err}{Errore Salvataggio\\Nota DataBase}
+\UCdef{apri_nota_db}{Apertura Nota\\Da DataBase}
+    \UCdefsub{apri_nota_db_err}{Errore Apertura\\Nota DataBase}
 \UCdef{logout}{Logout}
 \UCdef{elimina_acc}{Eliminazione Account}
     \UCdefsub{pwd_elimina}{Inserisci Password}
         \UCdefsubsub{elim_acc_err}{Errore\\Password Non Valida}
         \UCdefsubsub{conf_elim}{Conferma\\Eliminazione Account}
-    \UCdefsub{elim_acc_server_err}{Errore Server\\Non Raggiungibile}
+    \UCdefsub{elim_acc_server_err}{Errore Perdita\\Connesione}
 \UCdef{associa}{Associazione Note}
 
 \title{%
@@ -322,8 +334,10 @@
         \begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
             \hline
             \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+            \hline
+            1.0 & Stefano Maso & Aggiunta casi d'uso \UCRef{riscrivi_variazione}, \UCRef{riscrivi_modifica}, \UCRef{riscrivi_grammatica}, \UCRef{riscrivi_lessico}; controllo e correzione casi d'uso e requisiti & 7/3/2026 & Giuliano Banchieri \\ 
             \hline 
-            0.15 & Stefano Maso & Fix Attore secondario & 5/3/2026 & Giuliano Banchieri \\
+            0.15 & Stefano Maso & Modifica Attore secondario & 5/3/2026 & Giuliano Banchieri \\
             \hline
             0.14 & Stefano Maso & Aggiunta requisiti RF-O-51, RF-O-52, RF-O-53, RF-O-59, RF-O-60, RF-O-61, RV-O-3, RV-O-4, RV-O-11, RQ-D-6, modifica requisiti RF-O-50 & 4/3/2026 & Giuliano Banchieri \\ 
             \hline
@@ -379,7 +393,7 @@
 
     \section{Descrizione}
     \subsection{Obiettivi del prodotto}
-    Il nostro prodotto punta a sviluppare un'applicazione web che vada ad estendere le possibilità
+    Il nostro prodotto è un'applicazione web che punta ad estendere le possibilità
     di note-taking classiche, andando ad aggiungere le potenzialità dei LLM nel creare e migliorare testi.
     \subsection{Funzionalità del prodotto}
     Le funzionalità offerte dal prodotto saranno:
@@ -388,7 +402,7 @@
         testo e marcatori in formato MarkDown;
         \item \textbf{Visualizzazione testo correttamente formattato}: L'utente sarà in grado di vedere lo stile
         sotteso dai marcatori presenti nel testo;
-        \item \textbf{Utilizzo LLM}; L'utente, tramite un LLM, potrà riassumere, riscrivere o tradurre il testo;
+        \item \textbf{Utilizzo LLM}; L'utente, tramite supporto di un LLM, potrà riassumere, riscrivere o tradurre il testo;
         \item \textbf{Critica secondo il modello dei "sei cappelli per pensare"}: L'utente, sempre tramite LLM, avrà
         la possibilità di ricevere critiche sul testo scritto, prendendo spunto dalla tecnica dei "sei cappelli per pensare";
         \item \textbf{Creazione intero documento tramite LLM}: L'utente potrà far sviluppare l'intero testo all'LLM stesso;
@@ -397,8 +411,8 @@
     \vfill
 
     \section{Casi d'uso}
-    Nella seguente sezione verranno analizzati tutti i casi d'uso individuati esaminando il capitolato d'appalto
-    e discutendo con la proponente. \\Ciascun caso d'uso sarà definito da un diagramma UML e da una descrizione
+    Nella seguente sezione verranno analizzati tutti i casi d'uso individuati esaminando il capitolato d'appalto e discutendo con la proponente. \\
+    Ciascun caso d'uso sarà definito da un diagramma UML e da una descrizione
     testuale contenente: attore principale, attori secondari (ove presenti), precondizioni, postcondizioni, scenario
     principale e scenari alternativi (ove presenti).
 
@@ -408,7 +422,7 @@
     Descrizione attori:
     \subsubsection{Attori Principali}
     \begin{itemize}
-        \item \textbf{Utente}: persona che accede al sistema
+        \item \textbf{Utente}: persona che si connette al sistema
         \item \textbf{Utente autenticato}: utente che ha effettuato l'accesso al proprio account
     \end{itemize}
     \subsubsection{Attori Secondari}
@@ -426,7 +440,6 @@
     \begin{center}
         \begin{tikzauto}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=4, y=2.5, name=server_err, align=center]{\UCName{arch_server_err}}
                 \umlusecase[x=0, y=0.5, name=archivio, align=center]{\UCName{archivio}}
                 \umlusecase[x=0, y=-2, name=nota, align=center]{\UCName{arch_sing}}
                 \umlusecase[x=-4, y=-4, name=nome, align=center]{\UCName{arch_nome}}
@@ -444,7 +457,6 @@
             \umlHVinclude[pos stereo=1.3]{nota}{nome}
             \umlinclude{nota}{data}
             \umlHVinclude[pos stereo=1.3]{nota}{data_mod}
-            \umlextend{server_err}{archivio}
         \end{tikzauto}
     \end{center}
 
@@ -465,13 +477,6 @@
     \begin{enumerate}
         \item Il sistema mostra all'utente le note presenti
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso il sistema non riesca a visualizzare le note presenti:
-        \begin{itemize}
-            \item \UCRef{arch_server_err}
-        \end{itemize}
-    \end{itemize}
 
     \paragraph*{\UCText{arch_sing}}
     \addcontentsline{toc}{paragraph}{\UCText{arch_sing}}
@@ -486,11 +491,11 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente visualizza una singola nota all'interno dell'archivio
+        \item L'utente visualizza i metadati di una nota presente nella lista dell'archivio
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra le singole note dell'archivio delle note
+        \item Il sistema mostra le info di una nota della lista
     \end{enumerate}
 
     \subparagraph*{\UCText{arch_nome}}
@@ -511,7 +516,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra il nome delle singole note dell'archivio delle note
+        \item Il sistema mostra il nome della nota 
     \end{enumerate}
 
     \subparagraph*{\UCText{arch_data}}
@@ -532,7 +537,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra la data di creazione delle singole note dell'archivio delle note
+        \item Il sistema mostra la data di creazione della nota
     \end{enumerate}
 
     \subparagraph*{\UCText{arch_ult_data}}
@@ -553,32 +558,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema mostra la data di ultima modifica delle singole note dell'archivio delle note
-    \end{enumerate}
-
-    \paragraph*{\UCText{arch_server_err}}
-    \addcontentsline{toc}{paragraph}{\UCText{arch_server_err}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'archivio delle note rimane vuoto
-        \item Il sistema mostra le due opzioni disponibili
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente della perdita di connessione
-        \item Il sistema offre all'utente due opzioni:
-        \begin{itemize}
-            \item Rimandare richiesta di connessione
-            \item Ignorare l'avviso e non popolare l'archivio
-        \end{itemize}
+        \item Il sistema mostra la data di ultima modifica della nota
     \end{enumerate}
 
     \vspace{1cm}
@@ -591,6 +571,7 @@
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=3, fill=white!10]{Sistema}
+                \umlusecase[x=2.5, y=4, name=editor, align=center]{\UCName{vis-editor-apri}}
                 \umlusecase[x=2.5, y=2, name=apri, align=center]{\UCName{apri}}
                 \umlusecase[x=0, y=0, name=err, align=center]{\UCName{apri_err}}
                 \umlusecase[x=5, y=0, name=err_server, align=center]{\UCName{apri_server_err}}
@@ -601,6 +582,7 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{apri}
+            \umlinclude{apri}{editor}
             \umlextend{err}{apri}
             \umlextend{err_server}{apri}
         \end{tikzpicture}
@@ -623,7 +605,8 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona la nota da aprire
-        \item Il contenuto della nota viene visualizzato
+        \item L'utente visualizza l'editor
+        \item Il contenuto della nota viene visualizzato nell'editor
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -631,18 +614,36 @@
         \begin{itemize}
             \item \UCRef{apri_err}
         \end{itemize}
-        \item In caso il sistema non riesce a connettersi:
+        \item In caso il sistema non riesca a connettersi:
         \begin{itemize}
             \item \UCRef{apri_server_err}
         \end{itemize}
-        \item Nel caso ci sia una nota già aperta:
-        \begin{enumerate}
-            \item Il sistema chiede conferma per la chiusura della nota
-            \item L'utente conferma
-            \item La nota precedente viene chiusa
-            \item La nuova nota viene aperta
-        \end{enumerate}
     \end{itemize}
+
+    \paragraph*{\UCText{vis-editor-apri}}
+    \addcontentsline{toc}{paragraph}{\UCText{vis-editor-apri}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio delle note (\UCRef{archivio})
+        \item Nell'archivio è presente almeno una nota salvata
+        \item L'utente apre una nota (\UCRef{apri})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza l'editor con il contenuto della nota
+    \end{itemize}
+    \textbf{Scenario Principale}
+    \begin{itemize}
+        \item L'utente apre una nota dall'archivio 
+        \item L'utente visualizzza l'editor
+        \item Il contenuto della nota viene visualizzato nell'editor
+    \end{itemize}
+
 
     \paragraph*{\UCText{apri_err}}
     \addcontentsline{toc}{paragraph}{\UCText{apri_err}}
@@ -656,15 +657,17 @@
         \item L'utente sta visualizzando l'archivio delle note (\UCRef{archivio})
         \item Nell'archivio è presente almeno una nota salvata
         \item L'utente apre una nota (\UCRef{apri})
-        \item La nota seleziona è stata eliminata o non è più presente nell'archivio
+        \item La nota selezionata non è effettivamente presente nell'archivio
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
+        \item Nessuna nota viene aperta
         \item L'utente visualizza un messaggio di errore
     \end{itemize}
     \textbf{Scenario Principale}
     \begin{itemize}
-        \item L'utente apre una nota eliminata o non più presente nell'archivio
+        \item Il sistema rileva che la nota che l'utente vuole aprire non è presente nell'archivio
+        \item Il sistema avvisa l'utente dell'inesistenza della nota 
     \end{itemize}
 
     \paragraph*{\UCText{apri_server_err}}
@@ -676,15 +679,19 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando l'archivio delle note (\UCRef{archivio})
+        \item Nell'archivio è presente almeno una nota salvata
+        \item L'utente apre una nota (\UCRef{apri})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
         \item Nessuna nota viene aperta
+        \item L'utente visualizza un messaggio di errore
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item La connessione dell'utente al server viene interrotta
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -699,6 +706,7 @@
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=chiusura]{\UCName{chiudi}}
                 \umlusecase[x=0, y=2, name=salvataggio]{\UCName{salva}}
+                \umlusecase[x=0, y=6, name=arch, align=center]{\UCName{archivio}}
             \end{umlsystem}
 
             % Attori
@@ -709,7 +717,7 @@
 
             % Associazioni Casi d'Uso
             \umlextend{chiusura}{salvataggio}
-
+            \umlinclude{chiusura}{arch}
         \end{tikzpicture}
     \end{center}
 
@@ -724,18 +732,19 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Non è visualizzata alcuna nota
+        \item L'utente visualizza l'archivio delle note (\UCRef{archivio})
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità \textit{"Chiudi Nota"}
         \item La visualizzazione viene chiusa
+        \item L'utente visualizza l'archivio delle note
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
         \item Nel caso in cui vi siano delle modifiche non salvate:
         \begin{enumerate}
-            \item Caso d'uso UC5
+            \item Caso d'uso \UCName{salva}
         \end{enumerate}
     \end{itemize}
 
@@ -749,7 +758,7 @@
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=creazione]{\UCName{crea}}
+                \umlusecase[x=0, y=4, name=creazione]{\UCName{crea}}ù\umlusecase[x=0, y=2, name=vis-edit, align=center]{\UCName{vis-editor-crea}}
             \end{umlsystem}
 
             % Attori
@@ -757,6 +766,7 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{creazione}
+            \umlinclude{creazione}{vis-edit}
         \end{tikzpicture}
     \end{center}
 
@@ -767,16 +777,37 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente visualizza l'archivio delle note (\UCRef{archivio})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
         \item Viene creata una nota vuota
-        \item L'utente può iniziare a scrivere il markdown
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente visualizza l'archivio delle note
         \item L'utente attiva la funzionalità di \textit{"Creazione Nota"}
-        \item Il contenuto della nota viene visualizzato
+        \item L'utente visualizza l'editor vuoto
+    \end{enumerate}
+
+    \subsubsection*{\UCText{vis-editor-crea}}
+    \addcontentsline{toc}{subsubsection}{\UCText{vis-editor-crea}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha creato una nuova nota (\UCRef{crea})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente visualizza l'editor vuoto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente visualizza l'editor di testo senza nessun contenuto
     \end{enumerate}
 
     % realisticamente si potrà creare una nota solo quando si è nell'archivio
@@ -809,6 +840,7 @@
                 \umlusecase[x=0, y=0, name=err_salvataggio, align=center]{\UCName{salva_primo_err}}
                 \umlusecase[x=6, y=2, name=nuovo_salvataggio, align=center]{\UCName{salva_nuovo}}
                 \umlusecase[x=6, y=0, name=err_nuovo_salvataggio, align=center]{\UCName{salva_nuovo_err}}
+                \umlusecase[x=0, y=6, name=err_salva, align=center]{\UCName{salva_err}}
             \end{umlsystem}
 
             % Attori
@@ -823,6 +855,7 @@
             \umlextend{err_nuovo_salvataggio}{nuovo_salvataggio}
             \umlinherit{nuovo_salvataggio}{salvataggio}
             \umlextend{err_server}{salvataggio}
+            \umlextend{err_salva}{salvataggio}
         \end{tikzauto}
     \end{center}
 
@@ -851,18 +884,134 @@
             \item \UCRef{salva_server_err}
         \end{itemize}
         \item Nel caso in cui la nota inizialmente visualizzata dall'utente avesse successivamente subito delle modifiche:
-        \begin{enumerate}
-            \item Il sistema avvisa la presenza di modifiche non contenute nella versione corrente dell'utente
-            \item Il sistema propone all'utente la scelta tra:
+        \begin{itemize}
+            \item \UCRef{salva_err}
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph*{\UCText{salva_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_err}}
+
+    \begin{center}
+        \begin{tikzauto}
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                
+                \umlusecase[x=-1, y=4, name=err_salva, align=center]{\UCName{salva_err}}
+                \umlusecase[x=-4, y=2, name=sovra, align=center]{\UCName{salva_err_sovra}}
+                \umlusecase[x=-0.5, y=0, name=diff, align=center]{\UCName{salva_err_diff}}
+                \umlusecase[x=3, y=2, name=agg, align=center]{\UCName{salva_err_agg}}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=-3, y=4]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{err_salva}
+            
+            \umlextend{sovra}{err_salva}
+            \umlextend{agg}{err_salva}
+            \umlextend{diff}{err_salva}
+        \end{tikzauto}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene salvata nell'archivio delle note
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Salva Nota"}
+        \item Il sistema avvisa della presenza di modifiche non contenute nella versione corrente dell'utente
+        \item Il sistema propone all'utente la scelta tra:
             \begin{itemize}
-                \item Sovrascrivere la nota presente nell'archivio con la versione corrente dell'utente
-                \item Salvare la nota con un nome differente
-                \item Aggiornare la nota corrente dell'utente con la versione presente nell'archivio
+                \item \UCRef{salva_err_sovra}
+                \item \UCRef{salva_err_diff}
+                \item \UCRef{salva_err_agg}
             \end{itemize}
             \item L'utente seleziona una tra le opzioni
             \item Il sistema effettua l'operazione scelta dall'utente
-        \end{enumerate}
+    \end{enumerate}
+
+    \paragraph*{\UCText{salva_err_sovra}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_err_sovra}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
     \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene salvata nell'archivio delle note
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{itemize}
+        \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
+        \item La nota viene aggiornata con la versione dell'utente
+    \end{itemize}
+
+    \paragraph*{\UCText{salva_err_diff}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_err_diff}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha scelto l'opzione di salvare la nota con un nome differente
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene salvata nell'archivio delle note
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{itemize}
+        \item L'utente ha scelto l'opzione di salvare la nota con un altro nome
+        \item L'utente inserisce il nome della nota 
+        \item La nota viene salvata nell'archivio delle note
+    \end{itemize}
+
+    \paragraph*{\UCText{salva_err_agg}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_err_agg}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha scelto l'opzione di aggiornare la nota aperta con la versione presente in archivio
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il contenuto della nota aperta viene aggiornato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{itemize}
+        \item L'utente ha scelto l'opzione di aggiornare la nota aperta
+        \item Il contenuto della nota viene aggiornato con quello della nota presente nell'archivio
+    \end{itemize}
+
 
     \paragraph*{\UCText{salva_primo}}
     \addcontentsline{toc}{paragraph}{\UCText{salva_primo}}
@@ -881,8 +1030,8 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente inserisce il nome della nota
-        \item Il sistema avvisa all'utente del salvataggio della nota nell'archivio
         \item La nota viene salvata nell'archivio
+        \item Il sistema avvisa l'utente del salvataggio della nota nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -898,10 +1047,6 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
         \item La nota non è salvata nell'archivio
@@ -914,13 +1059,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa la presenza di una nota con lo stesso nome
-        \item Il sistema propone all'utente la scelta tra:
-            \begin{itemize}
-                \item Sovrascrivere la nota presente nell'archivio
-                \item Cambiare il nome della nota corrente  % Da rivedere: serve includere il caso d'uso della rinominazione?
-            \end{itemize}
-            \item L'utente sceglie una tra le opzioni
-            \item Il sistema effettua l'operazione scelta dall'utente
     \end{enumerate}
 
     \paragraph*{\UCText{salva_nuovo}}
@@ -932,19 +1070,19 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item La nota è presente nell'archivio
-        \item La nota visualizzata ha modifiche rispetto alla nota presente dell'archivio 
+        \item La nota visualizzata ha modifiche rispetto alla nota presente nell'archivio 
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota originale è presente nell'archivio con nessuna modifica applicata
-        \item È presente una nuova nota nell'archivio
+        \item La nota originale nell'archivio non ha subito alcuna modifica 
+        \item È presente una nuova nota nell'archivio generata a partire dalla nota aperta 
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Salva Con Nome"}
         \item L'utente inserisce il nuovo nome della nota
-        \item Il sistema avvisa all'utente del salvataggio della nuova nota nell'archivio
         \item La nuova nota viene salvata nell'archivio
+        \item Il sistema avvisa l'utente del salvataggio della nuova nota nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -960,15 +1098,11 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item La nota è presente nell'archivio
-        \item La nota visualizzata ha modifiche non presenti nell'archivio
-        \item L'utente ha inserito il nuovo nome della nota
+        \item L'utente attiva la funzionalità di \textit{"Salva Con Nome"}
+        \item L'utente inserisce il nuovo nome della nota
+        \item L'utente ha inserito un nome già utilizzato da un'altra nota
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -977,13 +1111,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa la presenza di una nota con lo stesso nome
-        \item Il sistema propone all'utente la scelta tra:
-        \begin{itemize}
-            \item Sovrascrivere la nota presente nell'archivio
-            \item Cambiare il nome della nota corrente  % Da rivedere: serve includere il caso d'uso della rinominazione?
-        \end{itemize}
-        \item L'utente sceglie una tra le opzioni
-        \item Il sistema effettua l'operazione scelta dall'utente
     \end{enumerate}
 
     \paragraph*{\UCText{salva_server_err}}
@@ -995,6 +1122,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1004,8 +1132,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
-        \item La nota viene lasciata aperta
     \end{enumerate}
 
     \vspace{1cm}
@@ -1048,7 +1174,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Nel Server è presente il clone della nota
+        \item Nell'archivio è presente il clone della nota
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -1101,6 +1227,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente ha attivato la funzionalità \textit{"Clonazione Nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1109,7 +1236,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1123,7 +1249,6 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=ricerca]{\UCName{ricerca}}
-                \umlusecase[x=0, y=2, name=server_err, align=center]{\UCName{ricerca_server_err}}
             \end{umlsystem}
 
             % Attori
@@ -1131,10 +1256,6 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{ricerca}
-
-            % Associazioni Casi d'Uso
-            \umlextend{server_err}{ricerca}
-
         \end{tikzpicture}
     \end{center}
 
@@ -1157,34 +1278,6 @@
         \item L'utente specifica il nome di una nota da ricercare
         \item Il sistema effettua la ricerca nell'archivio
         \item Il sistema mostra i risultati della ricerca
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso il sistema perda la connessione:
-        \begin{itemize}
-            \item \UCRef{ricerca_server_err}
-        \end{itemize}
-    \end{itemize}
-
-    \paragraph*{\UCText{ricerca_server_err}}
-    \addcontentsline{toc}{paragraph}{\UCText{ricerca_server_err}}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'archivio rimane senza filtri applicati
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1238,15 +1331,6 @@
         \begin{itemize}
             \item \UCRef{elim_server_err}
         \end{itemize}
-        \item Nel caso in cui la nota interessata fosse stata rimossa dall'archivio prima dell'eliminazione da parte dell'utente:
-        \begin{itemize}
-            \item Il sistema avvisa l'utente dell'inesistenza della nota da eliminare
-        \end{itemize}
-        \item Nel caso la nota venga eliminata mentre è aperta dall'utente:
-        \begin{itemize}
-            \item Il sistema avvisa l'utente della nota aperta ormai eliminata
-            \item La nota rimane aperta in locale
-        \end{itemize}
     \end{itemize}
 
     \paragraph*{\UCText{elim_conf}}
@@ -1288,7 +1372,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1333,7 +1416,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità di \textit{"Rinomina"}
-        \item L'utente cambia il nome della nota
+        \item L'utente inserisce un nuovo nome per la nota
         \item Il sistema cambia il nome della nota
     \end{enumerate}
     \textbf{Estensioni}
@@ -1357,6 +1440,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente ha inserito un nuovo nome per la nota
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1364,7 +1449,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente ha inserito un nome già utilizzato da un'altra nota
+        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente inserisce un nome già utilizzato da un'altra nota
+        \item Il sistema avvisa l'utente dell'errore 
+        \item Il sistema permette all'utente di inserire un altro nome
     \end{enumerate}
 
     \paragraph*{\UCText{rinom_server_err}}
@@ -1377,17 +1465,16 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha inserto il nome della nota
+        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota ha un nome diverso
+        \item Il nome della nota rimane invariato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente inserisce il nuovo nome della nota
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
-        \item Il sistema cambia il nome della nota
     \end{enumerate}
 
     \vspace{1cm}
@@ -1424,6 +1511,7 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
+        \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1544,10 +1632,6 @@
     \begin{itemize}
         \item Utente
     \end{itemize}
-    \textbf{Attori secondari}
-    \begin{itemize}
-        \item Server Locale
-    \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
@@ -1653,6 +1737,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente visualizza l'archivio (\UCRef{archivio})
+        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1661,7 +1747,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -1731,6 +1816,7 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
+        \item L'utente ha attivato la funzionalità \textit{"Importazione Nota"}
         \item L'utente ha selezionato una nota da importare con formato non valido
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1739,8 +1825,9 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente viene visualizza il messaggio di errore
-        \item L'utente chiude l'avviso
+        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
+        \item L'utente sceglie di importare una nota dal formato non valido
+        \item L'utente visualizza il messaggio di errore
     \end{enumerate}
 
     \paragraph*{\UCText{importa_server_err}}
@@ -1753,6 +1840,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
+        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1760,8 +1848,8 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \newpage
@@ -1799,12 +1887,11 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Il testo presente nell'area di editing viene formattato e visualizzato dentro un'area di output adiacente
-        all'area di editing
+        \item Il testo presente nell'area di editing viene formattato e visualizzato dentro un'area di preview
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente visualizza l'anteprima del testo nell'area di output
+        \item L'utente visualizza l'anteprima del testo nell'area di preview
     \end{enumerate}
 
     \vspace{1cm}
@@ -1870,6 +1957,8 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Cambio Visualizzazione"}
+        \item L'utente ha scelto il formato \textit{"Solo Markdown"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1893,6 +1982,8 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Cambio Visualizzazione"}
+        \item L'utente ha scelto il formato \textit{"Markdown e Render"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1916,6 +2007,8 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
+        \item L'utente ha attivato la funzionalità \textit{"Cambio Visualizzazione"}
+        \item L'utente ha scelto il formato \textit{"Solo Render"} 
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1997,7 +2090,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2005,7 +2098,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente seleziona una porzione di testo
         \item L'utente attiva la funzionalità \textit{"Formattazione testo"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo necessari al tipo di formattazione scelto
     \end{enumerate}
@@ -2046,7 +2139,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2054,7 +2147,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente seleziona una porzione di testo
         \item L'utente attiva la funzionalità \textit{"Testo in grassetto"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
     \end{enumerate}
@@ -2124,7 +2217,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2132,7 +2225,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente seleziona una porzione di testo
         \item L'utente attiva la funzionalità \textit{"Testo in corsivo"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
     \end{enumerate}
@@ -2202,7 +2295,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2210,7 +2303,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente seleziona una porzione di testo
         \item L'utente attiva la funzionalità \textit{"Testo sottolineato"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
     \end{enumerate}
@@ -2280,15 +2373,15 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo per la barrattura
+        \item La parte di testo selezionata è compresa tra i marcatori di testo per la barratura
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente seleziona una porzione di testo
         \item L'utente attiva la funzionalità \textit{"Testo barrato"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo per la barratura
     \end{enumerate}
@@ -2358,7 +2451,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2366,7 +2459,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente seleziona una porzione di testo
         \item L'utente attiva la funzionalità \textit{"Link ipertestuale"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo per i collegamenti ipertestuali e seguita dai marcatori in mezzo ai quali dovrà essere inserito il link effettivo
     \end{enumerate}
@@ -2435,7 +2528,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo o il testo intero (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2443,7 +2536,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente seleziona una porzione di testo o il testo intero
+        \item L'utente seleziona una porzione di testo
         \item L'utente attiva la funzionalità \textit{"Testo commentato"}
         \item La porzione di testo selezionata viene delimitata dai marcatori di commento
     \end{enumerate}
@@ -2606,7 +2699,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item La nota aperta ha ricevuto almeno una modifica
+        \item È stata effettuate almeno una modifica sulla nota
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2696,7 +2789,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente seleziona una porzione di testo
+        \item L'utente seleziona una porzione di testo all'interno dell'area di editing
     \end{enumerate}
 
     \vspace{1cm}
@@ -2729,7 +2822,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha seleziona del testo (\UCRef{seleziona})
+        \item L'utente ha selezionato del testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2770,7 +2863,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha seleziona del testo (\UCRef{seleziona})
+        \item L'utente ha selezionato del testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2778,7 +2871,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente ha tagliato una porzione di testo
+        \item L'utente ha tagliato una porzione di testo 
     \end{enumerate}
 
     \vspace{1cm}
@@ -2818,7 +2911,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente ha incolla del testo nella posizione corrente del puntatore 
+        \item L'utente ha incollato del testo nella posizione corrente del puntatore all'interno dell'area di editing
     \end{enumerate}
 
 
@@ -2862,8 +2955,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2875,15 +2968,10 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il riassunto suggerito dall'LLM
-        \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+        \item L'utente decide se sostituire con il riassunto il testo selezionato, aggiungere il riassunto in seguito alla selezione, aggiungere il riassunto in coda o rifiutare il riassunto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente non ritenga opportuno il riassunto suggerito:
-        \begin{enumerate}
-            \item L'utente rifiuta il riassunto suggerito
-            \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo)
-        \end{enumerate}
         \item In caso il sistema non riesce a connettersi con la LLM:
         \begin{itemize}
             \item \UCRef{riassumi_llm_err}
@@ -2900,8 +2988,9 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing (\UCRef{seleziona})
+        \item L'utente ha attivato la funzionalità \textit{"Riassumi testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2909,8 +2998,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riassumi testo"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema non riceve la risposta dall'LLM
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -2921,15 +3012,20 @@
     \medskip
 
     \begin{center}
+        \resizebox{0.98\textwidth}{!}{
         \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=riscrittura]{\UCName{riscrivi}}
-                \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{riscrivi_llm_err}}
+                \umlusecase[x=0, y=6, name=llm_err, align=center]{\UCName{riscrivi_llm_err}}
+                \umlusecase[x=5, y=2, name=ris_lessico, align=center]{\UCName{riscrivi_lessico}}
+                \umlusecase[x=3, y=0, name=ris_grammatica, align=center]{\UCName{riscrivi_grammatica}}
+                \umlusecase[x=-5, y=2, name=ris_variazione, align=center]{\UCName{riscrivi_variazione}}
+                \umlusecase[x=-3, y=0, name=ris_modifica, align=center]{\UCName{riscrivi_modifica}}
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4, scale=0.75]{LLM}
+            \umlactor[x=-3, y=4]{Utente}
+            \umlactor[x=15, y=4, scale=0.75]{LLM}
 
             % Associazioni Utente
             \umlassoc{Utente}{riscrittura}
@@ -2937,7 +3033,11 @@
 
             % Associazioni Casi d'Uso
             \umlextend{llm_err}{riscrittura}
-        \end{tikzpicture}
+            \umlinherit{ris_lessico}{riscrittura}
+            \umlinherit{ris_grammatica}{riscrittura}
+            \umlinherit{ris_variazione}{riscrittura}
+            \umlinherit{ris_modifica}{riscrittura}
+        \end{tikzpicture}}
     \end{center}
 
     \textbf{Attori principali}
@@ -2951,8 +3051,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente seleziona una porzione del testo o l'intero testo
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2971,20 +3071,123 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il risultato all'utente
-        \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente non ritenga opportuna la riscrittura proposta:
-        \begin{enumerate}
-            \item L'utente rifiuta il risultato proposto
-            \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo)
-        \end{enumerate}
         \item In caso il sistema non riesce a connettersi con la LLM:
         \begin{itemize}
             \item \UCRef{riscrivi_llm_err}
         \end{itemize}
     \end{itemize}
+
+    \paragraph*{\UCText{riscrivi_variazione}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_variazione}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
+        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato viene riscritto con una variazione stilistica
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente seleziona l'opzione \textit{"Variaziazione Stilistica"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema mostra il risultato all'utente
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+    \end{enumerate}
+
+    \paragraph*{\UCText{riscrivi_modifica}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_modifica}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
+        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato viene riscritto con maggiori dettagli 
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente seleziona l'opzione \textit{"Estensione Testo"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema mostra il risultato all'utente
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+    \end{enumerate}
+
+    \paragraph*{\UCText{riscrivi_grammatica}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_grammatica}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
+        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato viene riscritto in modo corretto grammaticalmente 
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente seleziona l'opzione \textit{"Correzione Grammatica"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema mostra il risultato all'utente
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+    \end{enumerate}
+
+    \paragraph*{\UCText{riscrivi_lessico}}
+    \addcontentsline{toc}{paragraph}{\UCText{riscrivi_lessico}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
+        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato viene riscritto con un lessico migliorato 
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente seleziona l'opzione \textit{"Miglioramento Lessico"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema mostra il risultato all'utente
+        \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
+    \end{enumerate}
 
     \paragraph*{\UCText{riscrivi_llm_err}}
     \addcontentsline{toc}{paragraph}{\UCText{riscrivi_llm_err}}
@@ -2996,8 +3199,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente seleziona una porzione del testo o l'intero testo
+        \item L'utente ha una nota aperta (\UCRef{apir})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3005,8 +3208,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riassumi testo"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema non riceve la risposta dall'LLM
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3052,8 +3257,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente seleziona una porzione del testo o l'intero testo
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3066,15 +3271,10 @@
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il risultato all'utente
-        \item L'utente decide se sostituire il testo precedentemente selezionato o aggiungerlo in coda
+        \item L'utente decide se sostituire con la traduzione il testo selezionato, aggiungere la traduzione in seguito alla selezione, aggiungere la traduzione in coda o rifiutare la traduzione
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente non ritenga opportuna la riscrittura proposta:
-        \begin{enumerate}
-            \item L'utente rifiuta il risultato proposto
-            \item Il sistema ritorna alle precondizioni (mantenendo quindi la selezione del testo)
-        \end{enumerate}
         \item In caso il sistema non riesce a connettersi con la LLM:
         \begin{itemize}
             \item \UCRef{traduci_llm_err}
@@ -3090,8 +3290,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente tradotto una porzione di testo tramite LLM (\UCRef{traduci})
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente ha tradotto una porzione di testo tramite LLM (\UCRef{traduci})
         \item L'utente ha modificato una porzione del testo che ha generato il testo tradotto
     \end{itemize}
     \textbf{Postcondizioni}
@@ -3101,11 +3301,10 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente visualizza l'avviso che sta modificando del testo che ha generato una traduzione
-        \item Il sistema mostra all'utente tre opzioni:
+        \item Il sistema mostra all'utente due opzioni:
         \begin{itemize}
             \item opzione di ignorare le modifiche
             \item opzione di ritradurre il testo (funzionalità di \textit{"Ritraduzione Testo"})
-            \item opzione di annullare le modiche del testo
         \end{itemize}
     \end{enumerate}
     \textbf{Estensioni}
@@ -3125,8 +3324,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente tradotto una porzione di testo tramite LLM (\UCRef{traduci})
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente ha tradotto una porzione di testo tramite LLM (\UCRef{traduci})
         \item L'utente ha modificato una porzione del testo che ha generato il testo tradotto
         \item L'utente ha avviato la funzionalità di \textit{"Ritraduzione Testo"}
     \end{itemize}
@@ -3158,8 +3357,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3167,8 +3366,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Riassumi testo"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema non riceva la risposta dall'LLM
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3209,30 +3410,25 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente seleziona il punto in cui vuole che venga generato il testo
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Viene inserito il testo generato sulla base della descrizione fatta dall'utente
+        \item Viene inserito il testo generato sulla base della descrizione nel testo selezionato dall'utente
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Genera Testo"}
         \item L'utente definisce un prompt contenente la descrizione del testo da generare
+        \item L'utente seleziona la descrizione del testo da generare
+        \item L'utente attiva la funzionalità \textit{"Genera testo"}
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
         \item Il sistema mostra il testo generato all'utente
-        \item L'utente accetta l'inserimento del testo generato
-        \item Il sistema inserisce il testo generato nella nota
+        \item L'utente decide se aggiungere il testo generato in seguito alla selezione, aggiungere il testo generato in coda o rifiutare il testo generato
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente non ritenga opportuno il testo generato:
-        \begin{enumerate}
-            \item L'utente rifiuta il risultato proposto
-            \item Il sistema ritorna alle precondizioni
-        \end{enumerate}
         \item In caso il sistema non riesce a connettersi con la LLM:
         \begin{itemize}
             \item \UCRef{genera_llm_err}
@@ -3248,9 +3444,9 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente seleziona il punto in cui vuole che venga generato il testo
+        \item L'utente è connesso al sistema 
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona il punto in cui vuole che venga generato il testo (\UCRef{seleziona})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3258,8 +3454,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Genera testo"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema non riceva la risposta dall'LLM
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -3302,6 +3500,40 @@
         \end{tikzauto}
     \end{center}
 
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Attori secondari}
+    \begin{itemize}
+        \item LLM
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene fornito un feedback di critica assieme ad una possibile versione riadattata del testo
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Critica Testo"}
+        \item L'utente seleziona il "cappello" utilizzato per la critica
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema riceve la risposta dall'LLM
+        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il sistema non riesce a connettersi con la LLM:
+        \begin{itemize}
+            \item \UCRef{critica_llm_err}
+        \end{itemize}
+    \end{itemize}
+
     \paragraph{\UCText{critica_rosso}}
 
     \textbf{Attori principali}
@@ -3326,20 +3558,8 @@
         \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Emotiva"}
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza il feedback fornito dall'LLM
+        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
-        \begin{enumerate}
-            \item L'utente conferma la sostituzione del testo
-            \item Il testo viene sostituito con la versione riadattata
-        \end{enumerate}
-        \item In caso il sistema non riesce a connettersi con la LLM:
-        \begin{itemize}
-            \item \UCRef{critica_llm_err}
-        \end{itemize}
-    \end{itemize}
 
     \paragraph{\UCText{critica_bianco}}
 
@@ -3365,20 +3585,8 @@
         \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Neutra"}
         \item Il sistema invia la richiesta all'API dell'LLM
         \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza il feedback fornito dall'LLM
+        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
-        \begin{enumerate}
-            \item L'utente conferma la sostituzione del testo
-            \item Il testo viene sostituito con la versione riadattata
-        \end{enumerate}
-        \item In caso il sistema non riesce a connettersi con la LLM:
-        \begin{itemize}
-            \item \UCRef{critica_llm_err}
-        \end{itemize}
-    \end{itemize}
 
     \paragraph{\UCText{critica_giallo}}
 
@@ -3406,18 +3614,6 @@
         \item Il sistema riceve la risposta dall'LLM
         \item L'utente visualizza il feedback fornito dall'LLM
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
-        \begin{enumerate}
-            \item L'utente conferma la sostituzione del testo
-            \item Il testo viene sostituito con la versione riadattata
-        \end{enumerate}
-        \item In caso il sistema non riesce a connettersi con la LLM:
-        \begin{itemize}
-            \item \UCRef{critica_llm_err}
-        \end{itemize}
-    \end{itemize}
 
     \paragraph{\UCText{critica_nero}}
 
@@ -3445,18 +3641,6 @@
         \item Il sistema riceve la risposta dall'LLM
         \item L'utente visualizza il feedback fornito dall'LLM
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
-        \begin{enumerate}
-            \item L'utente conferma la sostituzione del testo
-            \item Il testo viene sostituito con la versione riadattata
-        \end{enumerate}
-        \item In caso il sistema non riesce a connettersi con la LLM:
-        \begin{itemize}
-            \item \UCRef{critica_llm_err}
-        \end{itemize}
-    \end{itemize}
 
     \paragraph{\UCText{critica_verde}}
 
@@ -3484,18 +3668,6 @@
         \item Il sistema riceve la risposta dall'LLM
         \item L'utente visualizza il feedback fornito dall'LLM
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
-        \begin{enumerate}
-            \item L'utente conferma la sostituzione del testo
-            \item Il testo viene sostituito con la versione riadattata
-        \end{enumerate}
-        \item In caso il sistema non riesce a connettersi con la LLM:
-        \begin{itemize}
-            \item \UCRef{critica_llm_err}
-        \end{itemize}
-    \end{itemize}
 
     \paragraph{\UCText{critica_blu}}
 
@@ -3523,18 +3695,6 @@
         \item Il sistema riceve la risposta dall'LLM
         \item L'utente visualizza il feedback fornito dall'LLM
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente volesse effettivamente sostituire il testo originale con quello proposto:
-        \begin{enumerate}
-            \item L'utente conferma la sostituzione del testo
-            \item Il testo viene sostituito con la versione riadattata
-        \end{enumerate}
-        \item In caso il sistema non riesce a connettersi con la LLM:
-        \begin{itemize}
-            \item \UCRef{critica_llm_err}
-        \end{itemize}
-    \end{itemize}
 
     \paragraph*{\UCText{genera_llm_err}}
     \addcontentsline{toc}{paragraph}{\UCText{genera_llm_err}}
@@ -3547,6 +3707,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
+        \item L'utente ha attivato la funzionalità \textit{"Critica testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3554,204 +3715,15 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente attiva la funzionalità \textit{"Critica testo"}
+        \item Il sistema invia la richiesta all'API dell'LLM
+        \item Il sistema non riceve la risposta dell'LLM
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
 
     \subsection{Casi d'uso opzionali}
-
-    \subsubsection*{(OPT) \UCText{autentica}}
-    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{autentica}}
-
-    \medskip
-
-    \begin{center}
-        \begin{tikzauto}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=4, y=4.5, name=autenticazione]{(OPT) \UCName{autentica}}
-                \umlusecase[x=0, y=2.5, name=auth_nome, align=center]{(OPT) \UCName{auth_nome}}
-                \umlusecase[x=8, y=2.5, name=auth_pwd, align=center]{(OPT) \UCName{auth_pwd}}
-                \umlusecase[x=0, y=0, name=err_nome, align=center]{(OPT) \UCName{auth_nome_err}}
-                \umlusecase[x=8, y=0, name=err_pwd, align=center]{(OPT) \UCName{auth_pwd_err}}
-                \umlusecase[x=8, y=6.5, name=server_err, align=center]{(OPT) \UCName{auth_server_err}}
-            \end{umlsystem}
-
-            % Attori
-            \umlactor[x=0, y=4.5]{Utente}
-
-            % Associazioni Utente
-            \umlassoc{Utente}{autenticazione}
-
-            % Associazioni Casi d'Uso
-            \umlinclude{autenticazione}{auth_nome}
-            \umlinclude{autenticazione}{auth_pwd}
-            \umlextend{err_nome}{auth_nome}
-            \umlextend{err_pwd}{auth_pwd}
-            \umlextend{server_err}{autenticazione}
-
-        \end{tikzauto}
-    \end{center}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente non è autenticato
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente è autenticato al sistema
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente inserisce le proprie credenziali (\UCRef{auth_nome} e \UCRef{auth_pwd})
-        \item L'utente avvia il processo di autenticazione al server
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso il sistema perda la connessione:
-        \begin{itemize}
-            \item \UCRef{auth_server_err}
-        \end{itemize}
-    \end{itemize}
-
-    \paragraph*{(OPT) \UCText{auth_nome}}
-    \addcontentsline{toc}{paragraph}{(OPT) \UCText{auth_nome}}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente non è autenticato
-        \item L'utente sta effettuando la autenticazione (\UCRef{autentica})
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente è autenticato al sistema
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente inserisce il proprio nome utente
-        \item L'utente avvia il processo di autenticazione
-        \item Il nome utente inserito viene validato
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso il nome sia valido:
-        \begin{itemize}
-            \item \UCRef{auth_nome_err}
-        \end{itemize}
-    \end{itemize}
-
-    \subparagraph*{(OPT) \UCText{auth_nome_err}}
-    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{auth_nome_err}}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente non è autenticato
-        \item L'utente sta effettuando la autenticazione (\UCRef{autentica})
-        \item L'utente ha inserito il proprio nome (\UCRef{auth_nome})
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente non è autenticato al sistema
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente del nome non valido
-        \item L'utente chiude l'avviso
-    \end{enumerate}
-
-    \paragraph*{(OPT) \UCText{auth_pwd}}
-    \addcontentsline{toc}{paragraph}{(OPT) \UCText{auth_pwd}}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente non è autenticato
-        \item L'utente sta effettuando la autenticazione (\UCRef{autentica})
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente è autenticato al sistema
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente inserisce la propria password
-        \item L'utente avvia il processo di autenticazione
-        \item La password inserita viene validata
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso la password non sia valida:
-        \begin{itemize}
-            \item \UCRef{auth_pwd_err}
-        \end{itemize}
-    \end{itemize}
-
-    \subparagraph*{(OPT) \UCText{auth_pwd_err}}
-    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{auth_pwd_err}}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente non è autenticato
-        \item L'utente sta effettuando la autenticazione (\UCRef{autentica})
-        \item L'utente ha inserito la propria password (\UCRef{auth_pwd})
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente non è autenticato al sistema
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente della password non valida
-        \item L'utente chiude l'avviso
-    \end{enumerate}
-
-    \paragraph*{\UCText{auth_server_err}}
-    \addcontentsline{toc}{paragraph}{\UCText{auth_server_err}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente non è autenticato
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente non è autenticato al sistema
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
-    \end{enumerate}
-
-    \vspace{1cm}
 
     \subsubsection*{(OPT) \UCText{registra}}
     \addcontentsline{toc}{subsubsection}{(OPT) \UCText{registra}}
@@ -3796,12 +3768,13 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente è registrato e autenticato al sistema
+        \item L'utente è registrato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente inserisce le proprie credenziali (\UCRef{reg_nome} e \UCRef{reg_pwd})
-        \item L'utente avvia il processo di registrazione al server
+        \item L'utente avvia il processo di registrazione
+        \item L'utente è registrato
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -3826,17 +3799,17 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente è registrato nel sistema
+        \item L'utente ha inserito il nome utente per la registrazione
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente sta effettuando la registrazione
         \item L'utente inserisce il proprio nome utente
-        \item L'utente avvia il processo di registrazione
         \item Il sistema controlla se il nome utente è già stato utilizatto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il nome è già utilizzato:
+        \item In caso il nome sia già utilizzato:
         \begin{itemize}
             \item \UCRef{reg_nome_err}
         \end{itemize}
@@ -3858,12 +3831,11 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente non è registrato al sistema
+        \item Viene visualizzato un messaggio di errore
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente del nome non disponibile
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \paragraph*{(OPT) \UCText{reg_pwd}}
@@ -3881,17 +3853,17 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente è registrato nel sistema
+        \item L'utente ha inserito la password per la registrazione
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
+        \item L'utente sta effettuando la registrazione
         \item L'utente inserisce la propria password
-        \item L'utente avvia il processo di registrazione
         \item Il sistema valida la password immessa
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso la password non soddisfa i requisiti minimi di robustezza:
+        \item In caso la password non soddisfi i requisiti minimi di robustezza:
         \begin{itemize}
             \item \UCRef{reg_pwd_err}
         \end{itemize}
@@ -3913,12 +3885,11 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente non è registrato al sistema
+        \item Viene visualizzato un messaggio di errore
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della password non valida
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \paragraph*{\UCText{reg_server_err}}
@@ -3931,6 +3902,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente non è registrato
+        \item L'utente sta effettuando la registrazione (\UCRef{registra})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3939,10 +3911,337 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
+
+    \subsubsection*{(OPT) \UCText{autentica}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{autentica}}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzauto}
+            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+                \umlusecase[x=4, y=4.5, name=autenticazione]{(OPT) \UCName{autentica}}
+                \umlusecase[x=0, y=2.5, name=auth_nome, align=center]{(OPT) \UCName{auth_nome}}
+                \umlusecase[x=8, y=2.5, name=auth_pwd, align=center]{(OPT) \UCName{auth_pwd}}
+                \umlusecase[x=0, y=0, name=err_nome, align=center]{(OPT) \UCName{auth_nome_err}}
+                \umlusecase[x=8, y=0, name=err_pwd, align=center]{(OPT) \UCName{auth_pwd_err}}
+                \umlusecase[x=8, y=6.5, name=server_err, align=center]{(OPT) \UCName{auth_server_err}}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=0, y=4.5]{Utente}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{autenticazione}
+
+            % Associazioni Casi d'Uso
+            \umlinclude{autenticazione}{auth_nome}
+            \umlinclude{autenticazione}{auth_pwd}
+            \umlextend{err_nome}{auth_nome}
+            \umlextend{err_pwd}{auth_pwd}
+            \umlextend{server_err}{autenticazione}
+
+        \end{tikzauto}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente non è autenticato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente è autenticato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente inserisce le proprie credenziali (\UCRef{auth_nome} e \UCRef{auth_pwd})
+        \item L'utente avvia il processo di autenticazione
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il sistema perda la connessione:
+        \begin{itemize}
+            \item \UCRef{auth_server_err}
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph*{(OPT) \UCText{auth_nome}}
+    \addcontentsline{toc}{paragraph}{(OPT) \UCText{auth_nome}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente non è autenticato
+        \item L'utente sta effettuando la autenticazione (\UCRef{autentica})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente ha inserito il proprio nome utente per effettuare l'autenticazione
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sta effettuando l'autenticazione
+        \item L'utente inserisce il proprio nome utente
+        \item Il nome utente inserito viene validato
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso il nome sia valido:
+        \begin{itemize}
+            \item \UCRef{auth_nome_err}
+        \end{itemize}
+    \end{itemize}
+
+    \subparagraph*{(OPT) \UCText{auth_nome_err}}
+    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{auth_nome_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente non è autenticato
+        \item L'utente sta effettuando l'autenticazione (\UCRef{autentica})
+        \item L'utente ha inserito il proprio nome (\UCRef{auth_nome})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente non è autenticato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente del nome non valido
+    \end{enumerate}
+
+    \paragraph*{(OPT) \UCText{auth_pwd}}
+    \addcontentsline{toc}{paragraph}{(OPT) \UCText{auth_pwd}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente non è autenticato
+        \item L'utente sta effettuando la autenticazione (\UCRef{autentica})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente ha inserito la propria password per effettuare l'autenticazione
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sta effettuando l'autenticazione
+        \item L'utente inserisce la propria password
+        \item La password inserita viene validata
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item In caso la password non sia valida:
+        \begin{itemize}
+            \item \UCRef{auth_pwd_err}
+        \end{itemize}
+    \end{itemize}
+
+    \subparagraph*{(OPT) \UCText{auth_pwd_err}}
+    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{auth_pwd_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente non è autenticato
+        \item L'utente sta effettuando l'autenticazione (\UCRef{autentica})
+        \item L'utente ha inserito la propria password (\UCRef{auth_pwd})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente non è autenticato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della password non valida
+    \end{enumerate}
+
+    \paragraph*{\UCText{auth_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{auth_server_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente non è autenticato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente non è autenticato
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema avvisa l'utente della perdita di connessione
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \subsubsection*{(OPT) \UCText{salva_db}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{salva_db}}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=0, name=salva_db, align=center]{(OPT) \UCName{salva_db}}
+                \umlusecase[x=0, y=-2, name=err_db, align=center]{(OPT) \UCName{salva_db_err}}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=-2, y=0]{Utente autenticato}
+
+            % Associazioni Utente
+            \umlassoc{Utente autenticato}{salva_db}
+            \umlextend{err_db}{salva_db}
+        \end{tikzpicture}
+    \end{center}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha una nota aperta (\UCRef{apri})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota viene salvata nel DataBase ed è accessibile solo dall'utente che l'ha salvata
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente ha una nota aperta
+        \item L'utente attiva la funzionalità \textit{"Salva nel DataBase"}
+        \item La nota viene salvata nel DataBase e solo l'utente può accedervi
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{enumerate}
+        \item Nel caso in cui il DataBase non sia raggiungibile:
+        \begin{itemize}
+            \item \UCRef{salva_db_err}
+        \end{itemize}
+    \end{enumerate}
+
+    \subsubsection*{(OPT) \UCText{salva_db_err}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{salva_db_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente ha attivato la funzionalità \textit{"Salva nel DataBase"}
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota non viene salvata nel DataBase e l'utente visualizza un errore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente ha una nota aperta
+        \item L'utente attiva la funzionalità \textit{"Salva nel DataBase"}
+        \item La nota non viene salvata nel DataBase 
+        \item L'utente visualizza un messaggio di errore
+    \end{enumerate}
+
+    \subsubsection*{(OPT) \UCText{apri_nota_db}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{apri_nota_db}}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=0, name=apri_db, align=center]{(OPT) \UCName{apri_nota_db}}
+                \umlusecase[x=0, y=-2, name=err_db, align=center]{(OPT) \UCName{apri_nota_db_err}}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=-2, y=0]{Utente autenticato}
+
+            % Associazioni Utente
+            \umlassoc{Utente autenticato}{apri_db}
+            \umlextend{err_db}{apri_db}
+        \end{tikzpicture}
+    \end{center}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha almeno una nota salvata nel proprio account
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota selezionata viene aperta nell'editor 
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item Il sistema mostra le note salvate dall'utente autenticato
+        \item L'utente seleziona la nota da aprire
+        \item Il sistema mostra la nota selezionata nell'editor
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{enumerate}
+        \item Nel caso in cui il DataBase non sia raggiungibile:
+        \begin{itemize}
+            \item \UCRef{apri_nota_db_err}
+        \end{itemize}
+    \end{enumerate}
+
+    \subsubsection*{(OPT) \UCText{apri_nota_db_err}}
+    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{apri_nota_db_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha almeno una nota salvata nel proprio account
+        \item L'utente ha selezionato una nota da aprire
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota selezionata non viene aperta nell'editor 
+        \item Viene visualizzato un messaggio di errore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente seleziona una nota da aprire
+        \item La nota non viene aperta 
+        \item L'utente visualizza un messaggio di errore
+    \end{enumerate}
 
     \subsubsection*{(OPT) \UCText{logout}}
     \addcontentsline{toc}{subsubsection}{(OPT) \UCText{logout}}
@@ -4052,6 +4351,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha attivato la funzionalità \textit{"Elimina Account"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -4092,7 +4392,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente che la password non è corretta
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \subparagraph*{(OPT) \UCText{conf_elim}}
@@ -4131,6 +4430,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente è autenticato (\UCRef{autentica})
+        \item L'utente ha attivato la funzionalità \textit{"Elimina Account"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -4139,7 +4439,6 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema avvisa l'utente della perdita di connessione
-        \item L'utente chiude l'avviso
     \end{enumerate}
 
     \vspace{1cm}
@@ -4302,14 +4601,15 @@
             \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & \UCRef{critica_blu} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di riassumere del testo tramite un agente esterno & \UCRef{riassumi} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di riscrivere del testo tramite un agente esterno & \UCRef{riscrivi} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di scegliere il modo in cui verrà riscritto il testo (correzione grammaticale, estensione del testo, miglioramento del lessico, variazione stilistica) & \UCRef{riscrivi}, \UCRef{riscrivi_variazione}, \UCRef{riscrivi_modifica}, \UCRef{riscrivi_grammatica}, \UCRef{riscrivi_lessico}  \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di tradurre del testo tramite un agente esterno & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & \UCRef{genera} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di sostituire nell'editor il testo originale con quello generate dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in seguito alla selezione del testo originale, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in coda a tutto il testo presente nell'editor, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di "rifiutare" il testo generato dall'agente esterno (riassunto, riscrittura, traduzione) & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci} \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & \UCRef{riassumi}, \UCRef{traduci}, \UCRef{riscrivi}, \UCRef{genera} \\ \hline
-            \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione & \UCRef{genera} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di copiare negli appunti il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & \UCRef{riassumi}, \UCRef{traduci}, \UCRef{riscrivi}, \UCRef{genera} \\ \hline
+            \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione (Distant Writing) & \UCRef{genera} \\ \hline
             \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo tradotto viene modificato & \UCRef{mod_traduzione} \\ \hline
             \reqF{O} & Il sistema deve consentire all’utente di aggiornare una traduzione precedentemente inserita se il testo originale è presente ed è stato modificato & \UCRef{traduci_redo} \\ \hline
             \reqF{O} & Il sistema deve consentire all'utente di rimuovere una traduzione precedentemente inserita & \UCRef{traduci} \\ \hline
@@ -4338,8 +4638,13 @@
             \reqF{OP} & Il sistema deve richiedere la password dell'utente per l'eliminazione del suo account  & \UCRef{pwd_elimina} \\ \hline
             \reqF{OP} & Il sistema deve avvisare l'utente che la password inserita per l'eliminazione dell'account è sbagliata  & \UCRef{pwd_elimina} \\ \hline
             \reqF{OP} & Il sistema deve richiedere la conferma all'utente per l'eliminazione del suo account  & \UCRef{conf_elim} \\ \hline
+            \reqF{OP} & Il sistema deve permettere all'utente autenticato di salvare note nel proprio account & \UCRef{salva_db} \\ \hline
+            \reqF{OP} & Il sistema deve permettere all'utente autenticato di aprire una delle note salvate nel proprio account & \UCRef{apri_nota_db} \\ \hline
+            \reqF{OP} & Il sistema durante il salvataggio, nel caso in cui il DataBase non sia raggiungibile, deve visualizzare un messaggio d'errore & \UCRef{salva_db_err} \\ \hline
+            \reqF{OP} & Il sistema durante l'apertura di una nota, nel caso in cui il DataBase non sia raggiungibile, deve visualizzare un messaggio d'errore & \UCRef{apri_nota_db_err} \\ \hline
             \caption{Tabella Requisiti Funzionali}
         \end{longtable}
+
     \subsection{Requisiti di qualità}
         \begin{longtable}{|l|p{8cm}|p{3.5cm}|}
             \hline
@@ -4355,7 +4660,6 @@
             \reqQ{O} & Al termine dell’esportazione, il sistema deve notificare esplicitamente l’errore di esportazione all'utente & \UCRef{esporta}, \UCRef{esporta_archivio} \\ \hline
             \reqQ{O} & L’importazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri (incl. Unicode) & \UCRef{importa} \\ \hline
             \reqQ{O} & In caso di file non valido o corrotto, il sistema deve interrompere l’importazione senza creare note parziali e deve notificare chiaramente l’errore all’utente & \UCRef{importa_err} \\ \hline
-            \reqQ{O} & Nel caso in cui il Server delle note è irraggiungibile, il sistema deve gestire l’errore in modo robusto senza crash, mantenendo lo stato consistente dell’interfaccia e notificando chiaramente il problema all’utente & \UCRef{arch_server_err}, \UCRef{apri_server_err}, \UCRef{salva_server_err}, \UCRef{clona_server_err}, \UCRef{ricerca_server_err}, \UCRef{elim_server_err}, \UCRef{rinom_server_err}, \UCRef{esporta_arch_server_err}, \UCRef{importa_server_err} \\ \hline
             \reqQ{O} & L'aggiornamento della visualizzazione formattata deve avvenire in un tempo adeguatamente veloce & \UCRef{formatta} \\ \hline
             \reqQ{O} & L’editor deve rispondere all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & \UCRef{scrivi}, \UCRef{formatta}.* \\ \hline
             \reqQ{O} & L’editor deve rendere i link ipertestuali facilmente riconoscibili (es. evidenziandoli graficamente) e distinguibili dal testo normale & \UCRef{link} \\ \hline
@@ -4405,4 +4709,20 @@
             \caption{Tabella Requisiti di Vincolo}
         \end{longtable}
 
+        \subsection{Riepilogo dei Requisiti}
+        \begin{table}[H]
+        \centering
+            \begin{tabular}{|l|c|c|c|}
+            \hline
+            \textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\
+            \hline
+            Funzionali & \arabic{RF@O} & \arabic{RF@D} & \arabic{RF@OP} \\
+            \hline
+            Qualità & \arabic{RQ@O} & \arabic{RQ@D} & \arabic{RQ@OP} \\
+            \hline
+            Vincolo & \arabic{RV@O} & \arabic{RV@D} & \arabic{RV@OP} \\
+            \hline
+            \end{tabular}
+            \caption{Riepilogo dei Requisiti}
+        \end{table}
 \end{document}
