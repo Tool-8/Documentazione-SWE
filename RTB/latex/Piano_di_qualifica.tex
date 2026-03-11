@@ -19,6 +19,7 @@
 \usepackage{caption}    % per didascalie
 \captionsetup[table]{labelformat=empty}
 \usepackage{ifthen}     % per \ifthenelse
+\usepackage{longtable}
 
 \usepackage{tikz}
 
@@ -90,6 +91,8 @@
 \begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+  0.4 & Niccolò Feltrin & Aggiornato calcolo indice di Gulpease in AdR (v1.0) e verbale interno 3/3/2026, aggiunti test di sistema & 10/03/2026 & Giuliano Banchieri \\
   \hline
   0.3 & Niccolò Feltrin & Aggiornati grafici del cruscotto con Sprint 4 (insieme all'analisi), e aggiunto calcolo dell'indice di Gulpease su verbali e documenti per RTB & 06/03/2026 & Giuliano Banchieri \\
   \hline
@@ -448,7 +451,109 @@ I test di dividono in:
 \end{itemize}
 \subsection{Test di sistema}
 I test di sistema hanno lo scopo di verificare che il sistema software rispetti i requisiti specificati nel documento "\textit{Analisi dei Requisiti}". In seguito verranno elencati i vari test, i quali avranno un codice identificativo, una descrizione, il requisito a cui fa riferimento e lo stato del test. \\
-*TABELLA DEI REQUISITI DA FARE!!!*
+
+\newcounter{TS@}
+
+\newcommand{\testS}{%
+    \stepcounter{TS@}%
+    \noindent{TS-\arabic{TS@}}\quad\par
+}
+
+\begin{longtable}{|l|p{8cm}|p{2cm}|p{1.5cm}|}
+    \hline
+    \textbf{Test} & \textbf{Descrizione} & \textbf{Requisito correlato} & \textbf{Stato} \\ \hline
+    \endfirsthead
+    \hline
+    \testS & Verificare che il sistema permetta all'utente di visualizzare l'archivio delle note presenti & RF-O-1 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di aprire un nota & RF-O-2 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di uscire da una nota & RF-O-3 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di creare una nuova nota & RF-O-4 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare la nota su cui sta lavorando & RF-O-5 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare la nota su cui sta lavorando per la prima volta, chiedendo il nome della nota da associare nell'archivio & RF-O-6 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare nuovamente la nota su cui sta lavorando con un altro nome & RF-O-7 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di clonare una nota & RF-O-8 & - \\ \hline
+    \testS & Verificare che, alla clonazione di una nota, il sistema assegni automaticamente un nome di default (es. "Nota \textit{data-ora}") che l’utente può modificare & RF-O-9 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di ricercare le note per nome nell'archivio & RF-O-10 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di eliminare una nota & RF-O-11 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di rinominare una nota & RF-O-12 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta & RF-O-13 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota direttamente dall'archivio & RF-O-14 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di importare una nota & RF-O-15 & - \\ \hline
+    \testS & Verificare che il sistema permetta all’utente di scrivere nell'editor con caratteri Unicode (es. lettere accentate e simboli) & RF-O-16 & - \\ \hline
+    \testS & Verificare che il sistema compili la sintassi Markdown  & RF-O-17 & - \\ \hline
+    \testS & Verificare che il sistema permetta la visualizzazione del documento formattato secondo la sintassi Markdown &  RF-O-18 & - \\ \hline
+    \testS & Verificare che il sistema permetta di cambiare modalità di visualizzazione & RF-O-19 & - \\ \hline
+    \testS & Verificare che il sistema fornisca un'area di editing di testo in cui è possibile inserire e modificare del testo per la compilazione Markdown & RF-O-20 & - \\ \hline
+    \testS & Verificare che il sistema permetta l'applicazione di formattazioni Markdown senza scrivere manualmente la sintassi & RF-O-21 & - \\ \hline
+    \testS & Verificare che il sistema permetta l'applicazione e la rimozione della formattazione testo grassetto senza scrivere manualmente la sintassi & RF-O-22 & - \\ \hline
+    \testS & Verificare che il sistema permetta l'applicazione e la rimozione della formattazione testo corsivo senza scrivere manualmente la sintassi & RF-O-23 & - \\ \hline
+    \testS & Verificare che il sistema permetta l'applicazione e la rimozione della formattazione testo sottolineato senza scrivere manualmente la sintassi & RF-O-24 & - \\ \hline
+    \testS & Verificare che il sistema consenta l’applicazione e la rimozione della formattazione testo barrato senza richiedere l’inserimento manuale della sintassi & RF-O-25 & - \\ \hline
+    \testS & Verificare che il sistema consenta l'inserimento e la rimozione di link ipertestuali senza richiedere l'inserimento manuale della sintassi & RF-O-26 & - \\ \hline
+    \testS & Verificare che il sistema consenta l'applicazione e la rimozione della formattazione testo commentato senza richiede l'inserimento manuale della sintassi & RF-O-27 & - \\ \hline
+    \testS & Verificare che il sistema consenta l'inserimento di elenchi numerati & RF-O-28 & - \\ \hline
+    \testS & Verificare che il sistema consenta l'inserimento di elenchi puntati & RF-O-29 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di annullare l'ultima modifica fatta & RF-O-30 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di ripristinare la modifica precedentemente annullata & RF-O-31 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & RF-O-32 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di copiare il testo selezionato & RF-O-33 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di tagliare il testo selezionato & RF-O-34 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di incollare del testo nell'area di testo & RF-O-35 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta in MD & RF-O-36 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota direttamente dall'archivio in MD & RF-O-37 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente della presenza di una nota con lo stesso nome in seguito al primo salvataggio & RF-O-38 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo secondo il modello dei "Sei Cappelli" & RF-O-39 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Emotiva" (Cappello Rosso) & RF-O-40 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Neutra" (Cappello Bianco) & RF-O-41 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Ottimista" (Cappello Giallo) & RF-O-42 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione dell'avvocato del Diavolo" (Cappello Nero) & RF-O-43 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Originale" (Cappello Verde) & RF-O-44 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & RF-O-45 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di riassumere del testo tramite un agente esterno & RF-O-46 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di riscrivere del testo tramite un agente esterno & RF-O-47 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di scegliere il modo in cui verrà riscritto il testo (correzione grammaticale, estensione del testo, miglioramento del lessico, variazione stilistica) & RF-O-48  & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di tradurre del testo tramite un agente esterno & RF-O-49 & - \\ \hline
+    \testS & Verificare che il sistema permetta l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & RF-O-50 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di sostituire nell'editor il testo originale con quello generate dall'agente esterno (riassunto, riscrittura, traduzione) & RF-O-51 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di aggiungere nell'editor, in seguito alla selezione del testo originale, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & RF-O-52 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di aggiungere nell'editor, in coda a tutto il testo presente nell'editor, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & RF-O-53 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di "rifiutare" il testo generato dall'agente esterno (riassunto, riscrittura, traduzione) & RF-O-54 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di copiare negli appunti il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & RF-O-55 & - \\ \hline
+    \testS & Verificare che il sistema commenti il testo selezionato dall’utente utilizzato per interrogare la generazione (Distant Writing) & RF-O-56 & - \\ \hline
+    \testS & Verificare che, se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema lo avvisi ogni volta che il testo tradotto viene modificato & RF-O-57 & - \\ \hline
+    \testS & Verificare che il sistema consenta all’utente di aggiornare una traduzione precedentemente inserita se il testo originale è presente ed è stato modificato & RF-O-58 & - \\ \hline
+    \testS & Verificare che il sistema consenta all'utente di rimuovere una traduzione precedentemente inserita & RF-O-59 & - \\ \hline
+    \testS & Verificare che il sistema consenta all'utente di rimuovere il testo originale di una traduzione precedentemente inserita & RF-O-60 & - \\ \hline
+    \testS & Verificare che il sistema notifichi all'utente la perdita del testo originale di riferimento qualora venga eliminato, lasciando la traduzione priva di collegamento & RF-O-61 & - \\ \hline
+    \testS & Verificare che il sistema non consenta l'inserimento di una traduzione all'interno di una porzione di testo già tradotta & RF-O-62 & - \\ \hline
+    \testS & Verificare che il sistema alla chiusura di una nota, se presenti delle modifiche non salvate avvisi l'utente della presenza di modifiche & RF-O-63 & - \\ \hline
+    \testS & Verificare che il sistema in caso di problemi di connessione con l'agente esterno avvisi l'utente & RF-O-64 & - \\ \hline
+    \testS & Verificare che il sistema aggiorni automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & RF-D-1& - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta in PDF & RF-D-2 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta in HTML & RF-D-3 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota direttamente dall'archivio in PDF & RF-D-4 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota direttamente dall'archivio in HTML & RF-D-5 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di utilizzare scorciatoie da tastiera per formattare il testo & RF-D-6 & - \\ \hline
+    \testS & Verificare che il sistema comunichi all'utente eventuali errori grammaticali nell'editor & RF-D-7 & - \\ \hline
+    \testS & Verificare che il sistema consenta all’utente di eseguire un minimo di 20 operazioni consecutive di annullamento e di ripristino delle modifiche sull’editor della nota corrente & RF-D-8 & - \\ \hline
+    \testS & Verificare che il sistema aggiorni automaticamente la visualizzazione del testo formattato ad ogni modifica del Markdown, senza richiedere un’azione esplicita & RF-OP-1 & - \\ \hline
+    \testS & Verificare che il sistema comunichi all'utente eventuali errori di sintassi nei marcatori nell'editor & RF-OP-2 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di interagire direttamente con la LLM tramite marcatori & RF-OP-3 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di registrarsi tramite nome utente e password & RF-OP-4 & - \\ \hline
+    \testS & Verificare che, se password o nome utente non sono corrette, il sistema non permetta la registrazione & RF-OP-5 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di accedere al proprio account & RF-OP-6 & - \\ \hline
+    \testS & Verificare che, se password o nome utente non sono corrette, il sistema non permetta l'autenticazione & RF-OP-7 & - \\ \hline
+    \testS & Verificare che l'utente possa effettuare il logout e terminare la sessione & RF-OP-8 & - \\ \hline
+    \testS & Verificare che il sistema permetta ad un utente autenticato di eliminare il proprio account  & RF-OP-9 & - \\ \hline
+    \testS & Verificare che il sistema richieda la password dell'utente per l'eliminazione del suo account  & RF-OP-10 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente che la password inserita per l'eliminazione dell'account è sbagliata & RF-OP-11 & - \\ \hline
+    \testS & Verificare che il sistema richieda la conferma all'utente per l'eliminazione del suo account  & RF-OP-12 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente autenticato di salvare note nel proprio account & RF-OP-13 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente autenticato di aprire una delle note salvate nel proprio account & RF-OP-14 & - \\ \hline
+    \testS & Verificare che il sistema durante il salvataggio, nel caso in cui il DataBase non sia raggiungibile, visualizzi un messaggio d'errore & RF-OP-15 & - \\ \hline
+    \testS & Verificare che il sistema durante l'apertura di una nota, nel caso in cui il DataBase non sia raggiungibile, visualizzi un messaggio d'errore & RF-OP-16 & - \\ \hline
+    \caption{Tabella Test di Sistema}
+\end{longtable}
 
 
 \section{Checklist}
