@@ -1,0 +1,161 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{tikz}
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{16}{03}{2026}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale \italianformat{\displaydate{dataverbale}}};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large\slashdate{\displaydate{dataverbale}} \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+  1.0 & Niccolò Feltrin & Stesura Motivazioni riunione, Verbale e Conclusioni & \slashdate{\displaydate{dataverbale}} & - \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Partecipanti}
+\textbf{Orario della riunione}: 14:30 - 15:10
+\\
+\textbf{Sede / piattaforma}: Google Meet
+\\
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Gregorio Piccoli & Referente aziendale \\
+  \hline
+  Giuliano Banchieri & Verificatore \\
+  \hline
+  Gabriele Disa & Amministratore \\
+  \hline
+  Stefano Maso & Analista \\
+  \hline
+  Besnik Murtezan & Analista \\
+  \hline
+  Ruben Spadiliero & Responsabile \\
+  \hline
+  Niccolò Feltrin & Amministratore \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Motivazioni riunione}
+La riunione è stata tenuta per confrontarsi con l’azienda sull’Analisi dei Requisiti (v1.0), predisposta per la milestone di RTB.
+
+\newpage
+
+\section*{Verbale}
+Nel corso della riunione si è affrontato quanto segue: \\
+\begin{itemize}
+  \item Per quanto riguarda i casi d'uso relativi alle operazioni sui file, il referente ha prestato attenzione sulla gestione di errori riguardanti ad eventuali problemi multi-utenza. In particolare:
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item Nei casi d’uso relativi all’apertura e al salvataggio della nota (UC2, UC5) viene verificata la corretta gestione delle situazioni in cui una nota sia modificata da più utenti contemporaneamente, ad esempio: eliminazione di una nota prima dell’apertura o ultimo salvataggio non congruente con la versione presente sul server.
+    \item Nei casi d’uso relativi all’eliminazione e alla rinominazione della nota (UC8, UC9) è necessario verificare eventuali modifiche parallele durante l’operazione che possano compromettere il risultato, ad esempio la rinominazione di una nota già eliminata.
+    \item In generale, il referente ha consigliato di ricontrollare l’intera sezione interessata secondo questa logica e, qualora si decida esplicitamente di non gestire alcune problematiche per ridurre la complessità del progetto, di definire chiaramente le scelte effettuate.
+  \end{itemize}
+  \item Sono state precisate le nomenclature dei casi d’uso UC5.3 (Nuovo Salvataggio Nota) e UC5.1 (Errore Nota Non Aggiornata), che potrebbero risultare fonte di confusione riguardo al loro contenuto.
+  \item I casi d'uso riguardanti l'interazione con la LLM sono risultati soddisfacenti e non richiedono modifiche particolari.
+  \item Il referente non ha fornito particolari commenti sulla lista dei requisiti, ritenendola adeguata per l’analisi.
+  \item Infine è stato informato della necessità di richiedere una nuova chiave API per il servizio AI fornito dall’azienda a causa di un guasto di sistema.
+\end{itemize}
+\section*{Conclusioni}
+Il contenuto generale del documento è stato apprezzato dal referente, che ha fornito alcuni consigli per migliorare ulteriormente specifici casi d’uso. Sulla base di quanto emerso, sono necessarie le seguenti modifiche:
+\begin{itemize}
+\item Rinominare appropriatamente i casi d'uso UC5.3 e UC5.1
+\item Ricontrollare possibili problemi dovuti all'accesso multi-utente del programma nella sezione di gestione delle note
+\end{itemize}
+
+\vspace{2cm}
+\begin{flushright}
+  \noindent\rule{6cm}{0.4pt}\\
+  \textit{Firma del referente aziendale}\\
+  Sig. Piccoli – Zucchetti
+\end{flushright}
+
+\end{document}
