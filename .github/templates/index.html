@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verbali - Documentazione Progetto</title>
+    <title> Documentazione SecondBrain - Tool-8 </title>
     <style>
 * {
 margin: 0;
@@ -63,6 +63,27 @@ display: grid;
 grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
 gap: 2.5rem;
         }
+
+.verbali-grid .pdf-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.verbali-grid .pdf-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.verbali-grid .pdf-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.verbali-grid .pdf-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+}
+        
 .verbale-section {
 background: rgba(255, 255, 255, 0.03);
 backdrop-filter: blur(10px);
