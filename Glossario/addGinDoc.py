@@ -75,12 +75,10 @@ def apply_tags_to_text(text: str, patterns: List[Tuple[str, Pattern]], tex_file:
       - il match NON è all'interno di un titolo (section, subsection, subsubsection, ...)
       - il carattere successivo è spazio o fine stringa
       - non si trova all'interno di comandi come label, url, hyperref, ref ecc...
-      - il termine non è già stato taggato in precedenza nel documento (prima occorrenza)
     """
     text = text.replace('$^G$', '')
     title_ranges: List[Tuple[int, int]] = []
     link_ranges: List[Tuple[int, int]] = []
-    already_tagged: Set[str] = set()
 
     # Sezioni/subsezioni
     for m in re.finditer(r'\\(?:sub)*section\{(.*?)\}', text, flags=re.MULTILINE):
@@ -156,7 +154,6 @@ def apply_tags_to_text(text: str, patterns: List[Tuple[str, Pattern]], tex_file:
     for _, pat in patterns:
         for m in pat.finditer(text):
             start, end = m.start(1), m.end(1)
-            matched_term: str = m.group(1).lower()
 
             if in_title(start):
                 continue
@@ -165,8 +162,6 @@ def apply_tags_to_text(text: str, patterns: List[Tuple[str, Pattern]], tex_file:
             if overlaps_or_contained(start, end):
                 continue
             if text[end:end + 4] == "$^G$":
-                continue
-            if matched_term in already_tagged:
                 continue
 
             before_char: str = text[start-1:start] if start > 0 else ""
@@ -179,13 +174,13 @@ def apply_tags_to_text(text: str, patterns: List[Tuple[str, Pattern]], tex_file:
 
             inserts.append((end, "$^G$", m.group(1)))
             occupied.append((start, end))
-            already_tagged.add(matched_term)
 
     for pos, insert_text, matched in sorted(inserts, key=lambda x: x[0], reverse=True):
         text = text[:pos] + insert_text + text[pos:]
         logging.debug(f"Aggiunto $^G$ a '{matched}' in file {tex_file}")
 
     return text
+
 
 def process_all_tex(root_dir: Path, patterns: List[Tuple[str, Pattern]]) -> None:
     for tex_file in root_dir.rglob("*.tex"):
@@ -205,7 +200,7 @@ if __name__ == "__main__":
 
     if gloss:
         termini.extend(estrai_termini_da_file(gloss))
-        letters_dir: Path = gloss.parent / "Contents" 
+        letters_dir: Path = gloss.parent / "Contents"
         if letters_dir.exists():
             for f in sorted(letters_dir.glob("*.tex")):
                 termini.extend(estrai_termini_da_file(f))

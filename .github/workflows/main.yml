@@ -17,6 +17,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Genera sezioni glossario
+        run: python Glossario/entry_point.py
+
+      - name: Aggiungi tag $^G$ ai documenti
+        run: python Glossario/addGinDoc.py
       
       - name: Compila verbali interni
         run: |
@@ -240,13 +251,13 @@ jobs:
             Glossario/*.pdf
           if-no-files-found: warn
       
-      - name: Commit PDFs su main
+      - name: Commit modifiche su main
         run: |
           git config --global --add safe.directory /__w/Documentazione-SWE/Documentazione-SWE
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add Verbali/Interni/*.pdf Verbali/Esterni/*.pdf Candidatura/*.pdf RTB/*.pdf Glossario/*.pdf
-          git diff --staged --quiet || git commit -m "Aggiorna PDFs compilati [skip ci]"
+          git add -A
+          git diff --staged --quiet || git commit -m "Aggiorna PDFs e tag glossario [skip ci]"
           git push
       
       - name: Pubblica su GitHub Pages
