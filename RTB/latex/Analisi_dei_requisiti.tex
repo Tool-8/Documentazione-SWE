@@ -99,7 +99,7 @@
 {1em}
 {}
 
-% Logica definizione casi d'uso
+% Logica definizione casi d'uso$^G$
 \usepackage{xparse}
 \usepackage{etoolbox}
 
@@ -196,7 +196,7 @@
     {\csuse{UCpdf@#1}}%                           % nei bookmark PDF
 }
 
-% Definizio casi d'uso
+% Definizio casi d'uso$^G$
 \UCdef{archivio}{Visualizza\\Archivio Note}
     \UCdefsub{arch_sing}{Visualizza\\Singola Nota}
         \UCdefsubsub{arch_nome}{Visualizza\\Nome Nota}
@@ -269,19 +269,19 @@
 \UCdef{copia}{Copia Testo}
 \UCdef{taglia}{Taglia Testo}
 \UCdef{incolla}{Incolla Testo}
-\UCdef{riassumi}{Riassunto Testo Con LLM}
+\UCdef{riassumi}{Riassunto Testo Con LLM$^G$}
     \UCdefsub{riassumi_llm_err}{Errore LLM\\Non Raggiungibile}
-\UCdef{riscrivi}{Riscrittura Testo Con LLM}
+\UCdef{riscrivi}{Riscrittura Testo Con LLM$^G$}
     \UCdefsub{riscrivi_variazione}{Riscrittura Con\\Variazione Stilistica}
     \UCdefsub{riscrivi_modifica}{Riscrittura Con\\Modifica Estensione Testo} 
     \UCdefsub{riscrivi_grammatica}{Riscrittura Con\\Correzione Grammatica}   
     \UCdefsub{riscrivi_lessico}{Riscrittura Con\\Miglioramento Lessico}
     \UCdefsub{riscrivi_llm_err}{Errore LLM\\Non Raggiungibile}
-\UCdef{traduci}{Traduzione\\Testo Con LLM}
+\UCdef{traduci}{Traduzione\\Testo Con LLM$^G$}
     \UCdefsub{mod_traduzione}{Gestione\\Modifica Traduzione}
-        \UCdefsubsub{traduci_redo}{Ritraduzione Testo\\Con LLM}
+        \UCdefsubsub{traduci_redo}{Ritraduzione Testo\\Con LLM$^G$}
     \UCdefsub{traduci_llm_err}{Errore LLM\\Non Raggiungibile}
-\UCdef{genera}{Generazione Testo Con LLM}
+\UCdef{genera}{Generazione Testo Con LLM$^G$}
     \UCdefsub{genera_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{critica}{Critica Testo\\Secondo Modello\\"Sei Cappelli"}
     \UCdefsub{critica_rosso}{Visione Emotiva}
@@ -379,13 +379,13 @@
 
     \section{Introduzione}
     \subsection{Scopo del documento}
-    Lo scopo del seguente documento è quello di delineare i requisiti e i casi d'uso del
-    progetto \textbf{Second Brain} (capitolato$^G$ d'appalto C6), sulla base della presentazione
-    del capitolato e incontri realizzati direttamente con il proponente, per chiarire i dubbi sorti.
+    Lo scopo del seguente documento è quello di delineare i requisiti e i casi d'uso$^G$ del
+    progetto$^G$ \textbf{Second Brain} (capitolato$^G$ d'appalto C6), sulla base della presentazione
+    del capitolato$^G$ e incontri realizzati direttamente con il proponente$^G$, per chiarire i dubbi sorti.
     \subsection{Scopo del prodotto}
     Il prodotto finale propone di realizzare un software che permetta la scrittura di testo con marcatori
     in formato MarkDown, la sua visualizzazione formattata correttamente e l'interazione con un LLM.
-    In particolare,l'utilizzo di LLM verrà sfruttato da Second Brain per fornire funzionalità
+    In particolare,l'utilizzo di LLM$^G$ verrà sfruttato da Second Brain per fornire funzionalità$^G$
     di riassunto, riscrittura, traduzione e generazione di testo in aggiunta ad una forma di critica
     secondo il modello dei "Sei Cappelli per Pensare" di Edward De Bono.
 
@@ -394,26 +394,26 @@
     \section{Descrizione}
     \subsection{Obiettivi del prodotto}
     Il nostro prodotto è un'applicazione web che punta ad estendere le possibilità
-    di note-taking classiche, andando ad aggiungere le potenzialità dei LLM nel creare e migliorare testi.
+    di note-taking classiche, andando ad aggiungere le potenzialità dei LLM$^G$ nel creare e migliorare testi.
     \subsection{Funzionalità del prodotto}
-    Le funzionalità offerte dal prodotto saranno:
+    Le funzionalità$^G$ offerte dal prodotto saranno:
     \begin{itemize}
         \item \textbf{Editing di testo con marcatori MarkDown}: L'utente potrà scrivere in un'area che accetta
         testo e marcatori in formato MarkDown;
         \item \textbf{Visualizzazione testo correttamente formattato}: L'utente sarà in grado di vedere lo stile
         sotteso dai marcatori presenti nel testo;
-        \item \textbf{Utilizzo LLM}; L'utente, tramite supporto di un LLM, potrà riassumere, riscrivere o tradurre il testo;
-        \item \textbf{Critica secondo il modello dei "sei cappelli per pensare"}: L'utente, sempre tramite LLM, avrà
+        \item \textbf{Utilizzo LLM}; L'utente, tramite supporto di un LLM$^G$, potrà riassumere, riscrivere o tradurre il testo;
+        \item \textbf{Critica secondo il modello dei "sei cappelli per pensare"}: L'utente, sempre tramite LLM$^G$, avrà
         la possibilità di ricevere critiche sul testo scritto, prendendo spunto dalla tecnica dei "sei cappelli per pensare";
-        \item \textbf{Creazione intero documento tramite LLM}: L'utente potrà far sviluppare l'intero testo all'LLM stesso;
+        \item \textbf{Creazione intero documento tramite LLM}: L'utente potrà far sviluppare l'intero testo all'LLM$^G$ stesso;
     \end{itemize}
 
     \vfill
 
     \section{Casi d'uso}
-    Nella seguente sezione verranno analizzati tutti i casi d'uso individuati esaminando il capitolato d'appalto e discutendo con la proponente. \\
+    Nella seguente sezione verranno analizzati tutti i casi d'uso$^G$ individuati esaminando il capitolato$^G$ d'appalto e discutendo con la proponente. \\
     Ciascun caso d'uso sarà definito da un diagramma UML e da una descrizione
-    testuale contenente: attore principale, attori secondari (ove presenti), precondizioni, postcondizioni, scenario
+    testuale contenente: attore$^G$ principale, attori secondari (ove presenti), precondizioni, postcondizioni, scenario
     principale e scenari alternativi (ove presenti).
 
     \clearpage
@@ -427,7 +427,7 @@
     \end{itemize}
     \subsubsection{Attori Secondari}
     \begin{itemize}
-        \item \textbf{LLM}: Large Language Model che verrà integrato per fornire le funzionalità AI
+        \item \textbf{LLM}: Large Language Model che verrà integrato per fornire le funzionalità$^G$ AI
     \end{itemize}
     \bigskip
 
@@ -715,7 +715,7 @@
             % Associazioni Utente
             \umlassoc{Utente}{chiusura}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlextend{chiusura}{salvataggio}
             \umlinclude{chiusura}{arch}
         \end{tikzpicture}
@@ -736,7 +736,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Chiudi Nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Chiudi Nota"}
         \item La visualizzazione viene chiusa
         \item L'utente visualizza l'archivio delle note
     \end{enumerate}
@@ -786,7 +786,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente visualizza l'archivio delle note
-        \item L'utente attiva la funzionalità di \textit{"Creazione Nota"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Creazione Nota"}
         \item L'utente visualizza l'editor vuoto
     \end{enumerate}
 
@@ -849,7 +849,7 @@
             % Associazioni Utente
             \umlassoc{Utente}{salvataggio}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlextend{err_salvataggio}{primo_salvataggio}
             \umlinherit{primo_salvataggio}{salvataggio}
             \umlextend{err_nuovo_salvataggio}{nuovo_salvataggio}
@@ -874,7 +874,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Salva Nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Salva Nota"}
         \item Il sistema salva la nota nell'archivio
     \end{enumerate}
     \textbf{Estensioni}
@@ -922,7 +922,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
-        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -930,7 +930,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Salva Nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Salva Nota"}
         \item Il sistema avvisa della presenza di modifiche non contenute nella versione corrente dell'utente
         \item Il sistema propone all'utente la scelta tra:
             \begin{itemize}
@@ -952,7 +952,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
-        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
         \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
     \end{itemize}
     \textbf{Postcondizioni}
@@ -975,7 +975,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
-        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
         \item L'utente ha scelto l'opzione di salvare la nota con un nome differente
     \end{itemize}
     \textbf{Postcondizioni}
@@ -999,7 +999,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
-        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
         \item L'utente ha scelto l'opzione di aggiornare la nota aperta con la versione presente in archivio
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1079,7 +1079,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Salva Con Nome"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Salva Con Nome"}
         \item L'utente inserisce il nuovo nome della nota
         \item La nuova nota viene salvata nell'archivio
         \item Il sistema avvisa l'utente del salvataggio della nuova nota nell'archivio
@@ -1100,7 +1100,7 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item L'utente attiva la funzionalità di \textit{"Salva Con Nome"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Salva Con Nome"}
         \item L'utente inserisce il nuovo nome della nota
         \item L'utente ha inserito un nome già utilizzato da un'altra nota
     \end{itemize}
@@ -1122,7 +1122,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha attivato la funzionalità \textit{"Salva Nota"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1155,7 +1155,7 @@
             % Associazioni Utente
             \umlassoc{Utente}{clonazione}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlextend{clona_err}{clonazione}
             \umlextend{server_err}{clonazione}
 
@@ -1178,7 +1178,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Clonazione Nota"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Clonazione Nota"}
         \item Il sistema clona la nota nell'archivio con un nome differente
     \end{enumerate}
     \textbf{Estensioni}
@@ -1227,7 +1227,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha attivato la funzionalità \textit{"Clonazione Nota"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Clonazione Nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1274,7 +1274,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Ricerca Nota"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Ricerca Nota"}
         \item L'utente specifica il nome di una nota da ricercare
         \item Il sistema effettua la ricerca nell'archivio
         \item Il sistema mostra i risultati della ricerca
@@ -1321,7 +1321,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Eliminazione Nota"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Eliminazione Nota"}
         \item L'utente conferma l'eliminazione della nota
         \item Il sistema elimina la nota dall'archivio
     \end{enumerate}
@@ -1393,7 +1393,7 @@
             % Associazioni Utente
             \umlassoc{Utente}{rinominazione_nota}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlextend{err_rin}{rinominazione_nota}
             \umlextend{server_err}{rinominazione_nota}
 
@@ -1415,7 +1415,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Rinomina"}
         \item L'utente inserisce un nuovo nome per la nota
         \item Il sistema cambia il nome della nota
     \end{enumerate}
@@ -1440,7 +1440,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Rinomina"}
         \item L'utente ha inserito un nuovo nome per la nota
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1449,7 +1449,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Rinomina"}
         \item L'utente inserisce un nome già utilizzato da un'altra nota
         \item Il sistema avvisa l'utente dell'errore 
         \item Il sistema permette all'utente di inserire un altro nome
@@ -1465,7 +1465,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente attiva la funzionalità di \textit{"Rinomina"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Rinomina"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1492,13 +1492,13 @@
                 \umlusecase[x=3, y=1, name=MD]{\UCName{esporta_md}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione Utente
             \umlassoc{Utente}{Esporta}
 
-            % Associazione Casi d'Uso
+            % Associazione Casi d'Uso$^G$
             \umlinherit{PDF}{Esporta}
             \umlinherit{HTML}{Esporta}
             \umlinherit{MD}{Esporta}
@@ -1520,7 +1520,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Esportazione nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Esportazione nota"}
         \item L'utente può scegliere il formato per l'esportazione
     \end{enumerate}
 
@@ -1535,7 +1535,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+        \item L'utente ha utilizzato la funzionalità$^G$ \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1559,7 +1559,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+        \item L'utente ha utilizzato la funzionalità$^G$ \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1583,7 +1583,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+        \item L'utente ha utilizzato la funzionalità$^G$ \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1614,13 +1614,13 @@
                 \umlusecase[x=6, y=7, name=server_err, align=center]{\UCName{esporta_arch_server_err}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione Utente
             \umlassoc{Utente}{Esporta_Archivio}
 
-            % Associazione Casi d'Uso
+            % Associazione Casi d'Uso$^G$
             \umlinherit{PDF}{Esporta_Archivio}
             \umlinherit{HTML}{Esporta_Archivio}
             \umlinherit{MD}{Esporta_Archivio}
@@ -1644,7 +1644,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Esportazione nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Esportazione nota"}
         \item L'utente può scegliere il formato per l'esportazione
     \end{enumerate}
     \textbf{Estensioni}
@@ -1666,7 +1666,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando l'archivio note (\UCRef{archivio})
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+        \item L'utente ha utilizzato la funzionalità$^G$ \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1690,7 +1690,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando l'archivio note (\UCRef{archivio})
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+        \item L'utente ha utilizzato la funzionalità$^G$ \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1714,7 +1714,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando l'archivio note (\UCRef{archivio})
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+        \item L'utente ha utilizzato la funzionalità$^G$ \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1738,7 +1738,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente visualizza l'archivio (\UCRef{archivio})
-        \item L'utente ha utilizzato la funzionalità \textit{"Esportazione nota"}
+        \item L'utente ha utilizzato la funzionalità$^G$ \textit{"Esportazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1765,13 +1765,13 @@
                 \umlusecase[x=6, y=0, name=server_err, align=center]{\UCName{importa_server_err}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=2.5]{Utente}
 
             % Associazione Utente
             \umlassoc{Utente}{importa}
 
-            % Associazione Casi d'Uso
+            % Associazione Casi d'Uso$^G$
             \umlextend{err_importa}{importa}
             \umlextend{server_err}{importa}
 
@@ -1792,7 +1792,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Importazione nota"}
         \item L'utente sceglie la nota da importare
     \end{enumerate}
     \textbf{Estensioni}
@@ -1816,7 +1816,7 @@
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
-        \item L'utente ha attivato la funzionalità \textit{"Importazione Nota"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Importazione Nota"}
         \item L'utente ha selezionato una nota da importare con formato non valido
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1825,7 +1825,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Importazione nota"}
         \item L'utente sceglie di importare una nota dal formato non valido
         \item L'utente visualizza il messaggio di errore
     \end{enumerate}
@@ -1840,7 +1840,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Importazione nota"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1848,7 +1848,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Importazione nota"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Importazione nota"}
         \item Il sistema avvisa l'utente della perdita di connessione
     \end{enumerate}
 
@@ -1917,7 +1917,7 @@
             % Associazioni Utente
             \umlassoc{Utente}{cambio_visualizzazione}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlinherit{visualizzazione_markdown}{cambio_visualizzazione}
             \umlinherit{visualizzazione_markdown_render}{cambio_visualizzazione}
             \umlinherit{visualizzazione_render}{cambio_visualizzazione}
@@ -1941,7 +1941,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Cambio Visualizzazione"}
         \item L'utente sceglie un formato di visualizzazione
         \item Il sistema aggiorna la visualizzazione a seconda della scelta
     \end{enumerate}
@@ -1957,7 +1957,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
-        \item L'utente ha attivato la funzionalità \textit{"Cambio Visualizzazione"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Cambio Visualizzazione"}
         \item L'utente ha scelto il formato \textit{"Solo Markdown"}
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1966,7 +1966,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Cambio Visualizzazione"}
         \item L'utente sceglie il formato di visualizzazione \textit{"Solo Markdown"}
         \item Il sistema aggiorna la visualizzazione mostrando solo il markdown della nota
     \end{enumerate}
@@ -1982,7 +1982,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
-        \item L'utente ha attivato la funzionalità \textit{"Cambio Visualizzazione"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Cambio Visualizzazione"}
         \item L'utente ha scelto il formato \textit{"Markdown e Render"}
     \end{itemize}
     \textbf{Postcondizioni}
@@ -1991,7 +1991,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Cambio Visualizzazione"}
         \item L'utente sceglie il formato di visualizzazione \textit{"Markdown e Render"}
         \item Il sistema aggiorna la visualizzazione mostrando le sezioni di markdown e render
     \end{enumerate}
@@ -2007,7 +2007,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente sta visualizzando una nota
-        \item L'utente ha attivato la funzionalità \textit{"Cambio Visualizzazione"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Cambio Visualizzazione"}
         \item L'utente ha scelto il formato \textit{"Solo Render"} 
     \end{itemize}
     \textbf{Postcondizioni}
@@ -2016,7 +2016,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Cambio Visualizzazione"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Cambio Visualizzazione"}
         \item L'utente sceglie il formato di visualizzazione \textit{"Solo Render"}
         \item Il sistema aggiorna la visualizzazione mostrando solo il render della nota
     \end{enumerate}
@@ -2099,7 +2099,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona una porzione di testo
-        \item L'utente attiva la funzionalità \textit{"Formattazione testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Formattazione testo"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo necessari al tipo di formattazione scelto
     \end{enumerate}
 
@@ -2119,7 +2119,7 @@
                 \umlusecase[x=0, y=1, name=no_grass]{\UCName{grassetto_rim}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione
@@ -2148,12 +2148,12 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona una porzione di testo
-        \item L'utente attiva la funzionalità \textit{"Testo in grassetto"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo in grassetto"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo in grassetto" sul del testo già in grassetto:
+        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo in grassetto" sul del testo già in grassetto:
         \begin{enumerate}
             \item \UCRef{grassetto_rim}
         \end{enumerate}
@@ -2177,7 +2177,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Testo in grassetto"} su del testo già in grassetto
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo in grassetto"} su del testo già in grassetto
         \item La parte di testo selezionata non è più compresa tra i marcatori di testo del grassetto
     \end{enumerate}
 
@@ -2197,7 +2197,7 @@
                 \umlusecase[x=0, y=1, name=rim_cors]{\UCName{corsivo_rim}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione
@@ -2226,12 +2226,12 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona una porzione di testo
-        \item L'utente attiva la funzionalità \textit{"Testo in corsivo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo in corsivo"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo in corsivo" sul del testo già in corsivo:
+        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo in corsivo" sul del testo già in corsivo:
         \begin{enumerate}
             \item \UCRef{corsivo_rim}
         \end{enumerate}
@@ -2255,7 +2255,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Testo in corsivo"} su del testo già in corsivo
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo in corsivo"} su del testo già in corsivo
         \item La parte di testo selezionata non è più compresa tra i marcatori di testo del corsivo
     \end{enumerate}
 
@@ -2275,7 +2275,7 @@
                 \umlusecase[x=0, y=1, name=rim_sot]{\UCName{sottolineato_rim}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione
@@ -2304,12 +2304,12 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona una porzione di testo
-        \item L'utente attiva la funzionalità \textit{"Testo sottolineato"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo sottolineato"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo sottolineato" sul del testo già sottolineato:
+        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo sottolineato" sul del testo già sottolineato:
         \begin{enumerate}
             \item \UCRef{sottolineato_rim}
         \end{enumerate}
@@ -2333,7 +2333,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Testo sottolineato"} su del testo già sottolineato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo sottolineato"} su del testo già sottolineato
         \item La parte di testo selezionata non è più compresa tra i marcatori di testo sottolineato
     \end{enumerate}
 
@@ -2353,7 +2353,7 @@
                 \umlusecase[x=0, y=1, name=err_barr]{\UCName{barrato_rim}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione
@@ -2382,12 +2382,12 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona una porzione di testo
-        \item L'utente attiva la funzionalità \textit{"Testo barrato"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo barrato"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo per la barratura
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo barrato" sul del testo già barrato:
+        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo barrato" sul del testo già barrato:
         \begin{enumerate}
             \item \UCRef{barrato_rim}
         \end{enumerate}
@@ -2411,7 +2411,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Testo barrato"} su del testo già barrato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo barrato"} su del testo già barrato
         \item La parte di testo selezionata non è più compresa tra i marcatori di testo barrato
     \end{enumerate}
 
@@ -2431,7 +2431,7 @@
                 \umlusecase[x=0, y=1, name=err_link, align=center]{\UCName{link_rim}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione
@@ -2460,12 +2460,12 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona una porzione di testo
-        \item L'utente attiva la funzionalità \textit{"Link ipertestuale"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Link ipertestuale"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo per i collegamenti ipertestuali e seguita dai marcatori in mezzo ai quali dovrà essere inserito il link effettivo
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Link ipertestuale" sul del testo che presenta già collegamenti ipertestuali:
+        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Link ipertestuale" sul del testo che presenta già collegamenti ipertestuali:
         \begin{enumerate}
             \item \UCRef{link_rim}
         \end{enumerate}
@@ -2488,7 +2488,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Link ipertestuale"} su del testo che rappresenta già un collegamento ipertestuale
+        \item L'utente attiva la funzionalità$^G$ \textit{"Link ipertestuale"} su del testo che rappresenta già un collegamento ipertestuale
         \item La parte di testo selezionata non è più compresa tra i marcatori di link ipertestuale
     \end{enumerate}
 
@@ -2508,7 +2508,7 @@
                 \umlusecase[x=0, y=1, name=err_comm]{\UCName{commento_rim}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione
@@ -2537,12 +2537,12 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente seleziona una porzione di testo
-        \item L'utente attiva la funzionalità \textit{"Testo commentato"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo commentato"}
         \item La porzione di testo selezionata viene delimitata dai marcatori di commento
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità "Testo commentato" sul del testo già commentato:
+        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo commentato" sul del testo già commentato:
         \begin{enumerate}
             \item \UCRef{commento_rim}
         \end{enumerate}
@@ -2566,7 +2566,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Testo commentato"} su del testo già commentato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Testo commentato"} su del testo già commentato
         \item La porzione di testo selezionata non è più delimitata dai marcatori di commento
     \end{enumerate}
 
@@ -2586,7 +2586,7 @@
                 \umlusecase[x=6, y=3, name=Puntato]{\UCName{elenco_punt}}
             \end{umlsystem}
 
-            % Attore
+            % Attore$^G$
             \umlactor[x=0, y=5]{Utente}
 
             % Associazione
@@ -2616,7 +2616,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente posiziona il cursore di testo nel punto desiderato
-        \item L'utente attiva la funzionalità \textit{"Creazione elenco"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Creazione elenco"}
         \item Viene creato un elenco alla posizione corrente del cursore
     \end{enumerate}
 
@@ -2640,7 +2640,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente posiziona il cursore di testo nel punto desiderato
-        \item L'utente attiva la funzionalità \textit{"Elenco numerato"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Elenco numerato"}
         \item Viene creato un elenco numerato alla posizione corrente del cursore
     \end{enumerate}
 
@@ -2664,7 +2664,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente posiziona il cursore di testo nel punto desiderato
-        \item L'utente attiva la funzionalità \textit{"Elenco puntato"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Elenco puntato"}
         \item Viene creato un elenco puntato alla posizione corrente del cursore
     \end{enumerate}
 
@@ -2707,7 +2707,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Annullamento modifiche"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Annullamento modifiche"}
         \item La nota torna alla stato precedente rispetto all'ultima modifica effettuata che non sia di tipo "Annullamento modifiche"
     \end{enumerate}
 
@@ -2740,16 +2740,16 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta su cui è stata utilizzata una o più volte la funzionalità \textit{"Annullamento modifiche"}
+        \item L'utente ha una nota aperta su cui è stata utilizzata una o più volte la funzionalità$^G$ \textit{"Annullamento modifiche"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota torna alla stato precedente rispetto all'ultimo utilizzo della funzionalità \textit{"Annullamento modifiche"}
+        \item La nota torna alla stato precedente rispetto all'ultimo utilizzo della funzionalità$^G$ \textit{"Annullamento modifiche"}
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità di \textit{"Ripristino modifiche"}
-        \item La nota torna alla stato precedente rispetto all'ultimo utilizzo della funzionalità \textit{"Annullamento modifiche"}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Ripristino modifiche"}
+        \item La nota torna alla stato precedente rispetto all'ultimo utilizzo della funzionalità$^G$ \textit{"Annullamento modifiche"}
     \end{enumerate}
 
     \vspace{1cm}
@@ -2933,13 +2933,13 @@
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4, scale=0.75]{LLM}
+            \umlactor[x=10, y=4, scale=0.75]{LLM$^G$}
 
             % Associazioni Utente
             \umlassoc{Utente}{riassumere}
-            \umlassoc{LLM}{riassumere}
+            \umlassoc{LLM$^G$}{riassumere}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlextend{llm_err}{riassumere}
         \end{tikzpicture}
     \end{center}
@@ -2950,7 +2950,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -2964,15 +2964,15 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riassumi testo"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
-        \item Il sistema mostra il riassunto suggerito dall'LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riassumi testo"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item Il sistema mostra il riassunto suggerito dall'LLM$^G$
         \item L'utente decide se sostituire con il riassunto il testo selezionato, aggiungere il riassunto in seguito alla selezione, aggiungere il riassunto in coda o rifiutare il riassunto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema non riesce a connettersi con la LLM$^G$:
         \begin{itemize}
             \item \UCRef{riassumi_llm_err}
         \end{itemize}
@@ -2990,7 +2990,7 @@
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta (\UCRef{apri})
         \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing (\UCRef{seleziona})
-        \item L'utente ha attivato la funzionalità \textit{"Riassumi testo"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Riassumi testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2998,10 +2998,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riassumi testo"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema non riceve la risposta dall'LLM
-        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riassumi testo"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema non riceve la risposta dall'LLM$^G$
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM$^G$
     \end{enumerate}
 
     \vspace{1cm}
@@ -3025,13 +3025,13 @@
 
             % Attori
             \umlactor[x=-3, y=4]{Utente}
-            \umlactor[x=15, y=4, scale=0.75]{LLM}
+            \umlactor[x=15, y=4, scale=0.75]{LLM$^G$}
 
             % Associazioni Utente
             \umlassoc{Utente}{riscrittura}
-            \umlassoc{LLM}{riscrittura}
+            \umlassoc{LLM$^G$}{riscrittura}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlextend{llm_err}{riscrittura}
             \umlinherit{ris_lessico}{riscrittura}
             \umlinherit{ris_grammatica}{riscrittura}
@@ -3046,7 +3046,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3060,7 +3060,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riscrivi Testo"}
         \item L'utente seleziona almeno uno tra i seguenti aspetti per definire la riscrittura:
         \begin{itemize}
             \item Miglioramento Lessico
@@ -3068,14 +3068,14 @@
             \item Variazione Stile Espositivo
             \item Modifica Estensione Testo
         \end{itemize}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
         \item Il sistema mostra il risultato all'utente
         \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema non riesce a connettersi con la LLM$^G$:
         \begin{itemize}
             \item \UCRef{riscrivi_llm_err}
         \end{itemize}
@@ -3092,7 +3092,7 @@
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta (\UCRef{apri})
         \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
-        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Riscrivi Testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3100,10 +3100,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riscrivi Testo"}
         \item L'utente seleziona l'opzione \textit{"Variaziazione Stilistica"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
         \item Il sistema mostra il risultato all'utente
         \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
@@ -3119,7 +3119,7 @@
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta (\UCRef{apri})
         \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
-        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Riscrivi Testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3127,10 +3127,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riscrivi Testo"}
         \item L'utente seleziona l'opzione \textit{"Estensione Testo"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
         \item Il sistema mostra il risultato all'utente
         \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
@@ -3146,7 +3146,7 @@
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta (\UCRef{apri})
         \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
-        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Riscrivi Testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3154,10 +3154,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riscrivi Testo"}
         \item L'utente seleziona l'opzione \textit{"Correzione Grammatica"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
         \item Il sistema mostra il risultato all'utente
         \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
@@ -3173,7 +3173,7 @@
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta (\UCRef{apri})
         \item L'utente seleziona una porzione del testo o l'intero testo (\UCRef{seleziona})
-        \item L'utente ha attivato la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Riscrivi Testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3181,10 +3181,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riscrivi Testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riscrivi Testo"}
         \item L'utente seleziona l'opzione \textit{"Miglioramento Lessico"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
         \item Il sistema mostra il risultato all'utente
         \item L'utente decide se sostituire con il testo riscritto il testo selezionato, aggiungere il testo riscritto in seguito alla selezione, aggiungere il testo riscritto in coda o rifiutare il testo riscritto
     \end{enumerate}
@@ -3208,10 +3208,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riassumi testo"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema non riceve la risposta dall'LLM
-        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riassumi testo"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema non riceve la risposta dall'LLM$^G$
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM$^G$
     \end{enumerate}
 
     \vspace{1cm}
@@ -3232,13 +3232,13 @@
 
             % Attori
             \umlactor[x=-1, y=4]{Utente}
-            \umlactor[x=14, y=4, scale=0.75]{LLM}
+            \umlactor[x=14, y=4, scale=0.75]{LLM$^G$}
 
             % Associazioni Utente
             \umlassoc{Utente}{traduzione}
-            \umlassoc{LLM}{traduzione}
+            \umlassoc{LLM$^G$}{traduzione}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlinclude{mod}{traduzione}
             \umlextend{traduzione_redo}{mod}
             \umlextend{llm_err}{traduzione}
@@ -3252,7 +3252,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3266,16 +3266,16 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Traduci Testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Traduci Testo"}
         \item L'utente seleziona la lingua in cui desidera tradurre il testo selezionato
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
         \item Il sistema mostra il risultato all'utente
         \item L'utente decide se sostituire con la traduzione il testo selezionato, aggiungere la traduzione in seguito alla selezione, aggiungere la traduzione in coda o rifiutare la traduzione
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema non riesce a connettersi con la LLM$^G$:
         \begin{itemize}
             \item \UCRef{traduci_llm_err}
         \end{itemize}
@@ -3291,7 +3291,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta (\UCRef{apri})
-        \item L'utente ha tradotto una porzione di testo tramite LLM (\UCRef{traduci})
+        \item L'utente ha tradotto una porzione di testo tramite LLM$^G$ (\UCRef{traduci})
         \item L'utente ha modificato una porzione del testo che ha generato il testo tradotto
     \end{itemize}
     \textbf{Postcondizioni}
@@ -3304,12 +3304,12 @@
         \item Il sistema mostra all'utente due opzioni:
         \begin{itemize}
             \item opzione di ignorare le modifiche
-            \item opzione di ritradurre il testo (funzionalità di \textit{"Ritraduzione Testo"})
+            \item opzione di ritradurre il testo (funzionalità$^G$ di \textit{"Ritraduzione Testo"})
         \end{itemize}
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Se l'utente avvia la funzionalità di \textit{"Ritraduzione Testo"}
+        \item Se l'utente avvia la funzionalità$^G$ di \textit{"Ritraduzione Testo"}
         \begin{itemize}
             \item \UCRef{traduci_redo}
         \end{itemize}
@@ -3325,9 +3325,9 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta (\UCRef{apri})
-        \item L'utente ha tradotto una porzione di testo tramite LLM (\UCRef{traduci})
+        \item L'utente ha tradotto una porzione di testo tramite LLM$^G$ (\UCRef{traduci})
         \item L'utente ha modificato una porzione del testo che ha generato il testo tradotto
-        \item L'utente ha avviato la funzionalità di \textit{"Ritraduzione Testo"}
+        \item L'utente ha avviato la funzionalità$^G$ di \textit{"Ritraduzione Testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3335,13 +3335,13 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
         \item Il sistema sostituisce la traduzione obsoleta con quella nuovamente tradotta
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema non riesce a connettersi con la LLM$^G$:
         \begin{itemize}
             \item \UCRef{traduci_llm_err}
         \end{itemize}
@@ -3366,10 +3366,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Riassumi testo"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema non riceva la risposta dall'LLM
-        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Riassumi testo"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema non riceva la risposta dall'LLM$^G$
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM$^G$
     \end{enumerate}
 
     \vspace{1cm}
@@ -3388,13 +3388,13 @@
 
             % Attori
             \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4, scale=0.75]{LLM}
+            \umlactor[x=10, y=4, scale=0.75]{LLM$^G$}
 
             % Associazioni Utente
             \umlassoc{Utente}{creazione}
-            \umlassoc{LLM}{creazione}
+            \umlassoc{LLM$^G$}{creazione}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlextend{llm_err}{creazione}
         \end{tikzpicture}
     \end{center}
@@ -3405,7 +3405,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3421,15 +3421,15 @@
     \begin{enumerate}
         \item L'utente definisce un prompt contenente la descrizione del testo da generare
         \item L'utente seleziona la descrizione del testo da generare
-        \item L'utente attiva la funzionalità \textit{"Genera testo"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Genera testo"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
         \item Il sistema mostra il testo generato all'utente
         \item L'utente decide se aggiungere il testo generato in seguito alla selezione, aggiungere il testo generato in coda o rifiutare il testo generato
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema non riesce a connettersi con la LLM$^G$:
         \begin{itemize}
             \item \UCRef{genera_llm_err}
         \end{itemize}
@@ -3454,10 +3454,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Genera testo"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema non riceva la risposta dall'LLM
-        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Genera testo"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema non riceva la risposta dall'LLM$^G$
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM$^G$
     \end{enumerate}
 
     \vspace{1cm}
@@ -3481,13 +3481,13 @@
                 \umlusecase[x=7, y=11, name=llm_err, align=center]{\UCName{critica_llm_err}}
                 % Attori
                 \umlactor[x=-3, y=9]{Utente}
-                \umlactor[x=13, y=9, scale=0.75]{LLM}
+                \umlactor[x=13, y=9, scale=0.75]{LLM$^G$}
 
                 % Associazioni Utente
                 \umlassoc{Utente}{critica}
-                \umlassoc{LLM}{critica}
+                \umlassoc{LLM$^G$}{critica}
 
-                % Associazioni Casi d'Uso
+                % Associazioni Casi d'Uso$^G$
                 \umlHVinherit{rosso}{critica}
                 \umlHVinherit{bianco}{critica}
                 \umlHVinherit{giallo}{critica}
@@ -3506,7 +3506,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3520,15 +3520,15 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Critica Testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Critica Testo"}
         \item L'utente seleziona il "cappello" utilizzato per la critica
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM$^G$
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item In caso il sistema non riesce a connettersi con la LLM:
+        \item In caso il sistema non riesce a connettersi con la LLM$^G$:
         \begin{itemize}
             \item \UCRef{critica_llm_err}
         \end{itemize}
@@ -3542,7 +3542,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3555,10 +3555,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Emotiva"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Critica Testo - Visione Emotiva"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM$^G$
     \end{enumerate}
 
     \paragraph{\UCText{critica_bianco}}
@@ -3569,7 +3569,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3582,10 +3582,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Neutra"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Critica Testo - Visione Neutra"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item L'utente visualizza la critica e una possibile versione riadattata del testo fornita dall'LLM$^G$
     \end{enumerate}
 
     \paragraph{\UCText{critica_giallo}}
@@ -3596,7 +3596,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3609,10 +3609,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Ottimista"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza il feedback fornito dall'LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Critica Testo - Visione Ottimista"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item L'utente visualizza il feedback fornito dall'LLM$^G$
     \end{enumerate}
 
     \paragraph{\UCText{critica_nero}}
@@ -3623,7 +3623,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3636,10 +3636,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Devil's Advocate"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza il feedback fornito dall'LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Critica Testo - Visione Devil's Advocate"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item L'utente visualizza il feedback fornito dall'LLM$^G$
     \end{enumerate}
 
     \paragraph{\UCText{critica_verde}}
@@ -3650,7 +3650,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3663,10 +3663,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Originalità"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza il feedback fornito dall'LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Critica Testo - Visione Originalità"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item L'utente visualizza il feedback fornito dall'LLM$^G$
     \end{enumerate}
 
     \paragraph{\UCText{critica_blu}}
@@ -3677,7 +3677,7 @@
     \end{itemize}
     \textbf{Attori secondari}
     \begin{itemize}
-        \item LLM
+        \item LLM$^G$
     \end{itemize}
     \textbf{Precondizioni}
     \begin{itemize}
@@ -3690,10 +3690,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Critica Testo - Visione Logica e Struttura"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema riceve la risposta dall'LLM
-        \item L'utente visualizza il feedback fornito dall'LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Critica Testo - Visione Logica e Struttura"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item L'utente visualizza il feedback fornito dall'LLM$^G$
     \end{enumerate}
 
     \paragraph*{\UCText{genera_llm_err}}
@@ -3707,7 +3707,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha attivato la funzionalità \textit{"Critica testo"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Critica testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3715,10 +3715,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità \textit{"Critica testo"}
-        \item Il sistema invia la richiesta all'API dell'LLM
-        \item Il sistema non riceve la risposta dell'LLM
-        \item Il sistema avvisa l'utente della perdita di connessione alla LLM
+        \item L'utente attiva la funzionalità$^G$ \textit{"Critica testo"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema non riceve la risposta dell'LLM$^G$
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM$^G$
     \end{enumerate}
 
     \vspace{1cm}
@@ -3747,7 +3747,7 @@
             % Associazioni Utente
             \umlassoc{Utente}{registrazione}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlinclude{registrazione}{reg_nome}
             \umlinclude{registrazione}{reg_pwd}
             \umlextend{err_nome}{reg_nome}
@@ -3937,7 +3937,7 @@
             % Associazioni Utente
             \umlassoc{Utente}{autenticazione}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlinclude{autenticazione}{auth_nome}
             \umlinclude{autenticazione}{auth_pwd}
             \umlextend{err_nome}{auth_nome}
@@ -4137,7 +4137,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente ha una nota aperta
-        \item L'utente attiva la funzionalità \textit{"Salva nel DataBase"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Salva nel DataBase"}
         \item La nota viene salvata nel DataBase e solo l'utente può accedervi
     \end{enumerate}
     \textbf{Estensioni}
@@ -4159,7 +4159,7 @@
         \item L'utente è connesso al sistema
         \item L'utente è autenticato (\UCRef{autentica})
         \item L'utente ha una nota aperta (\UCRef{apri})
-        \item L'utente ha attivato la funzionalità \textit{"Salva nel DataBase"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva nel DataBase"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -4168,7 +4168,7 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente ha una nota aperta
-        \item L'utente attiva la funzionalità \textit{"Salva nel DataBase"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Salva nel DataBase"}
         \item La nota non viene salvata nel DataBase 
         \item L'utente visualizza un messaggio di errore
     \end{enumerate}
@@ -4305,7 +4305,7 @@
             % Associazioni Utente
             \umlassoc{Utente autenticato}{elimina_acc}
 
-            % Associazioni Casi d'Uso
+            % Associazioni Casi d'Uso$^G$
             \umlVHextend{elim_acc_err}{pwd_elimina}
             \umlHVinclude[pos stereo=1.3]{elimina_acc}{pwd_elimina}
             \umlinclude{pwd_elimina}{conf_elim}
@@ -4351,7 +4351,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente è autenticato (\UCRef{autentica})
-        \item L'utente ha attivato la funzionalità \textit{"Elimina Account"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Elimina Account"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -4430,7 +4430,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente è autenticato (\UCRef{autentica})
-        \item L'utente ha attivato la funzionalità \textit{"Elimina Account"}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Elimina Account"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -4481,9 +4481,9 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
-        \item Nel caso in cui venga successivamente effettuata un'operazione sul testo tramite LLM:
+        \item Nel caso in cui venga successivamente effettuata un'operazione sul testo tramite LLM$^G$:
         \begin{enumerate}
-            \item Il sistema fornirà all'LLM un contesto basato anche sulla nota associata
+            \item Il sistema fornirà all'LLM$^G$ un contesto basato anche sulla nota associata
         \end{enumerate}
     \end{itemize}
 
@@ -4500,9 +4500,9 @@
         \item \textbf{Tipo} \\
             Indica la natura del requisito:
             \begin{itemize}
-                \item \textbf{F (Funzionale)}: requisito che indica una funzionalità del sistema e che ne definisce il comportamento.
+                \item \textbf{F (Funzionale)}: requisito che indica una funzionalità$^G$ del sistema e che ne definisce il comportamento.
                 \item \textbf{Q (Qualità)}: requisito che definisce le caratteristiche di qualità del prodotto software.
-                \item \textbf{V (Vincolo)}: requisito che specifica i limiti e le restrizioni imposte dal capitolato e dal commitente. 
+                \item \textbf{V (Vincolo)}: requisito che specifica i limiti e le restrizioni imposte dal capitolato$^G$ e dal commitente. 
             \end{itemize}
         \item \textbf{Importanza} \\
             Indica il grado di priorità del requisito:

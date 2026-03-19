@@ -138,16 +138,16 @@ Nel corso della riunione si è affrontato quanto segue: \\
   \item Sono stati particolarmente apprezzati i casi d’uso relativi alla visualizzazione delle note e alla gestione dei conflitti tra scritture o eliminazioni. Anche se possono sembrare ovvi, è opportuno che siano esplicitati nell’analisi per una corretta redazione del documento di progettazione. \\
   \item Per quanto riguarda la parte di scrittura delle note:
   \begin{itemize}\setlength{\itemsep}{6pt}
-    \item È stata rilevata una mancanza di analisi dettagliata sulle funzionalità di editing in Markdown. I referenti hanno richiesto di specificare nel documento di analisi dei requisiti$^G$ alcune funzioni principali (ad esempio: sottolineatura, grassetto, formattazione del testo). Questi casi d’uso arricchiranno il documento e renderanno più solido il progetto finale, senza compromettere le tempistiche indicate nel preventivo.
+    \item È stata rilevata una mancanza di analisi dettagliata sulle funzionalità$^G$ di editing in Markdown. I referenti hanno richiesto di specificare nel documento di analisi dei requisiti$^G$ alcune funzioni principali (ad esempio: sottolineatura, grassetto, formattazione del testo). Questi casi d’uso arricchiranno il documento e renderanno più solido il progetto$^G$ finale, senza compromettere le tempistiche indicate nel preventivo.
     \item Occorre specificare per ogni caso d’uso se la nota è visibile o meno. Per ogni interazione con una nota è necessario considerare il layout previsto. Ad esempio, nel caso d’uso relativo alla modifica della nota, può essere incluso anche il caso d’uso della sua visualizzazione.
     \item Va precisato se il rendering della nota scritta in Markdown debba avvenire in tempo reale oppure tramite una funzione esplicita (ad esempio mediante un apposito bottone). \\
   \end{itemize}
-  \item Per quanto riguarda le funzionalità comprese nella modalità \textit{Distant Writing}, i referenti hanno chiarito che il dialogo con il LLM avviene sempre tramite Markdown: l’utente avvia un prompt con un tag specifico e l’IA risponde all’interno del blocco marcato, invisibile nella successiva parte di rendering. L’utente può quindi avere più interazioni con il LLM all’interno del documento, suddivise in blocchi delimitati da un marcatore di inizio e uno di fine. Da questa premessa sono emersi alcuni ulteriori punti:
+  \item Per quanto riguarda le funzionalità$^G$ comprese nella modalità \textit{Distant Writing}, i referenti hanno chiarito che il dialogo con il LLM$^G$ avviene sempre tramite Markdown: l’utente avvia un prompt con un tag specifico e l’IA risponde all’interno del blocco marcato, invisibile nella successiva parte di rendering. L’utente può quindi avere più interazioni con il LLM$^G$ all’interno del documento, suddivise in blocchi delimitati da un marcatore di inizio e uno di fine. Da questa premessa sono emersi alcuni ulteriori punti:
   \begin{itemize}\setlength{\itemsep}{6pt}
     \item Se l’utente modifica manualmente il testo generato dall’IA, tali modifiche devono essere segnalate, così da avvisare il sistema nel caso in cui venga richiesta una nuova rigenerazione del contenuto.
-    \item È necessario analizzare più approfonditamente la funzionalità di traduzione, in particolare stabilendo dove essa debba essere inserita, come gestire i casi in cui una stessa sezione venga tradotta più volte e come comportarsi quando, a seguito di modifiche al testo originale, sia opportuno aggiornare automaticamente la traduzione.
+    \item È necessario analizzare più approfonditamente la funzionalità$^G$ di traduzione, in particolare stabilendo dove essa debba essere inserita, come gestire i casi in cui una stessa sezione venga tradotta più volte e come comportarsi quando, a seguito di modifiche al testo originale, sia opportuno aggiornare automaticamente la traduzione.
     \item Se nel documento è presente un collegamento a un’altra nota tramite marcatore, occorre stabilire se durante la chiamata all’IA debba essere fornito l’intero contesto della nota collegata, un riassunto, oppure solo alcune parti.
-    \item Le chat generate durante il dialogo con il LLM vengono salvate insieme all’intero documento.
+    \item Le chat generate durante il dialogo con il LLM$^G$ vengono salvate insieme all’intero documento.
     \item Va analizzata la possibilità che l’utente selezioni una parte di testo da passare all’IA quando l’inizio e la fine della selezione si trovano sulla stessa riga; in questo caso è necessario valutare dove inserire l’output dell’IA. Questo punto riguarda in particolare l’implementazione.
     \item È stata inoltre sollevata la questione della gestione di blocchi “annidati” tra loro: quando un blocco interno subisce modifiche, tali aggiornamenti devono essere notificati anche al blocco che lo contiene, così da garantire la coerenza e l’allineamento dell’intera struttura. \\
   \end{itemize}
@@ -155,11 +155,11 @@ Nel corso della riunione si è affrontato quanto segue: \\
   \item È stato precisato che, durante l’analisi, è sempre consigliabile considerare gli utenti finali come potenzialmente inesperti nell’uso dell’applicazione (ad esempio nell’uso del Markdown), così da definire i requisiti nel modo più atomico e chiaro possibile. \\
 \end{itemize}
 \section*{Conclusioni}
-Dopo l’approfondita discussione sull’analisi del progetto, il gruppo ha ora un’idea chiara su come procedere con la stesura del documento. In particolare, sono state individuate le seguenti modifiche:
+Dopo l’approfondita discussione sull’analisi del progetto$^G$, il gruppo ha ora un’idea chiara su come procedere con la stesura del documento. In particolare, sono state individuate le seguenti modifiche:
 \begin{itemize}
-\item Aggiunta di casi d’uso relativi alle principali funzionalità del Markdown (elencate nella sezione precedente)
+\item Aggiunta di casi d’uso relativi alle principali funzionalità$^G$ del Markdown (elencate nella sezione precedente)
 \item Revisione dei casi d’uso che prevedono la visualizzazione del testo formattato
-\item Modifiche all’analisi dei requisiti riguardanti l’implementazione del \emph{Distant Writing}
+\item Modifiche all’analisi dei requisiti$^G$ riguardanti l’implementazione del \emph{Distant Writing}
 \end{itemize}
 La successiva e più dettagliata suddivisione dei compiti sarà definita nella prossima riunione interna.
 

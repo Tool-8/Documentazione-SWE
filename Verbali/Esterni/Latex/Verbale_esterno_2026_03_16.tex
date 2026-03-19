@@ -126,28 +126,28 @@ A questa riunione hanno partecipato:
 \end{table}
 
 \section*{Motivazioni riunione}
-La riunione è stata tenuta per confrontarsi con l’azienda sull’Analisi dei Requisiti (v1.0), predisposta per la milestone di RTB.
+La riunione è stata tenuta per confrontarsi con l’azienda sull’Analisi dei Requisiti$^G$ (v1.0), predisposta per la milestone$^G$ di RTB.
 
 \newpage
 
 \section*{Verbale}
 Nel corso della riunione si è affrontato quanto segue: \\
 \begin{itemize}
-  \item Per quanto riguarda i casi d'uso relativi alle operazioni sui file, il referente ha prestato attenzione sulla gestione di errori riguardanti ad eventuali problemi multi-utenza. In particolare:
+  \item Per quanto riguarda i casi d'uso$^G$ relativi alle operazioni sui file, il referente ha prestato attenzione sulla gestione di errori riguardanti ad eventuali problemi multi-utenza. In particolare:
   \begin{itemize}\setlength{\itemsep}{6pt}
     \item Nei casi d’uso relativi all’apertura e al salvataggio della nota (UC2, UC5) viene verificata la corretta gestione delle situazioni in cui una nota sia modificata da più utenti contemporaneamente, ad esempio: eliminazione di una nota prima dell’apertura o ultimo salvataggio non congruente con la versione presente sul server.
     \item Nei casi d’uso relativi all’eliminazione e alla rinominazione della nota (UC8, UC9) è necessario verificare eventuali modifiche parallele durante l’operazione che possano compromettere il risultato, ad esempio la rinominazione di una nota già eliminata.
-    \item In generale, il referente ha consigliato di ricontrollare l’intera sezione interessata secondo questa logica e, qualora si decida esplicitamente di non gestire alcune problematiche per ridurre la complessità del progetto, di definire chiaramente le scelte effettuate.
+    \item In generale, il referente ha consigliato di ricontrollare l’intera sezione interessata secondo questa logica e, qualora si decida esplicitamente di non gestire alcune problematiche per ridurre la complessità del progetto$^G$, di definire chiaramente le scelte effettuate.
   \end{itemize}
   \item Sono state precisate le nomenclature dei casi d’uso UC5.3 (Nuovo Salvataggio Nota) e UC5.1 (Errore Nota Non Aggiornata), che potrebbero risultare fonte di confusione riguardo al loro contenuto.
-  \item I casi d'uso riguardanti l'interazione con la LLM sono risultati soddisfacenti e non richiedono modifiche particolari.
+  \item I casi d'uso$^G$ riguardanti l'interazione con la LLM$^G$ sono risultati soddisfacenti e non richiedono modifiche particolari.
   \item Il referente non ha fornito particolari commenti sulla lista dei requisiti, ritenendola adeguata per l’analisi.
-  \item Infine è stato informato della necessità di richiedere una nuova chiave API per il servizio AI fornito dall’azienda a causa di un guasto di sistema.
+  \item Infine è stato informato della necessità di richiedere una nuova chiave API$^G$ per il servizio AI fornito dall’azienda a causa di un guasto di sistema.
 \end{itemize}
 \section*{Conclusioni}
 Il contenuto generale del documento è stato apprezzato dal referente, che ha fornito alcuni consigli per migliorare ulteriormente specifici casi d’uso. Sulla base di quanto emerso, sono necessarie le seguenti modifiche:
 \begin{itemize}
-\item Rinominare appropriatamente i casi d'uso UC5.3 e UC5.1
+\item Rinominare appropriatamente i casi d'uso$^G$ UC5.3 e UC5.1
 \item Ricontrollare possibili problemi dovuti all'accesso multi-utente del programma nella sezione di gestione delle note
 \end{itemize}
 
