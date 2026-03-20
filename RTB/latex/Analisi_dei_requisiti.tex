@@ -329,11 +329,25 @@
     \newpage
 
     \section*{Revisioni}
-    \begin{table}[h!]
-        \centering
-        \begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
-            \hline
-            \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+    \begin{longtable}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
+        \caption{}\label{tab:revisioni} \\
+
+        \hline
+        \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+        \hline
+        \endfirsthead
+
+        \hline
+        \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+        \hline
+        \endhead
+
+        \hline
+        \endfoot
+
+        \hline
+        \endlastfoot
+            1.1 & Giuliano Banchieri & Aggiunta riferimenti (sezione 1.3), fix tabella revisioni & 20/03/2026 & - \\
             \hline
             1.0 & Stefano Maso & Aggiunta casi d'uso \UCRef{riscrivi_variazione}, \UCRef{riscrivi_modifica}, \UCRef{riscrivi_grammatica}, \UCRef{riscrivi_lessico}; controllo e correzione casi d'uso e requisiti & 7/3/2026 & Giuliano Banchieri \\ 
             \hline 
@@ -367,9 +381,7 @@
             \hline
             0.1 & Stefano Maso & Prima versione, stesura della sezione 1 e 2 (Introduzione e Descrizione) e inizio della sezione 3 (Casi d'uso)  & \slashdate{\displaydate{dataverbale}} & Besnik Murtezan \\
             \hline
-        \end{tabular}
-        \label{tab:revisioni}
-    \end{table}
+    \end{longtable}
 
     \newpage
 
@@ -388,6 +400,19 @@
     In particolare,l'utilizzo di LLM$^G$ verrà sfruttato da Second Brain per fornire funzionalità$^G$
     di riassunto, riscrittura, traduzione e generazione di testo in aggiunta ad una forma di critica
     secondo il modello dei "Sei Cappelli per Pensare" di Edward De Bono.
+    \subsection{Riferimenti}
+    \textbf{Riferimenti normativi}
+    \begin{itemize}
+        \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}{Capitolato d'appalto C6 "Second Brain"}
+        \item \href{https://tool-8.github.io/Documentazione-SWE/rtb/Norme_di_progetto.pdf}{Norme di Progetto}
+        \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}{Regolamento progetto didattico}
+    \end{itemize}
+    \textbf{Riferimenti informativi}
+    \begin{itemize}
+        \item \href{https://tool-8.github.io/Documentazione-SWE/}{Verbali}
+        \item \href{https://tool-8.github.io/Documentazione-SWE/glossario/Glossario.pdf}{Glossario}
+        \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}{Lezione 5: Analisi dei requisiti}
+    \end{itemize}
 
     \vfill
 
