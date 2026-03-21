@@ -36,7 +36,7 @@
             -- ++(4cm, 0);
       % Testo
       \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
-        {Verbale 09 gennaio 2026};
+        {Verbale 18 Marzo 2026};
     \end{tikzpicture}
   }{}
 }
@@ -63,7 +63,7 @@
   \textbf{\LARGE Verbale riunione}
 }
 \author{}
-\date{09/01/2026}
+\date{18/03/2026}
 \begin{document}
 
 \maketitle
@@ -77,20 +77,17 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
   \hline
-  1.0 & Giuliano Banchieri & Prima stesura & 09/01/2026 & Stefano Maso\\
+  1.0 & Murtezan Besnik & Prima stesura & 18/03/2026 & Stefano Maso \\
   \hline
 \end{tabular}
 \caption{Storico revisioni}
 \label{tab:revisioni}
 \end{table}
 
-
 \newpage
 
 \section*{Motivazioni riunione}
-Riunione di inizio sprint$^G$ \#4.
-
-Discussione su sistema blocchi di testo IA, casi d'uso$^G$, requisiti, piano di qualifica$^G$ e repository.
+Riunione di inizio sprint$^G$ \#6. Discussione sulle correzioni da effettuare in seguito all'incontro con il prof. Cardin e preparazione all'incontro con il prof. Vardanega.
 
 \section*{Partecipanti}
 A questa riunione hanno partecipato:
@@ -100,17 +97,17 @@ A questa riunione hanno partecipato:
   \hline
   \textbf{Nome} & \textbf{Ruolo}\\
   \hline
-  Giuliano Banchieri & Responsabile \\
+  Giuliano Banchieri & Analista \\
   \hline
   Gabriele Disa & Analista \\
   \hline
   Stefano Maso & Verificatore \\
   \hline
-  Besnik Murtezan & Amministratore \\
+  Besnik Murtezan & Responsabile \\
   \hline
-  Ruben Spadiliero & Analista \\
+  Ruben Spadiliero & Amministratore \\
   \hline
-  Niccolò Feltrin & Analista \\
+  Niccolò Feltrin & Amministratore \\
   \hline
 \end{tabular}
 \label{tab:partecipazione}
@@ -118,49 +115,40 @@ A questa riunione hanno partecipato:
 
 \section*{Verbale}
 
-Il team ha discusso del funzionamento dei blocchi di testo generati da IA all'interno del prodotto:
-\vspace{1\baselineskip}
+La riunione è stata convocata con l’obiettivo di analizzare la correzione svolta dal Prof. Cardin sulla baseline RTB (presentazione avvenuta il giorno 11-03-2026) ed organizzare il lavoro in preparazione all'incontro con il Prof. Vardanega. 
 
-A seguito della discussione sulla validità dei diagrammi di casi d'uso$^G$ definiti, il team ha deciso di creare diagrammi alternativi prima di contattare il professor Cardin per un possibile ricevimento.
+Le attività prioritarie individuate riguardano la correzione del documento di Analisi dei Requisiti e la conferma dell'aggiornamento dello stack tecnologico sulla base delle indicazioni fornite del Prof. Cardin. 
 
-Si è infine deciso di aumentare il numero di analisti per velocizzare l'ultimazione del documento di Analisi dei Requisiti.
-\vspace{1\baselineskip}
+Si ritiene inoltre necessario aggiornare il resto dei documenti con i dati relativi al quinto periodo; per il Piano di Progetto e le Norme di Progetto si dovranno anche aggiungere le nuove sezioni richieste dal Prof. Cardin.
 
-Sono stati poi decisi il ruolo di ciascun membro e le azioni da intraprendere.
+Vengono infine assegnati nuovi ruoli per lo Sprint$^G$ \#6, il quale avrà durata ridotta ad 1 settimana.
 
 \section*{To-Do}
 \begin{itemize}
-\item \textbf{Assegnato a tutti i membri:}
-\begin{enumerate}
-    \item Ricerca tecnologie
-\end{enumerate}
-\item \textbf{Assegnato a Giuliano Banchieri [Responsabile]:}
+\item \textbf{Assegnato a Besnik Murtezan [Responsabile]:}
     \begin{enumerate}
-    \item Compilare il verbale della riunione del 10/01/2026.
-    \item Contattare Professor Cardin a seguito delle modifiche ai diagrammi di casi d'uso$^G$
+    \item Contattare Prof. Vardanega per Presentazione RTB (Issue \#91)
+    \item Compilare il verbale della riunione del 18/03/2026 (Issue \#93)
+    \item Aggiornare nome Lettera di Candidatura RTB (Issue \#94)
     \end{enumerate}
-\item \textbf{Assegnato a Ruben Spadiliero, Gabriele Disa, Niccolò Feltrin [Analisti]:}
+\item \textbf{Assegnato a Giuliano Banchieri, Gabriele Disa [Analisti]:}
     \begin{enumerate}
-    \item Modifica diagrammi di casi d'uso$^G$
-    \item Atomicizzazione casi d'uso$^G$
-    \item Scrittura casi d'uso$^G$ opzionali
-    \item \texttt{[OPT]} Prima stesura requisiti
+    \item Correggere Analisi dei Requisiti su indicazioni del Prof. Cardin (Issue \#84)
     \end{enumerate}
-\item \textbf{Assegnato a Besnik Murtezan [Amministratore]:}
+\item \textbf{Assegnato a Niccolò Feltrin, Ruben Spadiliero [Amministratori]:}
     \begin{enumerate}
-    \item Adottazione nuovo modello per la repository$^G$
-    \item Aggiornamento github$^G$ actions per compilazione file RTB$^G$
-    \item Aggiornamento Piano e Norme di Progetto$^G$
-    \item Stesura prima versione Piano di Qualifica$^G$
+    \item Aggiornare Piano di Progetto:
+      \begin{itemize}
+        \item Stesura quinto periodo (Issue \#85)
+        \item Stesura sezione \textit{Riferimenti} (Issue \#87)
+        \item Stesura sezione \textit{Risorse Rimanenti} (Issue \#92)
+      \end{itemize}
+    \item Aggiornare Piano di Qualifica (Issue \#86)
+    \item Aggiornare Norme di Progetto (Issue \#88)
     \end{enumerate}
 \item \textbf{Assegnato a Stefano Maso [Verificatore]:}
     \begin{enumerate}
-    \item Verifica$^G$ dei documenti
+    \item Verifica dei documenti e delle modifiche
     \end{enumerate}
 \end{itemize}
-
-\section*{Rischi}
-Vista la vicinanza alle date dei primi esami delle sessioni, si prevede la possibilità che alcuni membri del gruppo non riescano a completare i propri compiti senza ritardi.
-
-Si prevede l'eventualità di riaffidare ad altri membri senza problemi di tempo il completamento di questi compiti.
 \end{document}
