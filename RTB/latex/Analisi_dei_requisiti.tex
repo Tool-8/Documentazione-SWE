@@ -202,22 +202,21 @@
         \UCdefsubsub{arch_nome}{Visualizza\\Nome Nota}
         \UCdefsubsub{arch_data}{Visualizza\\Data Creazione Nota}
         \UCdefsubsub{arch_ult_data}{Visualizza\\Data Ultima\\Modifica Nota}
-\UCdef{apri}{Apertura Nota}
+\UCdef{apri}{Visualizzazione contenuto Nota}
     \UCdefsub{vis-editor-apri}{Visualizza Editor\\Nota}
     \UCdefsub{apri_err}{Errore Nota\\Inesistente}
     \UCdefsub{apri_server_err}{Errore Perdita\\Conessione}
 \UCdef{chiudi}{Chiusura Nota}
+    \UCdefsub{chiudi_salva}{Chiusura Nota\\Con Salvataggio}
 \UCdef{crea}{Creazione Nota}
-    \UCdefsub{vis-editor-crea}{Visualizza Editor\\Nota}
 \UCdef{salva}{Salvataggio Nota}
-    \UCdefsub{salva_err}{Errore Nota\\Non Aggiornata}
+    \UCdefsub{salva_primo}{Primo Salvataggio\\Nota}
+    \UCdefsub{salva_modifiche}{Salvataggio\\Modifiche Nota}
+        \UCdefsubsub{salva_err}{Errore Nota\\Non Aggiornata}
         \UCdefsubsub{salva_err_sovra}{Sovrascrivi\\Nota}
         \UCdefsubsub{salva_err_diff}{Salva Con\\Nome Differente}
         \UCdefsubsub{salva_err_agg}{Aggiorna Nota\\Corrente}
-    \UCdefsub{salva_primo}{Primo Salvataggio\\Nota}
-        \UCdefsubsub{salva_primo_err}{Errore Salvataggio\\Nota}
-    \UCdefsub{salva_nuovo}{Nuovo Salvataggio\\Nota}
-        \UCdefsubsub{salva_nuovo_err}{Errore Nuovo\\Salvataggio Nota}
+    \UCdefsub{salva_nome_err}{Errore Nome\\Utilizzato}
     \UCdefsub{salva_server_err}{Errore Perdita\\Connessione}
 \UCdef{clona}{Clonazione Nota}
     \UCdefsub{clona_err}{Errore Clonazione\\Nota Inesistente}
@@ -239,6 +238,7 @@
     \UCdefsub{esporta_arch_html}{Esporta HTML}
     \UCdefsub{esporta_arch_server_err}{Errore Perdita\\Connessione}
 \UCdef{importa}{Importazione Nota}
+    \UCdefsub{importa_md}{Importa MD}
     \UCdefsub{importa_err}{Formato Nota\\Non Valido}
     \UCdefsub{importa_server_err}{Errore Perdita\\Connessione}
 \UCdef{visua_formattato}{Visualizza\\Testo Formattato}
@@ -248,21 +248,24 @@
     \UCdefsub{cambio_visua_render}{Visualizzazione\\Render}
 \UCdef{scrivi}{Scrittura Testo}
 \UCdef{formatta}{Formattazione Testo}
-    \UCdefsub{grassetto}{Testo Grassetto}
-        \UCdefsubsub{grassetto_rim}{Rimozione Grassetto}
-    \UCdefsub{corsivo}{Testo Corsivo}
-        \UCdefsubsub{corsivo_rim}{Rimozione Corsivo}
-    \UCdefsub{sottolineato}{Testo Sottolineato}
-        \UCdefsubsub{sottolineato_rim}{Rimozione Sottolineato}
-    \UCdefsub{barrato}{Testo Barrato}
-        \UCdefsubsub{barrato_rim}{Rimozione Barrato}
-    \UCdefsub{link}{Link Ipertestuale}
+    \UCdefsub{grassetto}{Testo\\Grassetto}
+        \UCdefsubsub{grassetto_rim}{Rimozione\\Grassetto}
+    \UCdefsub{corsivo}{Testo\\Corsivo}
+        \UCdefsubsub{corsivo_rim}{Rimozione\\Corsivo}
+    \UCdefsub{sottolineato}{Testo\\Sottolineato}
+        \UCdefsubsub{sottolineato_rim}{Rimozione\\Sottolineato}
+    \UCdefsub{barrato}{Testo\\Barrato}
+        \UCdefsubsub{barrato_rim}{Rimozione\\Barrato}
+    \UCdefsub{link}{Link\\Ipertestuale}
         \UCdefsubsub{link_rim}{Rimozione\\Link Ipertestuale}
-    \UCdefsub{commento}{Testo Commentato}
-        \UCdefsubsub{commento_rim}{Rimozione Commento}
+    \UCdefsub{commento}{Testo\\Commentato}
+        \UCdefsubsub{commento_rim}{Rimozione\\Commento}
 \UCdef{elenco}{Creazione Elenco}
     \UCdefsub{elenco_num}{Elenco Numerato}
     \UCdefsub{elenco_punt}{Elenco Puntato}
+\UCdef{elemento}{Inserimento Elemento}
+    \UCdefsub{elem_num}{Elemento Numerato}
+    \UCdefsub{elem_punt}{Elemento Puntato}
 \UCdef{annulla}{Annullamento Modifiche}
 \UCdef{ripristina}{Ripristino Modifiche}
 \UCdef{seleziona}{Seleziona Testo}
@@ -347,6 +350,8 @@
 
         \hline
         \endlastfoot
+            1.2 & Giuliano Banchieri & Secondo indicazioni Prof. Cardin: rinomina caso d'uso \UCRef{apri}, rimossi include ed extend da \UCRef{chiudi}, aggiunto \UCRef{chiudi_salva}, rimosso include da \UCRef{crea}, modificati \UCRef{salva}, aggiunto \UCRef{importa_md}, separati i casi d'uso \UCRef{formatta} & 21/03/2026 & - \\
+            \hline
             1.1 & Giuliano Banchieri & Aggiunta riferimenti (sezione 1.3), fix tabella revisioni & 20/03/2026 & Stefano Maso \\
             \hline
             1.0 & Stefano Maso & Aggiunta casi d'uso \UCRef{riscrivi_variazione}, \UCRef{riscrivi_modifica}, \UCRef{riscrivi_grammatica}, \UCRef{riscrivi_lessico}; controllo e correzione casi d'uso e requisiti & 7/3/2026 & Giuliano Banchieri \\ 
@@ -730,8 +735,7 @@
         \begin{tikzpicture}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=0, y=4, name=chiusura]{\UCName{chiudi}}
-                \umlusecase[x=0, y=2, name=salvataggio]{\UCName{salva}}
-                \umlusecase[x=0, y=6, name=arch, align=center]{\UCName{archivio}}
+                \umlusecase[x=0, y=2, name=chiusura_salvataggio, align=center]{\UCName{chiudi_salva}}
             \end{umlsystem}
 
             % Attori
@@ -741,8 +745,7 @@
             \umlassoc{Utente}{chiusura}
 
             % Associazioni Casi d'Uso$^G$
-            \umlextend{chiusura}{salvataggio}
-            \umlinclude{chiusura}{arch}
+            \umlextend{chiusura_salvataggio}{chiusura}
         \end{tikzpicture}
     \end{center}
 
@@ -753,25 +756,47 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota
+        \item L'utente sta visualizzando il contenuto di una nota
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente visualizza l'archivio delle note (\UCRef{archivio})
+        \item L'utente non visualizza più il contenuto della nota
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità$^G$ \textit{"Chiudi Nota"}
-        \item La visualizzazione viene chiusa
-        \item L'utente visualizza l'archivio delle note
+        \item La visualizzazione del contenuto della nota viene chiusa
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
         \item Nel caso in cui vi siano delle modifiche non salvate:
         \begin{enumerate}
-            \item Caso d'uso \UCName{salva}
+            \item Caso d'uso \UCName{chiudi_salva}
         \end{enumerate}
     \end{itemize}
+
+    \subsubsection*{\UCText{chiudi_salva}}
+    \addcontentsline{toc}{subsubsection}{\UCText{chiudi_salva}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente sta visualizzando il contenuto di una nota che ha subito delle modifiche non salvate
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente non visualizza più il contenuto della nota
+        \item Le modifiche alla nota sono state salvate
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente sta visualizzando il contenuto di una nota che ha subito delle modifiche non salvate
+        \item L'utente attiva la funzionalità$^G$ \textit{"Chiudi Nota"}
+        \item Il sistema chiede conferma per salvare le modifiche e chiudere la visualizzazione della nota
+    \end{enumerate}
 
     \vspace{1cm}
 
@@ -783,7 +808,7 @@
     \begin{center}
         \begin{tikzpicture}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=creazione]{\UCName{crea}}ù\umlusecase[x=0, y=2, name=vis-edit, align=center]{\UCName{vis-editor-crea}}
+                \umlusecase[x=0, y=4, name=creazione]{\UCName{crea}}
             \end{umlsystem}
 
             % Attori
@@ -791,7 +816,6 @@
 
             % Associazioni Utente
             \umlassoc{Utente}{creazione}
-            \umlinclude{creazione}{vis-edit}
         \end{tikzpicture}
     \end{center}
 
@@ -812,27 +836,7 @@
     \begin{enumerate}
         \item L'utente visualizza l'archivio delle note
         \item L'utente attiva la funzionalità$^G$ di \textit{"Creazione Nota"}
-        \item L'utente visualizza l'editor vuoto
-    \end{enumerate}
-
-    \subsubsection*{\UCText{vis-editor-crea}}
-    \addcontentsline{toc}{subsubsection}{\UCText{vis-editor-crea}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha creato una nuova nota (\UCRef{crea})
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente visualizza l'editor vuoto
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente visualizza l'editor di testo senza nessun contenuto
+        \item Il sistema crea una nuova nota vuota
     \end{enumerate}
 
     % realisticamente si potrà creare una nota solo quando si è nell'archivio
@@ -860,12 +864,11 @@
         \begin{tikzauto}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
                 \umlusecase[x=6, y=6, name=err_server, align=center]{\UCName{salva_server_err}}
+                \umlusecase[x=0, y=6, name=err_nome_salva, align=center]{\UCName{salva_nome_err}}
                 \umlusecase[x=3, y=4, name=salvataggio]{\UCName{salva}}
                 \umlusecase[x=0, y=2, name=primo_salvataggio, align=center]{\UCName{salva_primo}}
-                \umlusecase[x=0, y=0, name=err_salvataggio, align=center]{\UCName{salva_primo_err}}
-                \umlusecase[x=6, y=2, name=nuovo_salvataggio, align=center]{\UCName{salva_nuovo}}
-                \umlusecase[x=6, y=0, name=err_nuovo_salvataggio, align=center]{\UCName{salva_nuovo_err}}
-                \umlusecase[x=0, y=6, name=err_salva, align=center]{\UCName{salva_err}}
+                \umlusecase[x=6, y=2, name=nuovo_salvataggio, align=center]{\UCName{salva_modifiche}}
+                \umlusecase[x=6, y=0, name=err_salva, align=center]{\UCName{salva_err}}
             \end{umlsystem}
 
             % Attori
@@ -875,12 +878,11 @@
             \umlassoc{Utente}{salvataggio}
 
             % Associazioni Casi d'Uso$^G$
-            \umlextend{err_salvataggio}{primo_salvataggio}
             \umlinherit{primo_salvataggio}{salvataggio}
-            \umlextend{err_nuovo_salvataggio}{nuovo_salvataggio}
             \umlinherit{nuovo_salvataggio}{salvataggio}
+            \umlextend{err_salva}{nuovo_salvataggio}
             \umlextend{err_server}{salvataggio}
-            \umlextend{err_salva}{salvataggio}
+            \umlextend{err_nome_salva}{salvataggio}
         \end{tikzauto}
     \end{center}
 
@@ -904,15 +906,113 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
+        \item Nel caso in cui la nota visualizzata abbia un nome già presente nell'archivio:
+        \begin{itemize}
+            \item \UCName{salva_nome_err}
+        \end{itemize}
         \item In caso il sistema abbia perso la connessione:
         \begin{itemize}
-            \item \UCRef{salva_server_err}
-        \end{itemize}
-        \item Nel caso in cui la nota inizialmente visualizzata dall'utente avesse successivamente subito delle modifiche:
-        \begin{itemize}
-            \item \UCRef{salva_err}
+            \item \UCName{salva_server_err}
         \end{itemize}
     \end{itemize}
+
+
+    \paragraph*{\UCText{salva_nome_err}}
+    \addcontentsline{toc}{subparagraph}{\UCText{salva_nome_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item La nota visualizzata ha un nome che è già presente nell'archivio
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item L'utente viene avvisato che è presente un'altra nota con il nome scelto
+        \item La nota non viene salvata
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente tenta di utilizzare la funzionalità$^G$ di \textit{"Salva Nota"}
+        \item Il sistema avvisa della presenza di una nota con lo stesso nome
+    \end{enumerate}
+
+
+    \paragraph*{\UCText{salva_server_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_server_err}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item Il sistema ha perso la connessione al server
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota non viene salvata
+        \item L'utente viene avvisato della perdita di connessione
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Salva Nota"}
+        \item Il sistema avvisa l'utente della perdita di connessione e non salva la nota all'interno dell'archivio
+    \end{enumerate}
+
+
+    \paragraph*{\UCText{salva_primo}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_primo}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item La nota non è presente nell'archivio delle note
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota è presente nell'archivio delle note
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Salva Nota"}
+        \item La nota viene salvata nell'archivio
+    \end{enumerate}
+
+
+    \paragraph*{\UCText{salva_modifiche}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_modifiche}}
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item La nota è presente nell'archivio
+        \item La nota visualizzata ha modifiche rispetto alla sua versione presente nell'archivio 
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota nell'archivio viene aggiornata con le modifiche della nota visualizzata
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente ha modificato una nota presente nell'archivio
+        \item L'utente attiva la funzionalità$^G$ di \textit{"Salva Nota"}
+        \item La nota nell'archivio viene aggiornata con le modifiche effettuate
+    \end{enumerate}
+    \textbf{Estensioni}
+    \begin{itemize}
+        \item Nel caso in cui la versione della nota visualizzata dall'utente fosse più vecchia di quella attualmente presente nell'archivio:
+        \begin{itemize}
+            \item \UCName{salva_err}
+        \end{itemize}
+    \end{itemize}
+
+
 
     \paragraph*{\UCText{salva_err}}
     \addcontentsline{toc}{paragraph}{\UCText{salva_err}}
@@ -946,7 +1046,8 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota
+        \item L'utente sta visualizzando una nota che ha ricevuto delle modifiche non salvate
+        \item La versione della nota presente nell'archivio è più recente di quella dell'utente
         \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
     \end{itemize}
     \textbf{Postcondizioni}
@@ -959,9 +1060,9 @@
         \item Il sistema avvisa della presenza di modifiche non contenute nella versione corrente dell'utente
         \item Il sistema propone all'utente la scelta tra:
             \begin{itemize}
-                \item \UCRef{salva_err_sovra}
-                \item \UCRef{salva_err_diff}
-                \item \UCRef{salva_err_agg}
+                \item \UCName{salva_err_sovra}
+                \item \UCName{salva_err_diff}
+                \item \UCName{salva_err_agg}
             \end{itemize}
             \item L'utente seleziona una tra le opzioni
             \item Il sistema effettua l'operazione scelta dall'utente
@@ -976,7 +1077,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota
+        \item L'utente sta visualizzando una nota con una versione più recente presente nell'archivio
         \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
         \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
     \end{itemize}
@@ -987,7 +1088,7 @@
     \textbf{Scenario principale}
     \begin{itemize}
         \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
-        \item La nota viene aggiornata con la versione dell'utente
+        \item La nota presente nell'archivio viene aggiornata con la versione dell'utente
     \end{itemize}
 
     \paragraph*{\UCText{salva_err_diff}}
@@ -999,7 +1100,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota
+        \item L'utente sta visualizzando una nota con una versione più recente presente nell'archivio
         \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
         \item L'utente ha scelto l'opzione di salvare la nota con un nome differente
     \end{itemize}
@@ -1023,7 +1124,7 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota
+        \item L'utente sta visualizzando una nota con una versione più recente presente nell'archivio
         \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
         \item L'utente ha scelto l'opzione di aggiornare la nota aperta con la versione presente in archivio
     \end{itemize}
@@ -1034,130 +1135,9 @@
     \textbf{Scenario principale}
     \begin{itemize}
         \item L'utente ha scelto l'opzione di aggiornare la nota aperta
-        \item Il contenuto della nota viene aggiornato con quello della nota presente nell'archivio
+        \item Il contenuto della nota viene aggiornato
     \end{itemize}
 
-
-    \paragraph*{\UCText{salva_primo}}
-    \addcontentsline{toc}{paragraph}{\UCText{salva_primo}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item La nota non è presente nell'archivio delle note
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La nota è presente nell'archivio delle note
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente inserisce il nome della nota
-        \item La nota viene salvata nell'archivio
-        \item Il sistema avvisa l'utente del salvataggio della nota nell'archivio
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso il nome della nota da salvare è già presente nell'archivio:
-        \begin{itemize}
-            \item \UCRef{salva_primo_err}
-        \end{itemize}
-    \end{itemize}
-
-     \subparagraph*{\UCText{salva_primo_err}}
-    \addcontentsline{toc}{subparagraph}{\UCText{salva_primo_err}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item La nota non è salvata nell'archivio
-        \item L'utente ha inserito il nome della nota
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente viene avvisato che è presente un'altra nota con il nome scelto
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa la presenza di una nota con lo stesso nome
-    \end{enumerate}
-
-    \paragraph*{\UCText{salva_nuovo}}
-    \addcontentsline{toc}{paragraph}{\UCText{salva_nuovo}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item La nota è presente nell'archivio
-        \item La nota visualizzata ha modifiche rispetto alla nota presente nell'archivio 
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La nota originale nell'archivio non ha subito alcuna modifica 
-        \item È presente una nuova nota nell'archivio generata a partire dalla nota aperta 
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente attiva la funzionalità$^G$ di \textit{"Salva Con Nome"}
-        \item L'utente inserisce il nuovo nome della nota
-        \item La nuova nota viene salvata nell'archivio
-        \item Il sistema avvisa l'utente del salvataggio della nuova nota nell'archivio
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso il nuovo nome della nota è già presente nell'archivio:
-        \begin{itemize}
-            \item \UCRef{salva_nuovo_err}
-        \end{itemize}
-    \end{itemize}
-
-    \subparagraph*{\UCText{salva_nuovo_err}}
-    \addcontentsline{toc}{subparagraph}{\UCText{salva_nuovo_err}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente attiva la funzionalità$^G$ di \textit{"Salva Con Nome"}
-        \item L'utente inserisce il nuovo nome della nota
-        \item L'utente ha inserito un nome già utilizzato da un'altra nota
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente viene avvisato che è presente un'altra nota con il nome scelto
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa la presenza di una nota con lo stesso nome
-    \end{enumerate}
-
-    \paragraph*{\UCText{salva_server_err}}
-    \addcontentsline{toc}{paragraph}{\UCText{salva_server_err}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La nota rimane aperta
-        \item Le modifiche non sono salvate
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente della perdita di connessione
-    \end{enumerate}
 
     \vspace{1cm}
 
@@ -1785,9 +1765,10 @@
         \begin{tikzauto}
 
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=3, y=2.5, name=importa]{\UCName{importa}}
-                \umlusecase[x=0, y=0, name=err_importa, align=center]{\UCName{importa_err}}
-                \umlusecase[x=6, y=0, name=server_err, align=center]{\UCName{importa_server_err}}
+                \umlusecase[x=3, y=2, name=importa]{\UCName{importa}}
+                \umlusecase[x=0, y=4, name=err_importa, align=center]{\UCName{importa_err}}
+                \umlusecase[x=6, y=4, name=server_err, align=center]{\UCName{importa_server_err}}
+                \umlusecase[x=3, y=0, name=importa_md, align=center]{\UCName{importa_md}}
             \end{umlsystem}
 
             % Attore$^G$
@@ -1799,6 +1780,7 @@
             % Associazione Casi d'Uso$^G$
             \umlextend{err_importa}{importa}
             \umlextend{server_err}{importa}
+            \umlinherit{importa_md}{importa}
 
         \end{tikzauto}
     \end{center}
@@ -1818,7 +1800,8 @@
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente attiva la funzionalità$^G$ \textit{"Importazione nota"}
-        \item L'utente sceglie la nota da importare
+        \item L'utente sceglie il formato della nota da importare
+        \item L'utente seleziona la nota da importare
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
@@ -1831,6 +1814,29 @@
             \item \UCRef{importa_server_err}
         \end{itemize}
     \end{itemize}
+
+    \paragraph*{\UCText{importa_md}}
+    \addcontentsline{toc}{paragraph}{\UCText{importa_md}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente ha attivato la funzionalità$^G$ \textit{"Importazione Nota"}
+        \item L'utente ha selezionato il formato MD
+        \item L'utente ha selezionato una nota in formato MD da importare
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item La nota in formato MD viene aggiunta all'archivio
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Importazione nota"} scegliendo il formato MD
+        \item L'utente seleziona una nota in formato MD da importare
+    \end{enumerate}
 
     \paragraph*{\UCText{importa_err}}
     \addcontentsline{toc}{paragraph}{\UCText{importa_err}}
@@ -2138,21 +2144,21 @@
     \begin{center}
         \begin{tikzpicture}
 
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{\UCName{formatta}}
-                \umlusecase[x=0, y=3, name=Grassetto]{\UCName{grassetto}}
-                \umlusecase[x=0, y=1, name=no_grass]{\UCName{grassetto_rim}}
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
+                \umlusecase[x=0, y=3, name=Grassetto, align=center]{\UCName{grassetto}}
+                \umlusecase[x=6, y=3, name=no_grass, align=center]{\UCName{grassetto_rim}}
             \end{umlsystem}
 
             % Attore$^G$
-            \umlactor[x=0, y=5]{Utente}
+            \umlactor[x=2, y=5]{Utente}
 
             % Associazione
             \umlassoc{Utente}{Formattazione}
 
             % Generalizzazione
             \umlinherit{Grassetto}{Formattazione}
-            \umlextend{no_grass}{Grassetto}
+            \umlinherit{no_grass}{Formattazione}
         \end{tikzpicture}
     \end{center}
 
@@ -2164,7 +2170,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona}) non compresa tra i marcatori di testo del grassetto
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2176,13 +2182,6 @@
         \item L'utente attiva la funzionalità$^G$ \textit{"Testo in grassetto"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo in grassetto" sul del testo già in grassetto:
-        \begin{enumerate}
-            \item \UCRef{grassetto_rim}
-        \end{enumerate}
-    \end{itemize}
 
     \subparagraph*{\UCText{grassetto_rim}}
     \addcontentsline{toc}{subparagraph}{\UCText{grassetto_rim}}
@@ -2194,7 +2193,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzione \textit{"Testo in grassetto"} su del testo già in grassetto
+        \item L'utente ha selezionato una porzione di testo compresa tra i marcatori di testo del grassetto
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2202,7 +2201,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità$^G$ \textit{"Testo in grassetto"} su del testo già in grassetto
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimuovi grassetto"} su del testo in grassetto
         \item La parte di testo selezionata non è più compresa tra i marcatori di testo del grassetto
     \end{enumerate}
 
@@ -2216,21 +2215,21 @@
     \begin{center}
         \begin{tikzpicture}
 
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{\UCName{formatta}}
-                \umlusecase[x=0, y=3, name=Corsivo]{\UCName{corsivo}}
-                \umlusecase[x=0, y=1, name=rim_cors]{\UCName{corsivo_rim}}
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
+                \umlusecase[x=0, y=3, name=Corsivo, align=center]{\UCName{corsivo}}
+                \umlusecase[x=6, y=3, name=rim_cors, align=center]{\UCName{corsivo_rim}}
             \end{umlsystem}
 
             % Attore$^G$
-            \umlactor[x=0, y=5]{Utente}
+            \umlactor[x=2, y=5]{Utente}
 
             % Associazione
             \umlassoc{Utente}{Formattazione}
 
             % Generalizzazione
             \umlinherit{Corsivo}{Formattazione}
-            \umlextend{rim_cors}{Corsivo}
+            \umlinherit{rim_cors}{Formattazione}
         \end{tikzpicture}
     \end{center}
 
@@ -2242,7 +2241,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona}) non compresa tra i marcatori di testo del corsivo
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2254,13 +2253,6 @@
         \item L'utente attiva la funzionalità$^G$ \textit{"Testo in corsivo"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo in corsivo" sul del testo già in corsivo:
-        \begin{enumerate}
-            \item \UCRef{corsivo_rim}
-        \end{enumerate}
-    \end{itemize}
 
     \subparagraph*{\UCText{corsivo_rim}}
     \addcontentsline{toc}{subparagraph}{\UCText{corsivo_rim}}
@@ -2272,7 +2264,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzione \textit{"Testo in corsivo"} su del testo già in corsivo
+        \item L'utente ha selezionato una porzione di testo compresa tra i marcatori di testo del corsivo
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2280,7 +2272,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità$^G$ \textit{"Testo in corsivo"} su del testo già in corsivo
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimuovi corsivo"} su del testo in corsivo
         \item La parte di testo selezionata non è più compresa tra i marcatori di testo del corsivo
     \end{enumerate}
 
@@ -2294,21 +2286,21 @@
     \begin{center}
         \begin{tikzpicture}
 
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{\UCName{formatta}}
-                \umlusecase[x=0, y=3, name=Sottolineato]{\UCName{sottolineato}}
-                \umlusecase[x=0, y=1, name=rim_sot]{\UCName{sottolineato_rim}}
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
+                \umlusecase[x=0, y=3, name=Sottolineato, align=center]{\UCName{sottolineato}}
+                \umlusecase[x=6, y=3, name=rim_sot, align=center]{\UCName{sottolineato_rim}}
             \end{umlsystem}
 
             % Attore$^G$
-            \umlactor[x=0, y=5]{Utente}
+            \umlactor[x=2, y=5]{Utente}
 
             % Associazione
             \umlassoc{Utente}{Formattazione}
 
             % Generalizzazione
             \umlinherit{Sottolineato}{Formattazione}
-            \umlextend{rim_sot}{Sottolineato}
+            \umlinherit{rim_sot}{Formattazione}
         \end{tikzpicture}
     \end{center}
 
@@ -2320,7 +2312,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona}) non compresa tra i marcatori di testo per la sottolineatura
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2332,13 +2324,6 @@
         \item L'utente attiva la funzionalità$^G$ \textit{"Testo sottolineato"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo sottolineato" sul del testo già sottolineato:
-        \begin{enumerate}
-            \item \UCRef{sottolineato_rim}
-        \end{enumerate}
-    \end{itemize}
 
     \subparagraph*{\UCText{sottolineato_rim}}
     \addcontentsline{toc}{subparagraph}{\UCText{sottolineato_rim}}
@@ -2350,7 +2335,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzione \textit{"Testo sottolineato"} su del testo già sottolineato
+        \item L'utente ha selezionato una porzione di testo compresa tra i marcatori di testo per la sottolineatura
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2358,7 +2343,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità$^G$ \textit{"Testo sottolineato"} su del testo già sottolineato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimuovi sottolineato"} su del testo già sottolineato
         \item La parte di testo selezionata non è più compresa tra i marcatori di testo sottolineato
     \end{enumerate}
 
@@ -2372,21 +2357,21 @@
     \begin{center}
         \begin{tikzpicture}
 
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{\UCName{formatta}}
-                \umlusecase[x=0, y=3, name=Barrato]{\UCName{barrato}}
-                \umlusecase[x=0, y=1, name=err_barr]{\UCName{barrato_rim}}
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
+                \umlusecase[x=0, y=3, name=Barrato, align=center]{\UCName{barrato}}
+                \umlusecase[x=6, y=3, name=err_barr, align=center]{\UCName{barrato_rim}}
             \end{umlsystem}
 
             % Attore$^G$
-            \umlactor[x=0, y=5]{Utente}
+            \umlactor[x=2, y=5]{Utente}
 
             % Associazione
             \umlassoc{Utente}{Formattazione}
 
             % Generalizzazione
             \umlinherit{Barrato}{Formattazione}
-            \umlextend{err_barr}{Barrato}
+            \umlinherit{err_barr}{Formattazione}
         \end{tikzpicture}
     \end{center}
 
@@ -2398,7 +2383,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona}) non compresa tra i marcatori di testo per la barratura
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2410,13 +2395,6 @@
         \item L'utente attiva la funzionalità$^G$ \textit{"Testo barrato"}
         \item La parte di testo selezionata è compresa tra i marcatori di testo per la barratura
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo barrato" sul del testo già barrato:
-        \begin{enumerate}
-            \item \UCRef{barrato_rim}
-        \end{enumerate}
-    \end{itemize}
 
     \subparagraph*{\UCText{barrato_rim}}
     \addcontentsline{toc}{subparagraph}{\UCText{barrato_rim}}
@@ -2428,7 +2406,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzione \textit{"Testo barrato"} su del testo già barrato
+        \item L'utente ha selezionato compresa tra i marcatori di testo per la barratura
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2436,7 +2414,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità$^G$ \textit{"Testo barrato"} su del testo già barrato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimuovi barrato"} su del testo barrato
         \item La parte di testo selezionata non è più compresa tra i marcatori di testo barrato
     \end{enumerate}
 
@@ -2450,21 +2428,21 @@
     \begin{center}
         \begin{tikzpicture}
 
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{\UCName{formatta}}
-                \umlusecase[x=0, y=3, name=Link]{\UCName{link}}
-                \umlusecase[x=0, y=1, name=err_link, align=center]{\UCName{link_rim}}
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
+                \umlusecase[x=0, y=3, name=Link, align=center]{\UCName{link}}
+                \umlusecase[x=6, y=3, name=rim_link, align=center]{\UCName{link_rim}}
             \end{umlsystem}
 
             % Attore$^G$
-            \umlactor[x=0, y=5]{Utente}
+            \umlactor[x=2, y=5]{Utente}
 
             % Associazione
             \umlassoc{Utente}{Formattazione}
 
             % Generalizzazione
             \umlinherit{Link}{Formattazione}
-            \umlextend{err_link}{Link}
+            \umlinherit{rim_link}{Formattazione}
         \end{tikzpicture}
     \end{center}
 
@@ -2476,7 +2454,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona}) non compresa tra i marcatori di testo per i collegamenti ipertestuali
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2489,12 +2467,7 @@
         \item La parte di testo selezionata è compresa tra i marcatori di testo per i collegamenti ipertestuali e seguita dai marcatori in mezzo ai quali dovrà essere inserito il link effettivo
     \end{enumerate}
     \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Link ipertestuale" sul del testo che presenta già collegamenti ipertestuali:
-        \begin{enumerate}
-            \item \UCRef{link_rim}
-        \end{enumerate}
-    \end{itemize}
+
     \subparagraph*{\UCText{link_rim}}
     \addcontentsline{toc}{subparagraph}{\UCText{link_rim}}
     \textbf{Attori principali}
@@ -2505,7 +2478,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzione \textit{"Link ipertestuale"} su del testo che rappresenta già un collegamento ipertestuale
+        \item L'utente ha selezionato una porzione di testo compresa tra i marcatori di testo per i collegamenti ipertestuali
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2513,7 +2486,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità$^G$ \textit{"Link ipertestuale"} su del testo che rappresenta già un collegamento ipertestuale
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimuovi Link ipertestuale"} su del testo che rappresenta un collegamento ipertestuale
         \item La parte di testo selezionata non è più compresa tra i marcatori di link ipertestuale
     \end{enumerate}
 
@@ -2527,21 +2500,21 @@
     \begin{center}
         \begin{tikzpicture}
 
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=5, name=Formattazione]{\UCName{formatta}}
-                \umlusecase[x=0, y=3, name=Commento]{\UCName{commento}}
-                \umlusecase[x=0, y=1, name=err_comm]{\UCName{commento_rim}}
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
+                \umlusecase[x=0, y=3, name=Commento, align=center]{\UCName{commento}}
+                \umlusecase[x=6, y=3, name=rim_comm, align=center]{\UCName{commento_rim}}
             \end{umlsystem}
 
             % Attore$^G$
-            \umlactor[x=0, y=5]{Utente}
+            \umlactor[x=2, y=5]{Utente}
 
             % Associazione
             \umlassoc{Utente}{Formattazione}
 
             % Generalizzazione
             \umlinherit{Commento}{Formattazione}
-            \umlextend{err_comm}{Commento}
+            \umlinherit{rim_comm}{Formattazione}
         \end{tikzpicture}
     \end{center}
 
@@ -2553,7 +2526,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
+        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona}) non delimitata dai marcatori di commento
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2565,13 +2538,6 @@
         \item L'utente attiva la funzionalità$^G$ \textit{"Testo commentato"}
         \item La porzione di testo selezionata viene delimitata dai marcatori di commento
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui l'utente attivi la funzionalità$^G$ "Testo commentato" sul del testo già commentato:
-        \begin{enumerate}
-            \item \UCRef{commento_rim}
-        \end{enumerate}
-    \end{itemize}
 
     \subparagraph*{\UCText{commento_rim}}
     \addcontentsline{toc}{subparagraph}{\UCText{commento_rim}}
@@ -2583,7 +2549,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta
-        \item L'utente ha utilizzato la funzione \textit{"Testo commentato"} su del testo già commentato
+        \item L'utente ha selezionato una porzione di testo delimitata dai marcatori di commento
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -2591,7 +2557,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità$^G$ \textit{"Testo commentato"} su del testo già commentato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimuovi commento"} su del testo commentato
         \item La porzione di testo selezionata non è più delimitata dai marcatori di commento
     \end{enumerate}
 
