@@ -1,0 +1,154 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 18 Marzo 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{18/03/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
+  \hline
+  1.0 & Murtezan Besnik & Prima stesura & 18/03/2026 & -\\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di inizio sprint$^G$ \#6. Discussione sulle correzioni da effettuare in seguito all'incontro con il prof. Cardin e preparazione all'incontro con il prof. Vardanega.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Giuliano Banchieri & Analista \\
+  \hline
+  Gabriele Disa & Analista \\
+  \hline
+  Stefano Maso & Verificatore \\
+  \hline
+  Besnik Murtezan & Responsabile \\
+  \hline
+  Ruben Spadiliero & Amministratore \\
+  \hline
+  Niccolò Feltrin & Amministratore \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l’obiettivo di analizzare la correzione svolta dal Prof. Cardin sulla baseline RTB (presentazione avvenuta il giorno 11-03-2026) ed organizzare il lavoro in preparazione all'incontro con il Prof. Vardanega. 
+
+Le attività prioritarie individuate riguardano la correzione del documento di Analisi dei Requisiti e la conferma dell'aggiornamento dello stack tecnologico sulla base delle indicazioni fornite del Prof. Cardin. 
+
+Si ritiene inoltre necessario aggiornare il resto dei documenti con i dati relativi al quinto periodo; per il Piano di Progetto e le Norme di Progetto si dovranno anche aggiungere le nuove sezioni richieste dal Prof. Cardin.
+
+Vengono infine assegnati nuovi ruoli per lo Sprint$^G$ \#6, il quale avrà durata ridotta ad 1 settimana.
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Besnik Murtezan [Responsabile]:}
+    \begin{enumerate}
+    \item Contattare Prof. Vardanega per Presentazione RTB (Issue \#91)
+    \item Compilare il verbale della riunione del 18/03/2026 (Issue \#93)
+    \item Aggiornare nome Lettera di Candidatura RTB (Issue \#94)
+    \end{enumerate}
+\item \textbf{Assegnato a Giuliano Banchieri, Gabriele Disa [Analisti]:}
+    \begin{enumerate}
+    \item Correggere Analisi dei Requisiti su indicazioni del Prof. Cardin (Issue \#84)
+    \end{enumerate}
+\item \textbf{Assegnato a Niccolò Feltrin, Ruben Spadiliero [Amministratori]:}
+    \begin{enumerate}
+    \item Aggiornare Piano di Progetto:
+      \begin{itemize}
+        \item Stesura quinto periodo (Issue \#85)
+        \item Stesura sezione \textit{Riferimenti} (Issue \#87)
+        \item Stesura sezione \textit{Risorse Rimanenti} (Issue \#92)
+      \end{itemize}
+    \item Aggiornare Piano di Qualifica (Issue \#86)
+    \item Aggiornare Norme di Progetto (Issue \#88)
+    \end{enumerate}
+\item \textbf{Assegnato a Stefano Maso [Verificatore]:}
+    \begin{enumerate}
+    \item 
+    \end{enumerate}
+\end{itemize}
+\end{document}
