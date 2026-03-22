@@ -262,10 +262,12 @@
         \UCdefsubsub{commento_rim}{Rimozione\\Commento}
 \UCdef{elenco}{Creazione Elenco}
     \UCdefsub{elenco_num}{Elenco Numerato}
+        \UCdefsubsub{elem_num}{Elemento Numerato}
     \UCdefsub{elenco_punt}{Elenco Puntato}
-\UCdef{elemento}{Inserimento Elemento}
-    \UCdefsub{elem_num}{Elemento Numerato}
-    \UCdefsub{elem_punt}{Elemento Puntato}
+        \UCdefsubsub{elem_punt}{Elemento Puntato}
+\UCdef{rimozione_elem}{Rimozione\\Elemento Elenco}
+    \UCdefsub{rimozione_elem_num}{Rimozione\\Elemento Numerato}
+    \UCdefsub{rimozione_elem_punt}{Rimozione\\Elemento Puntato}
 \UCdef{annulla}{Annullamento Modifiche}
 \UCdef{ripristina}{Ripristino Modifiche}
 \UCdef{seleziona}{Seleziona Testo}
@@ -281,9 +283,10 @@
     \UCdefsub{riscrivi_lessico}{Riscrittura Con\\Miglioramento Lessico}
     \UCdefsub{riscrivi_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{traduci}{Traduzione\\Testo Con LLM$^G$}
-    \UCdefsub{mod_traduzione}{Gestione\\Modifica Traduzione}
-        \UCdefsubsub{traduci_redo}{Ritraduzione Testo\\Con LLM$^G$}
     \UCdefsub{traduci_llm_err}{Errore LLM\\Non Raggiungibile}
+\UCdef{mod_traduzione}{Gestione\\Modifica Traduzione}
+    \UCdefsub{traduci_redo}{Ritraduzione Testo\\Con LLM$^G$}
+        \UCdefsubsub{ritraduci_llm_err}{Errore\\Ritraduzione}
 \UCdef{genera}{Generazione Testo Con LLM$^G$}
     \UCdefsub{genera_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{critica}{Critica Testo\\Secondo Modello\\"Sei Cappelli"}
@@ -302,9 +305,8 @@
     \UCdefsub{reg_server_err}{Errore Perdita\\Connessione}
 \UCdef{autentica}{Autenticazione}
     \UCdefsub{auth_nome}{Inserimento\\Nome Utente}
-        \UCdefsubsub{auth_nome_err}{Errore\\Nome Non Valido}
     \UCdefsub{auth_pwd}{Inserimento\\Password}
-        \UCdefsubsub{auth_pwd_err}{Errore\\Password Non Valida}
+    \UCdefsub{auth_err}{Errore\\Credenziali}
     \UCdefsub{auth_server_err}{Errore Perdita\\Connessione}
 \UCdef{salva_db}{Salvataggio Nota\\Nel DataBase}
     \UCdefsub{salva_db_err}{Errore Salvataggio\\Nota DataBase}
@@ -350,6 +352,8 @@
 
         \hline
         \endlastfoot
+            1.3 & Giuliano Banchieri & Aggiunta casi d'uso \UCRef{elem_num}, \UCRef{elem_punt}, \UCRef{rimozione_elem}, \UCRef{rimozione_elem_num}, \UCRef{rimozione_elem_punt}, corretto diagramma \UCRef{traduci}, sostituito errori autenticazione con \UCRef{auth_err} & 22/03/2026 & Stefano Maso \\
+            \hline
             1.2 & Giuliano Banchieri & Secondo indicazioni Prof. Cardin: rinomina caso d'uso \UCRef{apri}, rimossi include ed extend da \UCRef{chiudi}, aggiunto \UCRef{chiudi_salva}, rimosso include da \UCRef{crea}, modificati \UCRef{salva}, aggiunto \UCRef{importa_md}, separati i casi d'uso \UCRef{formatta} & 21/03/2026 & Stefano Maso \\
             \hline
             1.1 & Giuliano Banchieri & Aggiunta riferimenti (sezione 1.3), fix tabella revisioni & 20/03/2026 & Stefano Maso \\
@@ -2652,14 +2656,16 @@
     \begin{center}
         \begin{tikzauto}
 
-            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-                \umlusecase[x=3, y=5, name=Elenco]{\UCName{elenco}}
+            \begin{umlsystem}[x=8, fill=white!10]{Sistema}
+                \umlusecase[x=4, y=5, name=Elenco]{\UCName{elenco}}
                 \umlusecase[x=0, y=3, name=Numerato]{\UCName{elenco_num}}
-                \umlusecase[x=6, y=3, name=Puntato]{\UCName{elenco_punt}}
+                \umlusecase[x=8, y=3, name=Puntato]{\UCName{elenco_punt}}
+                \umlusecase[x=0, y=1, name=elem_numerato]{\UCName{elem_num}}
+                \umlusecase[x=8, y=1, name=elem_puntato]{\UCName{elem_punt}}
             \end{umlsystem}
 
             % Attore$^G$
-            \umlactor[x=0, y=5]{Utente}
+            \umlactor[x=2, y=5]{Utente}
 
             % Associazione
             \umlassoc{Utente}{Elenco}
@@ -2667,6 +2673,8 @@
             % Generalizzazione
             \umlinherit{Numerato}{Elenco}
             \umlinherit{Puntato}{Elenco}
+            \umlinclude{Numerato}{elem_numerato}
+            \umlinclude{Puntato}{elem_puntato}
 
         \end{tikzauto}
     \end{center}
@@ -2716,6 +2724,30 @@
         \item Viene creato un elenco numerato alla posizione corrente del cursore
     \end{enumerate}
 
+    \paragraph*{\UCText{elem_num}}
+    \addcontentsline{toc}{paragraph}{\UCText{elem_num}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema 
+        \item L'utente ha una nota aperta
+        \item L'utente posiziona il cursore di testo all'interno di un elenco numerato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene creato un elemento di un elenco numerato alla posizione corrente del cursore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore di testo in un elenco numerato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Elemento numerato"}
+        \item Viene aggiunto un nuovo elemento all'elenco numerato
+    \end{enumerate}
+
     \paragraph*{\UCText{elenco_punt}}
     \addcontentsline{toc}{paragraph}{\UCText{elenco_punt}}
 
@@ -2738,6 +2770,128 @@
         \item L'utente posiziona il cursore di testo nel punto desiderato
         \item L'utente attiva la funzionalità$^G$ \textit{"Elenco puntato"}
         \item Viene creato un elenco puntato alla posizione corrente del cursore
+    \end{enumerate}
+
+    \paragraph*{\UCText{elem_punt}}
+    \addcontentsline{toc}{paragraph}{\UCText{elem_punt}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema 
+        \item L'utente ha una nota aperta
+        \item L'utente posiziona il cursore di testo all'interno di un elenco puntato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene creato un elemento di un elenco puntato alla posizione corrente del cursore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore di testo in un elenco puntato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Elemento puntato"}
+        \item Viene aggiunto un nuovo elemento all'elenco puntato
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \subsubsection*{\UCText{rimozione_elem}}
+    \addcontentsline{toc}{subsubsection}{\UCText{rimozione_elem}}
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzauto}
+
+            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+                \umlusecase[x=3, y=5, name=Elemento, align=center]{\UCName{rimozione_elem}}
+                \umlusecase[x=0, y=3, name=Numerato, align=center]{\UCName{rimozione_elem_num}}
+                \umlusecase[x=6, y=3, name=Puntato, align=center]{\UCName{rimozione_elem_punt}}
+            \end{umlsystem}
+
+            % Attore$^G$
+            \umlactor[x=0, y=5]{Utente}
+
+            % Associazione
+            \umlassoc{Utente}{Elemento}
+
+            % Generalizzazione
+            \umlinherit{Numerato}{Elemento}
+            \umlinherit{Puntato}{Elemento}
+
+        \end{tikzauto}
+    \end{center}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta
+        \item L'utente posiziona il cursore all'inizio di un elemento vuoto di un elenco
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene eliminato l'elemento puntato dal cursore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore all'inizio di un elemento vuoto di un elenco
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimozione elemento"}
+        \item Viene eliminato l'elemento puntato dal cursore
+    \end{enumerate}
+
+    \paragraph*{\UCText{rimozione_elem_num}}
+    \addcontentsline{toc}{paragraph}{\UCText{rimozione_elem_num}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema 
+        \item L'utente ha una nota aperta
+        \item L'utente posiziona il cursore di testo all'inizio di un elemento vuoto di un elenco numerato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene eliminato l'elemento puntato dal cursore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore di testo all'inizio di un elemento numerato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimozione elemento numerato"}
+        \item Viene eliminato l'elemento numerato dal cursore
+    \end{enumerate}
+
+    \paragraph*{\UCText{rimozione_elem_punt}}
+    \addcontentsline{toc}{paragraph}{\UCText{rimozione_elem_punt}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema 
+        \item L'utente ha una nota aperta
+        \item L'utente posiziona il cursore di testo all'inizio di un elemento di un elenco puntato
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Viene eliminato l'elemento puntato dal cursore
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore di testo all'inizio di un elemento puntato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Rimozione elemento puntato"}
+        \item Viene eliminato l'elemento puntato dal cursore
     \end{enumerate}
 
     \vspace{1cm}
@@ -3296,10 +3450,8 @@
     \begin{center}
         \begin{tikzauto}
             \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=traduzione, align=center]{\UCName{traduci}}
-                \umlusecase[x=0, y=2, name=mod, align=center]{\UCName{mod_traduzione}}
-                \umlusecase[x=0, y=0, name=traduzione_redo, align=center]{\UCName{traduci_redo}}
-                \umlusecase[x=6, y=2, name=llm_err, align=center]{\UCName{traduci_llm_err}}
+                \umlusecase[x=2, y=4, name=traduzione, align=center]{\UCName{traduci}}
+                \umlusecase[x=2, y=2, name=llm_err, align=center]{\UCName{traduci_llm_err}}
             \end{umlsystem}
 
             % Attori
@@ -3311,10 +3463,7 @@
             \umlassoc{LLM$^G$}{traduzione}
 
             % Associazioni Casi d'Uso$^G$
-            \umlinclude{mod}{traduzione}
-            \umlextend{traduzione_redo}{mod}
             \umlextend{llm_err}{traduzione}
-            \umlextend{llm_err}{traduzione_redo}
         \end{tikzauto}
     \end{center}
 
@@ -3353,8 +3502,58 @@
         \end{itemize}
     \end{itemize}
 
+    \paragraph*{\UCText{traduci_llm_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{traduci_llm_err}}
+
+    \textbf{Attori principali}
+    \begin{itemize}
+        \item Utente
+    \end{itemize}
+    \textbf{Precondizioni}
+    \begin{itemize}
+        \item L'utente è connesso al sistema
+        \item L'utente ha una nota aperta (\UCRef{apri})
+        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing (\UCRef{seleziona})
+    \end{itemize}
+    \textbf{Postcondizioni}
+    \begin{itemize}
+        \item Il testo selezionato non è stato tradotto
+    \end{itemize}
+    \textbf{Scenario principale}
+    \begin{enumerate}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Traduci testo"}
+        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
+        \item Il sistema non riceva la risposta dall'LLM$^G$
+        \item Il sistema avvisa l'utente della perdita di connessione alla LLM$^G$
+    \end{enumerate}
+
+    \vspace{1cm}
+
     \paragraph*{\UCText{mod_traduzione}}
     \addcontentsline{toc}{paragraph}{\UCText{mod_traduzione}}
+
+    \begin{center}
+        \begin{tikzauto}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4, name=mod_traduzione, align=center]{\UCName{mod_traduzione}}
+                \umlusecase[x=0, y=2, name=traduzione_redo, align=center]{\UCName{traduci_redo}}
+                \umlusecase[x=0, y=0, name=llm_err, align=center]{\UCName{ritraduci_llm_err}}
+            \end{umlsystem}
+
+            % Attori
+            \umlactor[x=-1, y=4]{Utente}
+            \umlactor[x=9, y=2, scale=0.75]{LLM$^G$}
+
+            % Associazioni Utente
+            \umlassoc{Utente}{mod_traduzione}
+            \umlassoc{LLM$^G$}{traduzione_redo}
+
+            % Associazioni Casi d'Uso$^G$
+            \umlextend{llm_err}{traduzione_redo}
+            \umlextend{traduzione_redo}{mod_traduzione}
+        \end{tikzauto}
+    \end{center}
+
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -3403,24 +3602,24 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Il testo viene ritradotto nella lingua selezionata
+        \item La traduzione è stata aggiornata sulla base del testo modificato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
         \item Il sistema riceve la risposta dall'LLM$^G$
-        \item Il sistema sostituisce la traduzione obsoleta con quella nuovamente tradotta
+        \item Il sistema sostituisce la traduzione obsoleta con quella aggiornata
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
         \item In caso il sistema non riesce a connettersi con la LLM$^G$:
         \begin{itemize}
-            \item \UCRef{traduci_llm_err}
+            \item \UCRef{ritraduci_llm_err}
         \end{itemize}
     \end{itemize}
 
-    \paragraph*{\UCText{traduci_llm_err}}
-    \addcontentsline{toc}{paragraph}{\UCText{traduci_llm_err}}
+    \paragraph*{\UCText{ritraduci_llm_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{ritraduci_llm_err}}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3430,7 +3629,7 @@
     \begin{itemize}
         \item L'utente è connesso al sistema
         \item L'utente ha una nota aperta (\UCRef{apri})
-        \item L'utente seleziona una porzione del testo o l'intero testo dentro l'area di editing (\UCRef{seleziona})
+        \item L'utente ha utilizzato la funzionalità$^G$ di \textit{"Ritraduzione Testo"}
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -3438,7 +3637,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente attiva la funzionalità$^G$ \textit{"Riassumi testo"}
+        \item L'utente attiva la funzionalità$^G$ \textit{"Ritraduci testo"}
         \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
         \item Il sistema non riceva la risposta dall'LLM$^G$
         \item Il sistema avvisa l'utente della perdita di connessione alla LLM$^G$
@@ -3995,16 +4194,15 @@
     \begin{center}
         \begin{tikzauto}
             \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=4, y=4.5, name=autenticazione]{(OPT) \UCName{autentica}}
-                \umlusecase[x=0, y=2.5, name=auth_nome, align=center]{(OPT) \UCName{auth_nome}}
-                \umlusecase[x=8, y=2.5, name=auth_pwd, align=center]{(OPT) \UCName{auth_pwd}}
-                \umlusecase[x=0, y=0, name=err_nome, align=center]{(OPT) \UCName{auth_nome_err}}
-                \umlusecase[x=8, y=0, name=err_pwd, align=center]{(OPT) \UCName{auth_pwd_err}}
-                \umlusecase[x=8, y=6.5, name=server_err, align=center]{(OPT) \UCName{auth_server_err}}
+                \umlusecase[x=4, y=4, name=autenticazione]{(OPT) \UCName{autentica}}
+                \umlusecase[x=0, y=2, name=auth_nome, align=center]{(OPT) \UCName{auth_nome}}
+                \umlusecase[x=8, y=2, name=auth_pwd, align=center]{(OPT) \UCName{auth_pwd}}
+                \umlusecase[x=8, y=6, name=server_err, align=center]{(OPT) \UCName{auth_server_err}}
+                \umlusecase[x=0, y=6, name=err_auth, align=center]{(OPT) \UCName{auth_err}}
             \end{umlsystem}
 
             % Attori
-            \umlactor[x=0, y=4.5]{Utente}
+            \umlactor[x=0, y=4]{Utente}
 
             % Associazioni Utente
             \umlassoc{Utente}{autenticazione}
@@ -4012,8 +4210,7 @@
             % Associazioni Casi d'Uso$^G$
             \umlinclude{autenticazione}{auth_nome}
             \umlinclude{autenticazione}{auth_pwd}
-            \umlextend{err_nome}{auth_nome}
-            \umlextend{err_pwd}{auth_pwd}
+            \umlextend{err_auth}{autenticazione}
             \umlextend{server_err}{autenticazione}
 
         \end{tikzauto}
@@ -4039,6 +4236,10 @@
     \end{enumerate}
     \textbf{Estensioni}
     \begin{itemize}
+        \item In caso le credenziali inserite non siano valide:
+        \begin{itemize}
+            \item \UCRef{auth_err}
+        \end{itemize}
         \item In caso il sistema perda la connessione:
         \begin{itemize}
             \item \UCRef{auth_server_err}
@@ -4068,36 +4269,6 @@
         \item L'utente inserisce il proprio nome utente
         \item Il nome utente inserito viene validato
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso il nome sia valido:
-        \begin{itemize}
-            \item \UCRef{auth_nome_err}
-        \end{itemize}
-    \end{itemize}
-
-    \subparagraph*{(OPT) \UCText{auth_nome_err}}
-    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{auth_nome_err}}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente non è autenticato
-        \item L'utente sta effettuando l'autenticazione (\UCRef{autentica})
-        \item L'utente ha inserito il proprio nome (\UCRef{auth_nome})
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item L'utente non è autenticato
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema avvisa l'utente del nome non valido
-    \end{enumerate}
 
     \paragraph*{(OPT) \UCText{auth_pwd}}
     \addcontentsline{toc}{paragraph}{(OPT) \UCText{auth_pwd}}
@@ -4122,16 +4293,9 @@
         \item L'utente inserisce la propria password
         \item La password inserita viene validata
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item In caso la password non sia valida:
-        \begin{itemize}
-            \item \UCRef{auth_pwd_err}
-        \end{itemize}
-    \end{itemize}
 
-    \subparagraph*{(OPT) \UCText{auth_pwd_err}}
-    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{auth_pwd_err}}
+    \subparagraph*{(OPT) \UCText{auth_err}}
+    \addcontentsline{toc}{subparagraph}{(OPT) \UCText{auth_err}}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -4142,7 +4306,7 @@
         \item L'utente è connesso al sistema
         \item L'utente non è autenticato
         \item L'utente sta effettuando l'autenticazione (\UCRef{autentica})
-        \item L'utente ha inserito la propria password (\UCRef{auth_pwd})
+        \item L'utente ha inserito le proprie credenziali (\UCRef{auth_nome} e \UCRef{auth_pwd})
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -4150,7 +4314,7 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item Il sistema avvisa l'utente della password non valida
+        \item Il sistema avvisa l'utente delle credenziali non valide
     \end{enumerate}
 
     \paragraph*{\UCText{auth_server_err}}
@@ -4545,19 +4709,13 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item Viene associata la nota specificata dall'utente tramite il link MarkDown
+        \item Una nota viene associata alla nota aperta per fornire un contesto aggiuntivo a future operazioni effettuate sul testo tramite LLM$^G$
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
-        \item L'utente inserisce all'interno del testo un link alla nota da associare
+        \item L'utente utilizza la funzionalità$^G$ \textit{"Associa Nota"} per associare una nota alla nota aperta
+        \item Il sistema associa una nota scelta dall'utente alla nota aperta
     \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Nel caso in cui venga successivamente effettuata un'operazione sul testo tramite LLM$^G$:
-        \begin{enumerate}
-            \item Il sistema fornirà all'LLM$^G$ un contesto basato anche sulla nota associata
-        \end{enumerate}
-    \end{itemize}
 
     \section{Requisiti}
     \subsection{Classificazione dei requisiti}
