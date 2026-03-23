@@ -2653,31 +2653,35 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzauto}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzauto}
 
-            \begin{umlsystem}[x=8, fill=white!10]{Sistema}
-                \umlusecase[x=4, y=5, name=Elenco]{\UCName{elenco}}
-                \umlusecase[x=0, y=3, name=Numerato]{\UCName{elenco_num}}
-                \umlusecase[x=8, y=3, name=Puntato]{\UCName{elenco_punt}}
-                \umlusecase[x=0, y=1, name=elem_numerato]{\UCName{elem_num}}
-                \umlusecase[x=8, y=1, name=elem_puntato]{\UCName{elem_punt}}
-            \end{umlsystem}
+        \begin{umlsystem}[x=8, fill=white!10]{Sistema}
+            \umlusecase[x=4, y=5, name=Elenco]{\UCName{elenco}}
+            \umlusecase[x=0, y=3, name=Numerato]{\UCName{elenco_num}}
+            \umlusecase[x=8, y=3, name=Puntato]{\UCName{elenco_punt}}
+            \umlusecase[x=0, y=1, name=elem_numerato]{\UCName{elem_num}}
+            \umlusecase[x=8, y=1, name=elem_puntato]{\UCName{elem_punt}}
+        \end{umlsystem}
 
-            % Attore$^G$
-            \umlactor[x=2, y=5]{Utente}
+        % Attore
+        \umlactor[x=2, y=5]{Utente}
 
-            % Associazione
-            \umlassoc{Utente}{Elenco}
+        % Associazione
+        \umlassoc{Utente}{Elenco}
 
-            % Generalizzazione
-            \umlinherit{Numerato}{Elenco}
-            \umlinherit{Puntato}{Elenco}
-            \umlinclude{Numerato}{elem_numerato}
-            \umlinclude{Puntato}{elem_puntato}
+        % Generalizzazione
+        \umlinherit{Numerato}{Elenco}
+        \umlinherit{Puntato}{Elenco}
+        \umlinclude{Numerato}{elem_numerato}
+        \umlinclude{Puntato}{elem_puntato}
 
-        \end{tikzauto}
-    \end{center}
+    \end{tikzauto}
+
+    \caption{\UCText{elenco}}
+    \label{fig:elenco_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -2803,27 +2807,31 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzauto}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzauto}
 
-            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-                \umlusecase[x=3, y=5, name=Elemento, align=center]{\UCName{rimozione_elem}}
-                \umlusecase[x=0, y=3, name=Numerato, align=center]{\UCName{rimozione_elem_num}}
-                \umlusecase[x=6, y=3, name=Puntato, align=center]{\UCName{rimozione_elem_punt}}
-            \end{umlsystem}
+        \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+            \umlusecase[x=3, y=5, name=Elemento, align=center]{\UCName{rimozione_elem}}
+            \umlusecase[x=0, y=3, name=Numerato, align=center]{\UCName{rimozione_elem_num}}
+            \umlusecase[x=6, y=3, name=Puntato, align=center]{\UCName{rimozione_elem_punt}}
+        \end{umlsystem}
 
-            % Attore$^G$
-            \umlactor[x=0, y=5]{Utente}
+        % Attore
+        \umlactor[x=0, y=5]{Utente}
 
-            % Associazione
-            \umlassoc{Utente}{Elemento}
+        % Associazione
+        \umlassoc{Utente}{Elemento}
 
-            % Generalizzazione
-            \umlinherit{Numerato}{Elemento}
-            \umlinherit{Puntato}{Elemento}
+        % Generalizzazione
+        \umlinherit{Numerato}{Elemento}
+        \umlinherit{Puntato}{Elemento}
 
-        \end{tikzauto}
-    \end{center}
+    \end{tikzauto}
+
+    \caption{\UCText{rimozione_elem}}
+    \label{fig:rimozione_elem_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -2902,20 +2910,24 @@
     \medskip
 
     \vspace{1cm}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=annulla]{\UCName{annulla}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=annulla]{\UCName{annulla}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{annulla}
+        % Associazioni Utente
+        \umlassoc{Utente}{annulla}
 
-        \end{tikzpicture}
-    \end{center}
+    \end{tikzpicture}
+
+    \caption{\UCText{annulla}}
+    \label{fig:annulla_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -2944,20 +2956,24 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=ripristina]{\UCName{ripristina}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=ripristina]{\UCName{ripristina}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{ripristina}
+        % Associazioni Utente
+        \umlassoc{Utente}{ripristina}
 
-        \end{tikzpicture}
-    \end{center}
+    \end{tikzpicture}
+
+    \caption{\UCText{ripristina}}
+    \label{fig:ripristina_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -2985,20 +3001,24 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=sel]{\UCName{seleziona}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=sel]{\UCName{seleziona}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{sel}
+        % Associazioni Utente
+        \umlassoc{Utente}{sel}
 
-        \end{tikzpicture}
-    \end{center}
+    \end{tikzpicture}
+
+    \caption{\UCText{seleziona}}
+    \label{fig:seleziona_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3025,20 +3045,24 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=copia]{\UCName{copia}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=copia]{\UCName{copia}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{copia}
+        % Associazioni Utente
+        \umlassoc{Utente}{copia}
 
-        \end{tikzpicture}
-    \end{center}
+    \end{tikzpicture}
+
+    \caption{\UCText{copia}}
+    \label{fig:copia_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3066,20 +3090,24 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=taglia]{\UCName{taglia}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=taglia]{\UCName{taglia}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{taglia}
+        % Associazioni Utente
+        \umlassoc{Utente}{taglia}
 
-        \end{tikzpicture}
-    \end{center}
+    \end{tikzpicture}
+
+    \caption{\UCText{taglia}}
+    \label{fig:taglia_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3107,20 +3135,24 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=inc]{\UCName{incolla}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=inc]{\UCName{incolla}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{inc}
+        % Associazioni Utente
+        \umlassoc{Utente}{inc}
 
-        \end{tikzpicture}
-    \end{center}
+    \end{tikzpicture}
+
+    \caption{\UCText{incolla}}
+    \label{fig:incolla_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3150,25 +3182,30 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=riassumere]{\UCName{riassumi}}
-                \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{riassumi_llm_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=riassumere]{\UCName{riassumi}}
+            \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{riassumi_llm_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4, scale=0.75]{LLM$^G$}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
+        \umlactor[x=10, y=4, scale=0.75]{LLM$^G$}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{riassumere}
-            \umlassoc{LLM$^G$}{riassumere}
+        % Associazioni Utente
+        \umlassoc{Utente}{riassumere}
+        \umlassoc{LLM$^G$}{riassumere}
 
-            % Associazioni Casi d'Uso$^G$
-            \umlextend{llm_err}{riassumere}
-        \end{tikzpicture}
-    \end{center}
+        % Associazioni Casi d'Uso
+        \umlextend{llm_err}{riassumere}
+
+    \end{tikzpicture}
+
+    \caption{\UCText{riassumi} e sottocaso}
+    \label{fig:riassumi_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3237,34 +3274,40 @@
 
     \medskip
 
-    \begin{center}
-        \resizebox{0.98\textwidth}{!}{
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=riscrittura]{\UCName{riscrivi}}
-                \umlusecase[x=0, y=6, name=llm_err, align=center]{\UCName{riscrivi_llm_err}}
-                \umlusecase[x=5, y=2, name=ris_lessico, align=center]{\UCName{riscrivi_lessico}}
-                \umlusecase[x=3, y=0, name=ris_grammatica, align=center]{\UCName{riscrivi_grammatica}}
-                \umlusecase[x=-5, y=2, name=ris_variazione, align=center]{\UCName{riscrivi_variazione}}
-                \umlusecase[x=-3, y=0, name=ris_modifica, align=center]{\UCName{riscrivi_modifica}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \resizebox{0.98\textwidth}{!}{
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=riscrittura]{\UCName{riscrivi}}
+            \umlusecase[x=0, y=6, name=llm_err, align=center]{\UCName{riscrivi_llm_err}}
+            \umlusecase[x=5, y=2, name=ris_lessico, align=center]{\UCName{riscrivi_lessico}}
+            \umlusecase[x=3, y=0, name=ris_grammatica, align=center]{\UCName{riscrivi_grammatica}}
+            \umlusecase[x=-5, y=2, name=ris_variazione, align=center]{\UCName{riscrivi_variazione}}
+            \umlusecase[x=-3, y=0, name=ris_modifica, align=center]{\UCName{riscrivi_modifica}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=-3, y=4]{Utente}
-            \umlactor[x=15, y=4, scale=0.75]{LLM$^G$}
+        % Attori
+        \umlactor[x=-3, y=4]{Utente}
+        \umlactor[x=15, y=4, scale=0.75]{LLM$^G$}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{riscrittura}
-            \umlassoc{LLM$^G$}{riscrittura}
+        % Associazioni Utente
+        \umlassoc{Utente}{riscrittura}
+        \umlassoc{LLM$^G$}{riscrittura}
 
-            % Associazioni Casi d'Uso$^G$
-            \umlextend{llm_err}{riscrittura}
-            \umlinherit{ris_lessico}{riscrittura}
-            \umlinherit{ris_grammatica}{riscrittura}
-            \umlinherit{ris_variazione}{riscrittura}
-            \umlinherit{ris_modifica}{riscrittura}
-        \end{tikzpicture}}
-    \end{center}
+        % Associazioni Casi d'Uso
+        \umlextend{llm_err}{riscrittura}
+        \umlinherit{ris_lessico}{riscrittura}
+        \umlinherit{ris_grammatica}{riscrittura}
+        \umlinherit{ris_variazione}{riscrittura}
+        \umlinherit{ris_modifica}{riscrittura}
+
+    \end{tikzpicture}
+    }
+
+    \caption{\UCText{riscrivi}, sottocasi e varianti di riscrittura}
+    \label{fig:riscrivi_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3447,25 +3490,30 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzauto}
-            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=2, y=4, name=traduzione, align=center]{\UCName{traduci}}
-                \umlusecase[x=2, y=2, name=llm_err, align=center]{\UCName{traduci_llm_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzauto}
+        \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+            \umlusecase[x=2, y=4, name=traduzione, align=center]{\UCName{traduci}}
+            \umlusecase[x=2, y=2, name=llm_err, align=center]{\UCName{traduci_llm_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=-1, y=4]{Utente}
-            \umlactor[x=14, y=4, scale=0.75]{LLM$^G$}
+        % Attori
+        \umlactor[x=-1, y=4]{Utente}
+        \umlactor[x=14, y=4, scale=0.75]{LLM$^G$}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{traduzione}
-            \umlassoc{LLM$^G$}{traduzione}
+        % Associazioni Utente
+        \umlassoc{Utente}{traduzione}
+        \umlassoc{LLM$^G$}{traduzione}
 
-            % Associazioni Casi d'Uso$^G$
-            \umlextend{llm_err}{traduzione}
-        \end{tikzauto}
-    \end{center}
+        % Associazioni Casi d'Uso
+        \umlextend{llm_err}{traduzione}
+
+    \end{tikzauto}
+
+    \caption{\UCText{traduci} e sottocaso}
+    \label{fig:traduci_usecase}
+    \end{figure}    
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3532,27 +3580,32 @@
     \paragraph*{\UCText{mod_traduzione}}
     \addcontentsline{toc}{paragraph}{\UCText{mod_traduzione}}
 
-    \begin{center}
-        \begin{tikzauto}
-            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=mod_traduzione, align=center]{\UCName{mod_traduzione}}
-                \umlusecase[x=0, y=2, name=traduzione_redo, align=center]{\UCName{traduci_redo}}
-                \umlusecase[x=0, y=0, name=llm_err, align=center]{\UCName{ritraduci_llm_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzauto}
+        \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=mod_traduzione, align=center]{\UCName{mod_traduzione}}
+            \umlusecase[x=0, y=2, name=traduzione_redo, align=center]{\UCName{traduci_redo}}
+            \umlusecase[x=0, y=0, name=llm_err, align=center]{\UCName{ritraduci_llm_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=-1, y=4]{Utente}
-            \umlactor[x=9, y=2, scale=0.75]{LLM$^G$}
+        % Attori
+        \umlactor[x=-1, y=4]{Utente}
+        \umlactor[x=9, y=2, scale=0.75]{LLM$^G$}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{mod_traduzione}
-            \umlassoc{LLM$^G$}{traduzione_redo}
+        % Associazioni Utente
+        \umlassoc{Utente}{mod_traduzione}
+        \umlassoc{LLM$^G$}{traduzione_redo}
 
-            % Associazioni Casi d'Uso$^G$
-            \umlextend{llm_err}{traduzione_redo}
-            \umlextend{traduzione_redo}{mod_traduzione}
-        \end{tikzauto}
-    \end{center}
+        % Associazioni Casi d'Uso
+        \umlextend{llm_err}{traduzione_redo}
+        \umlextend{traduzione_redo}{mod_traduzione}
+
+    \end{tikzauto}
+
+    \caption{\UCText{mod_traduzione} e sottocasi}
+    \label{fig:traduci_redo_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3650,25 +3703,30 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=creazione]{\UCName{genera}}
-                \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{genera_llm_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=creazione]{\UCName{genera}}
+            \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{genera_llm_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
-            \umlactor[x=10, y=4, scale=0.75]{LLM$^G$}
+        % Attori
+        \umlactor[x=-1, y=4]{Utente}
+        \umlactor[x=11, y=4, scale=0.75]{LLM$^G$}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{creazione}
-            \umlassoc{LLM$^G$}{creazione}
+        % Associazioni Utente
+        \umlassoc{Utente}{creazione}
+        \umlassoc{LLM$^G$}{creazione}
 
-            % Associazioni Casi d'Uso$^G$
-            \umlextend{llm_err}{creazione}
-        \end{tikzpicture}
-    \end{center}
+        % Associazioni Casi d'Uso
+        \umlextend{llm_err}{creazione}
+
+    \end{tikzpicture}
+
+    \caption{\UCText{genera} e sottocaso}
+    \label{fig:genera_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -3738,38 +3796,43 @@
 
     \medskip
 
-    \begin{center}
+    \begin{figure}[H]
+    \centering
 
-        \begin{tikzauto}
-            \begin{umlsystem}[x=6,y=0]{Sistema}
-                \umlusecase[x=1, y=9, name=critica, align=center]{\UCName{critica}}
-                \umlusecase[x=7, y=7.5, name=rosso, align=center]{\textbf{\UCName{critica_rosso}} \\ (Cappello Rosso)}
-                \umlusecase[x=7, y=6, name=bianco, align=center]{\textbf{\UCName{critica_bianco}} \\ (Cappello Bianco)}
-                \umlusecase[x=7, y=4.5, name=giallo, align=center]{\textbf{\UCName{critica_giallo}} \\ (Cappello Giallo)}
-                \umlusecase[x=7, y=3, name=nero, align=center]{\textbf{\UCName{critica_nero}} \\ (Cappello Nero)}
-                \umlusecase[x=7, y=1.5, name=verde, align=center]{\textbf{\UCName{critica_verde}} \\ (Cappello Verde)}
-                \umlusecase[x=7, y=0, name=blu, align=center]{\textbf{\UCName{critica_blu}} \\ (Cappello Blu)}
-                \umlusecase[x=7, y=11, name=llm_err, align=center]{\UCName{critica_llm_err}}
-                % Attori
-                \umlactor[x=-3, y=9]{Utente}
-                \umlactor[x=13, y=9, scale=0.75]{LLM$^G$}
+    \begin{tikzauto}
+        \begin{umlsystem}[x=6,y=0]{Sistema}
+            \umlusecase[x=1, y=9, name=critica, align=center]{\UCName{critica}}
+            \umlusecase[x=7, y=7.5, name=rosso, align=center]{\textbf{\UCName{critica_rosso}} \\ (Cappello Rosso)}
+            \umlusecase[x=7, y=6, name=bianco, align=center]{\textbf{\UCName{critica_bianco}} \\ (Cappello Bianco)}
+            \umlusecase[x=7, y=4.5, name=giallo, align=center]{\textbf{\UCName{critica_giallo}} \\ (Cappello Giallo)}
+            \umlusecase[x=7, y=3, name=nero, align=center]{\textbf{\UCName{critica_nero}} \\ (Cappello Nero)}
+            \umlusecase[x=7, y=1.5, name=verde, align=center]{\textbf{\UCName{critica_verde}} \\ (Cappello Verde)}
+            \umlusecase[x=7, y=0, name=blu, align=center]{\textbf{\UCName{critica_blu}} \\ (Cappello Blu)}
+            \umlusecase[x=7, y=11, name=llm_err, align=center]{\UCName{critica_llm_err}}
 
-                % Associazioni Utente
-                \umlassoc{Utente}{critica}
-                \umlassoc{LLM$^G$}{critica}
+            % Attori
+            \umlactor[x=-3, y=9]{Utente}
+            \umlactor[x=13, y=9, scale=0.75]{LLM$^G$}
 
-                % Associazioni Casi d'Uso$^G$
-                \umlHVinherit{rosso}{critica}
-                \umlHVinherit{bianco}{critica}
-                \umlHVinherit{giallo}{critica}
-                \umlHVinherit{nero}{critica}
-                \umlHVinherit{verde}{critica}
-                \umlHVinherit{blu}{critica}
-                \umlextend{llm_err}{critica}
+            % Associazioni Utente
+            \umlassoc{Utente}{critica}
+            \umlassoc{LLM$^G$}{critica}
 
-            \end{umlsystem}
-        \end{tikzauto}
-    \end{center}
+            % Associazioni Casi d'Uso
+            \umlHVinherit{rosso}{critica}
+            \umlHVinherit{bianco}{critica}
+            \umlHVinherit{giallo}{critica}
+            \umlHVinherit{nero}{critica}
+            \umlHVinherit{verde}{critica}
+            \umlHVinherit{blu}{critica}
+            \umlextend{llm_err}{critica}
+
+        \end{umlsystem}
+    \end{tikzauto}
+
+    \caption{\UCText{critica} e varianti}
+    \label{fig:critica_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -4001,32 +4064,36 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzauto}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=4, y=4.5, name=registrazione]{(OPT) \UCName{registra}}
-                \umlusecase[x=0, y=2.5, name=reg_nome, align=center]{(OPT) \UCName{reg_nome}}
-                \umlusecase[x=8, y=2.5, name=reg_pwd, align=center]{(OPT) \UCName{reg_pwd}}
-                \umlusecase[x=0, y=0, name=err_nome, align=center]{(OPT) \UCName{reg_nome_err}}
-                \umlusecase[x=8, y=0, name=err_pwd, align=center]{(OPT) \UCName{reg_pwd_err}}
-                \umlusecase[x=8, y=6.5, name=server_err, align=center]{(OPT) \UCName{reg_server_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzauto}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=4, y=4.5, name=registrazione]{(OPT) \UCName{registra}}
+            \umlusecase[x=0, y=2.5, name=reg_nome, align=center]{(OPT) \UCName{reg_nome}}
+            \umlusecase[x=8, y=2.5, name=reg_pwd, align=center]{(OPT) \UCName{reg_pwd}}
+            \umlusecase[x=0, y=0, name=err_nome, align=center]{(OPT) \UCName{reg_nome_err}}
+            \umlusecase[x=8, y=0, name=err_pwd, align=center]{(OPT) \UCName{reg_pwd_err}}
+            \umlusecase[x=8, y=6.5, name=server_err, align=center]{(OPT) \UCName{reg_server_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4.5]{Utente}
+        % Attori
+        \umlactor[x=0, y=4.5]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{registrazione}
+        % Associazioni Utente
+        \umlassoc{Utente}{registrazione}
 
-            % Associazioni Casi d'Uso$^G$
-            \umlinclude{registrazione}{reg_nome}
-            \umlinclude{registrazione}{reg_pwd}
-            \umlextend{err_nome}{reg_nome}
-            \umlextend{err_pwd}{reg_pwd}
-            \umlextend{server_err}{registrazione}
+        % Associazioni Casi d'Uso
+        \umlinclude{registrazione}{reg_nome}
+        \umlinclude{registrazione}{reg_pwd}
+        \umlextend{err_nome}{reg_nome}
+        \umlextend{err_pwd}{reg_pwd}
+        \umlextend{server_err}{registrazione}
 
-        \end{tikzauto}
-    \end{center}
+    \end{tikzauto}
+
+    \caption{\UCText{registra} e sottocasi}
+    \label{fig:registrazione_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -4191,30 +4258,34 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzauto}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=4, y=4, name=autenticazione]{(OPT) \UCName{autentica}}
-                \umlusecase[x=0, y=2, name=auth_nome, align=center]{(OPT) \UCName{auth_nome}}
-                \umlusecase[x=8, y=2, name=auth_pwd, align=center]{(OPT) \UCName{auth_pwd}}
-                \umlusecase[x=8, y=6, name=server_err, align=center]{(OPT) \UCName{auth_server_err}}
-                \umlusecase[x=0, y=6, name=err_auth, align=center]{(OPT) \UCName{auth_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzauto}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=4, y=4, name=autenticazione]{(OPT) \UCName{autentica}}
+            \umlusecase[x=0, y=2, name=auth_nome, align=center]{(OPT) \UCName{auth_nome}}
+            \umlusecase[x=8, y=2, name=auth_pwd, align=center]{(OPT) \UCName{auth_pwd}}
+            \umlusecase[x=8, y=6, name=server_err, align=center]{(OPT) \UCName{auth_server_err}}
+            \umlusecase[x=0, y=6, name=err_auth, align=center]{(OPT) \UCName{auth_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{autenticazione}
+        % Associazioni Utente
+        \umlassoc{Utente}{autenticazione}
 
-            % Associazioni Casi d'Uso$^G$
-            \umlinclude{autenticazione}{auth_nome}
-            \umlinclude{autenticazione}{auth_pwd}
-            \umlextend{err_auth}{autenticazione}
-            \umlextend{server_err}{autenticazione}
+        % Associazioni Casi d'Uso
+        \umlinclude{autenticazione}{auth_nome}
+        \umlinclude{autenticazione}{auth_pwd}
+        \umlextend{err_auth}{autenticazione}
+        \umlextend{server_err}{autenticazione}
 
-        \end{tikzauto}
-    \end{center}
+    \end{tikzauto}
+
+    \caption{\UCText{autentica} e sottocasi}
+    \label{fig:autenticazione_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -4341,21 +4412,26 @@
 
     \subsubsection*{(OPT) \UCText{salva_db}}
     \addcontentsline{toc}{subsubsection}{(OPT) \UCText{salva_db}}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=0, name=salva_db, align=center]{(OPT) \UCName{salva_db}}
-                \umlusecase[x=0, y=-2, name=err_db, align=center]{(OPT) \UCName{salva_db_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=0, name=salva_db, align=center]{(OPT) \UCName{salva_db}}
+            \umlusecase[x=0, y=-2, name=err_db, align=center]{(OPT) \UCName{salva_db_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=-2, y=0]{Utente autenticato}
+        % Attori
+        \umlactor[x=-2, y=0]{Utente autenticato}
 
-            % Associazioni Utente
-            \umlassoc{Utente autenticato}{salva_db}
-            \umlextend{err_db}{salva_db}
-        \end{tikzpicture}
-    \end{center}
+        % Associazioni Utente
+        \umlassoc{Utente autenticato}{salva_db}
+        \umlextend{err_db}{salva_db}
+
+    \end{tikzpicture}
+
+    \caption{\UCText{salva_db} e sottocaso}
+    \label{fig:salva_db_usecase}
+    \end{figure}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -4411,21 +4487,26 @@
 
     \subsubsection*{(OPT) \UCText{apri_nota_db}}
     \addcontentsline{toc}{subsubsection}{(OPT) \UCText{apri_nota_db}}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=0, name=apri_db, align=center]{(OPT) \UCName{apri_nota_db}}
-                \umlusecase[x=0, y=-2, name=err_db, align=center]{(OPT) \UCName{apri_nota_db_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=0, name=apri_db, align=center]{(OPT) \UCName{apri_nota_db}}
+            \umlusecase[x=0, y=-2, name=err_db, align=center]{(OPT) \UCName{apri_nota_db_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=-2, y=0]{Utente autenticato}
+        % Attori
+        \umlactor[x=-2, y=0]{Utente autenticato}
 
-            % Associazioni Utente
-            \umlassoc{Utente autenticato}{apri_db}
-            \umlextend{err_db}{apri_db}
-        \end{tikzpicture}
-    \end{center}
+        % Associazioni Utente
+        \umlassoc{Utente autenticato}{apri_db}
+        \umlextend{err_db}{apri_db}
+
+    \end{tikzpicture}
+
+    \caption{\UCText{apri_nota_db} e sottocaso}
+    \label{fig:apri_nota_db_usecase}
+    \end{figure}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -4484,19 +4565,24 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=0, name=logout]{(OPT) \UCName{logout}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=0, name=logout]{(OPT) \UCName{logout}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=-1, y=0]{Utente autenticato}
+        % Attori
+        \umlactor[x=-1, y=0]{Utente autenticato}
 
-            % Associazioni Utente
-            \umlassoc{Utente autenticato}{logout}
-        \end{tikzpicture}
-    \end{center}
+        % Associazioni Utente
+        \umlassoc{Utente autenticato}{logout}
+
+    \end{tikzpicture}
+
+    \caption{\UCText{logout}}
+    \label{fig:logout_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -4525,29 +4611,34 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzauto}
-            \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=2, name=elimina_acc]{(OPT) \UCName{elimina_acc}}
-                \umlusecase[x=0, y=-1, name=elim_acc_err, align=center]{(OPT) \UCName{elim_acc_err}}
-                \umlusecase[x=6, y=0.5, name=pwd_elimina]{(OPT) \UCName{pwd_elimina}}
-                \umlusecase[x=6, y=-2.5, name=conf_elim, align=center]{(OPT) \UCName{conf_elim}}
-                \umlusecase[x=0, y=4, name=server_err, align=center]{(OPT) \UCName{elim_acc_server_err}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzauto}
+        \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=2, name=elimina_acc]{(OPT) \UCName{elimina_acc}}
+            \umlusecase[x=0, y=-1, name=elim_acc_err, align=center]{(OPT) \UCName{elim_acc_err}}
+            \umlusecase[x=6, y=0.5, name=pwd_elimina]{(OPT) \UCName{pwd_elimina}}
+            \umlusecase[x=6, y=-2.5, name=conf_elim, align=center]{(OPT) \UCName{conf_elim}}
+            \umlusecase[x=0, y=4, name=server_err, align=center]{(OPT) \UCName{elim_acc_server_err}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=-1, y=2]{Utente autenticato}
+        % Attori
+        \umlactor[x=-1, y=2]{Utente autenticato}
 
-            % Associazioni Utente
-            \umlassoc{Utente autenticato}{elimina_acc}
+        % Associazioni Utente
+        \umlassoc{Utente autenticato}{elimina_acc}
 
-            % Associazioni Casi d'Uso$^G$
-            \umlVHextend{elim_acc_err}{pwd_elimina}
-            \umlHVinclude[pos stereo=1.3]{elimina_acc}{pwd_elimina}
-            \umlinclude{pwd_elimina}{conf_elim}
-            \umlextend{server_err}{elimina_acc}
-        \end{tikzauto}
-    \end{center}
+        % Associazioni Casi d'Uso
+        \umlVHextend{elim_acc_err}{pwd_elimina}
+        \umlHVinclude[pos stereo=1.3]{elimina_acc}{pwd_elimina}
+        \umlinclude{pwd_elimina}{conf_elim}
+        \umlextend{server_err}{elimina_acc}
+
+    \end{tikzauto}
+
+    \caption{\UCText{elimina_acc} e sottocasi}
+    \label{fig:elimina_acc_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
@@ -4684,19 +4775,24 @@
 
     \medskip
 
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-                \umlusecase[x=0, y=4, name=associazione]{(OPT) \UCName{associa}}
-            \end{umlsystem}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
+            \umlusecase[x=0, y=4, name=associazione]{(OPT) \UCName{associa}}
+        \end{umlsystem}
 
-            % Attori
-            \umlactor[x=0, y=4]{Utente}
+        % Attori
+        \umlactor[x=0, y=4]{Utente}
 
-            % Associazioni Utente
-            \umlassoc{Utente}{associazione}
-        \end{tikzpicture}
-    \end{center}
+        % Associazioni Utente
+        \umlassoc{Utente}{associazione}
+
+    \end{tikzpicture}
+
+    \caption{\UCText{associa}}
+    \label{fig:associa_usecase}
+    \end{figure}
 
     \textbf{Attori principali}
     \begin{itemize}
