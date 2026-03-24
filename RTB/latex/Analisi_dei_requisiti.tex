@@ -323,7 +323,6 @@
         \UCdefsubsub{elim_acc_err}{Errore\\Password Non Valida}
         \UCdefsubsub{conf_elim}{Conferma\\Eliminazione Account}
     \UCdefsub{elim_acc_server_err}{Errore Perdita\\Connesione}
-\UCdef{associa}{Associazione Note}
 
 \title{%
     \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
@@ -425,7 +424,7 @@
     \begin{itemize}
         \item Capitolato C6 - Progetto Second Brain: \\  \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
         \item Regolamento progetto didattico: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
-        \item \href{https://tool-8.github.io/Documentazione-SWE/rtb/Norme_di_progetto.pdf}{Norme di Progetto v1.0}
+        \item \href{https://tool-8.github.io/Documentazione-SWE/}{Norme di Progetto v1.0}
     \end{itemize}
     \subsubsection{Riferimenti informativi}
     \begin{itemize}
@@ -4781,49 +4780,6 @@
 
     \vspace{1cm}
 
-    \subsubsection*{(OPT) \UCText{associa}}
-    \addcontentsline{toc}{subsubsection}{(OPT) \UCText{associa}}
-
-    \medskip
-
-    \begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-            \umlusecase[x=0, y=4, name=associazione]{(OPT) \UCName{associa}}
-        \end{umlsystem}
-
-        % Attori
-        \umlactor[x=0, y=4]{Utente}
-
-        % Associazioni Utente
-        \umlassoc{Utente}{associazione}
-
-    \end{tikzpicture}
-
-    \caption{\UCText{associa}}
-    \label{fig:associa_usecase}
-    \end{figure}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item Una nota viene associata alla nota aperta per fornire un contesto aggiuntivo a future operazioni effettuate sul testo tramite LLM$^G$
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente utilizza la funzionalità$^G$ \textit{"Associa Nota"} per associare una nota alla nota aperta
-        \item Il sistema associa una nota scelta dall'utente alla nota aperta
-    \end{enumerate}
-
     \section{Requisiti}
     \subsection{Classificazione dei requisiti}
     I requisiti vengono classificati secondo una notazione standardizzata in modo da poterne garantire la tracciabilità e una facile comprensione. Ogni requisito ha un codice univoco che indica la sua tipologia e importanza. 
@@ -4996,7 +4952,7 @@
             \reqF{OP} & L'utente può effettuare il logout e terminare la sessione & \UCRef{logout} \\ \hline
             \reqF{OP} & Il sistema deve permettere ad un utente autenticato di eliminare il proprio account  & \UCRef{elimina_acc} \\ \hline
             \reqF{OP} & Il sistema deve richiedere la password dell'utente per l'eliminazione del suo account  & \UCRef{pwd_elimina} \\ \hline
-            \reqF{OP} & Il sistema deve avvisare l'utente che la password inserita per l'eliminazione dell'account è sbagliata  & \UCRef{pwd_elimina} \\ \hline
+            \reqF{OP} & Il sistema deve avvisare l'utente che la password inserita per l'eliminazione dell'account è sbagliata  & \UCRef{elim_acc_err} \\ \hline
             \reqF{OP} & Il sistema deve richiedere la conferma all'utente per l'eliminazione del suo account  & \UCRef{conf_elim} \\ \hline
             \reqF{OP} & Il sistema deve permettere all'utente autenticato di salvare note nel proprio account & \UCRef{salva_db} \\ \hline
             \reqF{OP} & Il sistema deve permettere all'utente autenticato di aprire una delle note salvate nel proprio account & \UCRef{apri_nota_db} \\ \hline
@@ -5044,7 +5000,7 @@
             \caption{Tabella Requisiti di Vincolo}
         \end{longtable}
 
-        \subsection{Riepilogo dei Requisiti}
+    \subsection{Riepilogo dei Requisiti}
         \begin{table}[H]
         \centering
             \begin{tabular}{|l|c|c|c|}
@@ -5060,4 +5016,150 @@
             \end{tabular}
             \caption{Riepilogo dei Requisiti}
         \end{table}
+
+\newpage
+
+    \section{Tracciamento dei requisiti}
+        \begin{longtable}{|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{5cm}|}
+            \caption{}\label{tab:tracciamento} \\
+
+            \hline
+            \textbf{Caso d'uso} & \textbf{Requisiti} \\
+            \hline
+            \endfirsthead
+
+            \hline
+            \textbf{Caso d'uso} & \textbf{Requisiti} \\
+            \hline
+            \endhead
+
+            \hline
+            \endfoot
+
+            \hline
+            \endlastfoot
+
+                \UCRef{archivio} & RF-O-1 \\ \hline
+                \UCRef{arch_sing} & RF-O-1 \\ \hline
+                \UCRef{arch_nome} & RF-O-1 \\ \hline
+                \UCRef{arch_data} & RF-O-1 \\ \hline
+                \UCRef{arch_ult_data} & RF-O-1 \\ \hline
+                \UCRef{apri} & RF-O-2\\ \hline
+                \UCRef{vis-editor-apri} & \\ \hline
+                \UCRef{apri_err} & \\ \hline
+                \UCRef{apri_server_err} & \\ \hline
+                \UCRef{chiudi} & RF-O-3\\ \hline
+                \UCRef{chiudi_salva} & \\ \hline
+                \UCRef{crea} & RF-O-4 \\ \hline
+                \UCRef{salva} & RF-O-5\\ \hline
+                \UCRef{salva_primo} & RF-O-6 (guardare)\\ \hline
+                \UCRef{salva_modifiche} & \\ \hline
+                \UCRef{salva_err} & \\ \hline
+                \UCRef{salva_err_sovra} & \\ \hline
+                \UCRef{salva_err_diff} & \\ \hline
+                \UCRef{salva_err_agg} & \\ \hline
+                \UCRef{salva_nome_err} & RF-O-50\\ \hline
+                \UCRef{salva_server_err} & \\ \hline
+                \UCRef{clona} & RF-O-7, RF-O-8, RF-O-9\\ \hline
+                \UCRef{clona_err} & \\ \hline
+                \UCRef{clona_server_err} & \\ \hline
+                \UCRef{ricerca} & RF-O-10, RF-D-1, RF-D-10\\ \hline
+                \UCRef{elimina} & RF-O-11 \\ \hline
+                \UCRef{elim_conf} & \\ \hline
+                \UCRef{elim_server_err} & \\ \hline
+                \UCRef{rinomina} & RF-O-12 \\ \hline
+                \UCRef{rinom_err} & \\ \hline
+                \UCRef{rinom_server_err} & \\ \hline
+                \UCRef{esporta} & RF-O-13, RF-O-15, RF-O-16, RF-O-17 \\ \hline
+                \UCRef{esporta_md} & RF-O-48 \\ \hline
+                \UCRef{esporta_pdf} & RF-D-2 \\ \hline
+                \UCRef{esporta_html} & RF-D-3 \\ \hline
+                \UCRef{esporta_archivio} & RF-O-14, RF-O-15, RF-O-16, RF-O-17 \\ \hline
+                \UCRef{esporta_arch_md} & RF-O-49 \\ \hline
+                \UCRef{esporta_arch_pdf} & RF-D-4 \\ \hline
+                \UCRef{esporta_arch_html} & RF-D-5 \\ \hline
+                \UCRef{esporta_arch_server_err} & \\ \hline
+                \UCRef{importa} & RF-O-18, RF-O-19, RV-O-3 \\ \hline
+                \UCRef{importa_md} & \\ \hline
+                \UCRef{importa_err} & RF-O-20 \\ \hline
+                \UCRef{importa_server_err} & \\ \hline
+                \UCRef{visua_formattato} & RF-O-22, RF-O-23, RF-O-24, RF-D-12\\ \hline
+                \UCRef{cambio_visua} & RF-O-25 \\ \hline
+                \UCRef{cambio_visua_markdown} & RF-O-25 \\ \hline
+                \UCRef{cambio_visua_mark_render} & RF-O-25 \\ \hline
+                \UCRef{cambio_visua_render} & RF-O-25 \\ \hline
+                \UCRef{scrivi} & RF-O-21, RF-O-26, RF-O-28, RF-D-7, RF-OP-2, RV-O-1 (perché qui?), RV-O-4  \\ \hline
+                \UCRef{formatta} & RF-O-27, RF-D-6, RF-OP-1  \\ \hline
+                \UCRef{grassetto} & RF-O-28 \\ \hline
+                \UCRef{grassetto_rim} & RF-O-28 \\ \hline
+                \UCRef{corsivo} & RF-O-28 \\ \hline
+                \UCRef{corsivo_rim} & RF-O-28 \\ \hline
+                \UCRef{sottolineato} & RF-O-28 \\ \hline
+                \UCRef{sottolineato_rim} & RF-O-28 \\ \hline
+                \UCRef{barrato} & RF-O-28 \\ \hline
+                \UCRef{barrato_rim} & RF-O-28 \\ \hline
+                \UCRef{link} & RF-O-28 \\ \hline
+                \UCRef{link_rim} & RF-O-28 \\ \hline
+                \UCRef{commento} & RF-O-28 \\ \hline
+                \UCRef{commento_rim} & RF-O-28 \\ \hline
+                \UCRef{elenco} & RF-O-36, RF-O-37\\ \hline
+                \UCRef{elenco_num} & RF-O-36 \\ \hline
+                \UCRef{elem_num} & \\ \hline
+                \UCRef{elenco_punt} & RF-O-37 \\ \hline
+                \UCRef{elem_punt} & \\ \hline
+                \UCRef{rimozione_elem} & \\ \hline
+                \UCRef{rimozione_elem_num} & \\ \hline
+                \UCRef{rimozione_elem_punt} & \\ \hline
+                \UCRef{annulla} & RF-O-38, RF-D-8 \\ \hline
+                \UCRef{ripristina} & RF-O-39, RF-D-8  \\ \hline
+                \UCRef{seleziona} & RF-O-40, RV-O-5 \\ \hline
+                \UCRef{copia} & RF-O-41, RF-O-43, RF-O-44 \\ \hline
+                \UCRef{taglia} & RF-O-42, RF-O-43, RF-O-44 \\ \hline
+                \UCRef{incolla} & RF-O-45, RF-O-46, RF-O-47, RF-D-9 \\ \hline
+                \UCRef{riassumi} & RF-O-58, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-83, RF-OP-3, RV-O-2  \\ \hline
+                \UCRef{riassumi_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
+                \UCRef{riscrivi} & RF-O-59, RF-O-60, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-83, RF-OP-3, RV-O-2 \\ \hline
+                \UCRef{riscrivi_variazione} & RF-O-60\\ \hline
+                \UCRef{riscrivi_modifica} & RF-O-60\\ \hline
+                \UCRef{riscrivi_grammatica} & RF-O-60\\ \hline
+                \UCRef{riscrivi_lessico} & RF-O-60\\ \hline
+                \UCRef{riscrivi_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
+                \UCRef{traduci} & RF-O-61, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-73, RF-O-74, RF-O-76, RF-O-77, RF-O-78, RF-O-79, RF-O-83, RF-OP-3, RV-O-2, RV-O-5 \\ \hline
+                \UCRef{traduci_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
+                \UCRef{mod_traduzione} & RF-O-71, RF-O-75 \\ \hline
+                \UCRef{traduci_redo} & RF-O-72 \\ \hline
+                \UCRef{ritraduci_llm_err} & \\ \hline
+                \UCRef{genera} & RF-O-62, RF-O-67, RF-O-70,  \\ \hline
+                \UCRef{genera_llm_err} & RF-O-69, RF-O-81, RF-O-82, RF-O-83, RF-D-11, RF-OP-3, RV-O-2 \\ \hline
+                \UCRef{critica} & RF-O-51, RF-O-68, RF-O-83, RF-OP-3, RV-O-2\\ \hline
+                \UCRef{critica_rosso} & RF-O-52 \\ \hline
+                \UCRef{critica_bianco} & RF-O-53 \\ \hline
+                \UCRef{critica_giallo} & RF-O-54 \\ \hline
+                \UCRef{critica_nero} & RF-O-55 \\ \hline
+                \UCRef{critica_verde} & RF-O-56 \\ \hline
+                \UCRef{critica_blu} & RF-O-57 \\ \hline
+                \UCRef{critica_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
+                \UCRef{registra} & RF-OP-4, RF-OP-17, RF-OP-18, RF-OP-19 \\ \hline
+                \UCRef{reg_nome} & RF-OP-4, RV-OP-2 \\ \hline
+                \UCRef{reg_nome_err} & RF-OP-5, RF-OP-21, RF-OP-22, RF-OP-23 \\ \hline
+                \UCRef{reg_pwd} & RF-OP-4, RF-OP-19, RV-OP-1 \\ \hline
+                \UCRef{reg_pwd_err} & RF-OP-5, RF-OP-21, RF-OP-22, RF-OP-23 \\ \hline
+                \UCRef{reg_server_err} & \\ \hline
+                \UCRef{autentica} & RF-OP-6, RF-OP-17, RF-OP-18, RF-OP-19, RF-OP-20, RF-OP-24 \\ \hline
+                \UCRef{auth_nome} & RF-OP-6 \\ \hline
+                \UCRef{auth_pwd} & RF-OP-6, RF-OP-19 \\ \hline
+                \UCRef{auth_err} & RF-OP-7 \\ \hline
+                \UCRef{auth_server_err} & \\ \hline
+                \UCRef{salva_db} & RF-OP-13\\ \hline
+                \UCRef{salva_db_err} & RF-OP-15 \\ \hline
+                \UCRef{apri_nota_db} & RF-OP-14 \\ \hline
+                \UCRef{apri_nota_db_err} & RF-OP-16 \\ \hline
+                \UCRef{logout} & RF-OP-8 \\ \hline
+                \UCRef{elimina_acc} & RF-OP-9 \\ \hline
+                \UCRef{pwd_elimina} & RF-OP-10, RF-OP-19, RF-OP-23 \\ \hline
+                \UCRef{elim_acc_err} & RF-OP-11\\ \hline
+                \UCRef{conf_elim} & RF-OP-12 \\ \hline
+                \UCRef{elim_acc_server_err} & \\ \hline
+
+        \end{longtable}
 \end{document}
