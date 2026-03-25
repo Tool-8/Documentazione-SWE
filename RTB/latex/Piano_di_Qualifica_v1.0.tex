@@ -92,6 +92,10 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  1.0 & Besnik Murtezan & Approvazione documento per RTB & 24/03/2026 & Stefano Maso \\
+  \hline
+  0.5 & Niccolò Feltrin & Aggiornati grafici del cruscotto con Sprint 5 (insieme all'analisi), aggiornato indice di Gulpease con verbale esterno 16/03/2026 e interno 18/03/2026 & 24/03/2026 & Stefano Maso \\
+  \hline
   0.4 & Niccolò Feltrin & Aggiornato calcolo indice di Gulpease in AdR (v1.0) e verbale interno 3/3/2026, aggiunti test di sistema & 10/03/2026 & Giuliano Banchieri \\
   \hline
   0.3 & Niccolò Feltrin & Aggiornati grafici del cruscotto con Sprint 4 (insieme all'analisi), e aggiunto calcolo dell'indice di Gulpease su verbali e documenti per RTB & 06/03/2026 & Giuliano Banchieri \\
@@ -117,7 +121,7 @@ Il Piano di Qualifica$^G$ è concepito per essere incrementale e dinamico, sopra
 \subsection{Riferimenti}
 \subsubsection{Riferimenti normativi}
 \begin{itemize}
-    \item Norme di Progetto$^G$
+    \item \href{https://tool-8.github.io/Documentazione-SWE/}{Norme di Progetto v1.0}
     \item Capitolato$^G$ C6 - Progetto$^G$ Second Brain:    \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
 \end{itemize}
 \subsubsection{Riferimenti informativi}
@@ -618,7 +622,7 @@ Diagrammi dei casi d'uso erronei & I diagrammi dei casi d'uso devono riportare l
     \includegraphics[width=0.9\linewidth]{resources/EAC.pdf}
     \caption{Estimated at Completion}
 \end{figure}
-Dal grafico si osserva l'andamento dell'EAC nei quattro sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato. Tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. È necessario continuare a ottimizzare le stime per rientrare entro i limiti accettabili (±5\% BAC) nei periodi successivi.
+Dal grafico si osserva l'andamento dell'EAC nei cinque sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato. Tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. È necessario continuare a ottimizzare le stime per rientrare entro i limiti accettabili (±5\% BAC) nei periodi successivi.
 
 \subsection{PC02-PV (Planned Value) e PC04-EV (Earned Value)}
 \begin{figure}[H]
@@ -626,7 +630,7 @@ Dal grafico si osserva l'andamento dell'EAC nei quattro sprint. Nel terzo period
     \includegraphics[width=0.9\linewidth]{resources/EV rispetto a PV.pdf}
     \caption{Planned Value - Earned Value}
 \end{figure}
-Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) ed Earned Value (EV) nel corso dei quattro sprint. Le due curve risultano quasi sovrapposte, a conferma che il gruppo sta producendo valore in linea con quanto pianificato. Questo indica una buona capacità di rispettare la pianificazione e di mantenere il ritmo di avanzamento previsto.
+Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) ed Earned Value (EV) nel corso dei cinque sprint. Le due curve risultano quasi sovrapposte, a conferma che il gruppo sta producendo valore in linea con quanto pianificato. Questo indica una buona capacità di rispettare la pianificazione e di mantenere il ritmo di avanzamento previsto.
 
 \subsection{PC05-ETC (Estimated to Complete)}
 \begin{figure}[H]
@@ -634,7 +638,7 @@ Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) 
     \includegraphics[width=0.9\linewidth]{resources/ETC.pdf}
     \caption{Estimated to Complete}
 \end{figure}
-Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso dei quattro sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per quasi tutti i periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, al termine del quarto periodo si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
+Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso dei cinque sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per quasi tutti i periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, nel quarto sprint si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. Nel quinto sprint si rileva un leggero incremento trascurabile dell'AC+ETC. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
 
 \subsection{PC06-CV (Cost Variance), PC07-SV (Schedule Variance) e PC08-BV (Budget Variance)}
 \begin{figure}[H]
@@ -642,7 +646,7 @@ Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso dei 
     \includegraphics[width=0.9\linewidth]{resources/CV, SV, BV.pdf}
     \caption{Cost Variance, Schedula Variance e Budget Variance}
 \end{figure}
-Il grafico illustra l'andamento delle tre varianze nei quattro sprint$^G$: al termine del terzo sprint$^G$ si osserva un avvicinamento di CV e BV al limite inferiore, dovuto al periodo di sessione universitaria parzialmente previsto; la SV rimane è rimasta stabile, suggerendo che il team ha deliberatamente pianificato meno lavoro in quel periodo per far fronte alla sessione, contenendo il ritardo sulla pianificazione a scapito però dell'efficienza$^G$ economica. Nel quarto sprint$^G$ CV e BV recuperano correttamente, tuttavia la SV mostra un leggero decremento, indicando che il rallentamento del terzo sprint$^G$ non è stato pienamente recuperato in termini di valore prodotto; il team dovrà colmare questo ritardo nei periodi successivi.
+Il grafico illustra l'andamento delle tre varianze nei cinque sprint$^G$: al termine del terzo sprint$^G$ si osserva un avvicinamento di CV e BV al limite inferiore, dovuto al periodo di sessione universitaria parzialmente previsto; la SV rimane è rimasta stabile, suggerendo che il team ha deliberatamente pianificato meno lavoro in quel periodo per far fronte alla sessione, contenendo il ritardo sulla pianificazione a scapito però dell'efficienza$^G$ economica. Nel quarto sprint$^G$ CV e BV recuperano correttamente, tuttavia la SV mostra un leggero decremento, indicando che il rallentamento del terzo sprint$^G$ non è stato pienamente recuperato in termini di valore prodotto. Nel quinto sprint i valori si mantengono prossimi allo zero, evidenziando un recupero efficace e un riallineamento complessivo rispetto agli obiettivi pianificati.
 
 \subsection{Indice di Gulpease}
 \begin{figure}[H]
@@ -650,7 +654,7 @@ Il grafico illustra l'andamento delle tre varianze nei quattro sprint$^G$: al te
     \includegraphics[width=0.9\linewidth]{resources/Andamento indice di Gulpease verbali.pdf}
     \caption{Andamento indice di Gulpease verbali}
 \end{figure}
-I risultati mostrano che tutti i verbali analizzati superano ampiamente la soglia minima accettabile di 40 punti nell'Indice di Gulpease, attestandosi su un valore medio di circa 62, a indicare una leggibilità complessivamente buona.
+I risultati mostrano che tutti i verbali analizzati superano ampiamente la soglia minima accettabile di 40 punti nell'Indice di Gulpease, attestandosi su un valore medio di circa 60, a indicare una leggibilità complessivamente buona.
 
 \begin{figure}[H]
     \centering

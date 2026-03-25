@@ -88,6 +88,10 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  1.0 & Besnik Murtezan & Approvazione documento per RTB & 24/03/2026 & Stefano Maso \\
+  \hline
+  0.10 & Stefano Maso & Aggiunti riferimenti normativi e informativi & 24/03/2026 & Niccolò Feltrin \\
+  \hline
   0.9 & Besnik Murtezan & Aggiornato sezioni 3.2.2, 3.2.4, 4.7.1 & 02/03/2026 & Stefano Maso \\
   \hline
   0.8 & Besnik Murtezan & Aggiornato controllo di flusso (sez. 3.2.2) & 15/02/2026 & Stefano Maso \\
@@ -129,6 +133,18 @@ con marcatori in formato MarkDown, la sua visualizzazione formattata correttamen
 In particolare,l'utilizzo di LLM$^G$ verrà sfruttato da \textit{Second Brain} per fornire funzionalità$^G$ di riassunto,
 riscrittura, traduzione e generazione di testo in aggiunta a una forma di critica secondo il modello dei
 "Sei Cappelli per Pensare" di Edward De Bono.  
+
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
+\begin{enumerate}
+  \item Capitolato C6 - Progetto Second Brain: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
+  \item Regolamento progetto didattico: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
+\end{enumerate}
+\subsubsection{Riferimenti informativi}
+\begin{enumerate}
+  \item Lezione \textit{"I processi di ciclo di vita del software (T2)"} del corso di \textit{Ingegneria del software}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T02.pdf} 
+  \item Glossario v1.0
+\end{enumerate}
 
 \section{Processi primari}
 \subsection{Descrizione}
@@ -335,11 +351,12 @@ Per i verificatori il flusso di verifica$^G$ di una determinata issue$^G$ della 
 
 Per quanto riguarda il Glossario, l'aggiunta di un termine viene svolta nella seguente maniera:
 \begin{enumerate}
-  \item[0.] Installare Python (\href{https://python.org}{\underline{Sito Ufficiale Python}}).
-  \item Aprire il file \texttt{glossario.json}.
+  \item Creare un nuovo branch
+  \item Aprire il file \textit{glossario.json}.
   \item Aggiungere un nuovo dizionario termine-definizione all'interno dell'array relativo all'iniziale del termine.
-  \item Eseguire lo script \texttt{entry\_point.py}.
+  \item Pubblicare il branch (in automatico viene generata una Pull Request)
 \end{enumerate}
+La creazione delle sezioni del documento Glossario e l'inserimento delle \textit{G} nei documenti avviene automaticamente tramite GitHub Action (nel caso in cui la Pull Request venga approvata).
 
 \subsubsection{Scopo e struttura repository "Documentazine-SWE"}
 La repository$^G$ ha la funzione di mantere una versione aggiornata dei file che dovranno produrre documentazione, ovvero i file .tex.\\
