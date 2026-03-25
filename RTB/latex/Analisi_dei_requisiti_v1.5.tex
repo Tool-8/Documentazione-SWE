@@ -313,10 +313,10 @@
     \UCdefsub{auth_pwd}{Inserimento\\Password}
     \UCdefsub{auth_err}{Errore\\Credenziali}
     \UCdefsub{auth_server_err}{Errore Perdita\\Connessione}
-\UCdef{salva_db}{Salvataggio Nota}
-    \UCdefsub{salva_db_err}{Errore Salvataggio\\Nota}
-\UCdef{apri_nota_db}{Apertura Nota}
-    \UCdefsub{apri_nota_db_err}{Errore Apertura\\Nota}
+\UCdef{salva_db}{Salvataggio Nota\\DataBase}
+    \UCdefsub{salva_db_err}{Errore Salvataggio\\Nota DataBase}
+\UCdef{apri_nota_db}{Apertura Nota\\DataBase}
+    \UCdefsub{apri_nota_db_err}{Errore Apertura\\Nota DataBase}
 \UCdef{logout}{Logout}
 \UCdef{elimina_acc}{Eliminazione Account}
     \UCdefsub{pwd_elimina}{Inserisci Password}
@@ -4456,13 +4456,13 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota viene salvata nel DataBase ed è accessibile solo dall'utente che l'ha salvata
+        \item La nota viene salvata ed è accessibile solo dall'utente che l'ha salvata
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente ha una nota aperta
         \item L'utente attiva la funzionalità$^G$ \textit{"Salva nel DataBase"}
-        \item La nota viene salvata nel DataBase e solo l'utente può accedervi
+        \item La nota viene salvata nell'archivio personale dell'utente e solo l'utente può accedervi
     \end{enumerate}
     \textbf{Estensioni}
     \begin{enumerate}
@@ -4487,13 +4487,13 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item La nota non viene salvata nel DataBase e l'utente visualizza un errore
+        \item La nota non viene salvata nell'archivio personale dell'utente e l'utente visualizza un errore
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
         \item L'utente ha una nota aperta
         \item L'utente attiva la funzionalità$^G$ \textit{"Salva nel DataBase"}
-        \item La nota non viene salvata nel DataBase 
+        \item La nota non viene salvata 
         \item L'utente visualizza un messaggio di errore
     \end{enumerate}
 
