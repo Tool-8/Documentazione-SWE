@@ -313,10 +313,10 @@
     \UCdefsub{auth_pwd}{Inserimento\\Password}
     \UCdefsub{auth_err}{Errore\\Credenziali}
     \UCdefsub{auth_server_err}{Errore Perdita\\Connessione}
-\UCdef{salva_db}{Salvataggio Nota\\Nel DataBase}
-    \UCdefsub{salva_db_err}{Errore Salvataggio\\Nota DataBase}
-\UCdef{apri_nota_db}{Apertura Nota\\Da DataBase}
-    \UCdefsub{apri_nota_db_err}{Errore Apertura\\Nota DataBase}
+\UCdef{salva_db}{Salvataggio Nota}
+    \UCdefsub{salva_db_err}{Errore Salvataggio\\Nota}
+\UCdef{apri_nota_db}{Apertura Nota}
+    \UCdefsub{apri_nota_db_err}{Errore Apertura\\Nota}
 \UCdef{logout}{Logout}
 \UCdef{elimina_acc}{Eliminazione Account}
     \UCdefsub{pwd_elimina}{Inserisci Password}
@@ -356,7 +356,7 @@
 
         \hline
         \endlastfoot
-            1.5 & Giuliano Banchieri & Aggiunta tabella di tracciamento, requisiti mancanti e sistemati requisiti di vincolo & 25/03/2026 & - \\
+            1.5 & Giuliano Banchieri & Aggiunta tabella di tracciamento, requisiti mancanti e sistemati requisiti di vincolo & 25/03/2026 & Stefano Maso \\
             \hline
             1.4 & Giuliano Banchieri & Modifica requisiti secondo indicazioni Prof. Cardin & 24/03/2026 & Stefano Maso \\
             \hline
@@ -4951,7 +4951,7 @@
             \reqF{O} & Il sistema deve avvisare l'utente in caso di impossibilità di esportare una nota a causa di problemi di connessione al server & \UCRef{esporta_arch_server_err} \\ \hline
             \reqF{O} & Il sistema deve dare la possibilità all'utente di importare una nota in formato MD & \UCRef{importa_md} \\ \hline
             \reqF{O} & Il sistema deve avvisare l'utente in caso di problemi di connessione al server durante l'importazione di una nota & \UCRef{importa_server_err} \\ \hline
-            \reqF{O} & Il sistema ve permettere all'utente di inserire elementi in un elenco puntato o numerato & \UCRef{elem_punt}, \UCRef{elem_num} \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di inserire elementi in un elenco puntato o numerato & \UCRef{elem_punt}, \UCRef{elem_num} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di rimuovere elementi da un elenco puntato o numerato & \UCRef{rimozione_elem}, \UCRef{rimozione_elem_num}, \UCRef{rimozione_elem_punt} \\ \hline
             \reqF{O} & Il sistema deve avvisare l'utente in caso di problemi di connessione con l'agente esterno durante la ritraduzione di una porzione di testo precedentemente tradotta & \UCRef{ritraduci_llm_err} \\ \hline
             \reqF{O} & Il sistema deve avvisare l'utente in caso di mancata registrazione/autenticazione dovuta a problemi di connessione al server & \UCRef{reg_server_err} \UCRef{auth_server_err} \\ \hline
@@ -5041,8 +5041,6 @@
             \end{tabular}
             \caption{Riepilogo dei Requisiti}
         \end{table}
-
-\newpage
 
     \section{Tracciamento dei requisiti}
         \begin{longtable}{|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{5cm}|}
