@@ -306,13 +306,13 @@ max-width: 150px;
             <p>Documentazione progetto</p>
         </header>
 
-        <!-- Documenti RTB -->
+        <!-- Documenti PB -->
         <div class="verbale-section">
             <div class="section-header">
                 <span class="section-icon"></span>
-                <h2 class="section-title">RTB</h2>
+                <h2 class="section-title">PB</h2>
             </div>
-            <ul class="pdf-list" id="documenti-rtb-list">
+            <ul class="pdf-list" id="documenti-pb-list">
                 <li class="loading">
                     <div class="loading-dot"></div>
                     <div class="loading-dot"></div>
@@ -392,7 +392,7 @@ max-width: 150px;
         </div>
         <footer>
             <p>Aggiornato automaticamente via <a href="https://github.com/features/actions" target="_blank">GitHub Actions</a></p>
-        </div>
+        </footer>
     </div>
     <script>
         function extractDate(filename) {
@@ -472,7 +472,7 @@ max-width: 150px;
         document.addEventListener('DOMContentLoaded', () => {
             loadPDFs('verbali_interni', 'interni-list');
             loadPDFs('verbali_esterni', 'esterni-list');
-            loadPDFs('rtb', 'documenti-rtb-list');
+            loadPDFs('pb', 'documenti-pb-list');
             loadPDFs('glossario', 'glossario-list');
         });
     </script>
