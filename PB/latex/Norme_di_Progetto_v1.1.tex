@@ -88,6 +88,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  1.1 & Niccolò Feltrin & Aggiunta sezione 3.2.5 \textit{Scopo e struttura repository "SecondBrain"}, aggiornata sezione 3.1.1 (aggiunti documenti Specifica Tecnica e Manuale Utente), aggiornata sezione 2.4.3 & 01/04/2026 & Stefano Maso \\
+  \hline
   1.0 & Besnik Murtezan & Approvazione documento per RTB & 24/03/2026 & Stefano Maso \\
   \hline
   0.10 & Stefano Maso & Aggiunti riferimenti normativi e informativi & 24/03/2026 & Niccolò Feltrin \\
@@ -230,12 +232,28 @@ Il documento di Analisi dei Requisiti$^G$ contiene:
 
 \end{itemize}
 \subsubsection{Progettazione}
-Va a definire la struttura del progetto$^G$ a seconda dell'Analisi dei Requisiti. Si suddivide in:
+Va a definire la struttura del progetto$^G$ sulla base dell'Analisi dei Requisiti. In questa fase si prevede la stesura del documento di
+\textit{Specifica Tecnica}, che va a definire in modo esaustivo:
 \begin{itemize}
   \item Progettazione$^G$ architetturale
   \item Design$^G$ dell'interfaccia
   \item Progettazione$^G$ dettagliata 
 \end{itemize}
+Il documento ha l'obbiettivo di eliminare eventuali ambiguità nel successivo processo di codifica, coprendo i requisisti
+precedentemente analizzati attraverso la definizione dell'architettura del prodotto.
+Per garantire la qualità del sistema, il documento include la definizione dei processi di testing, che vanno a coprire gli aspetti
+chiave dell'architettura:
+\begin{itemize}
+  \item Efficienza: capacità del sistema di utilizzare in modo ottimale le risorse disponibili (CPU, memoria, rete), garantendo tempi di risposta adeguati e buone prestazioni anche sotto carico.
+  \item Modularità: capacità del sistema di essere suddiviso in componenti indipendenti e riutilizzabili, riducendo le dipendenze tra le parti e facilitando manutenzione d evoluzione.
+  \item Robustezza: capacità del sistema di gestire condizioni anomale o errori di multi-utenza, senza interrompere il funzionamento, mantenendo uno stato consistente.
+  \item Affidabilità: capacità del sistema di funzionare correttamente nel tempo, senza guasti, garantendo risultati coerenti e prevedibili.
+  \item Sicurezza: capacità del sistema di proteggere dati e risorse da accessi non autorizzati, attacchi e vulnerabilità, garantendo confidenzialità, integrità e disponibilità.
+  \item Adeguatezza: capacità del sistema di soddisfare i requisiti funzionali e non funzionali definiti, risultando idoneo allo scopo per cui è stato progettato.
+  \item Semplicità: capacità del sistema di essere facilmente comprensibile, utilizzabile e manutenibile, grazie a soluzioni progettuali chiare e non eccessivamente complesse.
+  \item Portabilità: capacità del sistema di essere eseguito in ambienti diversi (hardware/software) con modifiche minime o nulle, spesso garantita tramite tecnologie come containerizzazione (Docker).
+\end{itemize}
+
 \subsubsection{Codifica}
 In seguito all'analisi e alla progettazione$^G$, i programmatori si occuperanno d'implementare tutte le funzionalità$^G$ 
 previste per il prodotto finale, basandosi unicamente sui requisiti specificati e sull'architettura definita in precedenza. 
@@ -256,6 +274,8 @@ Quelli ad uso esterno invece comprendono:
   \item Analisi dei Requisiti$^G$
   \item Piano di Qualifica$^G$
   \item Piano di Progetto$^G$
+  \item Specifica Tecnica
+  \item Manuale Utente
 \end{itemize}
 \subsubsection{Strumenti creazione documento}
 Per la creazione dei documenti inizialmente è stato deciso di utilizzare Overleaf, editor LaTeX$^G$ online, ma viste le limitazioni
@@ -380,6 +400,19 @@ La struttura è la seguente:
   \item \texttt{Dockerfile} : file di configurazione per generare immagine Docker$^G$ della business logic.
   \item \texttt{README.md} : file di istruzioni per il corretto avvio dell'applicazione.
   \item \texttt{docker-compose.yml} : file di configurazione per generare i container$^G$ dell'applicazione.
+\end{itemize}
+\subsubsection{Scopo e struttura repository "SecondBrain"}
+Le repository ha la funzione di mantenere il codice sorgente del progetto del capitolato C6.
+La struttura è la seguente:
+\begin{itemize}
+  \item \texttt{docker/nginx} : cartella contenente file di configurazione per integrazione nginx-docker.
+  \item \texttt{docker/php/Dockerfile} : file di configurazione per generare immagine Docker della business logic.
+  \item \texttt{src} : cartella del codice sorgente (molti file sono ausiliari al framework Laravel).
+  \item \texttt{Makefile} : file di automazione che definisce comandi di build, avvio, test e arresto per la manutenzione del progetto tramite Docker Compose.
+  \item \texttt{README.md} : file di istruzione per la corretta manutenzione dell'applicazione.
+  \item \texttt{docker-compose.yml} : file di configurazione per generare i container dell'applicazione.
+  \item \texttt{docker-compose.dev.yml} : file di configurazione per generare i container dell'applicazione per l'ambiente di development.
+  \item \texttt{docker-compose.prod.yml} : file di configurazione per generare i container dell'applicazione per l'ambiente di produzione.
 \end{itemize}
 
 \subsection{Gestione della qualità}
