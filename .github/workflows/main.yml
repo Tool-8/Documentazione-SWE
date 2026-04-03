@@ -303,3 +303,9 @@ jobs:
           git add Verbali/Interni/*.pdf Verbali/Esterni/*.pdf PB/*.pdf Glossario/*.pdf
           git diff --staged --quiet || git commit -m "Aggiorna PDFs compilati [skip ci]"
           git push
+
+      - name: Pubblica su GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
