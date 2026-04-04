@@ -1,0 +1,217 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{tabularx}
+
+% Lingua 
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+\usepackage{longtable}
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{04}{04}{2026}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(3.2cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Specifica Tecnica};
+    \end{tikzpicture}
+  }{}
+}
+
+% Nome indice figure
+\addto\captionsitalian{%
+  \renewcommand{\listfigurename}{Indice delle immagini}%
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large\slashdate{\displaydate{dataverbale}} \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Manuale Utente}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+  0.1 & Stefano Maso & Prima stesura: struttura del documento e introduzione & 04/04/2026 & Niccolò Feltrin \\
+  \hline
+\end{tabular}
+\caption{}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\listoffigures
+
+\newpage
+
+\section{Introduzione}
+\subsection{Scopo del documento}
+Il presente documento ha lo scopo di fornire un supporto completo agli utenti del sistema Second Brain, richiesto dall'azienda Zucchetti. Vengono dunque illustrate le istruzioni per l'utilizzo delle funzionalità fornite dall'applicazione oltre che i requisiti minimi necessari per il corretto funzionamento di Second Brain. \\
+Eventuali termini tecnici sono definiti all'interno del documento "Glossario".
+
+\subsection{Scopo del prodotto}
+Il prodotto finale propone di realizzare un software che permetta la scrittura di testo con marcatori in formato MarkDown, la sua visualizzazione formattata correttamente e l’interazione con un LLM. In particolare, l’utilizzo di LLM verrà sfruttato da Second Brain per fornire funzionalità di riassunto, riscrittura, traduzione e generazione di testo in aggiunta ad una forma di critica secondo il modello dei ”Sei Cappelli per Pensare” di Edward De Bono. 
+
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
+\begin{enumerate}
+    \item Capitolato C6 - Progetto Second Brain: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
+    \item Regolamento progetto didattico: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
+    \item Norme di Progetto v1.1
+\end{enumerate}
+\subsubsection{Riferimenti informativi}
+\begin{enumerate}
+    \item \href{https://tool-8.github.io/Documentazione-SWE/glossario/Glossario.pdf}{Glossario v1.0} 
+\end{enumerate}
+
+\section{Requisiti per utilizzare il sistema}
+Per il corretto utilizzo dell'applicazione è necessario soddisfare i seguenti requisiti minimi, i quali sono diversificati in base alla versione del prodotto che si intende utilizzare. 
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Sistema operativo} & \textbf{Distribuzione} \\ \hline
+
+Linux & Ubuntu 22.04 LTS \\ 
+Linux & Debian 12 \\ 
+Linux & Fedora 39 \\ 
+
+Windows & Windows 10 (WSL2) \\ 
+Windows & Windows 11 \\ 
+
+macOS & macOS 11 Big Sur \\ 
+macOS & macOS 12 Monterey \\ \hline
+
+\end{tabular}
+\caption{Sistemi operativi supportati}
+\end{table}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Software} & \textbf{Versione} & \textbf{Download} \\ \hline
+
+Docker & v29.0.1 & \href{https://www.docker.com}{docker.com} \\ 
+& & \small (Consultato: 04/04/2026) \\ \hline
+
+\end{tabular}
+\caption{Software necessari}
+\end{table}
+
+\subsection{Requisiti hardware}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Componente} & \textbf{Requisito minimo} \\ \hline
+
+CPU & Dual-core 2.0 GHz \\ 
+RAM & 4 GB \\ 
+Storage & 10 GB disponibili \\ 
+Rete & Connessione internet stabile \\ \hline
+
+\end{tabular}
+\caption{Requisiti hardware minimi}
+\end{table}
+
+\subsection{Requisiti software}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Browser} & \textbf{Versione minima} \\ \hline
+
+Google Chrome & 100+ \\ 
+Mozilla Firefox & 100+ \\ 
+Microsoft Edge & 100+ \\ 
+Safari & 15+ \\ \hline
+
+\end{tabular}
+\caption{Requisiti software - Browser supportati}
+\end{table}
+
+\section{Istruzioni all'installazione}
+
+\section{Istruzioni all'uso}
+
+\section{Supporto tecnico}
+Per assistenza tecnica relativa all'utilizzo del prodotto software "Second Brain", viene fornito il seguente indirizzo email: 
+\begin{center}
+    tool8eight@gmail.com
+\end{center}
+Per un servizio più efficiente, si è pregati di includere nel corpo dell'email una descrizione più completa possibile del problema riscontrato, insieme ad ogni possibile screenshot o dettaglio aggiuntivo che possano risultare utili alla risoluzione di quest'ultimo. \\
+Si invita, inoltre, a descrivere eventuali passaggi già tentati per risolvere il problema, in modo che il gruppo possa fornire un'assistenza più mirata.
+\end{document}
+
