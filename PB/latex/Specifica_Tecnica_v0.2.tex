@@ -108,7 +108,7 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  0.2 & Stefano Maso & Stesura sezione 3.1, 3.1.1 e sottosezioni relative all'architettura del backend e relativi diagrammi delle classi & 08/04/2026 & - \\
+  0.2 & Stefano Maso & Stesura sezione 3.1, 3.1.1 e sottosezioni relative all'architettura del backend e relativi diagrammi delle classi & 08/04/2026 & Besnik Murtezan \\
   \hline
   0.1 & Giuliano Banchieri & Prima stesura: struttura del documento, tecnologie, riferimenti, introduzione & 02/04/2026 & Niccolò Feltrin \\
   \hline
@@ -312,17 +312,17 @@ In questa sezione è descritta in modo dettagliato l'architettura del nostro pro
 \subsection{Architettura logica}
 Il progetto Second Brain è strutturato in due componenti principali:
 \begin{itemize}
-    \item \textbf{Backend}: responsabile della gestionde della \textit{logica di business} e della persistenza dei dati.
-    \item \textbf{Frontend}: destinato alla presentazione dei dati ottenuti dal \textit{backend}, il \textit{frontend} conesnte all'utente di interagire con le funzionalità del progetto in modo intuitivo e user friendly; 
+    \item \textbf{Backend}: responsabile della gestione della \textit{logica di business} e della persistenza dei dati.
+    \item \textbf{Frontend}: destinato alla presentazione dei dati ottenuti dal \textit{backend}, il \textit{frontend} consente all'utente di interagire con le funzionalità del progetto in modo intuitivo e user-friendly.
 \end{itemize}
 \subsubsection{Backend}
 Nel \textit{backend} si è scelto di utilizzare il framework Laravel, che permette la realizzazione di un servizio API REST. L'architettura del backend è suddivisa nei seguenti strati: 
 \begin{itemize}
-    \item \textbf{Controller Layer}: si occupa del routing delle richieste; i controller fungono da intermediari tra il client e i servizi, gestendo la presentation layer e instradando le richieste del client ai servizi appropriati.
-    \item \textbf{Servive Layer}: gestisce la \textit{logica di business} dell'applicazione; questo strato è responsabile delle operazioni e delle regole di business, garantendo che tutte le operazioni siano eseguite correttamente;
+    \item \textbf{Presentation Layer}: si occupa del routing delle richieste; i controller fungono da intermediari tra il client e i servizi, gestendo il presentation layer e instradando le richieste del client ai servizi appropriati.
+    \item \textbf{Application Layer}: gestisce la \textit{logica di business} dell'applicazione; questo strato è responsabile delle operazioni e delle regole di business, garantendo che tutte le operazioni siano eseguite correttamente;
     \item \textbf{Data Access Layer}: strato che gestisce la persistenza dei dati, fornendo i mezzi per salvare, recuperare e manipolare i dati.
 \end{itemize}
-La suddivisione in questi strati facilitano lo sviluppo, la manutenzione e la scalabilità del \textit{backend} del progetto Second Brain, conformandosi all'architettura \textbf{multi-tier} a 3-tier. 
+La suddivisione in questi strati facilita lo sviluppo, la manutenzione e la scalabilità del \textit{backend} del progetto Second Brain, conformandosi all'architettura \textbf{multi-tier} a 3-tier. 
 \paragraph{Gestione note e Esportazione}
 \vspace{0.5em}
 \begin{figure}[H]
@@ -334,37 +334,37 @@ La suddivisione in questi strati facilitano lo sviluppo, la manutenzione e la sc
 \subparagraph{NoteController}
 È il controller HTTP responsabile della gestione delle richieste REST relative alle note. Appartiene al layer di presentazione dell'architettura layered e funge da punto di ingresso per tutte le operazioni CRUD esposte dall'API. Si limita a validare i dati in ingresso, delegare l'elaborazione a \textit{NoteService} e restituire una risposta HTTP appropriata. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{index() : JsonResponse} - gestisce le richieste \texttt{GET /notes}, restituisce la lista completa delle note in formato JSON con status 200, delegando il recupero dei dati a NoteService
-    \item  \texttt{show(string \$id) : JsonResponse} - gestisce le richieste \texttt{GET /notes/\{id\}}, restituisce i dettagli di una singola nota identificata dall'id fornito
+    \item \texttt{index() : JsonResponse} - gestisce le richieste \texttt{GET /notes}, restituendo la lista completa delle note in formato JSON con status 200, delegando il recupero dei dati a NoteService
+    \item  \texttt{show(string \$id) : JsonResponse} - gestisce le richieste \texttt{GET /notes/\{id\}} e restituisce i dettagli di una singola nota identificata dall'id fornito
     \item  \texttt{store(Request \$request) : JsonResponse} -  gestisce le richieste \texttt{POST /notes}, valida i campi, delega a NoteService la creazione e restituisce la nota creata con status 201
     \item \texttt{update(Request \$request, string \$id) : JsonResponse} - gestisce le richieste \texttt{PUT /notes/\{id\}}, valida i campi e delega l'aggiornamento a NoteService, passando l'id e i nuovi dati
-    \item \texttt{destroy(string \$id) : JsonResponse} - gestisce le richieste \texttt{DELETE /notes/\{id\}}, delega l'eliminazione a NoteService e restituise una risposta vuota con status 204 in caso di successo
+    \item \texttt{destroy(string \$id) : JsonResponse} - gestisce le richieste \texttt{DELETE /notes/\{id\}}, delega l'eliminazione a NoteService e restituisce una risposta vuota con status 204 in caso di successo
 \end{itemize}
 \subparagraph{NoteService} È il service responsabile della logica di business relativa alle note. Appartiene al layer applicativo dell'architettura layered e funge da intermediario tra il controller e il repository. Dipende esclusivamente dall'interfaccia NoteRepositoryInterface, garantendo il rispetto del principio di inversione delle dipendenze. Segue la descrizione dei metodi:
 \begin{itemize}
     \item \texttt{list() : array} - restituisce la lista completa delle note, delegando direttamente al repository
     \item \texttt{get(string \$id) : array} - restituisce i dettagli di una singola nota tramite il suo id
-    \item \texttt{create(string \$title, string \$contentMd) : array} - gestisce la creazione di una nuova nota, prima di delegare al repository verifica che il titolo non sia già in uso
-    \item \texttt{update(string \$id, string \$title, string \$contentMd) : array} - gestisce l'aggiornamento di una nota eisstente, prima di delegare al repository verifica che il titolo non sia già in uso, escludendo dal confronto la nota corrente così che una nota possa essere salvata con il proprio titolo invariato senza incorrere in un falso positivo
+    \item \texttt{create(string \$title, string \$contentMd) : array} - gestisce la creazione di una nuova nota, verificando che il titolo non sia già in uso prima di delegare al repository 
+    \item \texttt{update(string \$id, string \$title, string \$contentMd) : array} - gestisce l'aggiornamento di una nota esistente; prima di delegare al repository verifica che il titolo non sia già in uso, escludendo dal confronto la nota corrente così che una nota possa essere salvata con il proprio titolo invariato senza incorrere in un falso positivo
     \item \texttt{delete(string \$id) : void} - delega l'eliminazione della nota al repository
 \end{itemize}
 \subparagraph{NoteRepositoryInterface} Interfaccia che definisce il contratto che ogni implementazione del repository di note deve rispettare. Appartiene al layer di accesso ai dati dell'architettura layered. Dichiarando la dipendenza su questa interfaccia, NoteService può funzionare con qualsiasi implementazione senza richiedere modifiche al codice applicativo. Segue la descrizione dei metodi: 
 \begin{itemize}
-    \item \texttt{list() : array} - restituisce la lista completa delle note disponibili, ogni elemento dell'array contiene i meta dati della nota senza il contenuto completo
+    \item \texttt{list() : array} - restituisce la lista completa delle note disponibili, ogni elemento dell'array contiene i metadati della nota senza il contenuto completo
     \item \texttt{get(string \$id) : array} - restituisce i dati completi di una singola nota identificata dall'id fornito
     \item \texttt{create(string \$title, string \$contentMd) : array} - crea una nuova nota con il titolo e il contenuto Markdown forniti, genera un identificatore e registra il timestamp di creazione
-    \item \texttt{update(string \$id, string \$title, string \$contentMd) : array} - aggiorna il titolo e il contenuto di una nota esistente, aggiornando il timestamp di ultima modifica
+    \item \texttt{update(string \$id, string \$title, string \$contentMd) : array} - aggiorna il titolo e il contenuto di una nota esistente assieme al timestamp di ultima modifica
     \item \texttt{delete(string \$id) : void} - elimina definitivamente la nota identificata dall'id fornito
-    \item \texttt{isTitleUsed(string \$title, ?string \$excludeId = null) : bool} - verifica se un titolo è già utilizzato da un'altra nota, \texttt{excludeId} permette di escludere dal confronto una nota specifica, per evitare che una nota venga bloccata dal confronto con se stessa
+    \item \texttt{isTitleUsed(string \$title, ?string \$excludeId = null) : bool} - verifica se un titolo è già utilizzato da un'altra nota; \texttt{excludeId} permette di escludere dal confronto una nota specifica, per evitare che tale nota venga bloccata dal confronto con se stessa
 \end{itemize}
 \subparagraph{NoteRepository} È l'implementazione concreta di NoteRepositoryInterface che persiste le note come file Markdown sul filesystem locale tramite Laravel Storage. Realizza tutti i metodi dichiarati nell'interfaccia: \texttt{list(), get(), create(), update(), delete(), isTitleUsed()}; per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
-\subparagraph{ExportController} È il controller HTTP dresponsabile della gestione delle richieste di esportazione di una nota in un formato file scaricabile. Appartiene al layer di presentazione dell'architettura layered ed è implementato come controller invocabile dato che la sua responsabilità è circoscritta a una sola operazione. Si limita a validare il formato richiesto, delega l'esportazione a \textit{ExportService} e costruisce la risposta HTTP con gli header appropriati per il download dei file. Segue la descrizione dei metodi:
+\subparagraph{ExportController} È il controller HTTP responsabile della gestione delle richieste di esportazione, rendendo disponibile una nota come file scaricabile. Appartiene al layer di presentazione dell'architettura layered ed è implementato come controller invocabile dato che la sua responsabilità è circoscritta ad una sola operazione. Si limita a validare il formato richiesto, delega l'esportazione a \textit{ExportService} e costruisce la risposta HTTP con gli header appropriati per il download dei file. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{\_\_invoke(Request \$request, string \$id)} - valida il parametro (cioè il formato con cui si vuole esportare la nota) e delega l'esportazione a ExportService, passando l'id della nota e il formato richiesto, in caso di successo restituisce una risposta binaria in modo che il browser tratti la risposta come un file da scaricare altrimenti una risposta JSON con status 404
+    \item \texttt{\_\_invoke(Request \$request, string \$id)} - valida il parametro (cioè il formato con cui si vuole esportare la nota) e delega l'esportazione a \textit{ExportService}, passando l'id della nota e il formato richiesto; in caso di successo restituisce una risposta binaria in modo che il browser tratti la risposta come un file da scaricare, altrimenti ritorna una risposta JSON con status 404
 \end{itemize}
-\subparagraph{ExportService} È il service responsabile della logica di esportazione di una nota in un formato file. Appartiene al layer applicativo dell'architettura layered e gestisce la collaborazione tra il repository e la factory delle strategy. Dipende da NoteRepositoryInterface, garantendo il disaccopiamento dal layer di persistenza. Segue la descrizione dei metodi:
+\subparagraph{ExportService} È il service responsabile della logica di esportazione di una nota in un formato file. Appartiene al layer applicativo dell'architettura layered e gestisce la collaborazione tra il repository e la factory delle strategy di esportazione. Dipende da NoteRepositoryInterface, garantendo il disaccopiamento dal layer di persistenza. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{export(string \$id, string \$format) : array} - recupera la nota identificata dall'id tramite il repository, delega la selezione della strategy corretta a \textit{ExportStrategyFactory} in base al formato richiesto, invoca sulla strategy i diversi metodi per ottenere il contenuto del file esportato, il MIME type e l'estensione
+    \item \texttt{export(string \$id, string \$format) : array} - recupera la nota identificata dall'id tramite il repository, delega la creazione della strategy corretta a \textit{ExportStrategyFactory} in base al formato richiesto ed invoca sulla strategy i diversi metodi per ottenere il contenuto del file esportato, il MIME type e l'estensione
 \end{itemize}
 \subparagraph{ExportStrategyFactory} È la factory responsabile della creazione della strategy di esportazione corretta in base al formato richiesto. Appartiene al layer applicativo dell'architettura layered e implementa il pattern Factory Method, centralizzando la logica di selezione della strategy. Segue la descrizione dei metodi:
 \begin{itemize}
@@ -377,7 +377,7 @@ La suddivisione in questi strati facilitano lo sviluppo, la manutenzione e la sc
     \item \texttt{extension() : string} - restituisce l'estensione del file associata al formato di esportazione, utilizzata per costruire il nome del file
 \end{itemize}
 \subparagraph{MdExport} È l'implementazione concreta di ExportStrategyInterface per l'esportazione nel formato Markdown, è la strategy più semplice del sistema in quanto il contenuto delle note è già nativamente in formato Markdown, quindi non richiede alcuna trasformazione. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
-\subparagraph{HtmlExport} È l'implementazione concreta di ExportStrategyInterface per l'esportazione nel formato HTML. Utilizza la libreria Parsedown per converitre il contenuto Markdown della nota in markup HTML, che viene poi incorporato in un documento HTML completo e ben formato. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
+\subparagraph{HtmlExport} È l'implementazione concreta di ExportStrategyInterface per l'esportazione nel formato HTML. Utilizza la libreria Parsedown per convertire il contenuto Markdown della nota in markup HTML, che viene poi incorporato in un documento HTML completo e ben formato. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
 \subparagraph{PdfExport} È l'implementazione concreta di ExportStrategyInterface per l'esportazione nel formato PDF. Prima delega a \textit{HtmlExport} la trasformazione del Markdown in HTML, poi utilizza la libreria \texttt{barryvdh/laravel-domppdf} per convertire l'HTML in un documento PDF binario. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
 
 \paragraph{Interazione con LLM}
