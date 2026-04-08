@@ -1,0 +1,145 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 03 Marzo 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{07/04/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{3cm}|p{8cm}|M{1.8cm}|}
+  \hline
+  \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} \\
+  \hline
+  Spadiliero Ruben & Prima stesura & 07/04/2026 \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di inizio sprint \#8. Discussione sui task da fare e organizzazione per il nuovo sprint. 
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Giuliano Banchieri & Progettista \\
+  \hline
+  Gabriele Disa & Amministratore \\
+  \hline
+  Stefano Maso & Progettista \\
+  \hline
+  Besnik Murtezan & Verificatore \\
+  \hline
+  Ruben Spadiliero & Responsabile \\
+  \hline
+  Niccolò Feltrin & Progettista \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l’obiettivo di fare il punto sulle attività in corso e valutare i prossimi passi operativi. In particolare, è stata discussa la possibilità di organizzare una riunione con il professor Cardin.
+
+Nel corso dell’incontro è stato inoltre confermato il design grafico, ritenuto coerente con i requisiti definiti e adeguato rispetto alle finalità del progetto. Questa conferma consente di procedere con maggiore sicurezza nelle fasi successive di sviluppo, evitando ulteriori revisioni sul piano visivo.
+
+Infine, sono stati assegnati nuovi ruoli per lo Sprint #8, con l’obiettivo di migliorare la distribuzione delle attività e ottimizzare l’efficienza del team.
+
+
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Ruben Spadiliero [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 07/04/2026 (Issue \#132)
+    \end{enumerate}
+\item \textbf{Assegnato a Stefano Maso, Niccolò Feltrin, Banchieri Giuliano [Progettisti]:}
+    \begin{enumerate}
+    \item Architettura Frontend (Issue \#131)
+    \item Specifica - Aggiungere architettura logica (Issue \#130)
+    \item AdR - Aggiornare con correzioni e sistemare requisiti (Issue \#129)
+    \end{enumerate}
+\item \textbf{Assegnato a Gabriele Disa [Amministratore]:}
+    \begin{enumerate}
+    \item Aggiornare Piano di Qualifica (Issue \#127)
+    \item Aggiornare Piano di Progetto (Issue \#128)
+    \end{enumerate}
+    \end{enumerate}
+\end{itemize}
+\end{document}
