@@ -21,6 +21,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Pulisci PDF e hash
+        run: |
+          echo "Pulizia completa in corso..."
+
+          rm -f Verbali/Interni/*.pdf 2>/dev/null || true
+          rm -f Verbali/Esterni/*.pdf 2>/dev/null || true
+          rm -f PB/*.pdf 2>/dev/null || true
+          rm -f Glossario/*.pdf 2>/dev/null || true
+
+          rm -rf .tex_hashes
+
+          echo "Pulizia completata"
+
       - name: Cache LaTeX aux files
         id: latex-cache
         uses: actions/cache@v4
