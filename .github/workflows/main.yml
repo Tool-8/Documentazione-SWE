@@ -34,6 +34,13 @@ jobs:
 
           echo "Pulizia completata"
 
+      - name: Rimuovi PDF dal tracking Git (se presenti)
+        run: |
+          git rm -f Verbali/Interni/*.pdf 2>/dev/null || true
+          git rm -f Verbali/Esterni/*.pdf 2>/dev/null || true
+          git rm -f PB/*.pdf 2>/dev/null || true
+          git rm -f Glossario/*.pdf 2>/dev/null || true
+
       - name: Cache LaTeX aux files
         id: latex-cache
         uses: actions/cache@v4
@@ -41,10 +48,6 @@ jobs:
           path: |
             **/.latex_aux
             .tex_hashes
-            Verbali/Interni/*.pdf
-            Verbali/Esterni/*.pdf
-            PB/*.pdf
-            Glossario/*.pdf
           key: latexmk-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
             latexmk-${{ runner.os }}-
