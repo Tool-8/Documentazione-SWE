@@ -36,6 +36,31 @@ jobs:
           restore-keys: |
             latexmk-${{ runner.os }}-
 
+      - name: Pulizia PDF orfani
+        run: |
+          clean_pdfs() {
+            local tex_dir=$1
+            local pdf_dir=$2
+          
+            # Per ogni PDF nella destinazione, verifica che esista il .tex corrispondente
+            for pdf in "$pdf_dir"/*.pdf; do
+              [ -f "$pdf" ] || continue
+              filename=$(basename "$pdf" .pdf)
+          
+              # Cerca un .tex con lo stesso nome nella cartella sorgente
+              if [ ! -f "$tex_dir/${filename}.tex" ]; then
+                echo "Rimuovo PDF orfano: $pdf"
+                rm "$pdf"
+                # Rimuovi anche l'hash così forza ricompilazione se il file torna
+                rm -f ".tex_hashes/$(echo "$tex_dir/${filename}.tex" | tr '/' '_').hash"
+              fi
+            done
+          }
+          
+          clean_pdfs "Verbali/Interni/Latex"  "Verbali/Interni"
+          clean_pdfs "PB/latex"               "PB"
+          clean_pdfs "Glossario"              "Glossario"
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
