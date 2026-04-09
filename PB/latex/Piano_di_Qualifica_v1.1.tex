@@ -92,6 +92,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  1.1 & Giuliano Banchieri & Aggiunta test di unità & 09/04/2026 & - \\
+  \hline
   1.0 & Besnik Murtezan & Approvazione documento per RTB & 25/03/2026 & Stefano Maso \\
   \hline
   0.6 & Niccolò Feltrin & Aggiornati grafici del cruscotto con Sprint 6 (insieme all'analisi) & 25/03/2026 & Stefano Maso \\
@@ -455,6 +457,116 @@ I test$^G$ di dividono in:
     \item \textbf{Test di sistema}: verificando il funzionamento corretto dell'intero sistema e soprattutto che tutti i requisiti siano soddisfatti; viene fatta corrispondere all'attività di \textit{Analisi dei Requisiti$^G$}
     \item \textbf{Test di accettazione}: verificando, alla presenza del committente, che il prodotto finale soddisfi tutti i requisiti, se questo test$^G$ risulta superato si può procedere al rilascio
 \end{itemize}
+
+Per ogni test sarà indicato il suo stato:
+\begin{itemize}
+    \item \textbf{S} : il test$^G$ è stato eseguito ed è stato superato con successo
+    \item \textbf{F} : il test$^G$ è stato eseguito ma non è stato superato
+    \item \textbf{-} : il test$^G$ non è stato eseguito
+\end{itemize}
+
+\subsection{Test di unità}
+I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici del codice funzionino correttamente. In seguito verranno elencati i vari test$^G$ e per ognuno il suo codice identificativo, l'oggetto di test, una descrizione e lo stato. \\
+
+\newcounter{TU@}
+
+\newcommand{\testU}{%
+    \stepcounter{TU@}%
+    \noindent{TU-\arabic{TU@}}\quad\par
+}
+
+\begin{longtable}{|l|p{4cm}|p{8cm}|p{1cm}|}
+    \hline
+    \textbf{Test} & \textbf{Oggetto} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
+    \endfirsthead
+    \hline
+    \testU & NoteController & - & - \\ \hline
+    \testU & NoteService & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio ottenuta da NoteRepositoryInterface & - \\ \hline
+    \testU & NoteService & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & - \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array restituisca i dettagli della nota corrispondente all'ID specificato & - \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array non deleghi a NoteRepositoryInterface la restituzione dei dettagli di una nota non esistente & - \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface la creazione di una nuova nota nell'archivio & - \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array non deleghi la creazione di una nuova nota nell'archivio qualora fosse già presente una nota con lo stesso nome & - \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface l'aggiornamento dei dettagli di una nota esistente & - \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array non deleghi l'aggiornamento dei dettagli della nota scelta qualora fosse già presente una nota con lo stesso nome & - \\ \hline
+    \testU & NoteService & Verificare che delete(string \$id):void deleghi correttamente l'eliminazione della nota corrispondente all'ID specificato a NoteRepositoryInterface & - \\ \hline
+    \testU & NoteRepository & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio & - \\ \hline
+    \testU & NoteRepository & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & - \\ \hline
+    \testU & NoteRepository & Verificare che get(string \$id):array restituisca i dati completi della nota corrispondente all'ID specificato & - \\ \hline
+    \testU & NoteRepository & Verificare che venga gestita l'eccezione quando si tenta di utilizzare get(string \$id):array con un ID di una nota non esistente & - \\ \hline
+    \testU & NoteRepository & Verificare che create(string \$title, string \$contentMd):array crei correttamente una nuova nota nell'archivio, associandola ad un ID univoco & - \\ \hline
+    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il titolo della nota scelta & - \\ \hline
+    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il contenuto della nota scelta & - \\ \hline
+    \testU & NoteRepository & Verificare che delete(string \$id):void elimini correttamente la nota corrispondente all'ID specificato & - \\ \hline
+    \testU & NoteRepository & Verificare che delete(string \$id):void gestisca correttamente l'eliminazione di una nota non esistente & - \\ \hline
+    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca true se un titolo è già utilizzato da un'altra nota con ID diverso da excludeId & - \\ \hline
+    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca false se un titolo non è già utilizzato da un'altra nota con ID diverso da excludeId & - \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca la nota corrispondente all'ID specificato nel formato richiesto qualora esso sia valido & - \\ \hline 
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 qualora l'ID non sia valido & - \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 qualora il formato richiesto non sia valido & - \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 in caso di errore durante l'esportazione & - \\ \hline
+    \testU & ExportService & Verificare che export(string\$id, string \$format):array restituisca correttamente i dati della nota, nel formato corretto dopo averne delegato l'esportazione a ExportStrategyIterface & - \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta MdExport nel caso il formato richiesto sia "md" & - \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta HtmlExport nel caso il formato richiesto sia "html" & - \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta PdfExport nel caso il formato richiesto sia "pdf" & - \\ \hline
+    \testU & MdExport & Verificare che export (string \$content, string \$title):string converta correttamente il contenuto della nota in formato Markdown & - \\ \hline
+    \testU & HtmlExport & Verificare che export (string \$content, string \$title):string converta correttamente il contenuto della nota in formato HTML & - \\ \hline
+    \testU & PdfExport & Verificare che export (string \$content, string \$title):string converta correttamente il contenuto della nota in formato PDF & - \\ \hline
+    \testU & MdExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato Markdown & - \\ \hline
+    \testU & HtmlExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato HTML & - \\ \hline
+    \testU & PdfExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato PDF & - \\ \hline
+    \testU & MdExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato Markdown & - \\ \hline
+    \testU & HtmlExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato HTML & - \\ \hline
+    \testU & PdfExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato PDF & - \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request, string \$id):JsonResponse deleghi correttamente a LlmService l'elaborazione della richiesta restituendo il risultato in una il risultato in una risposta JSON con status 200 & - \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request, string \$id):JsonResponse non deleghi a LlmService l'elaborazione della richiesta qualora i parametri non siano validi & - \\ \hline
+    \testU & LlmController & - & - \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext & - \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con l'azione richiesta & - \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con il testo da elaborare corretto & - \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con le opzioni specificate & - \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string restituisca il testo prodotto da LlmStrategyInterface & - \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext & - \\ \hline
+    \testU & LllmService & - & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta Summarize nel caso l'azione richiesta sia di riassunto & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta Translate nel caso l'azione richiesta sia di traduzione & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta Rewrite nel caso l'azione richiesta sia di riscrittura & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta DistantWriting nel caso l'azione richiesta sia di generazione di testo & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta WhiteHat nel caso l'azione richiesta sia di critica del testo secondo cappello bianco & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta RedHat nel caso l'azione richiesta sia di critica del testo secondo cappello rosso & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta BlackHat nel caso l'azione richiesta sia di critica del testo secondo cappello nero & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta YellowHat nel caso l'azione richiesta sia di critica del testo secondo cappello giallo & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta GreenHat nel caso l'azione richiesta sia di critica del testo secondo cappello verde & - \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta BlueHat nel caso l'azione richiesta sia di critica del testo secondo cappello blu & - \\ \hline
+    \testU & LlmProcessor & Verificare che setStrategy(LlmStrategyInterface \$strategy):static imposti correttamente la strategy da utilizzare & - \\ \hline
+    \testU & LlmProcessor & Verificare che run(LlmContext \$context):string deleghi correttamente l'elaborazione del testo alla strategy impostata & - \\ \hline
+    \testU & LlmProcessor & Verificare che run(LlmContext \$context):string restituisca il testo prodotto dalla strategy impostata & - \\ \hline
+    \testU & Summarize & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di riassunto & - \\ \hline
+    \testU & Summarize & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & - & - & - \\ \hline
+    \testU & Translate & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di traduzione & - \\ \hline
+    \testU & Translate & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & Rewrite & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di riscrittura & - \\ \hline
+    \testU & Rewrite & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & DistantWriting & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di generazione di testo & - \\ \hline
+    \testU & DistantWriting & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & WhiteHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello bianco & - \\ \hline
+    \testU & WhiteHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & RedHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello rosso & - \\ \hline
+    \testU & RedHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & BlackHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello nero & - \\ \hline
+    \testU & BlackHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & YellowHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello giallo & - \\ \hline
+    \testU & YellowHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & GreenHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello verde & - \\ \hline
+    \testU & GreenHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & BlueHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello blu & - \\ \hline
+    \testU & BlueHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+
+
+    
+\end{longtable}
+
 \subsection{Test di sistema}
 I test$^G$ di sistema hanno lo scopo di verificare che il sistema software rispetti i requisiti specificati nel documento "\textit{Analisi dei Requisiti$^G$}". In seguito verranno elencati i vari test$^G$, i quali avranno un codice identificativo, una descrizione, il requisito a cui fa riferimento e lo stato del test. \\
 
