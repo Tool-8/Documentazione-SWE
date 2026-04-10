@@ -92,7 +92,7 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  1.1 & Giuliano Banchieri & Aggiunta test di unità & 09/04/2026 & - \\
+  1.1 & Giuliano Banchieri & Aggiunta test di unità & 09/04/2026 & Besnik Murtezan \\
   \hline
   1.0 & Besnik Murtezan & Approvazione documento per RTB & 25/03/2026 & Stefano Maso \\
   \hline
@@ -484,12 +484,12 @@ I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici de
     \testU & NoteService & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio ottenuta da NoteRepositoryInterface & - \\ \hline
     \testU & NoteService & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & - \\ \hline
     \testU & NoteService & Verificare che get(string \$id):array restituisca i dettagli della nota corrispondente all'ID specificato & - \\ \hline
-    \testU & NoteService & Verificare che get(string \$id):array non deleghi a NoteRepositoryInterface la restituzione dei dettagli di una nota non esistente & - \\ \hline
-    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface la creazione di una nuova nota nell'archivio & - \\ \hline
-    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array non deleghi la creazione di una nuova nota nell'archivio qualora fosse già presente una nota con lo stesso nome & - \\ \hline
-    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface l'aggiornamento dei dettagli di una nota esistente & - \\ \hline
-    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array non deleghi l'aggiornamento dei dettagli della nota scelta qualora fosse già presente una nota con lo stesso nome & - \\ \hline
-    \testU & NoteService & Verificare che delete(string \$id):void deleghi correttamente l'eliminazione della nota corrispondente all'ID specificato a NoteRepositoryInterface & - \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array restituisca un errore in caso di nota non esistente per l'id specificato  & - \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface la creazione di una nuova nota nell'archivio (e restituisca un valore di successo) & - \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array restituisca un errore in caso la creazione di una nuova nota non sia avvenuta qualora fosse già presente una nota con lo stesso nome & - \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface l'aggiornamento dei dettagli di una nota esistente (e ritorni un valore di successo) & - \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array restituisca un errore e non deleghi l'aggiornamento dei dettagli della nota scelta qualora fosse già presente una nota con lo stesso nome & - \\ \hline
+    \testU & NoteService & Verificare che delete(string \$id):void deleghi correttamente l'eliminazione della nota corrispondente all'ID specificato a NoteRepositoryInterface (e ritorni un valore di successo) & - \\ \hline
     \testU & NoteRepository & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio & - \\ \hline
     \testU & NoteRepository & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & - \\ \hline
     \testU & NoteRepository & Verificare che get(string \$id):array restituisca i dati completi della nota corrispondente all'ID specificato & - \\ \hline
@@ -518,15 +518,14 @@ I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici de
     \testU & MdExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato Markdown & - \\ \hline
     \testU & HtmlExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato HTML & - \\ \hline
     \testU & PdfExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato PDF & - \\ \hline
-    \testU & LlmController & Verificare che invoke(Request \$request, string \$id):JsonResponse deleghi correttamente a LlmService l'elaborazione della richiesta restituendo il risultato in una il risultato in una risposta JSON con status 200 & - \\ \hline
-    \testU & LlmController & Verificare che invoke(Request \$request, string \$id):JsonResponse non deleghi a LlmService l'elaborazione della richiesta qualora i parametri non siano validi & - \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request, string \$id):JsonResponse deleghi correttamente a LlmService l'elaborazione della richiesta restituendo il risultato in una risposta JSON con status 200 & - \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request, string \$id):JsonResponse non deleghi a LlmService l'elaborazione della richiesta, qualora i parametri non siano validi, e restituisca un errore & - \\ \hline
     \testU & LlmController & - & - \\ \hline
     \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext & - \\ \hline
     \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con l'azione richiesta & - \\ \hline
     \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con il testo da elaborare corretto & - \\ \hline
     \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con le opzioni specificate & - \\ \hline
     \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string restituisca il testo prodotto da LlmStrategyInterface & - \\ \hline
-    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext & - \\ \hline
     \testU & LllmService & - & - \\ \hline
     \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta Summarize nel caso l'azione richiesta sia di riassunto & - \\ \hline
     \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta Translate nel caso l'azione richiesta sia di traduzione & - \\ \hline
