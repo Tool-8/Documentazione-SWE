@@ -108,7 +108,7 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  0.4 & Stefano Maso & Aggiunte sottosezioni per l'importazione & 10/04/2026 & - \\
+  0.4 & Stefano Maso & Aggiunte sottosezioni per l'importazione & 10/04/2026 & Besnik Murtezan \\
   \hline
   0.3 & Stefano Maso & Stesura sezione 3.1.1.2 e sottosezioni & 09/04/2026 & Besnik Murtezan \\
   \hline
@@ -362,23 +362,23 @@ La suddivisione in questi strati facilita lo sviluppo, la manutenzione e la scal
     \item \texttt{isTitleUsed(string \$title, ?string \$excludeId = null) : bool} - verifica se un titolo è già utilizzato da un'altra nota; \texttt{excludeId} permette di escludere dal confronto una nota specifica, per evitare che tale nota venga bloccata dal confronto con se stessa
 \end{itemize}
 \subparagraph{NoteRepository} È l'implementazione concreta di NoteRepositoryInterface che persiste le note come file Markdown sul filesystem locale tramite Laravel Storage. Realizza tutti i metodi dichiarati nell'interfaccia: \texttt{list(), get(), create(), update(), delete(), isTitleUsed()}; per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
-\subparagraph{ImportController} È il controller HTTP responsabile della gestione delle richieste di importazione. Appartiene al layer di presentazione dell'architettura layered ed è implementato come controller invocabile dato che la sua responsabilità è circoscritta ad una sola operazione. Si limita a validare il file, delega l'importazione a \textit{ImportService} e costruisce la risposta HTTP. Segue la descrizione dei metodi:
+\subparagraph{ImportController} È il controller HTTP responsabile della gestione delle richieste di importazione. Appartiene al layer di presentazione dell'architettura layered ed è implementato come controller invocabile dato che la sua responsabilità è circoscritta ad una sola operazione. Si limita a validare il file, delegare l'importazione a \textit{ImportService} e costruire la risposta HTTP. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{\_\_invoke(Request \$request) : JsonResponse} - valida il parametro (cioè il campo file della richiesta), delega l'importazione a \textit{ImportService}, passando il file caricato; in caso di successo restituisce la nota importata in formato JSON con status 201, altrimenti ritorna una risposta JSON con status 400
+    \item \texttt{\_\_invoke(Request \$request) : JsonResponse} - valida il parametro (cioè il campo file della richiesta), delega l'importazione a \textit{ImportService}, passando il file caricato; in caso di successo restituisce la nota importata in formato JSON con status 201, altrimenti ritorna una risposta JSON con status 400.
 \end{itemize}
-\subparagraph{ImportService} È il service responsabile della logica di importazione di una nota. Appartiene al layer applicativo dell'architettura layered. Dipende da NoteRepositoryInterface garantendo il disaccopiamento dal layer di persistenza. Segue la descrizione dei metodi:
+\subparagraph{ImportService} È il service responsabile della logica di importazione di una nota. Appartiene al layer applicativo dell'architettura layered. Dipende da NoteRepositoryInterface garantendo il disaccopiamento dall'implementazione del layer di persistenza. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{handle(UploadedFile \$file) : array} - estrae l'estensione del file caricato, delega la creazione della strategy corretta a ImportStrategyFactory ed invoca sulla strategy il metodo per estrarre il contenuto in Markdown, aggiunge un timestamp al titolo della nota per evitare conflitti e invoca \texttt{NoteRepositoryInterface::create()}, ritornando un array
+    \item \texttt{handle(UploadedFile \$file) : array} - estrae l'estensione del file caricato, delega la creazione della strategy corretta a ImportStrategyFactory ed invoca sulla strategy il metodo per estrarre il contenuto in Markdown; successivamente aggiunge un timestamp al titolo della nota per evitare conflitti e invoca \texttt{NoteRepositoryInterface::create()}, ritornando un array.
 \end{itemize}
 \subparagraph{ImportStrategyFactory} - È la factory responsabile della creazione della strategy di importazione corretta in base all'estensione del file caricato. Appartiene al layer applicativo dell'architettura layered e implementa il pattern Factory Method, centralizzando la logica di selezione della stratefy. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{make(string \$extension) : ImportStrategyInterface} - metodo statico che istanzia la strategy concreta corrispondente all'estensione del file caricato
+    \item \texttt{make(string \$extension) : ImportStrategyInterface} - metodo statico che istanzia la strategy concreta corrispondente all'estensione del file caricato.
 \end{itemize} 
 \subparagraph{ImportStrategyInterface} Interfaccia che definisce il contratto che ogni strategy di importazione deve rispettare. Appartiene al layer applicativo dell'architettura layered e rappresenta il punto di astrazione del pattern strategy applicato all'importazione delle note. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{parse(UploadedFile \$file) : array} - estrae il contenuto in Markdown e il titolo della note dal file caricato
+    \item \texttt{parse(UploadedFile \$file) : array} - estrae il contenuto in Markdown e il titolo della note dal file caricato.
 \end{itemize}
-\subparagraph{MdImport} È l'implementazione concreta di ImportStrategyInterface per l'importazione di file .md. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
+\subparagraph{MdImport} È l'implementazione concreta di ImportStrategyInterface per l'importazione di file \texttt{.md}. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
 
 \subparagraph{ExportController} È il controller HTTP responsabile della gestione delle richieste di esportazione, rendendo disponibile una nota come file scaricabile. Appartiene al layer di presentazione dell'architettura layered ed è implementato come controller invocabile dato che la sua responsabilità è circoscritta ad una sola operazione. Si limita a validare il formato richiesto, delega l'esportazione a \textit{ExportService} e costruisce la risposta HTTP con gli header appropriati per il download dei file. Segue la descrizione dei metodi:
 \begin{itemize}
