@@ -482,38 +482,54 @@ I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici de
     \textbf{Test} & \textbf{Oggetto} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
     \endfirsthead
     \hline
-    \testU & NoteController & - & - \\ \hline
-    \testU & NoteService & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio ottenuta da NoteRepositoryInterface & - \\ \hline
-    \testU & NoteService & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & - \\ \hline
-    \testU & NoteService & Verificare che get(string \$id):array restituisca i dettagli della nota corrispondente all'ID specificato & - \\ \hline
-    \testU & NoteService & Verificare che get(string \$id):array restituisca un errore in caso di nota non esistente per l'id specificato  & - \\ \hline
-    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface la creazione di una nuova nota nell'archivio (e restituisca un valore di successo) & - \\ \hline
-    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array restituisca un errore in caso la creazione di una nuova nota non sia avvenuta qualora fosse già presente una nota con lo stesso nome & - \\ \hline
-    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface l'aggiornamento dei dettagli di una nota esistente (e ritorni un valore di successo) & - \\ \hline
-    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array restituisca un errore e non deleghi l'aggiornamento dei dettagli della nota scelta qualora fosse già presente una nota con lo stesso nome & - \\ \hline
-    \testU & NoteService & Verificare che delete(string \$id):void deleghi correttamente l'eliminazione della nota corrispondente all'ID specificato a NoteRepositoryInterface (e ritorni un valore di successo) & - \\ \hline
-    \testU & NoteRepository & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio & - \\ \hline
-    \testU & NoteRepository & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & - \\ \hline
-    \testU & NoteRepository & Verificare che get(string \$id):array restituisca i dati completi della nota corrispondente all'ID specificato & - \\ \hline
-    \testU & NoteRepository & Verificare che venga gestita l'eccezione quando si tenta di utilizzare get(string \$id):array con un ID di una nota non esistente & - \\ \hline
-    \testU & NoteRepository & Verificare che create(string \$title, string \$contentMd):array crei correttamente una nuova nota nell'archivio, associandola ad un ID univoco & - \\ \hline
-    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il titolo della nota scelta & - \\ \hline
-    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il contenuto della nota scelta & - \\ \hline
-    \testU & NoteRepository & Verificare che delete(string \$id):void elimini correttamente la nota corrispondente all'ID specificato & - \\ \hline
-    \testU & NoteRepository & Verificare che delete(string \$id):void gestisca correttamente l'eliminazione di una nota non esistente & - \\ \hline
-    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca true se un titolo è già utilizzato da un'altra nota con ID diverso da excludeId & - \\ \hline
-    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca false se un titolo non è già utilizzato da un'altra nota con ID diverso da excludeId & - \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca la nota corrispondente all'ID specificato nel formato richiesto qualora esso sia valido & - \\ \hline 
+    \testU & NoteController & Verificare che index() restituisca 200 con la lista delle note & S \\ \hline
+    \testU & NoteController & Verificare che index() restituisca 200 con lista vuota quando non ci sono note & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 200 con i dati della nota & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 404 quando la nota non è trovata & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 400 quando l'id è invalido & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) restituisca 201 con la nota creata & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) utilizzi stringa vuota per content\_md assente & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) restituisca 409 quando il titolo è già in uso & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 200 con la nota aggiornata & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 404 quando la nota non è trovata & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 409 quando il titolo è già in uso & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 400 quando l'id è invalido & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 204 in caso di successo & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 404 quando la nota non è trovata & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 500 quando l'eliminazione fallisce & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 400 quando l'id è invalido & S \\ \hline
+    \testU & NoteController & Verificare che un'eccezione RuntimeException sconosciuta restituisca 500 & S \\ \hline
+    \testU & NoteService & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio ottenuta da NoteRepositoryInterface & S \\ \hline
+    \testU & NoteService & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & S \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array restituisca i dettagli della nota corrispondente all'ID specificato & S \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array restituisca un errore in caso di nota non esistente per l'id specificato & S \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface la creazione di una nuova nota nell'archivio (e restituisca un valore di successo) & S \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array restituisca un errore in caso la creazione di una nuova nota non sia avvenuta qualora fosse già presente una nota con lo stesso nome & S \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface l'aggiornamento dei dettagli di una nota esistente (e ritorni un valore di successo) & S \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array restituisca un errore e non deleghi l'aggiornamento dei dettagli della nota scelta qualora fosse già presente una nota con lo stesso nome & S \\ \hline
+    \testU & NoteService & Verificare che delete(string \$id):void deleghi correttamente l'eliminazione della nota corrispondente all'ID specificato a NoteRepositoryInterface (e ritorni un valore di successo) & S \\ \hline
+    \testU & NoteRepository & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio & S \\ \hline
+    \testU & NoteRepository & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & S \\ \hline
+    \testU & NoteRepository & Verificare che get(string \$id):array restituisca i dati completi della nota corrispondente all'ID specificato & S \\ \hline
+    \testU & NoteRepository & Verificare che venga gestita l'eccezione quando si tenta di utilizzare get(string \$id):array con un ID di una nota non esistente & S \\ \hline
+    \testU & NoteRepository & Verificare che create(string \$title, string \$contentMd):array crei correttamente una nuova nota nell'archivio, associandola ad un ID univoco & S \\ \hline
+    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il titolo della nota scelta & S \\ \hline
+    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il contenuto della nota scelta & S \\ \hline
+    \testU & NoteRepository & Verificare che delete(string \$id):void elimini correttamente la nota corrispondente all'ID specificato & S \\ \hline
+    \testU & NoteRepository & Verificare che delete(string \$id):void gestisca correttamente l'eliminazione di una nota non esistente & S \\ \hline
+    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca true se un titolo è già utilizzato da un'altra nota con ID diverso da excludeId & S \\ \hline
+    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca false se un titolo non è già utilizzato da un'altra nota con ID diverso da excludeId & S \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca la nota corrispondente all'ID specificato nel formato richiesto qualora esso sia valido & - \\ \hline
     \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 qualora l'ID non sia valido & - \\ \hline
     \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 qualora il formato richiesto non sia valido & - \\ \hline
     \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 in caso di errore durante l'esportazione & - \\ \hline
-    \testU & ExportService & Verificare che export(string\$id, string \$format):array restituisca correttamente i dati della nota, nel formato corretto dopo averne delegato l'esportazione a ExportStrategyIterface & - \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota, nel formato corretto dopo averne delegato l'esportazione a ExportStrategyInterface & - \\ \hline
     \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta MdExport nel caso il formato richiesto sia "md" & - \\ \hline
     \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta HtmlExport nel caso il formato richiesto sia "html" & - \\ \hline
     \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta PdfExport nel caso il formato richiesto sia "pdf" & - \\ \hline
-    \testU & MdExport & Verificare che export (string \$content, string \$title):string converta correttamente il contenuto della nota in formato Markdown & - \\ \hline
-    \testU & HtmlExport & Verificare che export (string \$content, string \$title):string converta correttamente il contenuto della nota in formato HTML & - \\ \hline
-    \testU & PdfExport & Verificare che export (string \$content, string \$title):string converta correttamente il contenuto della nota in formato PDF & - \\ \hline
+    \testU & MdExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato Markdown & - \\ \hline
+    \testU & HtmlExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato HTML & - \\ \hline
+    \testU & PdfExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato PDF & - \\ \hline
     \testU & MdExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato Markdown & - \\ \hline
     \testU & HtmlExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato HTML & - \\ \hline
     \testU & PdfExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato PDF & - \\ \hline
@@ -563,9 +579,6 @@ I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici de
     \testU & GreenHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
     \testU & BlueHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello blu & - \\ \hline
     \testU & BlueHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-
-
-    
 \end{longtable}
 
 \subsection{Test di sistema}
