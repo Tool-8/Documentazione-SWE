@@ -215,14 +215,14 @@
     \UCdefsub{chiudi_salva}{Chiusura Nota\\Con Salvataggio}
 \UCdef{crea}{Creazione Nota}
 \UCdef{salva}{Salvataggio Nota}
+    \UCdefsub{salva_nome_err}{Errore Nome\\Utilizzato}
+    \UCdefsub{salva_server_err}{Errore Perdita\\Connessione}
     \UCdefsub{salva_primo}{Primo Salvataggio\\Nota}
     \UCdefsub{salva_modifiche}{Salvataggio\\Modifiche Nota}
         \UCdefsubsub{salva_err}{Errore Nota\\Non Aggiornata}
         \UCdefsubsub{salva_err_sovra}{Sovrascrivi\\Nota}
         \UCdefsubsub{salva_err_diff}{Salva Con\\Nome Differente}
         \UCdefsubsub{salva_err_agg}{Aggiorna Nota\\Corrente}
-    \UCdefsub{salva_nome_err}{Errore Nome\\Utilizzato}
-    \UCdefsub{salva_server_err}{Errore Perdita\\Connessione}
 \UCdef{clona}{Clonazione Nota}
     \UCdefsub{clona_err}{Errore Clonazione\\Nota Inesistente}
     \UCdefsub{clona_server_err}{Errore Perdita\\Connessione}
@@ -252,24 +252,23 @@
     \UCdefsub{cambio_visua_mark_render}{Visualizzazione\\Markdown e Render}
     \UCdefsub{cambio_visua_render}{Visualizzazione\\Render}
 \UCdef{scrivi}{Scrittura Testo}
-\UCdef{formatta}{Formattazione Testo}
-    \UCdefsub{grassetto}{Testo\\Grassetto}
-        \UCdefsubsub{grassetto_rim}{Rimozione\\Grassetto}
-    \UCdefsub{corsivo}{Testo\\Corsivo}
-        \UCdefsubsub{corsivo_rim}{Rimozione\\Corsivo}
-    \UCdefsub{sottolineato}{Testo\\Sottolineato}
-        \UCdefsubsub{sottolineato_rim}{Rimozione\\Sottolineato}
-    \UCdefsub{barrato}{Testo\\Barrato}
-        \UCdefsubsub{barrato_rim}{Rimozione\\Barrato}
-    \UCdefsub{link}{Link\\Ipertestuale}
-        \UCdefsubsub{link_rim}{Rimozione\\Link Ipertestuale}
-    \UCdefsub{commento}{Testo\\Commentato}
-        \UCdefsubsub{commento_rim}{Rimozione\\Commento}
+\UCdef{grassetto}{Applicazione\\Grassetto}
+    \UCdefsub{grassetto_rim}{Rimozione\\Grassetto}
+\UCdef{corsivo}{Applicazione\\Corsivo}
+    \UCdefsub{corsivo_rim}{Rimozione\\Corsivo}
+\UCdef{sottolineato}{Applicazione\\Sottolineato}
+    \UCdefsub{sottolineato_rim}{Rimozione\\Sottolineato}
+\UCdef{barrato}{Applicazione\\Barrato}
+    \UCdefsub{barrato_rim}{Rimozione\\Barrato}
+\UCdef{link}{Applicazione\\Link Ipertestuale}
+    \UCdefsub{link_rim}{Rimozione\\Link Ipertestuale}
+\UCdef{commento}{Applicazione\\Commento}
+    \UCdefsub{commento_rim}{Rimozione\\Commento}
 \UCdef{elenco}{Creazione Elenco}
-    \UCdefsub{elenco_num}{Elenco Numerato}
-        \UCdefsubsub{elem_num}{Elemento Numerato}
-    \UCdefsub{elenco_punt}{Elenco Puntato}
-        \UCdefsubsub{elem_punt}{Elemento Puntato}
+    \UCdefsub{elenco_num}{Creazione\\Elenco Numerato}
+        \UCdefsubsub{elem_num}{Creazione\\Elemento Numerato}
+    \UCdefsub{elenco_punt}{Creazione\\Elenco Puntato}
+        \UCdefsubsub{elem_punt}{Creazione\\Elemento Puntato}
 \UCdef{rimozione_elem}{Rimozione\\Elemento Elenco}
     \UCdefsub{rimozione_elem_num}{Rimozione\\Elemento Numerato}
     \UCdefsub{rimozione_elem_punt}{Rimozione\\Elemento Puntato}
@@ -289,9 +288,8 @@
     \UCdefsub{riscrivi_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{traduci}{Traduzione\\Testo Con LLM$^G$}
     \UCdefsub{traduci_llm_err}{Errore LLM\\Non Raggiungibile}
-\UCdef{mod_traduzione}{Gestione\\Modifica Traduzione}
-    \UCdefsub{traduci_redo}{Ritraduzione Testo\\Con LLM$^G$}
-        \UCdefsubsub{ritraduci_llm_err}{Errore\\Ritraduzione}
+\UCdef{traduci_redo}{Ritraduzione Testo\\Con LLM$^G$}
+    \UCdefsub{ritraduci_llm_err}{Errore\\Ritraduzione}
 \UCdef{genera}{Generazione Testo Con LLM$^G$}
     \UCdefsub{genera_llm_err}{Errore LLM\\Non Raggiungibile}
 \UCdef{critica}{Critica Testo\\Secondo Modello\\"Sei Cappelli"}
@@ -356,13 +354,16 @@
 
         \hline
         \endlastfoot
+            \hline
+            1.6 & Niccolò Feltrin & Modifiche \UCRef{salva_err}, \UCRef{salva_err_sovra}, \UCRef{salva_err_diff}, \UCRef{salva_err_agg}, rimosso caso d'uso Formattazione Testo, modifica fig. 23, modifica \UCRef{traduci_redo} & 10/04/2026 & Besnik Murtezan \\
+            \hline
             1.5 & Giuliano Banchieri & Aggiunta tabella di tracciamento, requisiti mancanti e sistemati requisiti di vincolo & 25/03/2026 & Stefano Maso \\
             \hline
             1.4 & Giuliano Banchieri & Modifica requisiti secondo indicazioni Prof. Cardin & 24/03/2026 & Stefano Maso \\
             \hline
             1.3 & Giuliano Banchieri & Aggiunta casi d'uso \UCRef{elem_num}, \UCRef{elem_punt}, \UCRef{rimozione_elem}, \UCRef{rimozione_elem_num}, \UCRef{rimozione_elem_punt}, corretto diagramma \UCRef{traduci}, sostituito errori autenticazione con \UCRef{auth_err} & 22/03/2026 & Stefano Maso \\
             \hline
-            1.2 & Giuliano Banchieri & Secondo indicazioni Prof. Cardin: rinomina caso d'uso \UCRef{apri}, rimossi include ed extend da \UCRef{chiudi}, aggiunto \UCRef{chiudi_salva}, rimosso include da \UCRef{crea}, modificati \UCRef{salva}, aggiunto \UCRef{importa_md}, separati i casi d'uso \UCRef{formatta} & 21/03/2026 & Stefano Maso \\
+            1.2 & Giuliano Banchieri & Secondo indicazioni Prof. Cardin: rinomina caso d'uso \UCRef{apri}, rimossi include ed extend da \UCRef{chiudi}, aggiunto \UCRef{chiudi_salva}, rimosso include da \UCRef{crea}, modificati \UCRef{salva}, aggiunto \UCRef{importa_md}, separati i casi d'uso (Caso d'uso Formattazione Testo) & 21/03/2026 & Stefano Maso \\
             \hline
             1.1 & Giuliano Banchieri & Aggiunta riferimenti (sezione 1.3), fix tabella revisioni & 20/03/2026 & Stefano Maso \\
             \hline
@@ -951,7 +952,7 @@
 
 
     \paragraph*{\UCText{salva_nome_err}}
-    \addcontentsline{toc}{subparagraph}{\UCText{salva_nome_err}}
+    \addcontentsline{toc}{paragraph}{\UCText{salva_nome_err}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -1055,7 +1056,7 @@
     \begin{tikzauto}
         \begin{umlsystem}[x=5, fill=white!10]{Sistema}
             
-            \umlusecase[x=-1, y=4, name=err_salva, align=center]{\UCName{salva_err}}
+            \umlusecase[x=-0.5, y=4, name=err_salva, align=center]{\UCName{salva_err}}
             \umlusecase[x=-4, y=2, name=sovra, align=center]{\UCName{salva_err_sovra}}
             \umlusecase[x=-0.5, y=0, name=diff, align=center]{\UCName{salva_err_diff}}
             \umlusecase[x=3, y=2, name=agg, align=center]{\UCName{salva_err_agg}}
@@ -1067,10 +1068,10 @@
         % Associazioni Utente
         \umlassoc{Utente}{err_salva}
         
-        % Estensioni
-        \umlextend{sovra}{err_salva}
-        \umlextend{agg}{err_salva}
-        \umlextend{diff}{err_salva}
+        % Generalizzazioni
+        \umlinherit{sovra}{err_salva}
+        \umlinherit{agg}{err_salva}
+        \umlinherit{diff}{err_salva}
     \end{tikzauto}
 
     \caption{\UCText{salva_err} e sottocasi}
@@ -1102,12 +1103,12 @@
                 \item \UCName{salva_err_diff}
                 \item \UCName{salva_err_agg}
             \end{itemize}
-            \item L'utente seleziona una tra le opzioni
-            \item Il sistema effettua l'operazione scelta dall'utente
+        \item L'utente seleziona una tra le opzioni
+        \item Il sistema effettua l'operazione scelta dall'utente
     \end{enumerate}
 
-    \paragraph*{\UCText{salva_err_sovra}}
-    \addcontentsline{toc}{paragraph}{\UCText{salva_err_sovra}}
+    \subparagraph*{\UCText{salva_err_sovra}}
+    \addcontentsline{toc}{subparagraph}{\UCText{salva_err_sovra}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -1115,9 +1116,9 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota con una versione più recente presente nell'archivio
+        \item L'utente sta visualizzando una nota che ha ricevuto delle modifiche non salvate
+        \item La versione della nota presente nell'archivio è più recente di quella dell'utente
         \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
-        \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1125,12 +1126,14 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{itemize}
-        \item L'utente ha scelto l'opzione di sovrascrivere la nota più recente
-        \item La nota presente nell'archivio viene aggiornata con la versione dell'utente
+        \item L'utente attiva la funzionalità$^G$ \textit{"Salva Nota"}
+        \item Il sistema avvisa della presenza di modifiche non contenute nella versione corrente dell'utente
+        \item L'utente sceglie di sovrascrivere la nota con i nuovi salvataggi
+        \item Il sistema effettua l'operazione scelta dall'utente
     \end{itemize}
 
-    \paragraph*{\UCText{salva_err_diff}}
-    \addcontentsline{toc}{paragraph}{\UCText{salva_err_diff}}
+    \subparagraph*{\UCText{salva_err_diff}}
+    \addcontentsline{toc}{subparagraph}{\UCText{salva_err_diff}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -1138,9 +1141,9 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota con una versione più recente presente nell'archivio
+        \item L'utente sta visualizzando una nota che ha ricevuto delle modifiche non salvate
+        \item La versione della nota presente nell'archivio è più recente di quella dell'utente
         \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
-        \item L'utente ha scelto l'opzione di salvare la nota con un nome differente
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1148,13 +1151,14 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{itemize}
-        \item L'utente ha scelto l'opzione di salvare la nota con un altro nome
-        \item L'utente inserisce il nome della nota 
-        \item La nota viene salvata nell'archivio delle note
+        \item L'utente attiva la funzionalità$^G$ \textit{"Salva Nota"}
+        \item Il sistema avvisa della presenza di modifiche non contenute nella versione corrente dell'utente
+        \item L'utente sceglie di salvare la nota con un nome diverso
+        \item Il sistema effettua l'operazione scelta dall'utente
     \end{itemize}
 
-    \paragraph*{\UCText{salva_err_agg}}
-    \addcontentsline{toc}{paragraph}{\UCText{salva_err_agg}}
+    \subparagraph*{\UCText{salva_err_agg}}
+    \addcontentsline{toc}{subparagraph}{\UCText{salva_err_agg}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -1162,9 +1166,9 @@
     \textbf{Precondizioni}
     \begin{itemize}
         \item L'utente è connesso al sistema
-        \item L'utente sta visualizzando una nota con una versione più recente presente nell'archivio
+        \item L'utente sta visualizzando una nota che ha ricevuto delle modifiche non salvate
+        \item La versione della nota presente nell'archivio è più recente di quella dell'utente
         \item L'utente ha attivato la funzionalità$^G$ \textit{"Salva Nota"}
-        \item L'utente ha scelto l'opzione di aggiornare la nota aperta con la versione presente in archivio
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
@@ -1172,8 +1176,10 @@
     \end{itemize}
     \textbf{Scenario principale}
     \begin{itemize}
-        \item L'utente ha scelto l'opzione di aggiornare la nota aperta
-        \item Il contenuto della nota viene aggiornato
+        \item L'utente attiva la funzionalità$^G$ \textit{"Salva Nota"}
+        \item Il sistema avvisa della presenza di modifiche non contenute nella versione corrente dell'utente
+        \item L'utente sceglie di aggiornare la nota locale con le modifiche presenti nel Server
+        \item Il sistema effettua l'operazione scelta dall'utente
     \end{itemize}
 
 
@@ -2169,54 +2175,8 @@
 
     \vspace{1cm}
 
-    \subsubsection*{\UCText{formatta}}
-    \addcontentsline{toc}{subsubsection}{\UCText{formatta}}
-
-    \medskip
-
-    \begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        \begin{umlsystem}[x=5, fill=white!10]{Sistema}
-            \umlusecase[x=0, y=4, name=associazione]{\UCName{formatta}}
-        \end{umlsystem}
-
-        % Attori
-        \umlactor[x=0, y=4]{Utente}
-
-        % Associazioni Utente
-        \umlassoc{Utente}{associazione}
-    \end{tikzpicture}
-
-    \caption{\UCText{formatta}}
-    \label{fig:formatta_usecase}
-\end{figure}
-
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta
-        \item L'utente ha selezionato una porzione di testo (\UCRef{seleziona})
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La parte di testo selezionata è formattata secondo le modalità decise dall'utente
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item L'utente seleziona una porzione di testo
-        \item L'utente attiva la funzionalità$^G$ \textit{"Formattazione testo"}
-        \item La parte di testo selezionata è compresa tra i marcatori di testo necessari al tipo di formattazione scelto
-    \end{enumerate}
-
-    \vspace{1cm}
-
-    \paragraph*{\UCText{grassetto}}
-    \addcontentsline{toc}{paragraph}{\UCText{grassetto}}
+    \subsubsection*{\UCText{grassetto}}
+    \addcontentsline{toc}{subsubsection}{\UCText{grassetto}}
 
     \medskip
 
@@ -2224,20 +2184,16 @@
     \centering
     \begin{tikzpicture}
         \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-            \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
-            \umlusecase[x=0, y=3, name=Grassetto, align=center]{\UCName{grassetto}}
-            \umlusecase[x=6, y=3, name=no_grass, align=center]{\UCName{grassetto_rim}}
+            \umlusecase[x=0, y=2, name=Grassetto, align=center]{\UCName{grassetto}}
+            \umlusecase[x=0, y=0, name=no_grass, align=center]{\UCName{grassetto_rim}}
         \end{umlsystem}
 
         % Attore
-        \umlactor[x=2, y=5]{Utente}
+        \umlactor[x=2, y=1]{Utente}
 
         % Associazione
-        \umlassoc{Utente}{Formattazione}
-
-        % Generalizzazioni
-        \umlinherit{Grassetto}{Formattazione}
-        \umlinherit{no_grass}{Formattazione}
+        \umlassoc{Utente}{Grassetto}
+        \umlassoc{Utente}{no_grass}
     \end{tikzpicture}
 
     \caption{\UCText{grassetto} e \UCText{grassetto_rim}}
@@ -2265,8 +2221,8 @@
         \item La parte di testo selezionata è compresa tra i marcatori di testo del grassetto
     \end{enumerate}
 
-    \subparagraph*{\UCText{grassetto_rim}}
-    \addcontentsline{toc}{subparagraph}{\UCText{grassetto_rim}}
+    \paragraph*{\UCText{grassetto_rim}}
+    \addcontentsline{toc}{paragraph}{\UCText{grassetto_rim}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -2289,8 +2245,8 @@
 
     \vspace{1cm}
 
-    \paragraph*{\UCText{corsivo}}
-    \addcontentsline{toc}{paragraph}{\UCText{corsivo}}
+    \subsubsection*{\UCText{corsivo}}
+    \addcontentsline{toc}{subsubsection}{\UCText{corsivo}}
 
     \medskip
 
@@ -2298,20 +2254,16 @@
     \centering
     \begin{tikzpicture}
         \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-            \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
-            \umlusecase[x=0, y=3, name=Corsivo, align=center]{\UCName{corsivo}}
-            \umlusecase[x=6, y=3, name=rim_cors, align=center]{\UCName{corsivo_rim}}
+            \umlusecase[x=0, y=2, name=Corsivo, align=center]{\UCName{corsivo}}
+            \umlusecase[x=0, y=0, name=rim_cors, align=center]{\UCName{corsivo_rim}}
         \end{umlsystem}
 
         % Attore
-        \umlactor[x=2, y=5]{Utente}
+        \umlactor[x=2, y=1]{Utente}
 
         % Associazione
-        \umlassoc{Utente}{Formattazione}
-
-        % Generalizzazioni
-        \umlinherit{Corsivo}{Formattazione}
-        \umlinherit{rim_cors}{Formattazione}
+        \umlassoc{Utente}{Corsivo}
+        \umlassoc{Utente}{rim_cors}
     \end{tikzpicture}
 
     \caption{\UCText{corsivo} e \UCText{corsivo_rim}}
@@ -2339,8 +2291,8 @@
         \item La parte di testo selezionata è compresa tra i marcatori di testo del corsivo
     \end{enumerate}
 
-    \subparagraph*{\UCText{corsivo_rim}}
-    \addcontentsline{toc}{subparagraph}{\UCText{corsivo_rim}}
+    \paragraph*{\UCText{corsivo_rim}}
+    \addcontentsline{toc}{paragraph}{\UCText{corsivo_rim}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -2363,8 +2315,8 @@
 
     \vspace{1cm}
 
-    \paragraph*{\UCText{sottolineato}}
-    \addcontentsline{toc}{paragraph}{\UCText{sottolineato}}
+    \subsubsection*{\UCText{sottolineato}}
+    \addcontentsline{toc}{subsubsection}{\UCText{sottolineato}}
 
     \medskip
 
@@ -2372,20 +2324,16 @@
     \centering
     \begin{tikzpicture}
         \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-            \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
-            \umlusecase[x=0, y=3, name=Sottolineato, align=center]{\UCName{sottolineato}}
-            \umlusecase[x=6, y=3, name=rim_sot, align=center]{\UCName{sottolineato_rim}}
+            \umlusecase[x=0, y=2, name=Sottolineato, align=center]{\UCName{sottolineato}}
+            \umlusecase[x=0, y=0, name=rim_sot, align=center]{\UCName{sottolineato_rim}}
         \end{umlsystem}
 
         % Attore
-        \umlactor[x=2, y=5]{Utente}
+        \umlactor[x=2, y=1]{Utente}
 
         % Associazione
-        \umlassoc{Utente}{Formattazione}
-
-        % Generalizzazioni
-        \umlinherit{Sottolineato}{Formattazione}
-        \umlinherit{rim_sot}{Formattazione}
+        \umlassoc{Utente}{Sottolineato}
+        \umlassoc{Utente}{rim_sot}
     \end{tikzpicture}
 
     \caption{\UCText{sottolineato} e \UCText{sottolineato_rim}}
@@ -2413,8 +2361,8 @@
         \item La parte di testo selezionata è compresa tra i marcatori di testo per la sottolineatura
     \end{enumerate}
 
-    \subparagraph*{\UCText{sottolineato_rim}}
-    \addcontentsline{toc}{subparagraph}{\UCText{sottolineato_rim}}
+    \paragraph*{\UCText{sottolineato_rim}}
+    \addcontentsline{toc}{paragraph}{\UCText{sottolineato_rim}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -2437,8 +2385,8 @@
 
     \vspace{1cm}
 
-    \paragraph*{\UCText{barrato}}
-    \addcontentsline{toc}{paragraph}{\UCText{barrato}}
+    \subsubsection*{\UCText{barrato}}
+    \addcontentsline{toc}{subsubsection}{\UCText{barrato}}
 
     \medskip
 
@@ -2446,20 +2394,16 @@
     \centering
     \begin{tikzpicture}
         \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-            \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
-            \umlusecase[x=0, y=3, name=Barrato, align=center]{\UCName{barrato}}
-            \umlusecase[x=6, y=3, name=err_barr, align=center]{\UCName{barrato_rim}}
+            \umlusecase[x=0, y=2, name=Barrato, align=center]{\UCName{barrato}}
+            \umlusecase[x=0, y=0, name=rim_barr, align=center]{\UCName{barrato_rim}}
         \end{umlsystem}
 
         % Attore
-        \umlactor[x=2, y=5]{Utente}
+        \umlactor[x=2, y=1]{Utente}
 
         % Associazione
-        \umlassoc{Utente}{Formattazione}
-
-        % Generalizzazioni
-        \umlinherit{Barrato}{Formattazione}
-        \umlinherit{err_barr}{Formattazione}
+        \umlassoc{Utente}{Barrato}
+        \umlassoc{Utente}{rim_barr}
     \end{tikzpicture}
 
     \caption{\UCText{barrato} e \UCText{barrato_rim}}
@@ -2487,8 +2431,8 @@
         \item La parte di testo selezionata è compresa tra i marcatori di testo per la barratura
     \end{enumerate}
 
-    \subparagraph*{\UCText{barrato_rim}}
-    \addcontentsline{toc}{subparagraph}{\UCText{barrato_rim}}
+    \paragraph*{\UCText{barrato_rim}}
+    \addcontentsline{toc}{paragraph}{\UCText{barrato_rim}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -2511,8 +2455,8 @@
 
     \vspace{1cm}
 
-    \paragraph*{\UCText{link}}
-    \addcontentsline{toc}{paragraph}{\UCText{link}}
+    \subsubsection*{\UCText{link}}
+    \addcontentsline{toc}{subsubsection}{\UCText{link}}
 
     \medskip
 
@@ -2520,20 +2464,16 @@
     \centering
     \begin{tikzpicture}
         \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-            \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
-            \umlusecase[x=0, y=3, name=Link, align=center]{\UCName{link}}
-            \umlusecase[x=6, y=3, name=rim_link, align=center]{\UCName{link_rim}}
+            \umlusecase[x=0, y=2, name=Link, align=center]{\UCName{link}}
+            \umlusecase[x=0, y=0, name=rim_link, align=center]{\UCName{link_rim}}
         \end{umlsystem}
 
         % Attore
-        \umlactor[x=2, y=5]{Utente}
+        \umlactor[x=2, y=1]{Utente}
 
         % Associazione
-        \umlassoc{Utente}{Formattazione}
-
-        % Generalizzazioni
-        \umlinherit{Link}{Formattazione}
-        \umlinherit{rim_link}{Formattazione}
+        \umlassoc{Utente}{Link}
+        \umlassoc{Utente}{rim_link}
     \end{tikzpicture}
 
     \caption{\UCText{link} e \UCText{link_rim}}
@@ -2562,8 +2502,8 @@
     \end{enumerate}
     \textbf{Estensioni}
 
-    \subparagraph*{\UCText{link_rim}}
-    \addcontentsline{toc}{subparagraph}{\UCText{link_rim}}
+    \paragraph*{\UCText{link_rim}}
+    \addcontentsline{toc}{paragraph}{\UCText{link_rim}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -2586,8 +2526,8 @@
 
     \vspace{1cm}
 
-    \paragraph*{\UCText{commento}}
-    \addcontentsline{toc}{paragraph}{\UCText{commento}}
+    \subsubsection*{\UCText{commento}}
+    \addcontentsline{toc}{subsubsection}{\UCText{commento}}
 
     \medskip
 
@@ -2595,20 +2535,16 @@
     \centering
     \begin{tikzpicture}
         \begin{umlsystem}[x=6, fill=white!10]{Sistema}
-            \umlusecase[x=3, y=5, name=Formattazione]{\UCName{formatta}}
-            \umlusecase[x=0, y=3, name=Commento, align=center]{\UCName{commento}}
-            \umlusecase[x=6, y=3, name=rim_comm, align=center]{\UCName{commento_rim}}
+            \umlusecase[x=0, y=2, name=Commento, align=center]{\UCName{commento}}
+            \umlusecase[x=0, y=0, name=rim_comm, align=center]{\UCName{commento_rim}}
         \end{umlsystem}
 
         % Attore
-        \umlactor[x=2, y=5]{Utente}
+        \umlactor[x=2, y=1]{Utente}
 
         % Associazione
-        \umlassoc{Utente}{Formattazione}
-
-        % Generalizzazioni
-        \umlinherit{Commento}{Formattazione}
-        \umlinherit{rim_comm}{Formattazione}
+        \umlassoc{Utente}{Commento}
+        \umlassoc{Utente}{rim_comm}
     \end{tikzpicture}
 
     \caption{\UCText{commento} e \UCText{commento_rim}}
@@ -2636,8 +2572,8 @@
         \item La porzione di testo selezionata viene delimitata dai marcatori di commento
     \end{enumerate}
 
-    \subparagraph*{\UCText{commento_rim}}
-    \addcontentsline{toc}{subparagraph}{\UCText{commento_rim}}
+    \paragraph*{\UCText{commento_rim}}
+    \addcontentsline{toc}{paragraph}{\UCText{commento_rim}}
     \textbf{Attori principali}
     \begin{itemize}
         \item Utente
@@ -2669,12 +2605,12 @@
     \centering
     \begin{tikzauto}
 
-        \begin{umlsystem}[x=8, fill=white!10]{Sistema}
-            \umlusecase[x=4, y=5, name=Elenco]{\UCName{elenco}}
-            \umlusecase[x=0, y=3, name=Numerato]{\UCName{elenco_num}}
-            \umlusecase[x=8, y=3, name=Puntato]{\UCName{elenco_punt}}
-            \umlusecase[x=0, y=1, name=elem_numerato]{\UCName{elem_num}}
-            \umlusecase[x=8, y=1, name=elem_puntato]{\UCName{elem_punt}}
+        \begin{umlsystem}[x=6, fill=white!10]{Sistema}
+            \umlusecase[x=3, y=5, name=Elenco, align=center]{\UCName{elenco}}
+            \umlusecase[x=0, y=3, name=Numerato, align=center]{\UCName{elenco_num}}
+            \umlusecase[x=6, y=3, name=Puntato, align=center]{\UCName{elenco_punt}}
+            \umlusecase[x=0, y=1, name=elem_numerato, align=center]{\UCName{elem_num}}
+            \umlusecase[x=6, y=1, name=elem_puntato, align=center]{\UCName{elem_punt}}
         \end{umlsystem}
 
         % Attore
@@ -3589,34 +3525,32 @@
 
     \vspace{1cm}
 
-    \paragraph*{\UCText{mod_traduzione}}
-    \addcontentsline{toc}{paragraph}{\UCText{mod_traduzione}}
+    \subsubsection*{\UCText{traduci_redo}}
+    \addcontentsline{toc}{subsubsection}{\UCText{traduci_redo}}
 
     \begin{figure}[H]
-    \centering
-    \begin{tikzauto}
-        \begin{umlsystem}[x=4, fill=white!10]{Sistema}
-            \umlusecase[x=0, y=4, name=mod_traduzione, align=center]{\UCName{mod_traduzione}}
-            \umlusecase[x=0, y=2, name=traduzione_redo, align=center]{\UCName{traduci_redo}}
-            \umlusecase[x=0, y=0, name=llm_err, align=center]{\UCName{ritraduci_llm_err}}
-        \end{umlsystem}
+        \centering
+        \begin{tikzauto}
+            \begin{umlsystem}[x=4, fill=white!10]{Sistema}
+                \umlusecase[x=0, y=4, name=traduzione_redo, align=center]{\UCName{traduci_redo}}
+                \umlusecase[x=0, y=2, name=llm_err, align=center]{\UCName{ritraduci_llm_err}}
+            \end{umlsystem}
 
-        % Attori
-        \umlactor[x=-1, y=4]{Utente}
-        \umlactor[x=9, y=2, scale=0.75]{LLM$^G$}
+            % Attori
+            \umlactor[x=-1, y=4]{Utente}
+            \umlactor[x=9, y=4, scale=0.75]{LLM$^G$}
 
-        % Associazioni Utente
-        \umlassoc{Utente}{mod_traduzione}
-        \umlassoc{LLM$^G$}{traduzione_redo}
+            % Associazioni Utente
+            \umlassoc{Utente}{traduzione_redo}
+            \umlassoc{LLM$^G$}{traduzione_redo}
 
-        % Associazioni Casi d'Uso
-        \umlextend{llm_err}{traduzione_redo}
-        \umlextend{traduzione_redo}{mod_traduzione}
+            % Associazioni Casi d'Uso
+            \umlextend{llm_err}{traduzione_redo}
 
-    \end{tikzauto}
+        \end{tikzauto}
 
-    \caption{\UCText{mod_traduzione} e sottocasi}
-    \label{fig:traduci_redo_usecase}
+        \caption{\UCText{traduci_redo} e sottocasi}
+        \label{fig:traduci_redo_usecase}
     \end{figure}
 
     \textbf{Attori principali}
@@ -3632,7 +3566,7 @@
     \end{itemize}
     \textbf{Postcondizioni}
     \begin{itemize}
-        \item L'utente viene avvisato che sta modificando del testo che ha generato una traduzione
+        \item La traduzione è stata aggiornata sulla base del testo modificato
     \end{itemize}
     \textbf{Scenario principale}
     \begin{enumerate}
@@ -3642,37 +3576,7 @@
             \item opzione di ignorare le modifiche
             \item opzione di ritradurre il testo (funzionalità$^G$ di \textit{"Ritraduzione Testo"})
         \end{itemize}
-    \end{enumerate}
-    \textbf{Estensioni}
-    \begin{itemize}
-        \item Se l'utente avvia la funzionalità$^G$ di \textit{"Ritraduzione Testo"}
-        \begin{itemize}
-            \item \UCRef{traduci_redo}
-        \end{itemize}
-    \end{itemize}
-
-    \subparagraph*{\UCText{traduci_redo}}
-    \addcontentsline{toc}{subparagraph}{\UCText{traduci_redo}}
-    \textbf{Attori principali}
-    \begin{itemize}
-        \item Utente
-    \end{itemize}
-    \textbf{Precondizioni}
-    \begin{itemize}
-        \item L'utente è connesso al sistema
-        \item L'utente ha una nota aperta (\UCRef{apri})
-        \item L'utente ha tradotto una porzione di testo tramite LLM$^G$ (\UCRef{traduci})
-        \item L'utente ha modificato una porzione del testo che ha generato il testo tradotto
-        \item L'utente ha avviato la funzionalità$^G$ di \textit{"Ritraduzione Testo"}
-    \end{itemize}
-    \textbf{Postcondizioni}
-    \begin{itemize}
-        \item La traduzione è stata aggiornata sulla base del testo modificato
-    \end{itemize}
-    \textbf{Scenario principale}
-    \begin{enumerate}
-        \item Il sistema invia la richiesta all'API$^G$ dell'LLM$^G$
-        \item Il sistema riceve la risposta dall'LLM$^G$
+        \item L'utente attiva la funzionalità di \textit{"Ritraduzione Testo"}
         \item Il sistema sostituisce la traduzione obsoleta con quella aggiornata
     \end{enumerate}
     \textbf{Estensioni}
@@ -4875,8 +4779,8 @@
             \reqF{O} & L'aggiornamento della visualizzazione formattata deve avvenire in un tempo adeguatamente veloce & \UCRef{visua_formattato} \\ \hline
             \reqF{O} & Il sistema deve permettere di cambiare modalità di visualizzazione & \UCRef{cambio_visua}, \UCRef{cambio_visua_markdown}, \UCRef{cambio_visua_mark_render}, \UCRef{cambio_visua_render} \\ \hline
             \reqF{O} & Il sistema deve fornire un'area di editing di testo in cui è possibile inserire e modificare del testo per la compilazione Markdown & \UCRef{scrivi} \\ \hline
-            \reqF{O} & Il sistema deve permettere l'applicazione di formattazioni Markdown senza scrivere manualmente la sintassi & \UCRef{formatta} \\ \hline
-            \reqF{O} & L’editor deve rispondere all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & \UCRef{scrivi}, \UCRef{formatta}.* \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione di formattazioni Markdown senza scrivere manualmente la sintassi & \UCRef{grassetto}.*, \UCRef{corsivo}.*, \UCRef{sottolineato}.*, \UCRef{barrato}.*, \UCRef{link}.*, \UCRef{commento}.* \\ \hline
+            \reqF{O} & L’editor deve rispondere all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & \UCRef{scrivi}, \UCRef{grassetto}.*, \UCRef{corsivo}.*, \UCRef{sottolineato}.*, \UCRef{barrato}.*, \UCRef{link}.*, \UCRef{commento}.* \\ \hline
             \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo grassetto senza scrivere manualmente la sintassi & \UCRef{grassetto}, \UCRef{grassetto_rim} \\ \hline
             \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo corsivo senza scrivere manualmente la sintassi & \UCRef{corsivo}, \UCRef{corsivo_rim} \\ \hline
             \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo sottolineato senza scrivere manualmente la sintassi & \UCRef{sottolineato}, \UCRef{sottolineato_rim} \\ \hline
@@ -4919,11 +4823,11 @@
             \reqF{O} & L'agente esterno deve produrre testo grammaticalmente, sintatticamente e semanticamente corretto & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{critica} \\ \hline
             \reqF{O} & Il sistema deve avvisare l'utente in caso dell'impossibilità nell'eseguire una richiesta & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
             \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione (Distant Writing) & \UCRef{genera} \\ \hline
-            \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo tradotto viene modificato & \UCRef{mod_traduzione} \\ \hline
+            \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo tradotto viene modificato & \UCRef{traduci_redo} \\ \hline
             \reqF{O} & Il sistema deve consentire all’utente di aggiornare una traduzione precedentemente inserita se il testo originale è presente ed è stato modificato & \UCRef{traduci_redo} \\ \hline
             \reqF{O} & Il sistema deve consentire all'utente di rimuovere una traduzione precedentemente inserita & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve consentire all'utente di rimuovere il testo originale di una traduzione precedentemente inserita & \UCRef{traduci} \\ \hline
-            \reqF{O} & Il sistema deve notificare all'utente la perdita del testo originale di riferimento qualora venga eliminato, lasciando la traduzione priva di collegamento & \UCRef{mod_traduzione} \\ \hline
+            \reqF{O} & Il sistema deve notificare all'utente la perdita del testo originale di riferimento qualora venga eliminato, lasciando la traduzione priva di collegamento & \UCRef{traduci_redo} \\ \hline
             \reqF{O} & Il sistema non deve consentire l'inserimento di una traduzione all'interno di una porzione di testo già tradotta & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve consentire la selezione esclusivamente all'interno delle porzioni di testo tradotte, impedendo la selezione di altre parti del testo durante tale operazione & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve consentire la selezione esclusivamente all'interno delle porzioni di testo originale (associato ad una traduzione), impedendo la selezione di altre parti del testo durante tale operazione & \UCRef{traduci} \\ \hline
@@ -4954,22 +4858,20 @@
             \reqF{O} & Il sistema deve permettere all'utente di inserire elementi in un elenco puntato o numerato & \UCRef{elem_punt}, \UCRef{elem_num} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di rimuovere elementi da un elenco puntato o numerato & \UCRef{rimozione_elem}, \UCRef{rimozione_elem_num}, \UCRef{rimozione_elem_punt} \\ \hline
             \reqF{O} & Il sistema deve avvisare l'utente in caso di problemi di connessione con l'agente esterno durante la ritraduzione di una porzione di testo precedentemente tradotta & \UCRef{ritraduci_llm_err} \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di mancata registrazione/autenticazione dovuta a problemi di connessione al server & \UCRef{reg_server_err} \UCRef{auth_server_err} \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di impossibilità di eliminazione dell'account a causa di problemi di connessione al server & \UCRef{elim_acc_server_err} \\ \hline
             \reqF{O} & Il sistema deve impedire la selezione contemporanea di porzioni di testo appartenenti a una traduzione (testo originale o testo tradotto) e porzioni di testo non appartenenti ad alcuna traduzione & \UCRef{traduci}, \UCRef{seleziona} \\ \hline
             \reqF{D} & Il sistema deve aggiornare automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & \UCRef{ricerca} \\ \hline
             \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in PDF & \UCRef{esporta_pdf} \\ \hline
             \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in HTML & \UCRef{esporta_html} \\ \hline
             \reqF{D} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in PDF & \UCRef{esporta_arch_pdf} \\ \hline
             \reqF{D} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in HTML & \UCRef{esporta_arch_html} \\ \hline
-            \reqF{D} & Il sistema deve permettere all'utente di utilizzare scorciatoie da tastiera per formattare il testo & \UCRef{formatta} \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di utilizzare scorciatoie da tastiera per formattare il testo & \UCRef{grassetto}.*, \UCRef{corsivo}.*, \UCRef{sottolineato}.*, \UCRef{barrato}.*, \UCRef{link}.*, \UCRef{commento}.* \\ \hline
             \reqF{D} & Il sistema deve comunicare all'utente eventuali errori grammaticali nell'editor & \UCRef{scrivi} \\ \hline
             \reqF{D} & Il sistema deve consentire all’utente di eseguire un minimo di 20 operazioni consecutive di annullamento e di ripristino delle modifiche sull’editor della nota corrente & \UCRef{annulla}, \UCRef{ripristina} \\ \hline
             \reqF{D} & In caso di incollaggio di contenuti non testuali, l’editor deve mantenere la reattività e mostrare una notifica non bloccante che spieghi l’azione effettuata (rifiuto o conversione in testo) & \UCRef{incolla} \\ \hline
             \reqF{D} & L'archivio deve aggiornarsi dinamicamente con i risultati della ricerca ad ogni modifica dell’input con una risposta percepita come immediata dall’utente &  \UCRef{ricerca} \\ \hline
             \reqF{D} & L'editor deve evidenziare in modo chiaro e distinguibile la porzione di testo utilizzato come prompt per l'interrogazione del LLM, così da renderla immediatamente riconoscibile all'utente & \UCRef{genera} \\ \hline
             \reqF{D} & L’aggiornamento della visualizzazione formattata non deve bloccare l’input dell’utente durante la digitazione & \UCRef{visua_formattato} \\ \hline
-            \reqF{OP} & Il sistema deve aggiornare automaticamente la visualizzazione del testo formattato ad ogni modifica del Markdown, senza richiedere un’azione esplicita & \UCRef{formatta} \\ \hline
+            \reqF{OP} & Il sistema deve aggiornare automaticamente la visualizzazione del testo formattato ad ogni modifica del Markdown, senza richiedere un’azione esplicita & \UCRef{visua_formattato} \\ \hline
             \reqF{OP} & Il sistema deve comunicare all'utente eventuali errori di sintassi nei marcatori nell'editor & \UCRef{scrivi} \\ \hline
             \reqF{OP} & L'editor deve permettere all'utente di interagire direttamente con la LLM tramite marcatori & \UCRef{riassumi}, \UCRef{riscrivi}, \UCRef{traduci}, \UCRef{genera}, \UCRef{critica} \\ \hline
             \reqF{OP} & Il sistema deve permettere all'utente di registrarsi tramite nome utente e password & \UCRef{registra}, \UCRef{reg_nome}, \UCRef{reg_pwd} \\ \hline
@@ -4993,6 +4895,8 @@
             \reqF{OP} & I messaggi di errore in autenticazione e registrazione devono essere chiari e indicare all’utente come correggere l’input & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err}, \UCRef{reg_nome_err}, \UCRef{reg_pwd_err} \\ \hline
             \reqF{OP} & I campi di inserimento credenziali devono fornire feedback immediato su validità del formato (es. vincoli su nome utente/password), senza attendere l’invio del form & \UCRef{auth_nome_err}, \UCRef{auth_pwd_err}, \UCRef{reg_nome_err}, \UCRef{reg_pwd_err}, \UCRef{elim_acc_err} \\ \hline
             \reqF{OP} & Dopo l’autenticazione, la sessione deve scadere automaticamente dopo un periodo di inattività pari a 1 mese & \UCRef{autentica} \\ \hline
+            \reqF{OP} & Il sistema deve avvisare l'utente in caso di mancata registrazione/autenticazione dovuta a problemi di connessione al server & \UCRef{reg_server_err} \UCRef{auth_server_err} \\ \hline
+            \reqF{OP} & Il sistema deve avvisare l'utente in caso di impossibilità di eliminazione dell'account a causa di problemi di connessione al server & \UCRef{elim_acc_server_err} \\ \hline
             \caption{Tabella Requisiti Funzionali}
         \end{longtable}
 
@@ -5106,25 +5010,24 @@
                 \UCRef{importa_md} & RF-O-101 \\ \hline
                 \UCRef{importa_err} & RF-O-20 \\ \hline
                 \UCRef{importa_server_err} & RF-O-102\\ \hline
-                \UCRef{visua_formattato} & RF-O-22, RF-O-23, RF-O-24, RF-D-12\\ \hline
+                \UCRef{visua_formattato} & RF-O-22, RF-O-23, RF-O-24, RF-D-12, RF-OP-1\\ \hline
                 \UCRef{cambio_visua} & RF-O-25 \\ \hline
                 \UCRef{cambio_visua_markdown} & RF-O-25 \\ \hline
                 \UCRef{cambio_visua_mark_render} & RF-O-25 \\ \hline
                 \UCRef{cambio_visua_render} & RF-O-25 \\ \hline
                 \UCRef{scrivi} & RF-O-21, RF-O-26, RF-O-28, RF-D-7, RF-OP-2 \\ \hline
-                \UCRef{formatta} & RF-O-27, RF-D-6, RF-OP-1  \\ \hline
-                \UCRef{grassetto} & RF-O-28 \\ \hline
-                \UCRef{grassetto_rim} & RF-O-28 \\ \hline
-                \UCRef{corsivo} & RF-O-28 \\ \hline
-                \UCRef{corsivo_rim} & RF-O-28 \\ \hline
-                \UCRef{sottolineato} & RF-O-28 \\ \hline
-                \UCRef{sottolineato_rim} & RF-O-28 \\ \hline
-                \UCRef{barrato} & RF-O-28 \\ \hline
-                \UCRef{barrato_rim} & RF-O-28 \\ \hline
-                \UCRef{link} & RF-O-28 \\ \hline
-                \UCRef{link_rim} & RF-O-28 \\ \hline
-                \UCRef{commento} & RF-O-28 \\ \hline
-                \UCRef{commento_rim} & RF-O-28 \\ \hline
+                \UCRef{grassetto} & RF-O-27, RF-D-6, RF-O-28, RF-O-29 \\ \hline
+                \UCRef{grassetto_rim} & RF-O-27, RF-D-6, RF-O-28, RF-O-29 \\ \hline
+                \UCRef{corsivo} & RF-O-27, RF-D-6, RF-O-28, RF-O-30 \\ \hline
+                \UCRef{corsivo_rim} & RF-O-27, RF-D-6, RF-O-28, RF-O-30 \\ \hline
+                \UCRef{sottolineato} & RF-O-27, RF-D-6, RF-O-28, RF-O-31 \\ \hline
+                \UCRef{sottolineato_rim} & RF-O-27, RF-D-6, RF-O-28, RF-O-31 \\ \hline
+                \UCRef{barrato} & RF-O-27, RF-D-6, RF-O-28, RF-O-32 \\ \hline
+                \UCRef{barrato_rim} & RF-O-27, RF-D-6, RF-O-28, RF-O-32 \\ \hline
+                \UCRef{link} & RF-O-27, RF-D-6, RF-O-28, RF-O-33, RF-O-34 \\ \hline
+                \UCRef{link_rim} & RF-O-27, RF-D-6, RF-O-28, RF-O-33 \\ \hline
+                \UCRef{commento} & RF-O-27, RF-D-6, RF-O-28, RF-O-35 \\ \hline
+                \UCRef{commento_rim} & RF-O-27, RF-D-6, RF-O-28, RF-O-35 \\ \hline
                 \UCRef{elenco} & RF-O-36, RF-O-37\\ \hline
                 \UCRef{elenco_num} & RF-O-36 \\ \hline
                 \UCRef{elem_num} & RF-O-103 \\ \hline
@@ -5135,7 +5038,7 @@
                 \UCRef{rimozione_elem_punt} & RF-O-104 \\ \hline
                 \UCRef{annulla} & RF-O-38, RF-D-8 \\ \hline
                 \UCRef{ripristina} & RF-O-39, RF-D-8  \\ \hline
-                \UCRef{seleziona} & RF-O-40, RF-O-108 \\ \hline
+                \UCRef{seleziona} & RF-O-40, RF-O-106 \\ \hline
                 \UCRef{copia} & RF-O-41, RF-O-43, RF-O-44 \\ \hline
                 \UCRef{taglia} & RF-O-42, RF-O-43, RF-O-44 \\ \hline
                 \UCRef{incolla} & RF-O-45, RF-O-46, RF-O-47, RF-D-9 \\ \hline
@@ -5147,10 +5050,9 @@
                 \UCRef{riscrivi_grammatica} & RF-O-60\\ \hline
                 \UCRef{riscrivi_lessico} & RF-O-60\\ \hline
                 \UCRef{riscrivi_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
-                \UCRef{traduci} & RF-O-61, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-73, RF-O-74, RF-O-76, RF-O-77, RF-O-78, RF-O-79, RF-O-83, RF-O-108, RF-OP-3 \\ \hline
+                \UCRef{traduci} & RF-O-61, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-73, RF-O-74, RF-O-76, RF-O-77, RF-O-78, RF-O-79, RF-O-83, RF-O-106, RF-OP-3 \\ \hline
                 \UCRef{traduci_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
-                \UCRef{mod_traduzione} & RF-O-71, RF-O-75 \\ \hline
-                \UCRef{traduci_redo} & RF-O-72 \\ \hline
+                \UCRef{traduci_redo} & RF-O-72, RF-O-71, RF-O-75 \\ \hline
                 \UCRef{ritraduci_llm_err} & RF-O-105 \\ \hline
                 \UCRef{genera} & RF-O-62, RF-O-67, RF-O-70,  \\ \hline
                 \UCRef{genera_llm_err} & RF-O-69, RF-O-81, RF-O-82, RF-O-83, RF-D-11, RF-OP-3 \\ \hline
@@ -5167,12 +5069,12 @@
                 \UCRef{reg_nome_err} & RF-OP-5, RF-OP-21, RF-OP-22, RF-OP-23 \\ \hline
                 \UCRef{reg_pwd} & RF-OP-4, RF-OP-19 \\ \hline
                 \UCRef{reg_pwd_err} & RF-OP-5, RF-OP-21, RF-OP-22, RF-OP-23 \\ \hline
-                \UCRef{reg_server_err} & RF-O-106 \\ \hline
+                \UCRef{reg_server_err} & RF-OP-25 \\ \hline
                 \UCRef{autentica} & RF-OP-6, RF-OP-17, RF-OP-18, RF-OP-19, RF-OP-20, RF-OP-24 \\ \hline
                 \UCRef{auth_nome} & RF-OP-6 \\ \hline
                 \UCRef{auth_pwd} & RF-OP-6, RF-OP-19 \\ \hline
                 \UCRef{auth_err} & RF-OP-7 \\ \hline
-                \UCRef{auth_server_err} & RF-O-106 \\ \hline
+                \UCRef{auth_server_err} & RF-OP-25 \\ \hline
                 \UCRef{salva_db} & RF-OP-13\\ \hline
                 \UCRef{salva_db_err} & RF-OP-15 \\ \hline
                 \UCRef{apri_nota_db} & RF-OP-14 \\ \hline
@@ -5182,7 +5084,7 @@
                 \UCRef{pwd_elimina} & RF-OP-10, RF-OP-19, RF-OP-23 \\ \hline
                 \UCRef{elim_acc_err} & RF-OP-11\\ \hline
                 \UCRef{conf_elim} & RF-OP-12 \\ \hline
-                \UCRef{elim_acc_server_err} & RF-O-107 \\ \hline
+                \UCRef{elim_acc_server_err} & RF-OP-26 \\ \hline
 
         \end{longtable}
 \end{document}
