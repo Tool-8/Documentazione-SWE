@@ -1,0 +1,155 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 14 Marzo 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{14/04/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
+  \hline
+  1.0 & Murtezan Besnik & Prima stesura & 14/04/2026 & - \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di restrospettiva sprint \#8 ed inizio sprint$^G$ \#9. Discussione sull'architettura del Frontend e interazione Frontend-Backend.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Besnik Murtezan & Responsabile \\
+  \hline
+  Gabriele Disa & Programmatore \\
+  \hline
+  Giuliano Banchieri & Amministratore \\
+  \hline
+  Niccolò Feltrin & Progettista \\
+  \hline
+  Ruben Spadiliero & Verificatore \\
+  \hline
+  Stefano Maso & Programmatore \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l’obiettivo di analizzare i risultati del periodo terminato e pianificare il lavoro per il prossimo sprint.
+
+Le attività prioritarie individuate riguardano la definizione e l'aggiunta all'interno del documento di Specifica Tecnica dell'architettura del Frontend e dell'architettura di Deploy dell'applicazione. 
+
+È inoltre necessario aggiornare il resto dei documenti con i dati relativi all'ottavo periodo.
+
+Vengono infine assegnati nuovi ruoli per lo Sprint$^G$ \#9 con termine il giorno 21-04-2026.
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Besnik Murtezan [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 14/04/2026 (Issue$^G$ \#156)
+    \end{enumerate}
+\item \textbf{Assegnato a Stefano Maso, Gabriele Disa [Programmatori]:}
+    \begin{enumerate}
+    \item Frontend: inizio codifica componenti principali (Issue$^G$ \#157)
+    \item Backend: codifica modulo \texttt{Export} (Issue$^G$ \#158)
+  \end{enumerate}
+\item \textbf{Assegnato a Giuliano Banchieri [Amministratore]:}
+    \begin{enumerate}
+    \item Aggiornare Piano di Qualifica$^G$ (Issue$^G$ \#152)
+    \item Aggiornare Piano di Progetto$^G$ (Issue$^G$ \#153)
+    \end{enumerate}
+\item \textbf{Assegnato a Niccolò Feltrin [Progettista]:}
+    \begin{enumerate}
+    \item Aggiornare Specifica Tecnica$^G$:
+      \begin{itemize}
+        \item Stesura sezione \textit{Architettura Frontend} (Issue$^G$ \#154)
+        \item Stesura sezione \textit{Architettura Deploy} (Issue$^G$ \#155)
+      \end{itemize}
+    \end{enumerate}
+\item \textbf{Assegnato a Ruben Spadiliero [Verificatore]:}
+    \begin{enumerate}
+    \item Verifica$^G$ dei documenti e delle aggiunte di codice sorgente
+    \end{enumerate}
+\end{itemize}
+\end{document}
