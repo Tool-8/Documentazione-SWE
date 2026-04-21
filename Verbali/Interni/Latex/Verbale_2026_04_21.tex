@@ -1,0 +1,155 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 21 Marzo 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{21/04/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
+  \hline
+  1.0 & Stefano Maso & Prima stesura & 21/04/2026 & - \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di restrospettiva sprint \#9 ed inizio sprint$^G$ \#10. Discussione sulla situazione dello sviluppo del Backend, del Frontend e sulla necessità di ridistribuire le ore.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Besnik Murtezan & Programmatore \\
+  \hline
+  Gabriele Disa & Programmatore \\
+  \hline
+  Giuliano Banchieri & Verificatore \\
+  \hline
+  Niccolò Feltrin & Programmatore \\
+  \hline
+  Ruben Spadiliero & Amministratore \\
+  \hline
+  Stefano Maso & Responsabile \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l’obiettivo di analizzare i risultati del periodo terminato e pianificare il lavoro per il prossimo sprint.
+
+Le attività prioritarie individuate riguardano la terminazione dello sviluppo del Backend e dei relativi test, il proseguimento nello sviluppo del Frontend e l'aggiornamento della Specifica Tecnica. Il gruppo ha deciso di riallocare le ore tra i diversi ruoli dei membri, al fine di ottimizzare l’utilizzo delle risorse, destinando le ore residue di ruoli non più necessari a quelli attualmente più rilevanti per il progetto. Questa redistribuzione ha determinato un aggiornamento del preventivo a finire.
+
+È inoltre necessario aggiornare il resto dei documenti con i dati relativi al nono periodo.
+
+Vengono infine assegnati nuovi ruoli per lo Sprint$^G$ \#10 con termine il giorno 21-04-2026.
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Stefano Maso [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 21/04/2026 (Issue$^G$ \#179)
+    \item Contattare l'azienda Zucchetti, informandala dello stato di avanzamento del progetto e sulle scelte architetturali adottate (Issue$^G$ \#178)
+    \end{enumerate}
+\item \textbf{Assegnato a Besnik Murtezan, Gabriele Disa, Niccolò Feltrin [Programmatori]:}
+    \begin{enumerate}
+    \item Frontend: proseguire nella codifica dei componenti (Issue$^G$ \#177)
+    \item Backend: codifica modulo \texttt{LLM} (Issue$^G$ \#172, Issue$^G$ \#173, Issue$^G$ \#174)
+  \end{enumerate}
+\item \textbf{Assegnato a Ruben Spadiliero [Amministratore]:}
+    \begin{enumerate}
+    \item Aggiornare Piano di Qualifica$^G$ (Issue$^G$ \#175)
+    \item Aggiornare Piano di Progetto$^G$ (Issue$^G$ \#176)
+    \end{enumerate}
+\item \textbf{Assegnato a Giuliano Banchieri [Verificatore]:}
+    \begin{enumerate}
+    \item Verifica$^G$ dei documenti e delle aggiunte di codice sorgente
+    \end{enumerate}
+\item \textbf{Altre issue individuate:}
+    \begin{enumerate}
+    \item Aggiornare Specifica Tecnica$^G$:
+      \begin{itemize}
+        \item Stesura sezione \textit{Architettura Frontend} (Issue$^G$ \#154)
+      \end{itemize}
+    \end{enumerate}
+\end{itemize}
+\end{document}
