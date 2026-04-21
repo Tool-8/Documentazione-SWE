@@ -108,6 +108,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  0.5 & Giuliano Banchieri & Stesura sezione architettura di deployment e organizzazione container & 21/04/2026 & - \\
+  \hline
   0.4 & Stefano Maso & Aggiunte sottosezioni per l'importazione & 10/04/2026 & Besnik Murtezan \\
   \hline
   0.3 & Stefano Maso & Stesura sezione 3.1.1.2 e sottosezioni & 09/04/2026 & Besnik Murtezan \\
@@ -448,6 +450,40 @@ Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la st
 \end{itemize}
 
 \subsection{Architettura di deployment}
+La scelta della tipologia di \textbf{architettura di deployment} è stata guidata dal contesto di utilizzo del prodotto e dai requisiti di scalabilità previsti dal capitolato.
+Non avendo ricevuto indicazioni specifiche riguardo a vincoli di deployment, il team ha optato per un'\textbf{architettura monolitica}. Questa soluzione, oltre ad essere in linea con le esigenze del prodotto, semplifica la fase di progettazione e sviluppo ed evita la complessità introdotta da un'architettura a microservizi, non giustificata dalle esigenze del progetto.
+
+\vspace{1em}
+
+Il deployment viene gestito tramite \textbf{Docker Compose} perché, fornendo un ambiente di esecuzione preconfigurato e isolato, si semplificano notevolmente le operazioni di deployment e di manutenzione in qualsiasi ambiente, purché questo supporti Docker, e si evita la necessità di configurazione manuale.
+
+\subsubsection{Organizzazione dei container}
+Nonostante l'adozione di un'architettura monolitica dal punto di vista applicativo, il sistema è strutturato in più container al fine di separare le responsabilità tecniche e migliorare la gestione dell'ambiente di esecuzione.
+\begin{itemize}
+    \item \texttt{app}
+        \begin{itemize}
+            \item Contiene l'applicazione Laravel
+            \item Gestisce la business logic
+            \item Interagisce con il database PostgreSQL (opzionale)
+        \end{itemize}
+    \item \texttt{web}
+        \begin{itemize}
+            \item Utilizza nginx come web server
+            \item Espone l'applicazione sulla porta 8080
+            \item Funge da punto di ingresso per le richieste HTTP
+            \item Inoltra le richieste al container \texttt{app}
+        \end{itemize} 
+    \item \texttt{db}
+        \begin{itemize}
+            \item Utilizza PostgreSQL
+            \item Responsabile della persistenza dei dati qualora si opti per questa soluzione invece che per la persistenza su filesystem
+        \end{itemize}
+    \item \texttt{vite}(sviluppo)
+        \begin{itemize}
+            \item Esegue un dev server per la compilazione dinamica di JavaScript e CSS
+            \item Espone le risorse sulla porta 5173
+        \end{itemize}
+    \end{itemize}
 
 \subsection{Architettura di dettaglio}
 
