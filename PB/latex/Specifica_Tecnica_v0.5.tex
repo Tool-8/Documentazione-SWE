@@ -357,20 +357,25 @@ La suddivisione in questi strati facilita lo sviluppo, la manutenzione e la scal
 \subparagraph{NoteRepositoryInterface} Interfaccia che definisce il contratto che ogni implementazione del repository di note deve rispettare. Appartiene al layer di accesso ai dati dell'architettura layered. Dichiarando la dipendenza su questa interfaccia, NoteService può funzionare con qualsiasi implementazione senza richiedere modifiche al codice applicativo. Segue la descrizione dei metodi: 
 \begin{itemize}
     \item \texttt{list() : array} - restituisce la lista completa delle note disponibili, ogni elemento dell'array contiene i metadati della nota senza il contenuto completo
-    \item \texttt{get(string \$id) : array} - restituisce i dati completi di una singola nota identificata dall'id fornito
-    \item \texttt{create(string \$title, string \$contentMd) : array} - crea una nuova nota con il titolo e il contenuto Markdown forniti, genera un identificatore e registra il timestamp di creazione
-    \item \texttt{update(string \$id, string \$title, string \$contentMd) : array} - aggiorna il titolo e il contenuto di una nota esistente assieme al timestamp di ultima modifica
+    \item \texttt{get(string \$id) : Note} - restituisce i dati completi di una singola nota identificata dall'id fornito
+    \item \texttt{create(string \$title, string \$contentMd) : Note} - crea una nuova nota con il titolo e il contenuto Markdown forniti, genera un identificatore e registra il timestamp di creazione
+    \item \texttt{update(string \$id, string \$title, string \$contentMd) : Note} - aggiorna il titolo e il contenuto di una nota esistente assieme al timestamp di ultima modifica
     \item \texttt{delete(string \$id) : void} - elimina definitivamente la nota identificata dall'id fornito
     \item \texttt{isTitleUsed(string \$title, ?string \$excludeId = null) : bool} - verifica se un titolo è già utilizzato da un'altra nota; \texttt{excludeId} permette di escludere dal confronto una nota specifica, per evitare che tale nota venga bloccata dal confronto con se stessa
 \end{itemize}
 \subparagraph{NoteRepository} È l'implementazione concreta di NoteRepositoryInterface che persiste le note come file Markdown sul filesystem locale tramite Laravel Storage. Realizza tutti i metodi dichiarati nell'interfaccia: \texttt{list(), get(), create(), update(), delete(), isTitleUsed()}; per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
+\subparagraph{Note} È una classe Model che rappresenta l'entità Nota nel dominio dell'applicazione. Esistono due tipi di metodo:
+\begin{itemize}
+    \item \texttt{getData() : array} - serializza l'oggetto in array, utile per passare i dati ai layer superiori
+    \item getter singoli (\texttt{getId(), getTitle(), ...}) utili quando serve accedere ad una singola proprietà senza serializzare tutto
+\end{itemize}
 \subparagraph{ImportController} È il controller HTTP responsabile della gestione delle richieste di importazione. Appartiene al layer di presentazione dell'architettura layered ed è implementato come controller invocabile dato che la sua responsabilità è circoscritta ad una sola operazione. Si limita a validare il file, delegare l'importazione a \textit{ImportService} e costruire la risposta HTTP. Segue la descrizione dei metodi:
 \begin{itemize}
     \item \texttt{\_\_invoke(Request \$request) : JsonResponse} - valida il parametro (cioè il campo file della richiesta), delega l'importazione a \textit{ImportService}, passando il file caricato; in caso di successo restituisce la nota importata in formato JSON con status 201, altrimenti ritorna una risposta JSON con status 400.
 \end{itemize}
 \subparagraph{ImportService} È il service responsabile della logica di importazione di una nota. Appartiene al layer applicativo dell'architettura layered. Dipende da NoteRepositoryInterface garantendo il disaccopiamento dall'implementazione del layer di persistenza. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{handle(UploadedFile \$file) : array} - estrae l'estensione del file caricato, delega la creazione della strategy corretta a ImportStrategyFactory ed invoca sulla strategy il metodo per estrarre il contenuto in Markdown; successivamente aggiunge un timestamp al titolo della nota per evitare conflitti e invoca \texttt{NoteRepositoryInterface::create()}, ritornando un array.
+    \item \texttt{handleUpload(UploadedFile \$file) : Note} - estrae l'estensione del file caricato, delega la creazione della strategy corretta a ImportStrategyFactory ed invoca sulla strategy il metodo per estrarre il contenuto in Markdown; successivamente aggiunge un timestamp al titolo della nota per evitare conflitti e invoca \texttt{NoteRepositoryInterface::create()}, ritornando un array.
 \end{itemize}
 \subparagraph{ImportStrategyFactory} - È la factory responsabile della creazione della strategy di importazione corretta in base all'estensione del file caricato. Appartiene al layer applicativo dell'architettura layered e implementa il pattern Factory Method, centralizzando la logica di selezione della stratefy. Segue la descrizione dei metodi:
 \begin{itemize}
