@@ -108,6 +108,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  0.6 & Stefano Maso & Modifica sezione LLM & 24/04/2026 & - \\
+  \hline
   0.5 & Giuliano Banchieri & Stesura sezione architettura di deployment e organizzazione container & 21/04/2026 & Spadiliero Ruben \\
   \hline
   0.4 & Stefano Maso & Aggiunte sottosezioni per l'importazione & 10/04/2026 & Besnik Murtezan \\
@@ -421,26 +423,26 @@ La suddivisione in questi strati facilita lo sviluppo, la manutenzione e la scal
 \begin{itemize}
     \item \texttt{\_\_invoke(Request \$request, string \$id) : JsonResponse} - valida i parametri (il content, l'azione da svolgere e i parametri aggiuntivi dipendenti dall'azione), delega l'elaborazione a \textit{LlmService} e restituisce il risultato in una risposta JSON con status 200.
 \end{itemize}
-\subparagraph{LlmService} È il service responsabile della logica di elaborazione del testo tramite modelli linguistici. Appartiene al layer applicativo dell'architettura layered e gestisce la collaborazione tra la factory delle strategy di elaborazione del testo e \textit{LlmProcessor}, che ne esegue il processo. Si limita a costruire il contesto di esecuzione e delegare il lavoro alle classi di servizio. Segue la descrizione dei metodi:
+\subparagraph{LlmService} È il service responsabile della logica di elaborazione del testo tramite modelli linguistici. Appartiene al layer applicativo dell'architettura layered e gestisce la collaborazione tra \textit{LlmStrategyFactory} e le strategy di elaborazione, che ne eseguono il processo. Si limita a costruire il contesto di esecuzione e delegare il lavoro alle classi di servizio. Segue la descrizione dei metodi:
 \begin{itemize}
-    \item \texttt{process(string \$content, string \$action, array \$options = []) : string} - costruisce un oggetto \textit{LlmContext} con l'azione richiesta, il testo da elaborare e le opzioni aggiuntive, delega la selezione e creazione della strategy a \textit{LlmStrategyFactory} in base all'azione, la imposta sul processor e avvia l'elaborazione. Infine restituisce il testo prodotto dalla strategy.
+    \item \texttt{process(string \$content, string \$action, array \$options = []) : string} - costruisce un oggetto \textit{LlmContext} con il testo da elaborare e le opzioni aggiuntive, delega la selezione e creazione della strategy a \textit{LlmStrategyFactory} in base all'azione e esegue la strategia. Infine restituisce il testo prodotto dalla strategy.
 \end{itemize}
 \subparagraph{LlmStrategyFactory} È la factory responsabile della creazione della strategy di elaborazione testuale, elaborata in base all'azione richiesta. Appartiene al layer applicativo dell'architettura layered e implementa il pattern Factory Method, centralizzando la logica di selezione della strategy. Segue la descrizione dei metodi: 
 \begin{itemize}
     \item \texttt{make(string \$action) : LlmStrategyInterface} - metodo statico che istanzia e restituisce la strategy concreta corrispondente all'azione richiesta.
 \end{itemize}
-\subparagraph{LlmProcessor} È il componente responsabile di applicare la strategy di elaborazione testuale al contesto fornito. Appartiene al layer applicativo dell'architettura layered. Dipende dall'interfaccia LlmStrategyInterface e non dalle implementazioni concrete. Segue la descrizione dei metodi:
+\subparagraph{LlmProcessorResponse} Classe utility che gestisce le chiamate a un'API LLM tramite il client HTTP di Laravel. Segue la descrizione dei metodi: 
 \begin{itemize}
-    \item \texttt{setStrategy(LlmStrategyInterface \$strategy) : static} - imposta la strategy di elaborazione da utilizzare.
-    \item \texttt{run(LlmContext \$context) : string} - esegue la strategy correntemente impostata passandole il contesto di elaborazione tramite il riferimento a \textit{LlmStrategyInterface} e ne restituisce il risultato come stringa.
-\end{itemize}
+    \item \texttt{make(string \$prompt, string \$text) : Response} - costruisce e invia una richiesta POST all'endpoint dell'API configurata, restituisce la Response grezza di Laravel
+    \item \texttt{handleError(Response \$response) : void} - valida la risposta e lancia una eccezione in caso di errore, se la risposta è andata a buon fine non fa nulla
+\end{itemize} 
 \subparagraph{LlmStrategyInterface} Interfaccia che definisce il contratto che ogni strategy di eleborazione testuale tramite modelli linguistici deve rispettare. Appartiene al layer applicativo dell'architettura layered e rappresenta il punto di astrazione del pattern strategy applicato alla elaborazione del testo. Segue la descrizione dei metodi: 
 \begin{itemize}
-    \item \texttt{process(LlmContext \$context) : string} - riceve un oggetto \textit{LlmContext} contenente il testo da elaborare, l'azione richiesta e le opzioni aggiuntive, esegue la chiamata al modello linguistico con il prompt specifico della strategy e restituisce il testo prodotto come string.
+    \item \texttt{process(LlmContext \$context) : string} - riceve un oggetto \textit{LlmContext} contenente il testo da elaborare e le opzioni aggiuntive, esegue la chiamata al modello linguistico con il prompt specifico della strategy e restituisce il testo prodotto come string.
 \end{itemize}
 \subparagraph{LlmContext} È un oggetto di contesto che incapsula i dati necessari all'esecuzione di una strategy di elaborazione testuale; funge da contenitore di informazioni che vengono passata dalla \textit{LlmService} alla strategy selezionata, evitando il passaggio di parametri multipli. Si limita a esporre i dati tramite getter.
 \subparagraph{Strategy concrete}
-Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la stessa struttura interna: costruiscono una chiamata all'API del modello linguistico con un prompt specifico per il tipo di richiesta di eleborazione, passano il testo dell'utente come messaggio utente e restituiscono il contenuto generato dal modello. 
+Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la stessa struttura interna: costruiscono una chiamata all'API del modello linguistico con un prompt specifico per il tipo di richiesta di eleborazione tramite \textit{LlmProcessorResponse} e restituiscono il contenuto generato dal modello. 
 \begin{itemize}
     \item \textbf{Summarize} - elabora il testo producendo un riassunto che mantiene solo le informazioni più rilevanti, preservando la voce narrativa originale
     \item \textbf{Translate} - traduce il testo nella lingua specificata tramite il campo dell'array \textit{options} del contesto
