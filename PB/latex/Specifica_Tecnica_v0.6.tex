@@ -308,9 +308,7 @@ Docker Compose è uno strumento che consente di definire, configurare e gestire 
 \end{itemize}
 
 \subsection{Modelli LLM esterni}
-Large Language Models utilizzati per le funzionalità AI richieste
-
-\subsubsection{...}
+Tra i modelli LLM (Large Language Models) disponibili tramite l'endpoint Zucchetti, abbiamo selezionato il modello \textit{Gemma3:4B}, in quanto ritenuto il più adeguato per le funzionalità AI richieste, sia in termini di velocità di risposta sia per la qualità e coerenza del contenuto generato.
 
 \newpage
 
@@ -409,7 +407,7 @@ La suddivisione in questi strati facilita lo sviluppo, la manutenzione e la scal
 \end{itemize}
 \subparagraph{MdExport} È l'implementazione concreta di ExportStrategyInterface per l'esportazione nel formato Markdown, è la strategy più semplice del sistema in quanto il contenuto delle note è già nativamente in formato Markdown, quindi non richiede alcuna trasformazione. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
 \subparagraph{HtmlExport} È l'implementazione concreta di ExportStrategyInterface per l'esportazione nel formato HTML. Utilizza la libreria Parsedown per convertire il contenuto Markdown della nota in markup HTML, che viene poi incorporato in un documento HTML completo e ben formato. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
-\subparagraph{PdfExport} È l'implementazione concreta di ExportStrategyInterface per l'esportazione nel formato PDF. Prima delega a \textit{HtmlExport} la trasformazione del Markdown in HTML, poi utilizza la libreria \texttt{barryvdh/laravel-domppdf} per convertire l'HTML in un documento PDF binario. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
+\subparagraph{PdfExport} È l'implementazione concreta di ExportStrategyInterface per l'esportazione nel formato PDF. Prima delega al parser la trasformazione del Markdown in HTML, poi utilizza la libreria \texttt{barryvdh/laravel-domppdf} per convertire l'HTML in un documento PDF binario. Per la descrizione della firma e del contratto di ciascun metodo si rimanda alla sezione dedicata all'interfaccia.
 
 \paragraph{Interazione con LLM}
 \vspace{0.5em}
