@@ -92,6 +92,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  1.5 & Stefano Maso & Aggiornamento grafici del cruscotto con Sprint 10 e aggiunta Test di Unità & 29/04/2026 & - \\
+  \hline
   1.4 & Spadiliero Ruben & Aggiornamento grafici del cruscotto con Sprint 9 & 24/04/2026 & Banchieri Giuliano \\
   \hline
   1.3 & Giuliano Banchieri & Aggiornamento grafici del cruscotto con Sprint 8 & 17/04/2026 & Spadiliero Ruben \\
@@ -474,6 +476,8 @@ Per ogni test sarà indicato il suo stato:
 \subsection{Test di unità}
 I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici del codice funzionino correttamente. In seguito verranno elencati i vari test$^G$ e per ognuno il suo codice identificativo, l'oggetto di test, una descrizione e lo stato. \\
 
+\subsubsection{Backend}
+
 \newcounter{TU@}
 
 \newcommand{\testU}{%
@@ -486,103 +490,125 @@ I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici de
     \textbf{Test} & \textbf{Oggetto} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
     \endfirsthead
     \hline
-    \testU & NoteController & Verificare che index() restituisca 200 con la lista delle note & S \\ \hline
-    \testU & NoteController & Verificare che index() restituisca 200 con lista vuota quando non ci sono note & S \\ \hline
-    \testU & NoteController & Verificare che show(string \$id) restituisca 200 con i dati della nota & S \\ \hline
-    \testU & NoteController & Verificare che show(string \$id) restituisca 404 quando la nota non è trovata & S \\ \hline
-    \testU & NoteController & Verificare che show(string \$id) restituisca 400 quando l'id è invalido & S \\ \hline
-    \testU & NoteController & Verificare che store(Request) restituisca 201 con la nota creata & S \\ \hline
-    \testU & NoteController & Verificare che store(Request) utilizzi stringa vuota per content\_md assente & S \\ \hline
-    \testU & NoteController & Verificare che store(Request) restituisca 409 quando il titolo è già in uso & S \\ \hline
-    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 200 con la nota aggiornata & S \\ \hline
-    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 404 quando la nota non è trovata & S \\ \hline
-    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 409 quando il titolo è già in uso & S \\ \hline
-    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 400 quando l'id è invalido & S \\ \hline
-    \testU & NoteController & Verificare che destroy(string \$id) restituisca 204 in caso di successo & S \\ \hline
-    \testU & NoteController & Verificare che destroy(string \$id) restituisca 404 quando la nota non è trovata & S \\ \hline
-    \testU & NoteController & Verificare che destroy(string \$id) restituisca 500 quando l'eliminazione fallisce & S \\ \hline
-    \testU & NoteController & Verificare che destroy(string \$id) restituisca 400 quando l'id è invalido & S \\ \hline
-    \testU & NoteController & Verificare che un'eccezione RuntimeException sconosciuta restituisca 500 & S \\ \hline
-    \testU & NoteService & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio ottenuta da NoteRepositoryInterface & S \\ \hline
-    \testU & NoteService & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & S \\ \hline
-    \testU & NoteService & Verificare che get(string \$id):array restituisca i dettagli della nota corrispondente all'ID specificato & S \\ \hline
-    \testU & NoteService & Verificare che get(string \$id):array restituisca un errore in caso di nota non esistente per l'id specificato & S \\ \hline
-    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface la creazione di una nuova nota nell'archivio (e restituisca un valore di successo) & S \\ \hline
-    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array restituisca un errore in caso la creazione di una nuova nota non sia avvenuta qualora fosse già presente una nota con lo stesso nome & S \\ \hline
-    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface l'aggiornamento dei dettagli di una nota esistente (e ritorni un valore di successo) & S \\ \hline
-    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array restituisca un errore e non deleghi l'aggiornamento dei dettagli della nota scelta qualora fosse già presente una nota con lo stesso nome & S \\ \hline
-    \testU & NoteService & Verificare che delete(string \$id):void deleghi correttamente l'eliminazione della nota corrispondente all'ID specificato a NoteRepositoryInterface (e ritorni un valore di successo) & S \\ \hline
-    \testU & NoteRepository & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio & S \\ \hline
-    \testU & NoteRepository & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio & S \\ \hline
-    \testU & NoteRepository & Verificare che get(string \$id):array restituisca i dati completi della nota corrispondente all'ID specificato & S \\ \hline
-    \testU & NoteRepository & Verificare che venga gestita l'eccezione quando si tenta di utilizzare get(string \$id):array con un ID di una nota non esistente & S \\ \hline
-    \testU & NoteRepository & Verificare che create(string \$title, string \$contentMd):array crei correttamente una nuova nota nell'archivio, associandola ad un ID univoco & S \\ \hline
-    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il titolo della nota scelta & S \\ \hline
-    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il contenuto della nota scelta & S \\ \hline
-    \testU & NoteRepository & Verificare che delete(string \$id):void elimini correttamente la nota corrispondente all'ID specificato & S \\ \hline
-    \testU & NoteRepository & Verificare che delete(string \$id):void gestisca correttamente l'eliminazione di una nota non esistente & S \\ \hline
-    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca true se un titolo è già utilizzato da un'altra nota con ID diverso da excludeId & S \\ \hline
-    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca false se un titolo non è già utilizzato da un'altra nota con ID diverso da excludeId & S \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca la nota corrispondente all'ID specificato nel formato richiesto qualora esso sia valido & - \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 qualora l'ID non sia valido & - \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 qualora il formato richiesto non sia valido & - \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 in caso di errore durante l'esportazione & - \\ \hline
-    \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota, nel formato corretto dopo averne delegato l'esportazione a ExportStrategyInterface & - \\ \hline
-    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta MdExport nel caso il formato richiesto sia "md" & - \\ \hline
-    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta HtmlExport nel caso il formato richiesto sia "html" & - \\ \hline
-    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta PdfExport nel caso il formato richiesto sia "pdf" & - \\ \hline
-    \testU & MdExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato Markdown & - \\ \hline
-    \testU & HtmlExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato HTML & - \\ \hline
-    \testU & PdfExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato PDF & - \\ \hline
-    \testU & MdExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato Markdown & - \\ \hline
-    \testU & HtmlExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato HTML & - \\ \hline
-    \testU & PdfExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato PDF & - \\ \hline
-    \testU & MdExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato Markdown & - \\ \hline
-    \testU & HtmlExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato HTML & - \\ \hline
-    \testU & PdfExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato PDF & - \\ \hline
-    \testU & LlmController & Verificare che invoke(Request \$request, string \$id):JsonResponse deleghi correttamente a LlmService l'elaborazione della richiesta restituendo il risultato in una risposta JSON con status 200 & - \\ \hline
-    \testU & LlmController & Verificare che invoke(Request \$request, string \$id):JsonResponse non deleghi a LlmService l'elaborazione della richiesta, qualora i parametri non siano validi, e restituisca un errore & - \\ \hline
-    \testU & LlmController & - & - \\ \hline
-    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext & - \\ \hline
-    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con l'azione richiesta & - \\ \hline
-    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con il testo da elaborare corretto & - \\ \hline
-    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string costruisca correttamente un oggetto LlmContext con le opzioni specificate & - \\ \hline
-    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string restituisca il testo prodotto da LlmStrategyInterface & - \\ \hline
-    \testU & LllmService & - & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta Summarize nel caso l'azione richiesta sia di riassunto & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta Translate nel caso l'azione richiesta sia di traduzione & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta Rewrite nel caso l'azione richiesta sia di riscrittura & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta DistantWriting nel caso l'azione richiesta sia di generazione di testo & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta WhiteHat nel caso l'azione richiesta sia di critica del testo secondo cappello bianco & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta RedHat nel caso l'azione richiesta sia di critica del testo secondo cappello rosso & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta BlackHat nel caso l'azione richiesta sia di critica del testo secondo cappello nero & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta YellowHat nel caso l'azione richiesta sia di critica del testo secondo cappello giallo & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta GreenHat nel caso l'azione richiesta sia di critica del testo secondo cappello verde & - \\ \hline
-    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta BlueHat nel caso l'azione richiesta sia di critica del testo secondo cappello blu & - \\ \hline
-    \testU & LlmProcessor & Verificare che setStrategy(LlmStrategyInterface \$strategy):static imposti correttamente la strategy da utilizzare & - \\ \hline
-    \testU & LlmProcessor & Verificare che run(LlmContext \$context):string deleghi correttamente l'elaborazione del testo alla strategy impostata & - \\ \hline
-    \testU & LlmProcessor & Verificare che run(LlmContext \$context):string restituisca il testo prodotto dalla strategy impostata & - \\ \hline
-    \testU & Summarize & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di riassunto & - \\ \hline
-    \testU & Summarize & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & - & - & - \\ \hline
-    \testU & Translate & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di traduzione & - \\ \hline
-    \testU & Translate & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & Rewrite & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di riscrittura & - \\ \hline
-    \testU & Rewrite & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & DistantWriting & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di generazione di testo & - \\ \hline
-    \testU & DistantWriting & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & WhiteHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello bianco & - \\ \hline
-    \testU & WhiteHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & RedHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello rosso & - \\ \hline
-    \testU & RedHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & BlackHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello nero & - \\ \hline
-    \testU & BlackHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & YellowHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello giallo & - \\ \hline
-    \testU & YellowHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & GreenHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello verde & - \\ \hline
-    \testU & GreenHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
-    \testU & BlueHat & Verificare che process(LlmContext \$context):string crei il prompt corretto per la richiesta di critica del testo secondo cappello blu & - \\ \hline
-    \testU & BlueHat & Verificare che process(LlmContext \$context):string restituisca il testo prodotto dalla LLM & - \\ \hline
+    \testU & NoteController & Verificare che index() restituisca 200 con la lista delle note - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che index() restituisca 200 con lista vuota quando non ci sono note - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 200 con i dati della nota - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 404 quando la nota non è trovata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 400 quando l'id è invalido - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) restituisca 201 con la nota creata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) utilizzi stringa vuota per content\_md assente - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) restituisca 409 quando il titolo è già in uso - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 200 con la nota aggiornata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 404 quando la nota non è trovata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 409 quando il titolo è già in uso - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 400 quando l'id è invalido - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 204 in caso di successo - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 404 quando la nota non è trovata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 500 quando l'eliminazione fallisce - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 400 quando l'id è invalido - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che un'eccezione RuntimeException sconosciuta restituisca 500 - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio ottenuta da NoteRepositoryInterface - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array restituisca i dettagli della nota corrispondente all'ID specificato - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array restituisca un errore in caso di nota non esistente per l'id specificato - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface la creazione di una nuova nota nell'archivio (e restituisca un valore di successo) - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array restituisca un errore in caso la creazione di una nuova nota non sia avvenuta qualora fosse già presente una nota con lo stesso nome - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface l'aggiornamento dei dettagli di una nota esistente (e ritorni un valore di successo) - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array restituisca un errore e non deleghi l'aggiornamento dei dettagli della nota scelta qualora fosse già presente una nota con lo stesso nome - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che delete(string \$id):void deleghi correttamente l'eliminazione della nota corrispondente all'ID specificato a NoteRepositoryInterface (e ritorni un valore di successo) - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che get(string \$id):array restituisca i dati completi della nota corrispondente all'ID specificato - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che venga gestita l'eccezione quando si tenta di utilizzare get(string \$id):array con un ID di una nota non esistente - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che create(string \$title, string \$contentMd):array crei correttamente una nuova nota nell'archivio, associandola ad un ID univoco - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il titolo della nota scelta - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il contenuto della nota scelta - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che delete(string \$id):void elimini correttamente la nota corrispondente all'ID specificato - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che delete(string \$id):void gestisca correttamente l'eliminazione di una nota non esistente - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca true se un titolo è già utilizzato da un'altra nota con ID diverso da excludeId - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca false se un titolo non è già utilizzato da un'altra nota con ID diverso da excludeId - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca la nota corrispondente all'ID specificato nel formato richiesto qualora esso sia valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 qualora la nota non sia trovata - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 400 qualora l'ID non sia valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 400 qualora il formato richiesto non sia valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 500 in caso di errore sconosciuto durante l'esportazione - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato Markdown dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato HTML dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato PDF dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array propaghi correttamente l'eccezione InvalidArgumentException qualora il formato richiesto non sia valido - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta MdExport nel caso il formato richiesto sia "md" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta HtmlExport nel caso il formato richiesto sia "html" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta PdfExport nel caso il formato richiesto sia "pdf" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface lanci un'eccezione InvalidArgumentException qualora il formato richiesto non sia valido - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
+    \testU & MdExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato Markdown - verifcato da \texttt{MdExportTest.php} & S \\ \hline
+    \testU & HtmlExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato HTML - verifcato da \texttt{HtmlExportTest.php} & S \\ \hline
+    \testU & PdfExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato PDF - verifcato da \texttt{PdfExportTest.php} & S\\ \hline
+    \testU & MdExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato Markdown - verifcato da \texttt{MdExportTest.php} & S \\ \hline
+    \testU & HtmlExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato HTML - verifcato da \texttt{HtmlExportTest.php} & S \\ \hline
+    \testU & PdfExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato PDF - verifcato da \texttt{PdfExportTest.php} & S \\ \hline
+    \testU & MdExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato Markdown - verifcato da \texttt{MdExportTest.php} & S \\ \hline
+    \testU & HtmlExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato HTML - verifcato da \texttt{HtmlExportTest.php} & S \\ \hline
+    \testU & PdfExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato PDF - verifcato da \texttt{PdfExportTest.php} & S \\ \hline
+    \testU & ImportController & Verificare che invoke(Request \$request):JsonResponse restituisca 201 con i dati della nota importata in caso di successo - verificato da \texttt{ImportControllerTest.php} & S \\ \hline
+    \testU & ImportController & Verificare che invoke(Request \$request):JsonResponse restituisca 400 qualora il formato del file caricato non sia supportato - verificato da \texttt{ImportControllerTest.php} & S \\ \hline
+    \testU & ImportController & Verificare che invoke(Request \$request):JsonResponse restituisca 400 qualora il titolo della nota da importare sia già in uso - verificato da \texttt{ImportControllerTest.php} & S \\ \hline
+    \testU & ImportService & Verificare che handleUpload(UploadedFile \$file):Note deleghi correttamente il parsing del file a ImportStrategyInterface e la creazione della nota a NoteRepositoryInterface, restituendo la nota creata - verificato da \texttt{ImportServiceTest.php} & S \\ \hline
+    \testU & ImportService & Verificare che handleUpload(UploadedFile \$file):Note propaghi correttamente l'eccezione InvalidArgumentException qualora il formato del file non sia supportato - verificato da \texttt{ImportServiceTest.php} & S \\ \hline
+    \testU & ImportService & Verificare che handleUpload(UploadedFile \$file):Note lanci una RuntimeException con messaggio TITLE\_IN\_USE qualora il titolo della nota da importare sia già in uso - verificato da \texttt{ImportServiceTest.php} & S \\ \hline
+    \testU & ImportStrategyFactory & Verificare che make(string \$format):ImportStrategyInterface istanzi e restituisca la strategy concreta MdImport nel caso il formato richiesto sia "md" - verificato da \texttt{ImportStrategyFactoryTest.php} & S \\ \hline
+    \testU & ImportStrategyFactory & Verificare che make(string \$format):ImportStrategyInterface lanci un'eccezione InvalidArgumentException qualora il formato richiesto non sia supportato - verificato da \texttt{ImportStrategyFactoryTest.php} & S \\ \hline
+    \testU & MdImport & Verificare che parse(UploadedFile \$file):array restituisca correttamente il nome del file (senza estensione) come titolo e il contenuto del file come content - verificato da \texttt{MdImportTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request):JsonResponse deleghi correttamente a LlmService l'elaborazione di un'azione semplice senza opzioni e restituisca il risultato in una risposta JSON con status 200 - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request):JsonResponse deleghi correttamente a LlmService l'elaborazione di un'azione di traduzione con opzioni e restituisca il risultato in una risposta JSON con status 200 - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request):JsonResponse deleghi correttamente a LlmService l'elaborazione di un'azione di riscrittura con opzioni e restituisca il risultato in una risposta JSON con status 200 - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request):JsonResponse lanci una ValidationException qualora l'azione richiesta non sia valida - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che invoke(Request \$request):JsonResponse restituisca una risposta JSON con status 502 qualora si verifichi un errore durante l'elaborazione da parte della LLM - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string deleghi correttamente a LlmStrategyFactory la creazione della strategy e restituisca il testo prodotto da LlmStrategyInterface - verificato da \texttt{LlmServiceTest.php} & S \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string restituisca correttamente il testo prodotto da LlmStrategyInterface anche in caso di risposta non attesa - verificato da \texttt{LlmServiceTest.php} & S \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string propaghi correttamente l'eccezione InvalidArgumentException qualora la factory non riconosca l'azione richiesta - verificato da \texttt{LlmServiceTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmSummarize nel caso l'azione richiesta sia "summarize" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmTranslate nel caso l'azione richiesta sia "translate" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmRewrite nel caso l'azione richiesta sia "rewrite" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmDistantWriting nel caso l'azione richiesta sia "distant writing" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmWhiteHat nel caso l'azione richiesta sia "whitehat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmRedHat nel caso l'azione richiesta sia "redhat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmBlackHat nel caso l'azione richiesta sia "blackhat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmYellowHat nel caso l'azione richiesta sia "yellowhat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmGreenHat nel caso l'azione richiesta sia "greenhat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmBlueHat nel caso l'azione richiesta sia "bluehat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface lanci un'eccezione InvalidArgumentException qualora l'azione richiesta non sia valida - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmResponseProcessor & Verificare che make(string \$prompt, string \$content):Response invii correttamente la richiesta HTTP alla LLM con header di autenticazione, modello e messaggi corretti, restituendo la risposta ottenuta - verificato da \texttt{LlmResponseProcessorTest.php} & S \\ \hline
+    \testU & LlmResponseProcessor & Verificare che handleError(Response \$response):void lanci una RuntimeException con messaggio strutturato qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmResponseProcessorTest.php} & S \\ \hline
+    \testU & LlmSummarize & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmSummarizeTest.php} & S \\ \hline
+    \testU & LlmSummarize & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmSummarizeTest.php} & S \\ \hline
+    \testU & LlmSummarize & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmSummarizeTest.php} & S \\ \hline
+    \testU & LlmTranslate & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmTranslateTest.php} & S \\ \hline
+    \testU & LlmTranslate & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmTranslateTest.php} & S \\ \hline
+    \testU & LlmTranslate & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmTranslateTest.php} & S \\ \hline
+    \testU & LlmRewrite & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmRewriteTest.php} & S \\ \hline
+    \testU & LlmRewrite & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmRewriteTest.php} & S \\ \hline
+    \testU & LlmRewrite & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmRewriteTest.php} & S \\ \hline    
+    \testU & LlmDistantWriting & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmDistantWritingTest.php} & S \\ \hline
+    \testU & LlmDistantWriting & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmDistantWritingTest.php} & S \\ \hline
+    \testU & LlmDistantWriting & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmDistantWritingTest.php} & S \\ \hline    
+    \testU & LlmWhiteHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmWhiteHatTest.php} & S \\ \hline
+    \testU & LlmWhiteHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmWhiteHatTest.php} & S \\ \hline
+    \testU & LlmWhiteHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmWhiteHatTest.php} & S \\ \hline    
+    \testU & LlmRedHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmRedHatTest.php} & S \\ \hline
+    \testU & LlmRedHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmRedHatTest.php} & S \\ \hline
+    \testU & LlmRedHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmRedHatTest.php} & S \\ \hline
+    \testU & LlmBlackHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmBlackHatTest.php} & S \\ \hline
+    \testU & LlmBlackHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmBlackHatTest.php} & S \\ \hline
+    \testU & LlmBlackHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmBlackHatTest.php} & S \\ \hline
+    \testU & LlmYellowHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmYellowHatTest.php} & S \\ \hline
+    \testU & LlmYellowHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmYellowHatTest.php} & S \\ \hline
+    \testU & LlmYellowHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmYellowHatTest.php} & S \\ \hline
+    \testU & LlmGreenHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmGreenHatTest.php} & S \\ \hline
+    \testU & LlmGreenHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmGreenHatTest.php} & S \\ \hline
+    \testU & LlmGreenHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmGreenHatTest.php} & S \\ \hline
+    \testU & LlmBlueHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmBlueHatTest.php} & S \\ \hline
+    \testU & LlmBlueHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmBlueHatTest.php} & S \\ \hline
+    \testU & LlmBlueHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmBlueHatTest.php} & S \\ \hline
 \end{longtable}
 
 \subsection{Test di sistema}
@@ -810,7 +836,7 @@ Diagrammi dei casi d'uso erronei & I diagrammi dei casi d'uso devono riportare l
     \includegraphics[width=0.9\linewidth]{resources/EAC.pdf}
     \caption{Estimated at Completion}
 \end{figure}
-Dal grafico si osserva l'andamento dell'EAC negli otto sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato; tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. Nel settimo e ottavo periodo invece si nota uno scostamento del valore EAC oltre il limite inferiore, dovuto ad un aumento dell'efficienza da parte del gruppo. È necessario continuare a ottimizzare le stime per rientrare entro i limiti accettabili (±5\% BAC) nei periodi successivi.
+Dal grafico si osserva l'andamento dell'EAC nei dieci sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato; tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. Nel settimo e ottavo periodo invece si nota uno scostamento del valore EAC oltre il limite inferiore, dovuto ad un aumento dell'efficienza da parte del gruppo. Nel decimo periodo il gruppo ha riorganizzato la distribuzione delle ore, riducendo quelle inizialmente previste per ruoli di responsabile e analista a favore di amministratore e programmatore, pur rispettando i vincoli orari stabiliti. Questa riallocazione ha comportato una diminuzione del preventivo complessivo del progetto. Al termine del decimo sprint, il progetto risulta comunque rientrato nei limiti accettabili (±5\% BAC), condizione da mantenere anche nei periodi successivi.
 
 \subsection{PC02-PV (Planned Value) e PC04-EV (Earned Value)}
 \begin{figure}[H]
@@ -827,6 +853,7 @@ Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) 
     \caption{Estimated to Complete}
 \end{figure}
 Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso degli otto sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per quasi tutti i periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, nel quarto sprint si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. Dal quinto sprint in poi, la linea AC+ETC si mantiene prossima al valore desiderato (BAC). Dal settimo sprint inoltre si osserva una diminuzione della proiezione AC+ETC, risultato di un aumento della produttività del gruppo. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
+Dal decimo sprint la linea AC+ETC, grazie alla redistribuzione delle ore si trova quasi nello stesso punto della linea del BAC.
 
 \subsection{PC06-CV (Cost Variance), PC07-SV (Schedule Variance) e PC08-BV (Budget Variance)}
 \begin{figure}[H]
