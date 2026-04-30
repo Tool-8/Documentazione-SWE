@@ -56,6 +56,15 @@
   \renewcommand{\listfigurename}{Indice delle immagini}%
 }
 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    backgroundcolor=\color{gray!15},
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true
+}
 
 %------Ridefinizione maketitle-------
 \makeatletter
@@ -92,6 +101,8 @@
 \begin{tabular}{|M{0.8cm}|p{2.2cm}|p{5.7cm}|M{1.8cm}|p{2.2cm}|}
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+  0.2 & Giuliano Banchieri & Stesura parziale sezione "Istruzioni all'uso", stesura sottosezioni "Visualizzazione archivio note" e "Menù contestuale" & 30/04/2026 & - \\
   \hline
   0.1 & Stefano Maso & Prima stesura: struttura del documento e introduzione & 04/04/2026 & Niccolò Feltrin \\
   \hline
@@ -202,9 +213,181 @@ Safari & 15+ \\ \hline
 \caption{Requisiti software - Browser supportati}
 \end{table}
 
-\section{Istruzioni all'installazione}
+\section{Istruzioni per l'installazione}
+In questa sezione vengono fornite le istruzioni per l'installazione del prodotto software "Second Brain". Si consiglia di seguire attentamente i passaggi descritti per garantire un'installazione corretta.
+
+\subsection{Clonazione repository}
+È possibile ottenere una copia del progetto "Second Brain" attraverso due metodi principali:
+\begin{enumerate}
+  \item \textbf{Clonazione tramite Git:}
+  
+  Se si dispone di Git installato, è possibile clonare il repository ufficiale del progetto utilizzando il seguente comando nel terminale:
+
+  \begin{lstlisting}
+    git clone https://github.com/Tool-8/Documentazione-SWE.git
+  \end{lstlisting}
+  \item \textbf{Download diretto:}
+  
+  In alternativa, è possibile scaricare direttamente il file ZIP del repository dal seguente link:
+
+  \begin{center}
+    \url{https://github.com/Tool-8/Documentazione-SWE}
+  \end{center}
+
+  Dopo aver scaricato il file ZIP, è necessario estrarlo in una directory a scelta sul proprio computer.
+
+\end{enumerate}
+
+\subsection{Ottenimento chiavi API}
+Per utilizzare le funzionalità di interazione con LLM, è necessario ottenere una chiave API.
+
+Il nostro team ha scelto di utilizzare LLM gestite dall'azienda Zucchetti, pertanto è necessario accordarsi con essa per ottenere le chiavi API necessarie.
+
+\subsection{Configurazione ambiente}
+All'interno della cartella "src" è necessario creare un file di configurazione ".env".
+\begin{enumerate}
+  \item Aprire un terminale e spostarsi nella directory "src" del progetto.
+  
+  \begin{lstlisting}
+    cd percorso/esempio/SecondBrain/src
+  \end{lstlisting}
+
+  \item Creare un file ".env" e inserire al suo interno il seguente contenuto:
+  
+  \begin{lstlisting}
+    APP_NAME=Laravel
+    APP_ENV=local
+    APP_KEY=<TUA_CHIAVE_APP_KEY>
+    APP_DEBUG=true
+    APP_URL=http://localhost:8080
+
+    APP_LOCALE=en
+    APP_FALLBACK_LOCALE=en
+    APP_FAKER_LOCALE=en_US
+
+    APP_MAINTENANCE_DRIVER=file
+    # APP_MAINTENANCE_STORE=database
+
+    # PHP_CLI_SERVER_WORKERS=4
+
+    BCRYPT_ROUNDS=12
+
+    LOG_CHANNEL=stack
+    LOG_STACK=single
+    LOG_DEPRECATIONS_CHANNEL=null
+    LOG_LEVEL=debug
+
+    DB_CONNECTION=pgsql
+    DB_HOST=db
+    DB_PORT=5432
+    DB_DATABASE=poc
+    DB_USERNAME=poc
+    DB_PASSWORD=poc
+
+    SESSION_DRIVER=file
+    SESSION_LIFETIME=120
+    SESSION_ENCRYPT=false
+    SESSION_PATH=/
+    SESSION_DOMAIN=null
+
+    BROADCAST_CONNECTION=log
+    FILESYSTEM_DISK=local
+    QUEUE_CONNECTION=sync
+
+    CACHE_STORE=file
+    # CACHE_PREFIX=
+
+    MEMCACHED_HOST=127.0.0.1
+
+    REDIS_CLIENT=phpredis
+    REDIS_HOST=127.0.0.1
+    REDIS_PASSWORD=null
+    REDIS_PORT=6379
+
+    MAIL_MAILER=log
+    MAIL_SCHEME=null
+    MAIL_HOST=127.0.0.1
+    MAIL_PORT=2525
+    MAIL_USERNAME=null
+    MAIL_PASSWORD=null
+    MAIL_FROM_ADDRESS="hello@example.com"
+    MAIL_FROM_NAME="${APP_NAME}"
+
+    AWS_ACCESS_KEY_ID=
+    AWS_SECRET_ACCESS_KEY=
+    AWS_DEFAULT_REGION=us-east-1
+    AWS_BUCKET=
+    AWS_USE_PATH_STYLE_ENDPOINT=false
+
+    VITE_APP_NAME="${APP_NAME}"
+    VITE_DEV_SERVER_URL=http://localhost:5173
+
+    LLM_BASE_URL=<URL_BASE_LLM>
+    LLM_API_KEY=<TUA_CHIAVE_API_KEY>
+    # Modelli ['qwen3:30b','devstral:24b','gpt-oss:20b','gemma3:27b','gemma3:1b','deepseek-r1:8b','qwen3:1.7b']
+    LLM_MODEL=devstral:24b
+  \end{lstlisting}
+
+  \item Sostituire i valori di \verb|<URL_BASE_LLM>| e \verb|<TUA_CHIAVE_API_KEY>| con quelli ottenuti da Zucchetti.
+  
+  \begin{center}
+    {\Huge \textbf{ DA COMPLETARE }}\\[1em]
+    {\LARGE Comandi primo avvio}
+  \end{center}
+
+\end{enumerate}
 
 \section{Istruzioni all'uso}
+Tramite Second Brain, l'utente ha la possibilità di:
+\begin{itemize}
+    \item Visualizzare l'archivio delle note salvate
+    \item Creare nuove note in formato Markdown
+    \item Visualizzare, modificare ed eliminare note esistenti
+    \item Interagire con LLM per essere assistito nella scrittura di una nota
+    \item Importare file Markdown esterni
+    \item Esportare le proprie note in formato Markdown, PDF o HTML
+\end{itemize}
+
+\subsection{Visualizzazione archivio note}
+All'apertura dell'applicazione l'utente viene accolto da una schermata che mostra l'archivio delle note
+
+\begin{center}
+  \begin{figure}[H]
+    \centering
+    
+    \caption{Schermata archivio note}
+    \label{fig:archivio_note}
+  \end{figure}
+\end{center}
+
+Questa schermata contiene:
+\begin{enumerate}
+  \item \textbf{Sidebar:} Permette all'utente di navigare fra le varie sezioni dell'applicazione, può essere nascosta o mostrata cliccando sulla freccia presente a sinistra.
+  \item \textbf{Pulsante "Crea nota":} Permette all'utente di creare una nuova nota in formato Markdown.
+  \item \textbf{Barra di ricerca:} Permette all'utente di cercare una nota specifica all'interno dell'archivio, filtrando i risultati in tempo reale.
+  \item \textbf{Elenco note:} Mostra tutte le note salvate all'interno dell'archivio.
+  \item \textbf{Note:} Cliccando su una nota, è possibile visualizzarne il contenuto completo, modificarla o eliminarla.
+  \item \textbf{Pulsante "Importa nota":} Permette all'utente di importare un file Markdown esterno, aggiungendolo all'archivio delle note.
+\end{enumerate}
+
+\subsection{Menù contestuale}
+
+\begin{center}
+  \begin{figure}[H]
+    \centering
+    
+    \caption{Menù contestuale}
+    \label{fig:menù_contestuale}
+  \end{figure}
+\end{center}
+
+Cliccando con il tasto destro su una nota, è possibile accedere ad un menù contestuale che permette di:
+\begin{itemize}
+    \item Rinominare la nota
+    \item Clonare la nota
+    \item Eliminare la nota
+    \item Esportare la nota in formato Markdown, PDF o HTML
+\end{itemize}
 
 \section{Supporto tecnico}
 Per assistenza tecnica relativa all'utilizzo del prodotto software "Second Brain", viene fornito il seguente indirizzo email: 
