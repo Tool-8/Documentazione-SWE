@@ -102,7 +102,7 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  0.2 & Giuliano Banchieri & Stesura parziale sezione "Istruzioni all'uso", stesura sottosezioni "Visualizzazione archivio note" e "Menù contestuale" & 30/04/2026 & - \\
+  0.2 & Giuliano Banchieri & Stesura parziale sezione "Istruzioni all'uso", stesura sottosezioni "Visualizzazione archivio note" e "Menù contestuale" & 30/04/2026 & Stefano Maso \\
   \hline
   0.1 & Stefano Maso & Prima stesura: struttura del documento e introduzione & 04/04/2026 & Niccolò Feltrin \\
   \hline
@@ -224,14 +224,14 @@ In questa sezione vengono fornite le istruzioni per l'installazione del prodotto
   Se si dispone di Git installato, è possibile clonare il repository ufficiale del progetto utilizzando il seguente comando nel terminale:
 
   \begin{lstlisting}
-    git clone https://github.com/Tool-8/Documentazione-SWE.git
+    git clone https://github.com/Tool-8/SecondBrain.git
   \end{lstlisting}
   \item \textbf{Download diretto:}
   
   In alternativa, è possibile scaricare direttamente il file ZIP del repository dal seguente link:
 
   \begin{center}
-    \url{https://github.com/Tool-8/Documentazione-SWE}
+    \url{https://github.com/Tool-8/SecondBrain}
   \end{center}
 
   Dopo aver scaricato il file ZIP, è necessario estrarlo in una directory a scelta sul proprio computer.
@@ -255,7 +255,7 @@ All'interno della cartella "src" è necessario creare un file di configurazione 
   \item Creare un file ".env" e inserire al suo interno il seguente contenuto:
   
   \begin{lstlisting}
-    APP_NAME=Laravel
+    APP_NAME=SecondBrain
     APP_ENV=local
     APP_KEY=<TUA_CHIAVE_APP_KEY>
     APP_DEBUG=true
@@ -280,9 +280,9 @@ All'interno della cartella "src" è necessario creare un file di configurazione 
     DB_CONNECTION=pgsql
     DB_HOST=db
     DB_PORT=5432
-    DB_DATABASE=poc
-    DB_USERNAME=poc
-    DB_PASSWORD=poc
+    DB_DATABASE=secondbrain
+    DB_USERNAME=secondbrain
+    DB_PASSWORD=secret
 
     SESSION_DRIVER=file
     SESSION_LIFETIME=120
@@ -325,7 +325,7 @@ All'interno della cartella "src" è necessario creare un file di configurazione 
     LLM_BASE_URL=<URL_BASE_LLM>
     LLM_API_KEY=<TUA_CHIAVE_API_KEY>
     # Modelli ['qwen3:30b','devstral:24b','gpt-oss:20b','gemma3:27b','gemma3:1b','deepseek-r1:8b','qwen3:1.7b']
-    LLM_MODEL=devstral:24b
+    LLM_MODEL=gemma3:4b
   \end{lstlisting}
 
   \item Sostituire i valori di \verb|<URL_BASE_LLM>| e \verb|<TUA_CHIAVE_API_KEY>| con quelli ottenuti da Zucchetti.
