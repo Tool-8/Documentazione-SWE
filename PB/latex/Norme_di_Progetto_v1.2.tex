@@ -88,7 +88,7 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  1.2 & Stefano Maso & Aggiunte sottosezioni \textit{Codifica} e \textit{Verifica} & 30/04/2026 & - \\
+  1.2 & Stefano Maso & Aggiunte sottosezioni \textit{Codifica} e \textit{Verifica} & 30/04/2026 & Besnik Murtezan \\
   \hline
   1.1 & Niccolò Feltrin & Aggiunta sezione 3.2.5 \textit{Scopo e struttura repository "SecondBrain"}, aggiornata sezione 3.1.1 (aggiunti documenti Specifica Tecnica e Manuale Utente), aggiornata sezione 2.4.3 & 01/04/2026 & Stefano Maso \\
   \hline
@@ -262,13 +262,13 @@ previste per il prodotto finale, basandosi unicamente sui requisiti specificati 
 Sempre in questa fase devono essere implementati i vari test$^G$ per assicurare un corretto funzionamento del prodotto. \\
 Per la stesura del codice si sono adottate delle norme comuni tra cui:
 \begin{itemize}
-  \item Convenzioni di denominazione, cioè usare nomi significativi per variabili, funzioni, classi, ecc. utilizzando oppurtunamente lettere maiuscole e minuscole per identificare le parole chiave
-  \item Indentazione, usare l'indentazione in modo consistente per evidenziare la struttura del codice
-  \item Commenti, aggiungere commenti per spiegare parti di codice complesse, evitando commenti ovvi o ridondanti
-  \item Lunghezza delle righe, limitare la lunghezza delle righe per facilitare la lettura e revisione del codice
-  \item Struttura del codice, organizzare il codice in blocchi logici e funzioni coese; utilizzare funzioni e classi per evitare la duplicazione del codice
-  \item Gestione delle eccezioni, trattare le eccezioni in modo appropriato, usando blocchi try-catch quando necessario
-  \item Separare logica di business e logica di interfaccia, mantenere separata la logica di business dal codice di interfaccia utente o di accesso ai dati, in modo da rendere il codice modulare e facile da testare
+  \item Convenzioni di denominazione: dare nomi significativi a variabili, funzioni, classi, ecc. utilizzando oppurtunamente lettere maiuscole e minuscole per identificare le parole chiave
+  \item Indentazione: usare l'indentazione in modo consistente per evidenziare la struttura del codice
+  \item Commenti: aggiungere commenti per spiegare parti di codice complesse, evitando commenti ovvi o ridondanti
+  \item Lunghezza delle righe: limitare la lunghezza delle righe per facilitare la lettura e revisione del codice
+  \item Struttura del codice: organizzare il codice in blocchi logici e funzioni coese; utilizzare funzioni e classi per evitare la duplicazione del codice
+  \item Gestione delle eccezioni: trattare le eccezioni in modo appropriato, usando blocchi try-catch quando necessario
+  \item Separazione logica di business e logica di interfaccia: mantenere separata la logica di business dal codice di interfaccia utente o di accesso ai dati, in modo da rendere il codice modulare e facile da testare
 \end{itemize}
 Le metriche individuate:
 \begin{itemize}
@@ -481,13 +481,13 @@ L'obiettivo del testing è garantire il corretto funzionamento delle componenti,
 \textbf{Test di unità} \\
 I test di unità costituiscono un pilastro nella verifica della correttezza delle singole unità di codice all'interno di un sistema software. Essi sono progettati per isolare e verificare singoli componenti, come funzioni o metodi, garantendo che ciascuno di essi funzioni correttamento e produca risultati attesi in conformità alle specifiche.\\
 L'obiettivo primario dei test di unità è garantire l'integrità e la correttezza di ogni singola unità di codice prima della sua integrazione con il resto del sistema. Questo approccio consente di individuare e correggere eventuali errori o bug nelle fasi iniziali dello sviluppo, riducendo cosi il rischio di problemi più gravi nel sistema finale.\\
-È possibile utilizzare oggetti simulati o parziali al fine di isolare l'unità di codice in esame dalle sua dipendenze esterne. Questo permette di verificare il comportamento dell'unità in contesti controllati e di garantire un'efficace separazione durante le fasi di test. Inoltre, i test di unità sono progettati per raggiungere una copertura completa dei percorsi all'interno dell'unità di codice. Ciò significa che vengono creati appositamente test per attivare e verificare specifici percorsi nel codice, al fine di garantire una copertura completa e accurata delle varie parti dell'unità. \\
+È possibile utilizzare oggetti simulati o parziali al fine di isolare l'unità di codice in esame dalle sua dipendenze esterne. Questo permette di verificare il comportamento dell'unità in contesti controllati e di garantire un'efficace separazione durante le fasi di test. Inoltre, i test di unità sono progettati per raggiungere una copertura completa dei percorsi all'interno dell'unità di codice. Ciò significa che vengono creati appositamente test per attivare e verificare specifici percorsi nel codice, al fine di garantire la copertura completa e accurata delle varie parti dell'unità. \\
 \textbf{Test di sistema} \\
 L'obiettivo dei test di sistema è garantire che il sistema soddisfi i requisiti funzionali e non funzionali specificati durante la fase di progettazione e sviluppo. Essi mirano a convalidare le funzionalità del sistema nel contesto delle attività e dei processi previsti, verificando che il sistema si comporti correttamente e risponda in modo appropriato a tutte le richieste e interazioni degli utenti. \\
 Vengono simulati scenari realistici e casi d'uso tipici che possono verificarsi durante l'utilizzo quotidiano del sistema.\\
 \textbf{Test di accettazione}
 L'obiettivo principale dei test di accettazione è convalidare che il software sia in grado di risolvere efficacemente i problemi e soddisfare le esigenze degli utenti.\\
-Essi valutano il sistema rispetto a casi d'uso reali e alle specifiche funzionali concordate, verificando se il software si comporta come previsto e se fornisce i risultati desiderati.\\
+Essi valutano il sistema rispetto a casi d'uso reali e alle specifiche funzionali concordate, verificando se il software si comporta come previsto e se fornisce i risultati desiderati. Tali test avverranno in presenza dell'azienda proponente.\\
 \textbf{Formato dei test}\\
 La classificazione dei test avviene seguendo il seguente formato:
 \begin{center}
