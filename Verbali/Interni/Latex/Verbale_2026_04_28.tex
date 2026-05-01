@@ -1,0 +1,177 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 28 Aprile 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{28/04/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
+  \hline
+  1.0 & Gabriele Disa & Prima stesura & 28/04/2026 & - \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di retrospettiva sprint$^G$ \#10 e inizio sprint$^G$ \#11. Discussione sulla situazione dello sviluppo del Backend, del Frontend, dei test e sulla necessità di ridistribuire le ore tra i membri del gruppo.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Besnik Murtezan & Verificatore \\
+  \hline
+  Gabriele Disa & Responsabile \\
+  \hline
+  Giuliano Banchieri & Programmatore \\
+  \hline
+  Niccolò Feltrin & Verificatore \\
+  \hline
+  Ruben Spadiliero & Programmatore \\
+  \hline
+  Stefano Maso & Amministratore \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l'obiettivo di analizzare i risultati del periodo terminato e pianificare il lavoro per il prossimo sprint$^G$.
+
+Il gruppo ha discusso lo stato di avanzamento dello sviluppo del Backend e del Frontend. Per quanto riguarda il Backend, è stato rilevato che le principali funzionalità risultano implementate, ma rimane necessario completare i test di integrazione e verificare il corretto funzionamento dei moduli sviluppati. In particolare, l'attenzione è stata posta sul modulo \texttt{LLM} e sulle funzionalità collegate alla gestione delle note.
+
+Per quanto riguarda il Frontend, il gruppo ha evidenziato che l'interfaccia è in larga parte predisposta, ma rimangono da completare diverse funzionalità applicative, tra cui salvataggio, caricamento, copia, rinomina, eliminazione, esportazione e importazione delle note. È stata quindi confermata la necessità di proseguire nella codifica dei componenti mancanti e di introdurre test dedicati anche per la parte Frontend.
+
+Durante la riunione è stata inoltre discussa la situazione della documentazione. È necessario aggiornare il Piano di Progetto$^G$ e il Piano di Qualifica$^G$ con i dati relativi al decimo periodo, includendo consuntivo, preventivo e metriche aggiornate. È stato inoltre rilevato che la Specifica Tecnica$^G$ deve essere completata con la sezione relativa all'architettura Frontend e che, dato l'avanzamento dell'interfaccia utente, è opportuno iniziare a portare avanti anche il Manuale Utente$^G$.
+
+Il gruppo ha deciso di riallocare le ore tra i diversi ruoli dei membri, al fine di ottimizzare l'utilizzo delle risorse residue e destinare il lavoro ai ruoli più rilevanti per la fase corrente del progetto. Questa redistribuzione ha determinato un aggiornamento del preventivo a finire.
+
+È inoltre necessario mantenere allineate le informazioni presenti nelle issue$^G$, nei documenti e nel repository$^G$, prestando particolare attenzione alla corretta gestione dei branch e delle pull request$^G$.
+
+Vengono infine assegnati i nuovi ruoli per lo sprint$^G$ \#11 con termine il giorno 03-05-2026.
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Gabriele Disa [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 28/04/2026 (Issue$^G$ \#207)
+    \item Coordinare l'avanzamento dello sprint$^G$ \#11 e monitorare la corretta assegnazione delle attività
+    \end{enumerate}
+
+\item \textbf{Assegnato a Giuliano Banchieri, Ruben Spadiliero [Programmatori]:}
+    \begin{enumerate}
+        \item Frontend: Test di unità (Issue$^G$ \#190)
+        \item Frontend: Blocchi di traduzione (Issue$^G$ \#191)
+        \item Frontend: Funzione Undo / Redo (Issue$^G$ \#192)
+        \item Frontend: Integrazione AI (Issue$^G$ \#195)
+        \item Frontend: Funzione riscrittura (Issue$^G$ \#196)
+        \item Frontend: Funzione riassunto (Issue$^G$ \#197)
+        \item Frontend: Funzione critica (Issue$^G$ \#198)
+        \item Frontend: Funzione distant writing (Issue$^G$ \#199)
+        \item Frontend: Funzione traduzione (Issue$^G$ \#200)
+        \item Frontend: Funzione esporta nota (Issue$^G$ \#201)
+        \item Frontend: Gestione metodi di salvataggio (Issue$^G$ \#202)
+        \item Frontend: Funzione di importazione (Issue$^G$ \#203)
+        \item Backend: Test integrazione LLM (Issue$^G$ \#188)
+        \item Backend: Test integrazione import (Issue$^G$ \#194)
+  \end{enumerate}
+
+\item \textbf{Assegnato a Stefano Maso [Amministratore]:}
+    \begin{enumerate}
+    \item Aggiornare Piano di Qualifica$^G$ con i dati e i grafici relativi al decimo periodo (Issue$^G$ \#205)
+    \item Aggiornare Piano di Progetto$^G$ con consuntivo, preventivo e risorse residue aggiornate (Issue$^G$ \#208)
+    \item Verificare la coerenza delle modifiche documentali prodotte durante lo sprint$^G$
+    \end{enumerate}
+
+\item \textbf{Assegnato a Besnik Murtezan, Niccolò Feltrin [Verificatori]:}
+    \begin{enumerate}
+    \item Verifica$^G$ dei documenti aggiornati, con particolare attenzione a Piano di Progetto$^G$ e Piano di Qualifica$^G$
+    \item Verifica$^G$ delle aggiunte di codice sorgente e delle pull request$^G$ relative a Backend e Frontend
+    \item Controllare che le issue$^G$ siano correttamente aggiornate con ore, stato e riferimenti alle attività svolte
+    \end{enumerate}
+
+\item \textbf{Altre issue individuate:}
+    \begin{enumerate}
+    \item Portare avanti la stesura del Manuale Utente$^G$, dato l'avanzamento dell'interfaccia utente  (Issue$^G$ \#193)
+    \end{enumerate}
+\end{itemize}
+\end{document}
