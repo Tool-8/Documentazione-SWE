@@ -92,7 +92,7 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  1.6 & Stefano Maso & Aggiunte metriche per il processo di verifica, aggiunti test di integrazione, aggiunte sezioni cruscotto & 03/05/2026 & - \\
+  1.6 & Stefano Maso & Aggiunte metriche per il processo di verifica, aggiunti test di integrazione, aggiunte sezioni cruscotto & 03/05/2026 & Besnik Murtezan \\
   \hline
   1.5 & Stefano Maso & Aggiornamento grafici del cruscotto con Sprint 10 e aggiunta Test di Unità & 29/04/2026 & - \\
   \hline
@@ -686,13 +686,13 @@ I test di integrazione servono a verificare che le componenti del sistema si int
     \testI & Verificare che POST /api/notes/export restituisca 200 con il contenuto HTML e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI  & Verificare che GET /api/notes/export/\{id\}?format=pdf restituisca 200 con il contenuto PDF della nota e gli header corretti - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI  & Verificare che POST /api/notes/export restituisca 200 con il contenuto PDF e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
-    \testI & Verificare che GET /api/notes/export/\{id\}?format=mdma restituisca 400 con messaggio "Unknown format: mdma" quando viene richiesto un formato non valido con id - verificato da \texttt{ExportTest.php} & S \\ \hline
-    \testI & Verificare che POST /api/notes/export restituisca 400 con messaggio "Unknown format: mdma" quando viene richiesto un formato non valido senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
-    \testI & Verificare che GET /api/notes/export/\{id\}?format=html restituisca 404 con messaggio "Note not found" quando la nota non esiste - verificato da \texttt{ExportTest.php} & S \\ \hline
-    \testI & Verificare che GET /api/notes/export/123?format=html restituisca 400 con messaggio "Invalid note id" quando l'id fornito non è un UUID valido - verificato da \texttt{ExportTest.php} & S \\ \hline
-    \testI & Verificare che GET /api/notes/export/\{id\}?format=html restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\}?format=wrong_format restituisca 400 con messaggio "Unknown format: wrong_format" quando viene richiesto un formato non valido con id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/export restituisca 400 con messaggio "Unknown format: wrong_format" quando viene richiesto un formato non valido senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\} restituisca 404 con messaggio "Note not found" quando la nota non esiste - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/123 restituisca 400 con messaggio "Invalid note id" quando l'id fornito non è un UUID valido - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\} restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI & Verificare che POST /api/notes/import restituisca 201 con i dati della nota creata quando viene caricato un file Markdown valido - verificato da \texttt{ImportTest.php} & S \\ \hline
-    \testI  & Verificare che POST /api/notes/import restituisca 400 con messaggio "mdma format is not supported" quando il file caricato ha un formato non supportato - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI  & Verificare che POST /api/notes/import restituisca 400 con messaggio "uploaded_format format is not supported" quando il file caricato ha un formato non supportato - verificato da \texttt{ImportTest.php} & S \\ \hline
     \testI & Verificare che POST /api/notes/import restituisca 400 con messaggio "Title already used by another note" quando il titolo della nota importata è già in uso - verificato da \texttt{ImportTest.php} & S \\ \hline
     \testI & Verificare che POST /api/notes/import restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ImportTest.php} & S \\ \hline
     \testI & Verificare che POST /api/notes/import restituisca 422 con messaggio "File size must not exceed 10240 KB" quando il file caricato supera la dimensione massima consentita - verificato da \texttt{ImportTest.php} & S \\ \hline
@@ -701,7 +701,7 @@ I test di integrazione servono a verificare che le componenti del sistema si int
     \testI & Verificare che POST /api/llm restituisca 200 con il testo tradotto per l'azione "translate" con lingua di destinazione valida - verificato da \texttt{LlmTest.php} & S \\ \hline
     \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando viene fornita un'azione non valida - verificato da \texttt{LlmTest.php} & S \\ \hline
     \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando vengono fornite opzioni non valide - verificato da \texttt{LlmTest.php} & S \\ \hline
-    \testI & Verificare che POST /api/llm restituisca 422 con errore "Translation in al is not supported" quando viene fornita una lingua non supportata per la traduzione - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 422 con errore "Translation in selected_language is not supported" quando viene fornita una lingua non supportata per la traduzione - verificato da \texttt{LlmTest.php} & S \\ \hline
     \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando viene fornito uno stile di riscrittura non valido - verificato da \texttt{LlmTest.php} & S \\ \hline
     \testI & Verificare che POST /api/llm restituisca 502 con messaggio di errore quando il servizio LLM risponde con un errore interno - verificato da \texttt{LlmTest.php} & S \\ \hline
     \caption{Tabella Test di Integrazione}
@@ -992,8 +992,8 @@ PC15-PCTS & Percentuale dei test superati & $\geq 80\%$ & 100\% & 100\% \\
 
 \subsection{PC16-SC (Statement Coverage)}
 Lo Statement Coverage misura la percentuale di istruzioni eseguite durante l'esecuzione dei test. Si calcola come il numero di istruzioni eseguite almeno una volta rispetto al totale di istruzioni nel programma.
-Il suo scopo è assicurarsi che tuttte le istruzioni nel codice vengano testate almeno una volta. \\
-Di seguito si riporta un immagine rappresentante la percentuale di Statement Coverage realtiva a quelle che Codecov considera come \textit{"relevant lines"}, per ciascun file contenente codice coperto da test.
+Il suo scopo è assicurarsi che tutte le istruzioni nel codice vengano testate almeno una volta. \\
+Di seguito si riporta un immagine rappresentante la percentuale di Statement Coverage relativa a quelle che Codecov considera come \textit{"relevant lines"}, per ciascun file contenente codice coperto da test.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{resources/Statement Coverage.png}
