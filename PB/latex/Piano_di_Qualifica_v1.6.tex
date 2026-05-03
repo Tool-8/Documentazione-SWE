@@ -92,6 +92,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  1.6 & Stefano Maso & Aggiunte metriche per il processo di verifica, aggiunti test di integrazione, aggiunte sezioni cruscotto & 03/05/2026 & - \\
+  \hline
   1.5 & Stefano Maso & Aggiornamento grafici del cruscotto con Sprint 10 e aggiunta Test di Unità & 29/04/2026 & - \\
   \hline
   1.4 & Spadiliero Ruben & Aggiornamento grafici del cruscotto con Sprint 9 & 24/04/2026 & Banchieri Giuliano \\
@@ -266,6 +268,44 @@ PC14-IG  & Indice Gulpease & 40-100      & 55-100 \\
 \caption{Metriche per i processi di supporto}
 \label{tab:metriche-supporto}
 \end{table}
+\subsubsection{Verifica}
+Per il processo di verifica andremo a definire le seguenti metriche:
+\begin{itemize}
+    \item \textbf{Percentuale dei test superati (PCTS)}: misura la percentuale di test, definiti nella sezione Testing superati, calcolato nel seguente modo: 
+    \[
+        PCTS = \frac{\text{num. test superati}}{\text{num. test totali}} \times 100
+    \]
+    \item \textbf{Statement coverage (SC)}: misura la percentuale degli statement del codice coperti dai test, ovvero eseguiti almeno una volta, calcolato nel seguente modo:
+    \[
+        SC = \frac{\text{statement eseguiti}}{\text{statement totali}} \times 100
+    \]
+    \item \textbf{Branch coverage (BC)}: misura la percentuale dei rami decisionali, ovvero i percorsi di esecuzione, del codice coperti dai test, cioè eseguiti almeno una volta, calcolato nel seguente modo:
+    \[
+        BC = \frac{\text{rami decisionali testati}}{\text{rami decisionali totali}} \times 100
+    \]
+    \item \textbf{Condition coverage (CC)}: misura la percentuale di condizioni logiche del codice che sono state eseguite durante i test, ovvero eseguite almeno una volta, calcolato nel seguente modo:
+    \[
+        CC = \frac{\text{condizioni logiche testate}}{\text{condizioni logiche totali}} \times 100
+    \]
+\end{itemize}
+Obiettivi per tali metriche:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PC15-PCTS & Percentuale dei test superati & $\geq 80\%$ & 100\% \\
+PC16-SC  & Statement coverage  & $\geq 80\%$ & 100\% \\
+PC17-BC  & Branch coverage  & $\geq 80\%$ & 100\% \\
+PC18-CC  & Condition coverage  & $\geq 80\%$ & 100\% \\
+\hline
+\end{tabular}
+\caption{Metriche per i processi di verifica}
+\label{tab:metriche-verifica}
+\end{table}
+
 \subsection{Processi organizzativi}
 Per i processi organizzativi definiamo le seguenti metriche:
 \begin{itemize}
@@ -286,8 +326,8 @@ Obiettivi per tali metriche:
 \hline
 \textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
 \hline
-PC15-NCR & Non Calculated Risk & $\leq 4$ & 0 \\
-PC16-ET  & Efficienza temporale  & $\leq 3$ & $\leq 1$ \\
+PC19-NCR & Non Calculated Risk & $\leq 4$ & 0 \\
+PC20-ET  & Efficienza temporale  & $\leq 3$ & $\leq 1$ \\
 \hline
 \end{tabular}
 \caption{Metriche per i processi organizzativi}
@@ -527,15 +567,21 @@ I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici de
     \testU & NoteRepository & Verificare che delete(string \$id):void gestisca correttamente l'eliminazione di una nota non esistente - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
     \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca true se un titolo è già utilizzato da un'altra nota con ID diverso da excludeId - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
     \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca false se un titolo non è già utilizzato da un'altra nota con ID diverso da excludeId - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca la nota corrispondente all'ID specificato nel formato richiesto qualora esso sia valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 404 qualora la nota non sia trovata - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 400 qualora l'ID non sia valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 400 qualora il formato richiesto non sia valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
-    \testU & ExportController & Verificare che invoke(Request \$request, string \$id) restituisca una risposta JSON con status 500 in caso di errore sconosciuto durante l'esportazione - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):Response restituisca 200 con il contenuto della nota esportata correttamente quando viene fornito un id valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che exportRaw(Request \$request):Response restituisca 200 con il contenuto esportato correttamente quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):JsonResponse restituisca 404 con messaggio "Note not found" quando il servizio lancia RuntimeException con messaggio NOT\_FOUND - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):JsonResponse restituisca 400 con messaggio "Invalid note id" quando il servizio lancia RuntimeException con messaggio INVALID\_ID - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):JsonResponse restituisca 400 con il messaggio di errore quando il servizio lancia InvalidArgumentException per formato non valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che exportRaw(Request \$request):JsonResponse restituisca 400 con il messaggio di errore quando il servizio lancia InvalidArgumentException per formato non valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):JsonResponse restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
     \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato Markdown dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che exportRaw(string \$title, string \$content, string \$format):array restituisca correttamente i dati in formato Markdown dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
     \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato HTML dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che exportRaw(string \$title, string \$content, string \$format):array restituisca correttamente i dati in formato HTML dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
     \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato PDF dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che exportRaw(string \$title, string \$content, string \$format):array restituisca correttamente i dati in formato PDF dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
     \testU & ExportService & Verificare che export(string \$id, string \$format):array propaghi correttamente l'eccezione InvalidArgumentException qualora il formato richiesto non sia valido - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che exportRaw(string \$title, string \$content, string \$format):array propaghi correttamente l'eccezione InvalidArgumentException qualora il formato richiesto non sia valido - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
     \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta MdExport nel caso il formato richiesto sia "md" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
     \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta HtmlExport nel caso il formato richiesto sia "html" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
     \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta PdfExport nel caso il formato richiesto sia "pdf" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
@@ -610,6 +656,57 @@ I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici de
     \testU & LlmBlueHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmBlueHatTest.php} & S \\ \hline
     \testU & LlmBlueHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmBlueHatTest.php} & S \\ \hline
 \end{longtable}
+
+\subsection{Test di integrazione}
+I test di integrazione servono a verificare che le componenti del sistema si integrino correttamente e in maniera efficace. L'obiettivo dei test è identificare eventuali problemi di integrazione fra le componenti del software.
+
+\newcounter{TI@}
+
+\newcommand{\testI}{%
+    \stepcounter{TI@}%
+    \noindent{TI-\arabic{TI@}}\quad\par
+}
+
+\begin{longtable}{|l|p{8cm}|p{2cm}|p{1.5cm}|}
+    \hline
+    \textbf{Test} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
+    \endfirsthead
+    \testI & Verificare che POST /api/notes restituisca 201 e persista correttamente le note create sul disco - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes restituisca 200 con la lista delle note presenti - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/\{id\} restituisca 200 con i dati corretti della nota richiesta - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che DELETE /api/notes/\{id\} restituisca 204 e rimuova correttamente il file della nota dal disco - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che PUT /api/notes/\{id\} restituisca 200 con i dati aggiornati della nota modificata - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/\{id\} restituisca 404 con messaggio "Note not found" quando la nota non esiste - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/69420 restituisca 400 con messaggio "Invalid note id" quando l'id fornito non è un UUID valido - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes restituisca 409 con messaggio "Title already used" quando si tenta di creare una nota con un titolo già esistente - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che DELETE /api/notes/\{id\} restituisca 500 con messaggio "Failed to delete" quando il repository lancia una RuntimeException durante l'eliminazione - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\}?format=md restituisca 200 con il contenuto Markdown della nota e gli header corretti - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/export restituisca 200 con il contenuto Markdown e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI& Verificare che GET /api/notes/export/\{id\}?format=html restituisca 200 con il contenuto HTML della nota e gli header corretti - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/export restituisca 200 con il contenuto HTML e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI  & Verificare che GET /api/notes/export/\{id\}?format=pdf restituisca 200 con il contenuto PDF della nota e gli header corretti - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI  & Verificare che POST /api/notes/export restituisca 200 con il contenuto PDF e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\}?format=mdma restituisca 400 con messaggio "Unknown format: mdma" quando viene richiesto un formato non valido con id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/export restituisca 400 con messaggio "Unknown format: mdma" quando viene richiesto un formato non valido senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\}?format=html restituisca 404 con messaggio "Note not found" quando la nota non esiste - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/123?format=html restituisca 400 con messaggio "Invalid note id" quando l'id fornito non è un UUID valido - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\}?format=html restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/import restituisca 201 con i dati della nota creata quando viene caricato un file Markdown valido - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI  & Verificare che POST /api/notes/import restituisca 400 con messaggio "mdma format is not supported" quando il file caricato ha un formato non supportato - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/import restituisca 400 con messaggio "Title already used by another note" quando il titolo della nota importata è già in uso - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/import restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/import restituisca 422 con messaggio "File size must not exceed 10240 KB" quando il file caricato supera la dimensione massima consentita - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 200 con il risultato generato dal modello per l'azione "summarize" - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 200 con il risultato generato dal modello per l'azione "rewrite" con opzioni di stile - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 200 con il testo tradotto per l'azione "translate" con lingua di destinazione valida - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando viene fornita un'azione non valida - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando vengono fornite opzioni non valide - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 422 con errore "Translation in al is not supported" quando viene fornita una lingua non supportata per la traduzione - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando viene fornito uno stile di riscrittura non valido - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 502 con messaggio di errore quando il servizio LLM risponde con un errore interno - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \caption{Tabella Test di Integrazione}
+\end{longtable}
+
 
 \subsection{Test di sistema}
 I test$^G$ di sistema hanno lo scopo di verificare che il sistema software rispetti i requisiti specificati nel documento "\textit{Analisi dei Requisiti$^G$}". In seguito verranno elencati i vari test$^G$, i quali avranno un codice identificativo, una descrizione, il requisito a cui fa riferimento e lo stato del test. \\
@@ -877,6 +974,31 @@ I risultati mostrano che tutti i verbali analizzati superano ampiamente la sogli
     \caption{Indice di Gulpease documenti RTB}
 \end{figure}
 Il grafico illustra i valori dell'Indice di Gulpease calcolati per i documenti Analisi dei Requisiti$^G$, Norme di Progetto$^G$, Piano di Progetto$^G$, Piano di Qualifica, Manuale Utente e Specifica Tecnica. Tutti i documenti superano abbondantemente la soglia minima di 40 punti. In particolare, l'Analisi dei Requisiti$^G$ registra un valore particolarmente elevato, riconducibile alla natura stessa del documento, caratterizzato da una struttura ricca di elementi grafici (Casi d'uso$^G$) e da un uso esteso di elenchi puntati, fattori che incidono positivamente sul calcolo dell'indice.
+
+\subsection{PC15-PCTS (Percentuale dei test superati)}
+Per quanto riguarda la percentuale dei test superati, dal momento della loro introduzione nel corso dell'undicesimo periodo, il loro superamento è sempre stato verificato prima dell'effettivo merge all'interno del branch develop. A parte dunque un primo periodo in cui non era ancora completata appieno l'automazione di \textit{test coverage} all'interno del repository, si è sempre ottenuto una percentuale di test superati pari al 100\%.
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} & \textbf{Valore ottenuto} \\
+\hline
+PC15-PCTS & Percentuale dei test superati & $\geq 80\%$ & 100\% & 100\% \\
+\hline
+\end{tabular}
+\label{tab:res-verifica}
+\end{table}
+
+\subsection{PC16-SC (Statement Coverage)}
+Lo Statement Coverage misura la percentuale di istruzioni eseguite durante l'esecuzione dei test. Si calcola come il numero di istruzioni eseguite almeno una volta rispetto al totale di istruzioni nel programma.
+Il suo scopo è assicurarsi che tuttte le istruzioni nel codice vengano testate almeno una volta. \\
+Di seguito si riporta un immagine rappresentante la percentuale di Statement Coverage realtiva a quelle che Codecov considera come \textit{"relevant lines"}, per ciascun file contenente codice coperto da test.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/Statement Coverage.png}
+    \caption{Statement Coverage}
+\end{figure}
 
 \section{Valutazioni per il miglioramento}
 Questa sezione è dedicata alla valutazione generale del lavoro, con lo scopo di inserire osservazioni sui problemi riscontrati e sulle possibili correzioni da adottare.
