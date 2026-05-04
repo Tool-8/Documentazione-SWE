@@ -1,0 +1,164 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 03 Maggio 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{03/05/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
+  \hline
+  1.0 & Giuliano Banchieri & Prima stesura & 04/05/2026 & Besnik Murtezan \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di retrospettiva sprint$^G$ \#11 e inizio sprint$^G$ \#12. Discussione sulla situazione dello sviluppo del Frontend in vista della presentazione del MVP all'azienda.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Besnik Murtezan & Verificatore \\
+  \hline
+  Gabriele Disa & Amministratore \\
+  \hline
+  Giuliano Banchieri & Responsabile \\
+  \hline
+  Niccolò Feltrin & Verificatore \\
+  \hline
+  Ruben Spadiliero & Programmatore \\
+  \hline
+  Stefano Maso & Verificatore \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l'obiettivo di analizzare i risultati del periodo terminato e pianificare il lavoro per il prossimo sprint$^G$.
+
+Il gruppo ha discusso lo stato di avanzamento dello sviluppo del Frontend in vista della presentazione del MVP.
+
+Per quanto riguarda il Frontend, il gruppo ha evidenziato che rimangono da completare alcune funzionalità applicative, tra cui la formattazione di testo barrato, commenti, link ed elenchi all'interno delle note e la funzionalità di riscrittura. È stata quindi confermata la necessità di proseguire nella codifica dei componenti mancanti e di procedere con i test dedicati alla parte Frontend.
+
+Durante la riunione è stata inoltre discussa la situazione della documentazione. È necessario aggiornare il Piano di Progetto$^G$ e il Piano di Qualifica$^G$ con i dati relativi all'undicesimo periodo, includendo consuntivo, preventivo e metriche aggiornate. È stato inoltre rilevato che la Specifica Tecnica$^G$ deve essere completata con la sezione relativa all'architettura Frontend e che è opportuno portare avanti il Manuale Utente$^G$.
+
+Vengono infine assegnati i nuovi ruoli per lo sprint$^G$ \#12 con termine il giorno 08-05-2026.
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Giuliano Banchieri [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 03/05/2026 (Issue$^G$ \#226)
+    \item Coordinare l'avanzamento dello sprint$^G$ \#12 e monitorare la corretta assegnazione delle attività
+    \item Aiutare i programmatori nel completamento delle funzionalità mancanti del Frontend
+    \end{enumerate}
+
+\item \textbf{Assegnato a Ruben Spadiliero [Programmatore]:}
+    \begin{enumerate}
+        \item Frontend: Test mancanti (Issue$^G$ \#217)
+        \item Frontend: Funzione riscrittura (Issue$^G$ \#196)
+        \item Frontend: Funzione distant writing (Issue$^G$ \#199)
+  \end{enumerate}
+
+\item \textbf{Assegnato a Gabriele Disa [Amministratore]:}
+    \begin{enumerate}
+    \item Aggiornare Piano di Qualifica$^G$ con i dati e i grafici relativi all'undicesimo periodo (Issue$^G$ \#222)
+    \item Aggiornare Piano di Progetto$^G$ con consuntivo, preventivo e risorse residue aggiornate (Issue$^G$ \#223)
+    \item Aiutare i programmatori nel completamento delle funzionalità mancanti del Frontend
+    \end{enumerate}
+
+\item \textbf{Assegnato a Besnik Murtezan, Niccolò Feltrin, Stefano Maso [Verificatori]:}
+    \begin{enumerate}
+    \item Verifica$^G$ dei documenti aggiornati, con particolare attenzione a Piano di Progetto$^G$ e Piano di Qualifica$^G$
+    \item Verifica$^G$ delle aggiunte di codice sorgente e delle pull request$^G$ relative a Backend e Frontend
+    \item Controllare che le issue$^G$ siano correttamente aggiornate con ore, stato e riferimenti alle attività svolte
+    \end{enumerate}
+
+\item \textbf{Altre issue individuate:}
+    \begin{enumerate}
+    \item Portare avanti la stesura del Manuale Utente$^G$ (Issue$^G$ \#224)
+    \item Specifica Tecnica$^G$: completare la sezione relativa all'architettura Frontend (Issue$^G$ \#154)
+    \end{enumerate}
+\end{itemize}
+\end{document}
