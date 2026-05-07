@@ -867,6 +867,10 @@ I test$^G$ di sistema hanno lo scopo di verificare che il sistema software rispe
     \caption{Tabella Test di Sistema}
 \end{longtable}
 
+\subsection{Test di accettazione}
+
+\subsection{Test di regressione}
+Per preveire problemi di regressione durante lo sviluppo, abbiamo deciso di adottare un approccio di integrazione continua: la repository del codice sorgente è stata configurata in modo che ad ogni pull request venga attivata automaticamente l'esecuzione dell'intera suite di test di unità e integrazione. Ciò permette di rilevare subito la presenza di possibili regressioni introdotte dalle modifiche effettuate, così da poter rimediare prima del merge nel branch principale.
 
 \section{Checklist}
 La verifica$^G$ tramite analisi statica è preferibile che avvenga tramite \textit{Inspection} anzichè \textit{Walkthrough$^G$}, proprio per questo motivo vengono definite delle liste di controllo (aggiornate progressivamente dai verificatori) che permettono di analizzare velocemente gli errori più comuni.
