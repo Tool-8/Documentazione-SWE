@@ -1,0 +1,160 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 03 Maggio 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{08/05/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
+  \hline
+  1.0 & Spadiliero Ruben & Prima stesura & 08/05/2026 & - \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di retrospettiva sprint$^G$ \#12 e inizio sprint$^G$ \#13. Discussione in vista della fine del progetto.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Besnik Murtezan & Amministratore \\
+  \hline
+  Gabriele Disa & Verificatore \\
+  \hline
+  Giuliano Banchieri & Programmatore \\
+  \hline
+  Niccolò Feltrin & Verificatore \\
+  \hline
+  Ruben Spadiliero & Responsabile \\
+  \hline
+  Stefano Maso & Verificatore \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l'obiettivo di analizzare i risultati del periodo terminato e pianificare il lavoro per il prossimo sprint$^G$.
+
+Il gruppo ha discusso lo stato di avanzamento dello sviluppo del Frontend e della conclusione del progetto.
+
+Per quanto riguarda il Frontend, il gruppo ha evidenziato che rimangono da procedere con i test dedicati alla parte Frontend e la scrittura del manuale utente.
+
+Durante la riunione è stata inoltre discussa la situazione della documentazione. È necessario aggiornare il Piano di Progetto$^G$ e il Piano di Qualifica$^G$ con i dati relativi al dodicesimo periodo, includendo consuntivo, preventivo e metriche aggiornate. È stato inoltre rilevato che la Specifica Tecnica$^G$ deve essere completata con la sezione relativa all'architettura Frontend.
+
+Vengono infine assegnati i nuovi ruoli per lo sprint$^G$ \#13 con termine il giorno 15-05-2026.
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Spadiliero Ruben [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 08/05/2026 (Issue$^G$ \#245)
+    \item Coordinare l'avanzamento dello sprint$^G$ \#13 e monitorare la corretta assegnazione delle attività
+    \end{enumerate}
+
+\item \textbf{Assegnato a Giuliano Banchieri [Programmatore]:}
+    \begin{enumerate}
+        \item Frontend: Test mancanti (Issue$^G$ \#217)
+  \end{enumerate}
+
+\item \textbf{Assegnato a Besnik Murtezan [Amministratore]:}
+    \begin{enumerate}
+    \item Aggiornare Piano di Qualifica$^G$ con i dati e i grafici relativi del dodicesimo periodo (Issue$^G$ \#261)
+    \item Aggiornare Piano di Progetto$^G$ con consuntivo, preventivo e risorse residue aggiornate (Issue$^G$ \#262)
+    \end{enumerate}
+
+\item \textbf{Assegnato a Gabriele Disa, Niccolò Feltrin [Verificatori]:}
+    \begin{enumerate}
+    \item Verifica$^G$ dei documenti aggiornati, con particolare attenzione a Piano di Progetto$^G$ e Piano di Qualifica$^G$
+    \item Verifica$^G$ delle aggiunte di codice sorgente e delle pull request$^G$ relative a Backend e Frontend
+    \item Controllare che le issue$^G$ siano correttamente aggiornate con ore, stato e riferimenti alle attività svolte
+    \end{enumerate}
+
+\item \textbf{Altre issue individuate:}
+    \begin{enumerate}
+    \item Portare avanti la stesura del Manuale Utente$^G$ (Issue$^G$ \#224)
+    \item Specifica Tecnica$^G$: completare la sezione relativa all'architettura Frontend (Issue$^G$ \#154)
+    \end{enumerate}
+\end{itemize}
+\end{document}
