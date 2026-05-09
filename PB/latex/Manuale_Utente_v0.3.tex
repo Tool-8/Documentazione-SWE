@@ -104,6 +104,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
     \hline
+  0.4 & Besnik Murtezan & Stesura sezioni 4.2 & 08/05/2026 & - \\
+    \hline
   0.3 & Besnik Murtezan & Stesura sezioni 3.4 , 3.5 , 4.1 & 06/05/2026 & - \\
   \hline
   0.2 & Giuliano Banchieri & Stesura parziale sezione "Istruzioni all'uso", stesura sottosezioni "Visualizzazione archivio note" e "Menù contestuale" & 30/04/2026 & Stefano Maso \\
@@ -333,9 +335,11 @@ All'interno della cartella "src" è necessario creare un file di configurazione 
     LLM_MODEL=gemma3:4b
   \end{lstlisting}
 
-  \item Sostituire i valori di \verb|<URL_BASE_LLM>| e \verb|<TUA_CHIAVE_API_KEY>| con quelli ottenuti da Zucchetti.
+  \item Sostituire i valori di \verb|<URL_BASE_LLM>| e \verb|<TUA_CHIAVE_API_KEY>| con quelli ottenuti da Zucchetti. In caso la porta \texttt{8080} sia già utilizzata da un servizio differente, è necessario modificare anche il valore \verb|APP_URL| (o in alternativa sospendere il servizio utilizzante).
   
   \begin{lstlisting}
+    APP_URL=http://localhost:<PORTA_UTENTE>
+
     LLM_BASE_URL=<URL_BASE_LLM>      
     LLM_API_KEY=<TUA_CHIAVE_API_KEY>
   \end{lstlisting}
@@ -403,7 +407,7 @@ Dopo aver installato l'applicazione, l'esecuzione avviene nel seguente modo:
     \end{lstlisting}
 
     
-  \item Accedere all'applicazione aprendo il proprio browser all'indirizzo: \href{http://localhost:8080}{http://localhost:8080}
+  \item Accedere all'applicazione aprendo il proprio browser all'indirizzo: \href{http://localhost:8080}{http://localhost:8080} (in caso sia stata indicata una porta differente nel file \texttt{.env} sostituire il valore \texttt{8080} con quello della porta utente impostata)
 
   \item Per terminare eventualmente l'applicazione è sufficiente eseguire il comando:
   
@@ -449,13 +453,15 @@ Questa schermata contiene:
   \item \textbf{Sidebar:} Permette all'utente di navigare fra le varie sezioni dell'applicazione, può essere nascosta o mostrata cliccando sulla freccia presente a sinistra.
   \item \textbf{Pulsante "Nuova nota":} Permette all'utente di creare una nuova nota in formato Markdown.
   \item \textbf{Barra di ricerca:} Permette all'utente di cercare una nota specifica all'interno dell'archivio, filtrando i risultati in tempo reale.
-  \item \textbf{Elenco note:} Mostra tutte le note salvate all'interno dell'archivio.
+  \item \textbf{Elenco note:} Mostra tutte le note salvate all'interno dell'archivio. Ogni nota viene identificata univocamente dal sistema tramite il proprio titolo (non è quindi permessa la presenza di note con titolo identico; maggiori info nelle sezioni successive).
   \item \textbf{Nota singola:} Cliccando su una nota, è possibile visualizzarne il contenuto completo, modificarla o eliminarla.
   \item \textbf{Pulsante "Importa nota":} Permette all'utente di importare un file Markdown esterno, aggiungendolo all'archivio delle note.
   \item \textbf{Selettore tema:} Permette all'utente di selezionare il tema dell'applicazione tra: chiaro, scuro, sistema.
 \end{enumerate}
 
-\subsubsection{Creazione Note}
+Di seguito vengono presentate in dettaglio le funzionalità dell'archivio:
+
+\subsubsection{Creazione Note}\label{subsubsec:nuova_nota}
 Per creare una nota nuova è sufficiente cliccare sul relativo bottone \fcolorbox{black}{cyan!50}{Nuova nota} presente all'interno della SideBar (elemento \#2 nella \autoref{fig:archivio_note}). In seguito verrà aperto l'Editor di note con contenuto vuoto. (vedere \autoref{subsec:editor_note} per istruzioni dettagliate sull'Editor)
 
 \subsubsection{Importazione Note}
@@ -492,8 +498,8 @@ Qualora si tentasse di importare un file con formato non supportato il sistema n
   \end{figure}
 \end{center}
 
-\subsubsection{Apertura Note}
-Cliccando con il tasto sx una delle note presenti nell'archivio si aprirà l'Editor di note; al suo interno è possibile visualizzare e modificare il contenuto della nota. (vedere \autoref{subsec:editor_note} per istruzioni dettagliate sull'Editor)
+\subsubsection{Apertura Note}\label{subsubsec:apertura_nota}
+Cliccando con il tasto sx una delle note presenti nell'archivio (elemento \#5 nella \autoref{fig:archivio_note}) si aprirà l'Editor di note; al suo interno è possibile visualizzare e modificare il contenuto della nota. (vedere \autoref{subsec:editor_note} per istruzioni dettagliate sull'Editor)
 
 \subsubsection{Ricerca Note}
 Per effettuare una ricerca delle note in base al nome è sufficiente inserire il termine nella casella di ricerca (elemento \#3 nella \autoref{fig:archivio_note}) e premere "Invio".
@@ -508,8 +514,10 @@ La lista delle note verrà aggiornata con i risultati della ricerca.
   \end{figure}
 \end{center}
 
+\newpage
+
 \subsubsection{Azioni contestuali}
-Cliccando con il tasto destro su una nota all'interno dell'archivio, è possibile accedere al seguente menu contestuale:
+Cliccando con il tasto destro su una nota all'interno dell'archivio (elemento \#5 nella \autoref{fig:archivio_note}), è possibile accedere al seguente menu contestuale:
 
 \begin{center}
   \begin{figure}[H]
@@ -520,9 +528,7 @@ Cliccando con il tasto destro su una nota all'interno dell'archivio, è possibil
   \end{figure}
 \end{center}
 
-Le azioni possibili sono le seguenti:
-
-\clearpage
+\textbf{Le azioni possibili sono le seguenti:}
 
   \paragraph{\fcolorbox{black}{blue!15}{Rinominazione nota}}
 
@@ -559,7 +565,7 @@ Le azioni possibili sono le seguenti:
       \end{figure}
     \end{center}
 
-  \paragraph{\fcolorbox{black}{blue!15}{Clonazione nota}}
+  \paragraph{\fcolorbox{black}{blue!15}{Clonazione nota}}\label{par:clona_archivio}
 
     Cliccando sulla relativa opzione \fcolorbox{black}{cyan!50}{Clona} del menu contestuale (\autoref{fig:menu_contestuale}), l'utente può clonare la nota selezionata (creare una copia) attraverso la finestra modale visualizzata.
     Il sistema propone il titolo originale seguito dal dataora di clonazione come titolo per la nota clonata; l'utente può in ogni caso personalizzarlo. 
@@ -589,7 +595,9 @@ Le azioni possibili sono le seguenti:
 
 \vspace{2cm}
 
-  \paragraph{\fcolorbox{black}{blue!15}{Esportazione nota}}
+\newpage
+
+  \paragraph{\fcolorbox{black}{blue!15}{Esportazione nota}}\label{par:esporta_archivio}
 
     L'utente può esportare una nota presente in archivio in uno dei seguenti formati:
         \begin{itemize}
@@ -617,8 +625,6 @@ Le azioni possibili sono le seguenti:
       \end{figure}
     \end{center}
 
-  \clearpage
-
   \paragraph{\fcolorbox{black}{red!20}{Eliminazione nota}}
 
     Cliccando sulla relativa opzione \fcolorbox{black}{red!40}{Elimina} del menu contestuale (\autoref{fig:menu_contestuale}), l'utente può eliminare la nota selezionata. Viene mostrata una finestra modale di conferma:
@@ -643,8 +649,206 @@ Le azioni possibili sono le seguenti:
       \end{figure}
     \end{center}
 
+\newpage
+
 \subsection{Editor Note}\label{subsec:editor_note}
-Inizialmente vengono mostrate sia la sezione di testo compreso di sintassi Markdown (Editor), sia la sezione di testo formattato (Render).
+Creando una nota nuova (vedi sezione \ref{subsubsec:nuova_nota}) oppure aprendo una delle note presenti nell'archivio (vedi sezione \ref{subsubsec:apertura_nota}) si accede all'editor di note. Al suo interno è possibile visualizzare e modificare il contenuto della nota.
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\textwidth]{resources/manual/editor/editor.png}
+      \caption{Schermata editor note}
+      \label{fig:editor_note}
+    \end{figure}
+  \end{center}
+
+Questa schermata contiene:
+\begin{enumerate}
+  \item \textbf{Titolo Nota:} Il nome della nota è visualizzato assieme ad un indicatore dello stato di salvataggio.
+  \item \textbf{Area di modifica:} Sezione in cui l'utente può scrivere e modificare il contenuto della nota, usufruendo anche delle altre funzionalità di supporto fornite dall'editor.
+  \item \textbf{Area di rendering:} Sezione in cui viene visualizzato il contenuto presente nell'area di modifica formattato secondo la sintassi MarkDown.
+  \item \textbf{Pulsante Sidebar:} Pulsante con cui si accede alla barra di navigazione laterale.
+  \item \textbf{Selettore Visualizzazione:} Permette all'utente di selezionare il layout dell'editor in base alle proprie esigenze.
+  \item \textbf{Barra formattazione testo:} Contiene i pulsanti tramite cui vengono applicati i relativi stili al testo selezionato tramite marcatori di sintassi MarkDown.
+  \item \textbf{Barra azioni IA:} Contiene i pulsanti con cui si possono eseguire azioni IA per applicare modifiche al contenuto della nota.
+  \item \textbf{Pulsanti UNDO-REDO:} Permettono all'utente di annullare l'ultimo comando eseguito o ripetere l'ultimo comando annullato. 
+  \item \textbf{Contatore caratteri:} Un indicatore che tiene conto del numero totale di lettere e parole all'interno della nota.
+  \item \textbf{Pulsante "Esporta":} Permette di eseguire l'esportazione della nota aperta.
+  \item \textbf{Pulsante "Salva con nome":} Realizza in archivio una copia della nota aperta ed aggiorna la schermata dell'editor con la copia creata. 
+  \item \textbf{Pulsante "Salva":} Esegue il salvataggio della nota aperta, aggiornandone il contenuto all'interno dell'archivio.
+\end{enumerate}
+
+Di seguito vengono presentate in dettaglio le funzionalità fornite all'interno dell'editor:
+
+  \subsubsection{Accesso barra di navigazione}
+
+  Premendo il pulsante \fcolorbox{black}{white}{\textbf{\textgreater}} (elemento \#4 nella \autoref{fig:editor_note}) si apre la barra di navigazione da cui si può accedere alle varie sezioni dell'applicazione.
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{resources/manual/editor/navbar_editor.png}
+      \caption{Sidebar accessibile dall'editor}
+      \label{fig:sidebar_editor}
+    \end{figure}
+  \end{center}
+
+  \subsubsection{Layout visualizzazione}
+  Tramite il selettore di layout (elemento \#5 nella \autoref{fig:editor_note}), l'utente può modificare la visualizzazione delle aree di lavoro. Si può scegliere tra: \fcolorbox{black}{cyan!30}{Editor} (solo area di modifica), \fcolorbox{black}{cyan!30}{Render} (solo area di rendering) o \fcolorbox{black}{cyan!30}{Split} (entrambe le aree). Il layout di default è impostato su \texttt{Split}.
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.31\textwidth]{resources/manual/editor/editor_layout.png}
+      \includegraphics[width=0.31\textwidth]{resources/manual/editor/split_layout.png}
+      \includegraphics[width=0.31\textwidth]{resources/manual/editor/render_layout.png}
+      \caption{Layout di visualizzazione disponibili}
+      \label{fig:layouts_editor}
+    \end{figure}
+  \end{center}
+
+  \subsubsection{Scrittura contenuto}
+
+  L'utente può lavorare al contenuto della nota all' interno dell'area di modifica (elemento \#2 nella \autoref{fig:editor_note}). È possibile aggiungere manualmente marcatori di sintassi MarkDown oppure usufruire dei bottoni presenti nella barra degli stili di testo (elemento \#6 nella \autoref{fig:editor_note}), la quale offre le seguenti formattazioni (componibili fra loro):
+      \begin{itemize}
+        \item \texttt{Grassetto | Corsivo | Sottolineato | Barrato}
+        \item \texttt{Commento | Link}
+        \item \texttt{Elenco Numerato | Elenco Puntato}
+      \end{itemize}
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.9\textwidth]{resources/manual/editor/esempio_stili_md.png}
+      \caption{Esempio formattazioni applicabili tramite barra degli stili (in ordine da sx a dx)}
+      \label{fig:esempio_stili_md}
+    \end{figure}
+  \end{center}
+
+  \textbf{ATTENZIONE: È necessario selezionare del testo per l'applicazione di stile tramite i pulsanti, in caso contrario l'utente verrà avvisato della mancata selezione}
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.4\textwidth]{resources/manual/editor/warning_seleziona_testo.png}
+      \caption{Avviso di mancata selezione testo}
+      \label{fig:warning_seleziona_testo}
+    \end{figure}
+  \end{center}
+
+  \subsubsection{Scrittura contenuto tramite IA}
+
+  \subsubsection{Visualizzazione contenuto}
+
+  \subsubsection{Undo Redo}
+
+  \subsubsection{Salvataggio Nota}
+
+  Per salvare le modifiche eseguite al contenuto della nota è sufficiente premere il bottone \fcolorbox{black}{blue!30}{Salva} (elemento \#12 nella \autoref{fig:editor_note}). Assieme al contenuto è anche possibile rinominare la nota sempre attraverso l'azione di salvataggio; basterà cliccare sul titolo, il quale diventerà modificabile:
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.38\textwidth]{resources/manual/editor/titolo_pre_rinomina.png}
+      \includegraphics[width=0.4\textwidth]{resources/manual/editor/titolo_post_rinomina.png}
+      \caption{Esempio di modifica titolo}
+      \label{fig:esempio_rinomina_titolo}
+    \end{figure}
+  \end{center}
+
+  Una volta modificato il titolo è sufficiente premere il bottone di salvataggio.
+  Il sistema effettuerà un controllo di unicità del titolo nuovo e in caso di successo aggiornerà titolo e contenuto della nota.
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.35\textwidth]{resources/manual/editor/successo_salva.png}
+      \caption{Avviso di successo salvataggio}
+      \label{fig:successo_salva}
+    \end{figure}
+  \end{center}
+
+  In caso di titolo già utilizzato verrà mostrato un avviso di errore:
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.35\textwidth]{resources/manual/editor/errore_titolo_usato_salva.png}
+      \caption{Avviso di errore titolo già in uso}
+      \label{fig:errore_titolo_usato_salva}
+    \end{figure}
+  \end{center}
+
+  Verrà mostrato un avviso di errore anche in caso si provi a salvare la nota con un titolo vuoto:
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.35\textwidth]{resources/manual/editor/errore_titolo_obbligatorio_salva.png}
+      \caption{Avviso di errore titolo vuoto}
+      \label{fig:errore_titolo_obbligatorio_salva}
+    \end{figure}
+  \end{center}
+
+  In caso si effettui un salvataggio senza prima modificare titolo o contenuto, il sistema avviserà l'utente dell'assenza di modifiche:
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.35\textwidth]{resources/manual/editor/avviso_invariato_salva.png}
+      \caption{Avviso di assenza di modifiche}
+      \label{fig:avviso_invariato_salva}
+    \end{figure}
+  \end{center}
+
+  Un ulteriore controllo che viene eseguito automaticamente dal sistema è quello riguardante l'eventuale presenza di modifiche più recenti salvate da un utente differente. Qualora la nota che si intende salvare abbia già subito delle modifiche dopo essere stata aperta nell'editor, verrà visualizzata la seguente finestra modale in fase di salvataggio:
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.65\textwidth]{resources/manual/editor/modale_conflitto_salva.png}
+      \caption{Modale per differenza in salvataggio}
+      \label{fig:modale_differenza_salva}
+    \end{figure}
+  \end{center}
+
+  L'utente può quindi decide quale azione eseguire per risolvere la differenza tra le proprie modifiche e quelle presenti in archivio. Le azioni possibili sono:
+    \begin{itemize}
+    \item \fcolorbox{black}{cyan!30}{Sovrascrivi} ignora le modifiche esterne ed esegue il salvataggio in archivio con la versione dell'utente
+    \item \fcolorbox{black}{cyan!30}{Salva con nome} salva con un nome differente la nota con le modifiche dell'utente (vedi sezione \ref{subsubsec:salva_con_nome})
+    \item \fcolorbox{black}{cyan!30}{Aggiorna} ignora le modifiche dell'utente ed aggiorna l'editor con la versione della nota presente nell'archivio
+    \item \fcolorbox{black}{gray!30}{Annulla} l'utente declina il salvataggio e procede manualmente alla gestione delle differenze.
+    \end{itemize}
+
+  \subsubsection{Esportazione Nota}
+
+  Similmente a come avviene all'interno dell'archivio (vedi sezione \ref{par:esporta_archivio}: esportazione da archivio), è possibile esportare la nota aperta nell'editor cliccando sul bottone \fcolorbox{black}{blue!30}{Esporta} (elemento \#10 nella \autoref{fig:editor_note}). I formati disponibili sono: \texttt{PDF}, \texttt{MD} e \texttt{HTML}.
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.45\textwidth]{resources/manual/editor/menu_esporta_editor.png}
+      \caption{Menu esportazione nota nell'editor}
+      \label{fig:menu_esporta_editor}
+    \end{figure}
+  \end{center}
+
+  \subsubsection{Salvataggio con Nome}\label{subsubsec:salva_con_nome}
+
+  Similmente a come avviene all'interno dell'archivio (vedi sezione \ref{par:clona_archivio}: clonazione da archivio), è possibile salvare la nota aperta nell'editor con un nome differente cliccando sul bottone \fcolorbox{black}{blue!30}{Salva come...} (elemento \#11 nella \autoref{fig:editor_note}). Verrà presentata una finestra modale per inserire il nome desiderato:
+
+  \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.45\textwidth]{resources/manual/editor/modale_salva_con_nome.png}
+      \caption{Modale per salvataggio con nome}
+      \label{fig:salva_come_editor}
+    \end{figure}
+  \end{center}
+
+Il sistema effettua sempre il controllo di unicità del titolo prima del salvataggio, con i relativi avvisi in base all'esito.
+Inoltre in caso di successo viene automaticamente effettuato un reset dell'editor, aggiornato con la copia appena creata.
 
 \begin{center}
 \huge{\textbf{\fbox{SEZIONE DA COMPLETARE}}}
@@ -653,6 +857,7 @@ Inizialmente vengono mostrate sia la sezione di testo compreso di sintassi Markd
 \newpage
 
 \section{Supporto tecnico}
+
 Per assistenza tecnica relativa all'utilizzo del prodotto software "Second Brain", viene fornito il seguente indirizzo email: 
 \begin{center}
     tool8eight@gmail.com
