@@ -92,6 +92,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  1.7 & Besnik Murtezan & Aggiornamento grafici del cruscotto con Sprint 11 e 12 & 09/05/2026 & Stefano Maso \\
+  \hline
   1.6 & Stefano Maso & Aggiunte metriche per il processo di verifica, aggiunti test di integrazione, aggiunte sezioni cruscotto & 03/05/2026 & Besnik Murtezan \\
   \hline
   1.5 & Stefano Maso & Aggiornamento grafici del cruscotto con Sprint 10 e aggiunta Test di Unità & 29/04/2026 & Spadiliero Ruben \\
@@ -934,7 +936,7 @@ Diagrammi dei casi d'uso erronei & I diagrammi dei casi d'uso devono riportare l
     \includegraphics[width=0.9\linewidth]{resources/EAC.pdf}
     \caption{Estimated at Completion}
 \end{figure}
-Dal grafico si osserva l'andamento dell'EAC nei dieci sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato; tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. Nel settimo e ottavo periodo invece si nota uno scostamento del valore EAC oltre il limite inferiore, dovuto ad un aumento dell'efficienza da parte del gruppo. Nel decimo periodo il gruppo ha riorganizzato la distribuzione delle ore, riducendo quelle inizialmente previste per ruoli di responsabile e analista a favore di amministratore e programmatore, pur rispettando i vincoli orari stabiliti. Questa riallocazione ha comportato una diminuzione del preventivo complessivo del progetto. Al termine del decimo sprint, il progetto risulta comunque rientrato nei limiti accettabili (±5\% BAC), condizione da mantenere anche nei periodi successivi.
+Dal grafico si osserva l'andamento dell'EAC nei dodici sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato; tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. Nel settimo e ottavo periodo invece si nota uno scostamento del valore EAC oltre il limite inferiore, dovuto ad un aumento dell'efficienza da parte del gruppo. Nel decimo periodo il gruppo ha riorganizzato la distribuzione delle ore, riducendo quelle inizialmente previste per ruoli di responsabile e analista a favore di amministratore e programmatore, pur rispettando i vincoli orari stabiliti. Questa riallocazione ha comportato una diminuzione del preventivo complessivo del progetto. Al termine del decimo sprint, il progetto risulta comunque rientrato nei limiti accettabili (±5\% BAC), condizione mantenuta anche nei periodi successivi.
 
 \subsection{PC02-PV (Planned Value) e PC04-EV (Earned Value)}
 \begin{figure}[H]
@@ -942,7 +944,7 @@ Dal grafico si osserva l'andamento dell'EAC nei dieci sprint. Nel terzo periodo 
     \includegraphics[width=0.9\linewidth]{resources/EV rispetto a PV.pdf}
     \caption{Planned Value - Earned Value}
 \end{figure}
-Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) ed Earned Value (EV) nel corso degli otto sprint. Le due curve risultano quasi sovrapposte, a conferma che il gruppo sta producendo valore in linea con quanto pianificato. Questo indica una buona capacità di rispettare la pianificazione e di mantenere il ritmo di avanzamento previsto.
+Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) ed Earned Value (EV) nel corso dei dodici sprint. Le due curve risultano quasi sovrapposte, a conferma che il gruppo sta producendo valore in linea con quanto pianificato. Questo indica una buona capacità di rispettare la pianificazione e di mantenere il ritmo di avanzamento previsto.
 
 \subsection{PC05-ETC (Estimated to Complete)}
 \begin{figure}[H]
@@ -950,7 +952,7 @@ Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) 
     \includegraphics[width=0.9\linewidth]{resources/ETC.pdf}
     \caption{Estimated to Complete}
 \end{figure}
-Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso degli otto sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per quasi tutti i periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, nel quarto sprint si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. Dal quinto sprint in poi, la linea AC+ETC si mantiene prossima al valore desiderato (BAC). Dal settimo sprint inoltre si osserva una diminuzione della proiezione AC+ETC, risultato di un aumento della produttività del gruppo. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
+Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso dei dodici sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per i primi tre periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, nel quarto sprint si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. Dal quinto sprint in poi, la linea AC+ETC si mantiene prossima al valore desiderato (BAC). Dal settimo sprint inoltre si osserva una diminuzione della proiezione AC+ETC, risultato di un aumento della produttività del gruppo. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
 Dal decimo sprint la linea AC+ETC, grazie alla redistribuzione delle ore si trova quasi nello stesso punto della linea del BAC.
 
 \subsection{PC06-CV (Cost Variance), PC07-SV (Schedule Variance) e PC08-BV (Budget Variance)}
@@ -959,7 +961,7 @@ Dal decimo sprint la linea AC+ETC, grazie alla redistribuzione delle ore si trov
     \includegraphics[width=0.9\linewidth]{resources/CV, SV, BV.pdf}
     \caption{Cost Variance, Schedule Variance e Budget Variance}
 \end{figure}
-Il grafico illustra l'andamento delle tre varianze negli otto sprint$^G$: al termine del terzo sprint$^G$ si osserva un avvicinamento di CV e BV al limite inferiore, dovuto al periodo di sessione universitaria parzialmente previsto; la SV è rimasta stabile, suggerendo che il team ha deliberatamente pianificato meno lavoro in quel periodo per far fronte alla sessione, contenendo il ritardo sulla pianificazione a scapito però dell'efficienza$^G$ economica. Nel quarto sprint$^G$ CV e BV recuperano correttamente, tuttavia la SV mostra un leggero decremento, indicando che il rallentamento del terzo sprint$^G$ non è stato pienamente recuperato in termini di valore prodotto. Per il quinto e sesto sprint i valori si mantengono prossimi allo zero, evidenziando un recupero efficace e un riallineamento complessivo rispetto agli obiettivi pianificati. Nel settimo e ottavo sprint inoltre si nota un innalzamento di CV e BV dovuto ad un aumento della produttività del gruppo rispetto ai periodi precedenti.
+Il grafico illustra l'andamento delle tre varianze nei dodici sprint$^G$: al termine del terzo sprint$^G$ si osserva un avvicinamento di CV e BV al limite inferiore, dovuto al periodo di sessione universitaria parzialmente previsto; la SV è rimasta stabile, suggerendo che il team ha deliberatamente pianificato meno lavoro in quel periodo per far fronte alla sessione, contenendo il ritardo sulla pianificazione a scapito però dell'efficienza$^G$ economica. Nel quarto sprint$^G$ CV e BV recuperano correttamente, tuttavia la SV mostra un leggero decremento, indicando che il rallentamento del terzo sprint$^G$ non è stato pienamente recuperato in termini di valore prodotto. Per il quinto e sesto sprint i valori si mantengono prossimi allo zero, evidenziando un recupero efficace e un riallineamento complessivo rispetto agli obiettivi pianificati. Nel settimo e ottavo sprint inoltre si nota un innalzamento di CV e BV dovuto ad un aumento della produttività del gruppo rispetto ai periodi precedenti. Dal decimo sprint, grazie alla ridistribuzione delle ore con conseguente ricalcolo del preventivo, viene registrato un reallineamento delle varianze entro i limiti accettabili.
 
 \subsection{Indice di Gulpease}
 \begin{figure}[H]
