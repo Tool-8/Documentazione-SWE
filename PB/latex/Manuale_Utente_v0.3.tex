@@ -694,7 +694,7 @@ Di seguito vengono presentate in dettaglio le funzionalità fornite all'interno 
     \end{figure}
   \end{center}
 
-  \subsubsection{Layout visualizzazione}
+  \subsubsection{Layout visualizzazione}\label{subsubsec:selettore_layout}
   Tramite il selettore di layout (elemento \#5 nella \autoref{fig:editor_note}), l'utente può modificare la visualizzazione delle aree di lavoro. Si può scegliere tra: \fcolorbox{black}{cyan!30}{Editor} (solo area di modifica), \fcolorbox{black}{cyan!30}{Render} (solo area di rendering) o \fcolorbox{black}{cyan!30}{Split} (entrambe le aree). Il layout di default è impostato su \texttt{Split}.
 
   \begin{center}
@@ -737,11 +737,75 @@ Di seguito vengono presentate in dettaglio le funzionalità fornite all'interno 
     \end{figure}
   \end{center}
 
-  \subsubsection{Scrittura contenuto tramite IA}
+  Tramite il selettore di layout (vedi sezione \ref{subsubsec:selettore_layout}), è possibile nascondere o meno l'area di modifica.
 
-  \subsubsection{Visualizzazione contenuto}
+  \subsubsection{Visualizzazione contenuto formattato}
 
-  \subsubsection{Undo Redo}
+  Il contenuto presente nell'area di modifica (elemento \#2 nella \autoref{fig:editor_note}) viene visualizzato in maniera formattata all'interno dell'area di rendering (elemento \#3 nella \autoref{fig:editor_note}). La formattazione si aggiorna in tempo reale reagendo ad ogni modifica del contenuto, senza bisogno di azioni manuali da parte dell'utente. Tramite il selettore di layout (vedi sezione \ref{subsubsec:selettore_layout}), è possibile nascondere o meno l'area di visualizzazione formattata.
+
+
+  \subsubsection{Funzionalità IA}
+
+  L'utente può avvalersi del supporto di un LLM per modificare il contenuto della nota; è sufficiente selezionare parte del testo, o la sua interezza, e premere uno dei pulsanti disponibili nella barra di funzioni IA (elemento \#7 nella \autoref{fig:editor_note}).
+  \textbf{Le azioni possibili sono le seguenti:}
+
+  \paragraph{\fcolorbox{black}{blue!15}{Riassumi}}
+
+    Cliccando sul relativo bottone \fcolorbox{black}{cyan!50}{Riassumi}, verrà aperta la sezione riguardante l'interazione con LLM. All'interno è possibile visualizzare il testo selezionato, il bottone di esecuzione ed il risultato (inizialmente vuoto). 
+    In fondo sono inoltre presenti i pulsanti per aggiungere automaticamente il risultato al contenuto della nota, in relazione alla posizione del testo selezionato:
+
+
+    
+    
+
+
+    
+  \paragraph{\fcolorbox{black}{blue!15}{Critica}}
+
+    Cliccando sulla relativa opzione \fcolorbox{black}{cyan!50}{Critica} 
+
+  \paragraph{\fcolorbox{black}{blue!15}{Traduci}}
+
+    Cliccando sulla relativa opzione \fcolorbox{black}{cyan!50}{Traduci}
+
+  \paragraph{\fcolorbox{black}{blue!15}{Riscrivi}}
+
+    Cliccando sulla relativa opzione \fcolorbox{black}{cyan!50}{Riscrivi}
+
+  \paragraph{\fcolorbox{black}{blue!15}{Distant Writing}}
+
+    Cliccando sulla relativa opzione \fcolorbox{black}{cyan!50}{Distant Writing}
+
+
+
+
+
+
+
+
+
+
+
+
+  \subsubsection{Funzioni Undo-Redo}
+
+  Le modifiche effettuate al contenuto della nota vengono tracciate in modo da permettere all'utente di ripristinare rapidamente l'effetto
+  I due pulsanti presenti nella barra in alto a sinistra (elemento \#8 nella \autoref{fig:editor_note}) servono rispettivamente per:
+    \begin{itemize}
+      \item \textbf{UNDO:} annullare l'ultima modifica eseguita dall'utente. È possibile eseguire molteplici \texttt{UNDO} in successione fino alla prima modifica registrata. 
+      \item \textbf{REDO:} ripristinare l'effetto generato da un'azione di \texttt{UNDO}. È possibile eseguire molteplici \texttt{REDO} finchè non si ripristina il contenuto all'ultima modifica eseguita.
+    \end{itemize}
+
+    \begin{center}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{resources/manual/editor/UNDO-REDO.png}
+      \caption{Pulsanti rispettivamente per UNDO e REDO}
+      \label{fig:UNDO_REDO}
+    \end{figure}
+  \end{center}
+
+  Le azioni di UNDO e REDO possono essere eseguite in modo alternato permettendo di "ripercorrere" in avanti o indietro le modifiche al contenuto.
 
   \subsubsection{Salvataggio Nota}
 
