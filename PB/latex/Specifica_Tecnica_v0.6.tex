@@ -194,7 +194,19 @@ TypeScript è un linguaggio basato su JavaScript che introduce la tipizzazione s
 \end{itemize}
 
 \subsubsection{Vue.js}
-Vue è un framework open source per lo sviluppo di interfacce utente e single-page-application. Si basa su HTML, CSS, e JavaScript e fornisce un modello di programmazione dichiarativa basato su componenti che aiuta l'utilizzatore a costruire interfacce reattive di qualsiasi complessità.
+Vue è un framework open source per lo sviluppo di interfacce utente ed SPA (single page application). Si basa su una logica definita per componenti, in cui ogni elemento dell'interfaccia utente può essere implementato come componente singolo ed a sua volta essere contenuto all'interno di altri componenti, andando a creare una gerarchia chiara e strutturata dell'intera interfaccia utente. 
+Grazie alla gestione dinamica dei dati tra i componenti, attraverso l'utilizzo di \texttt{props} ed \texttt{emits} (idiomi del framework), si ottiene una esperienza utente particolarmente reattiva: ogni componente infatti si aggiorna automaticamente in seguito a modifiche avvenute sui componenti collegati.
+Vue inoltre mette a disposizione l'utilizzo del \texttt{router}, uno strumento nativo del framework, con cui è possibile caricare dinamicamente contenuto all'interno della pagina senza eseguire molteplici richieste: il documento HTML viene richiesto solamente al primo accesso all'applicazione; una volta ottenuto il documento HTML "scheletro", il contenuto viene dinamicamente caricato attraverso Vue in base alla navigazione. Visivamente l'utente interagisce con una singola pagina (da qui il termine SPA), in quanto il browser non aggiorna l'intero documento HTML con una nuova richiesta ma solamente le parti necessarie attraverso le funzionalità di Vue. 
+
+La scelta di utilizzare un framework per il frontend rispetto ad un linguaggio di scripting puro (vanilla JS) è basata sulle seguenti motivazioni:
+    \begin{itemize}
+        \item \textbf{Organizzazione del codice:} 
+        \item \textbf{Riutilizzo di codice:}
+        \item \textbf{Manutenibilità del codice:}
+        \item \textbf{Organizzazione del codice:}
+        \item \textbf{Organizzazione del codice:}
+    \end{itemize}
+ Si basa su HTML, CSS, e JavaScript e fornisce un modello di programmazione dichiarativa basato su componenti che aiuta l'utilizzatore a costruire interfacce reattive di qualsiasi complessità. L'utilizzo di un framework per 
 \begin{itemize}
     \item \textbf{Versione}: 3.5+
     \item \textbf{Documentazione}: \url{https://vuejs.org/guide/introduction.html}
