@@ -9,4 +9,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     latexmk \
     python3 \
     python3-pip \
+    lmodern \
   && rm -rf /var/lib/apt/lists/*
