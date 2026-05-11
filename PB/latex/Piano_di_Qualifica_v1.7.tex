@@ -92,9 +92,11 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  1.7 & Besnik Murtezan & Aggiornamento grafici del cruscotto con Sprint 11 e 12 & 09/05/2026 & Stefano Maso \\
+  \hline
   1.6 & Stefano Maso & Aggiunte metriche per il processo di verifica, aggiunti test di integrazione, aggiunte sezioni cruscotto & 03/05/2026 & Besnik Murtezan \\
   \hline
-  1.5 & Stefano Maso & Aggiornamento grafici del cruscotto con Sprint 10 e aggiunta Test di Unità & 29/04/2026 & - \\
+  1.5 & Stefano Maso & Aggiornamento grafici del cruscotto con Sprint 10 e aggiunta Test di Unità & 29/04/2026 & Spadiliero Ruben \\
   \hline
   1.4 & Spadiliero Ruben & Aggiornamento grafici del cruscotto con Sprint 9 & 24/04/2026 & Banchieri Giuliano \\
   \hline
@@ -686,13 +688,13 @@ I test di integrazione servono a verificare che le componenti del sistema si int
     \testI & Verificare che POST /api/notes/export restituisca 200 con il contenuto HTML e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI  & Verificare che GET /api/notes/export/\{id\}?format=pdf restituisca 200 con il contenuto PDF della nota e gli header corretti - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI  & Verificare che POST /api/notes/export restituisca 200 con il contenuto PDF e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
-    \testI & Verificare che GET /api/notes/export/\{id\}?format=wrong_format restituisca 400 con messaggio "Unknown format: wrong_format" quando viene richiesto un formato non valido con id - verificato da \texttt{ExportTest.php} & S \\ \hline
-    \testI & Verificare che POST /api/notes/export restituisca 400 con messaggio "Unknown format: wrong_format" quando viene richiesto un formato non valido senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\}?format=wrong\_format restituisca 400 con messaggio "Unknown format: wrong\_format" quando viene richiesto un formato non valido con id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/export restituisca 400 con messaggio "Unknown format: wrong\_format" quando viene richiesto un formato non valido senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI & Verificare che GET /api/notes/export/\{id\} restituisca 404 con messaggio "Note not found" quando la nota non esiste - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI & Verificare che GET /api/notes/export/123 restituisca 400 con messaggio "Invalid note id" quando l'id fornito non è un UUID valido - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI & Verificare che GET /api/notes/export/\{id\} restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ExportTest.php} & S \\ \hline
     \testI & Verificare che POST /api/notes/import restituisca 201 con i dati della nota creata quando viene caricato un file Markdown valido - verificato da \texttt{ImportTest.php} & S \\ \hline
-    \testI  & Verificare che POST /api/notes/import restituisca 400 con messaggio "uploaded_format format is not supported" quando il file caricato ha un formato non supportato - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI  & Verificare che POST /api/notes/import restituisca 400 con messaggio "uploaded\_format format is not supported" quando il file caricato ha un formato non supportato - verificato da \texttt{ImportTest.php} & S \\ \hline
     \testI & Verificare che POST /api/notes/import restituisca 400 con messaggio "Title already used by another note" quando il titolo della nota importata è già in uso - verificato da \texttt{ImportTest.php} & S \\ \hline
     \testI & Verificare che POST /api/notes/import restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ImportTest.php} & S \\ \hline
     \testI & Verificare che POST /api/notes/import restituisca 422 con messaggio "File size must not exceed 10240 KB" quando il file caricato supera la dimensione massima consentita - verificato da \texttt{ImportTest.php} & S \\ \hline
@@ -701,7 +703,7 @@ I test di integrazione servono a verificare che le componenti del sistema si int
     \testI & Verificare che POST /api/llm restituisca 200 con il testo tradotto per l'azione "translate" con lingua di destinazione valida - verificato da \texttt{LlmTest.php} & S \\ \hline
     \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando viene fornita un'azione non valida - verificato da \texttt{LlmTest.php} & S \\ \hline
     \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando vengono fornite opzioni non valide - verificato da \texttt{LlmTest.php} & S \\ \hline
-    \testI & Verificare che POST /api/llm restituisca 422 con errore "Translation in selected_language is not supported" quando viene fornita una lingua non supportata per la traduzione - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm restituisca 422 con errore "Translation in selected\_language is not supported" quando viene fornita una lingua non supportata per la traduzione - verificato da \texttt{LlmTest.php} & S \\ \hline
     \testI & Verificare che POST /api/llm restituisca 422 con errore di validazione quando viene fornito uno stile di riscrittura non valido - verificato da \texttt{LlmTest.php} & S \\ \hline
     \testI & Verificare che POST /api/llm restituisca 502 con messaggio di errore quando il servizio LLM risponde con un errore interno - verificato da \texttt{LlmTest.php} & S \\ \hline
     \caption{Tabella Test di Integrazione}
@@ -799,38 +801,33 @@ I test$^G$ di sistema hanno lo scopo di verificare che il sistema software rispe
     \testS & Verificare che il sistema consenta all'utente di rimuovere il testo originale di una traduzione precedentemente inserita & RF-O-74 & - \\ \hline
     \testS & Verificare che il sistema notifichi all'utente la perdita del testo originale di riferimento qualora venga eliminato, lasciando la traduzione priva di collegamento & RF-O-75 & - \\ \hline
     \testS & Verificare che il sistema non consenta l'inserimento di una traduzione all'interno di una porzione di testo già tradotta & RF-O-76 & - \\ \hline
-    \testS & Verificare che il sistema consenta la selezione esclusivamente all'interno delle porzioni di testo tradotte, impedendo la selezione di altre parti del testo durante tale operazione & RF-O-77 & - \\ \hline
-    \testS & Verificare che il sistema consenta la selezione esclusivamente all'interno delle porzioni di testo originale (associato ad una traduzione), impedendo la selezione di altre parti del testo durante tale operazione & RF-O-78 & - \\ \hline
-    \testS & Verificare che l'agente produca traduzioni corrette nella lingua selezionata & RF-O-79 & - \\ \hline
-    \testS & Verificare che il sistema, alla chiusura di una nota, se presenti delle modifiche non salvate avvisi l'utente della presenza di modifiche & RF-O-80 & - \\ \hline
-    \testS & Verificare che il sistema in caso di problemi di connessione con l'agente esterno avvisi l'utente & RF-O-81 & -  \\ \hline
-    \testS & Verificare che, durante una richiesta alla LLM, il sistema fornisca all’utente un feedback chiaro sullo stato dell’operazione (es. indicatore di caricamento/elaborazione) fino al completamento o alla segnalazione di errore & RF-O-82 & - \\ \hline
-    \testS & Verificare che il feedback sullo stato della comunicazione con la LLM sia non bloccante ed eviti che l’utente avvii richieste duplicate inconsapevolmente & RF-O-83 & - \\ \hline
-    \testS & Verificare che il sistema permetta all'utente di visualizzare l'editor con il contenuto della nota dopo l'apertura di questa & RF-O-84 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di tentativo di apertura di una nota non più esistente & RF-O-85 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di fallimento dell'apertura di una nota a causa di problemi di connessione al server & RF-O-86 & - \\ \hline
-    \testS & Verificare che, in caso di tentativo di chiusura di una nota con modifiche non salvate, il sistema avvisi l'utente e chieda se desidera salvare le modifiche prima di chiudere & RF-O-87 & - \\ \hline
-    \testS & Verificare che il sistema permetta all'utente di salvare le modifiche effettuate all'interno di una nota & RF-O-88 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di presenza di una versione più recente della nota aperta nell'archivio & RF-O-89 & - \\ \hline
-    \testS & Verificare che il sistema permetta all'utente di sovrascrivere la nota presente nell'archivio con la versione aperta in caso di conflitto di versioni & RF-O-90 & - \\ \hline
-    \testS & Verificare che il sistema permetta all'utente di salvare la nota aperta con un nuovo nome in caso di conflitto con la versione presente nell'archivio & RF-O-91 & - \\ \hline
-    \testS & Verificare che il sistema permetta all'utente di aggiornare la nota aperta con le modifiche presenti nella versione più recente nell'archivio in caso di conflitto di versioni & RF-O-92 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di errori durante il salvataggio della nota causati da problemi di connessione al server & RF-O-93 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di tentativo di clonazione di una nota non più esistente & RF-O-94 & - \\ \hline
-    \testS & Verificare che il sistema avvisi in caso di impossibilità di clonare una nota a causa di problemi di connessione al server & RF-O-95 & - \\ \hline
-    \testS & Verificare che il sistema chieda all'utente di confermare l'eliminazione di una nota & RF-O-96 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di eliminazione di una nota a causa di problemi di connessione al server & RF-O-97 & - \\ \hline
-    \testS & Verificare che il sistema impedisca all'utente di rinominare una nota con un nome già presente nell'archivio e visualizzare un messaggio di errore & RF-O-98 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di rinominare una nota a causa di problemi di connessione al server & RF-O-99 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di esportare una nota a causa di problemi di connessione al server & RF-O-100 & - \\ \hline
-    \testS & Verificare che il sistema dia la possibilità all'utente di importare una nota in formato MD & RF-O-101 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di problemi di connessione al server durante l'importazione di una nota & RF-O-102 & - \\ \hline
-    \testS & Verificare che il sistema permetta all'utente di inserire elementi in un elenco puntato o numerato & RF-O-103 & - \\ \hline
-    \testS & Verificare che il sistema permetta all'utente di rimuovere elementi da un elenco puntato o numerato & RF-O-104 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di problemi di connessione con l'agente esterno durante la ritraduzione di una porzione di testo precedentemente tradotta & RF-O-105 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di mancata registrazione/autenticazione dovuta a problemi di connessione al server & RF-O-106 & - \\ \hline
-    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di eliminazione dell'account a causa di problemi di connessione al server & RF-O-107 & - \\ \hline
-    \testS & Verificare che il sistema impedisca la selezione contemporanea di porzioni di testo appartenenti a una traduzione (testo originale o testo tradotto) e porzioni di testo non appartenenti ad alcuna traduzione & RF-O-108 & - \\ \hline
+    \testS & Verificare che l'agente produca traduzioni corrette nella lingua selezionata & RF-O-77 & - \\ \hline
+    \testS & Verificare che il sistema, alla chiusura di una nota, se presenti delle modifiche non salvate avvisi l'utente della presenza di modifiche & RF-O-78 & - \\ \hline
+    \testS & Verificare che il sistema in caso di problemi di connessione con l'agente esterno avvisi l'utente & RF-O-79 & -  \\ \hline
+    \testS & Verificare che, durante una richiesta alla LLM, il sistema fornisca all’utente un feedback chiaro sullo stato dell’operazione (es. indicatore di caricamento/elaborazione) fino al completamento o alla segnalazione di errore & RF-O-80 & - \\ \hline
+    \testS & Verificare che il feedback sullo stato della comunicazione con la LLM sia non bloccante ed eviti che l’utente avvii richieste duplicate inconsapevolmente & RF-O-81 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di visualizzare l'editor con il contenuto della nota dopo l'apertura di questa & RF-O-82 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di tentativo di apertura di una nota non più esistente & RF-O-83 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di fallimento dell'apertura di una nota a causa di problemi di connessione al server & RF-O-84 & - \\ \hline
+    \testS & Verificare che, in caso di tentativo di chiusura di una nota con modifiche non salvate, il sistema avvisi l'utente e chieda se desidera salvare le modifiche prima di chiudere & RF-O-85 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare le modifiche effettuate all'interno di una nota & RF-O-86 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di presenza di una versione più recente della nota aperta nell'archivio & RF-O-87 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di sovrascrivere la nota presente nell'archivio con la versione aperta in caso di conflitto di versioni & RF-O-88 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare la nota aperta con un nuovo nome in caso di conflitto con la versione presente nell'archivio & RF-O-89 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di aggiornare la nota aperta con le modifiche presenti nella versione più recente nell'archivio in caso di conflitto di versioni & RF-O-90 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di errori durante il salvataggio della nota causati da problemi di connessione al server & RF-O-91 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di tentativo di clonazione di una nota non più esistente & RF-O-92 & - \\ \hline
+    \testS & Verificare che il sistema avvisi in caso di impossibilità di clonare una nota a causa di problemi di connessione al server & RF-O-93 & - \\ \hline
+    \testS & Verificare che il sistema chieda all'utente di confermare l'eliminazione di una nota & RF-O-94 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di eliminazione di una nota a causa di problemi di connessione al server & RF-O-95 & - \\ \hline
+    \testS & Verificare che il sistema impedisca all'utente di rinominare una nota con un nome già presente nell'archivio e visualizzare un messaggio di errore & RF-O-96 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di rinominare una nota a causa di problemi di connessione al server & RF-O-97 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di esportare una nota a causa di problemi di connessione al server & RF-O-98 & - \\ \hline
+    \testS & Verificare che il sistema dia la possibilità all'utente di importare una nota in formato MD & RF-O-99 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di problemi di connessione al server durante l'importazione di una nota & RF-O-100 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di inserire elementi in un elenco puntato o numerato & RF-O-101 & - \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di rimuovere elementi da un elenco puntato o numerato & RF-O-102 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di problemi di connessione con l'agente esterno durante la ritraduzione di una porzione di testo precedentemente tradotta & RF-O-103 & - \\ \hline
     \testS & Verificare che il sistema aggiorni automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & RF-D-1 & - \\ \hline
     \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta in PDF & RF-D-2 & - \\ \hline
     \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta in HTML & RF-D-3 & - \\ \hline
@@ -867,9 +864,15 @@ I test$^G$ di sistema hanno lo scopo di verificare che il sistema software rispe
     \testS & Verificare che i messaggi di errore in autenticazione e registrazione siano chiari e indichino all’utente come correggere l’input & RF-OP-22 & - \\ \hline
     \testS & Verificare che i campi di inserimento credenziali forniscano feedback immediato su validità del formato (es. vincoli su nome utente/password), senza attendere l’invio del form & RF-OP-23 & - \\ \hline
     \testS & Verificare che, dopo l’autenticazione, la sessione scada automaticamente dopo un periodo di inattività pari a 1 mese & RF-OP-24 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di mancata registrazione/autenticazione dovuta a problemi di connessione al server & RF-OP-25 & - \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di eliminazione dell'account a causa di problemi di connessione al server & RF-OP-26 & - \\ \hline
     \caption{Tabella Test di Sistema}
 \end{longtable}
 
+\subsection{Test di accettazione}
+
+\subsection{Test di regressione}
+Per preveire problemi di regressione durante lo sviluppo, abbiamo deciso di adottare un approccio di integrazione continua: la repository del codice sorgente è stata configurata in modo che ad ogni pull request venga attivata automaticamente l'esecuzione dell'intera suite di test di unità e integrazione. Ciò permette di rilevare subito la presenza di possibili regressioni introdotte dalle modifiche effettuate, così da poter rimediare prima del merge nel branch principale.
 
 \section{Checklist}
 La verifica$^G$ tramite analisi statica è preferibile che avvenga tramite \textit{Inspection} anzichè \textit{Walkthrough$^G$}, proprio per questo motivo vengono definite delle liste di controllo (aggiornate progressivamente dai verificatori) che permettono di analizzare velocemente gli errori più comuni.
@@ -933,7 +936,7 @@ Diagrammi dei casi d'uso erronei & I diagrammi dei casi d'uso devono riportare l
     \includegraphics[width=0.9\linewidth]{resources/EAC.pdf}
     \caption{Estimated at Completion}
 \end{figure}
-Dal grafico si osserva l'andamento dell'EAC nei dieci sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato; tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. Nel settimo e ottavo periodo invece si nota uno scostamento del valore EAC oltre il limite inferiore, dovuto ad un aumento dell'efficienza da parte del gruppo. Nel decimo periodo il gruppo ha riorganizzato la distribuzione delle ore, riducendo quelle inizialmente previste per ruoli di responsabile e analista a favore di amministratore e programmatore, pur rispettando i vincoli orari stabiliti. Questa riallocazione ha comportato una diminuzione del preventivo complessivo del progetto. Al termine del decimo sprint, il progetto risulta comunque rientrato nei limiti accettabili (±5\% BAC), condizione da mantenere anche nei periodi successivi.
+Dal grafico si osserva l'andamento dell'EAC nei dodici sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato; tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. Nel settimo e ottavo periodo invece si nota uno scostamento del valore EAC oltre il limite inferiore, dovuto ad un aumento dell'efficienza da parte del gruppo. Nel decimo periodo il gruppo ha riorganizzato la distribuzione delle ore, riducendo quelle inizialmente previste per ruoli di responsabile e analista a favore di amministratore e programmatore, pur rispettando i vincoli orari stabiliti. Questa riallocazione ha comportato una diminuzione del preventivo complessivo del progetto. Al termine del decimo sprint, il progetto risulta comunque rientrato nei limiti accettabili (±5\% BAC), condizione mantenuta anche nei periodi successivi.
 
 \subsection{PC02-PV (Planned Value) e PC04-EV (Earned Value)}
 \begin{figure}[H]
@@ -941,7 +944,7 @@ Dal grafico si osserva l'andamento dell'EAC nei dieci sprint. Nel terzo periodo 
     \includegraphics[width=0.9\linewidth]{resources/EV rispetto a PV.pdf}
     \caption{Planned Value - Earned Value}
 \end{figure}
-Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) ed Earned Value (EV) nel corso degli otto sprint. Le due curve risultano quasi sovrapposte, a conferma che il gruppo sta producendo valore in linea con quanto pianificato. Questo indica una buona capacità di rispettare la pianificazione e di mantenere il ritmo di avanzamento previsto.
+Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) ed Earned Value (EV) nel corso dei dodici sprint. Le due curve risultano quasi sovrapposte, a conferma che il gruppo sta producendo valore in linea con quanto pianificato. Questo indica una buona capacità di rispettare la pianificazione e di mantenere il ritmo di avanzamento previsto.
 
 \subsection{PC05-ETC (Estimated to Complete)}
 \begin{figure}[H]
@@ -949,7 +952,7 @@ Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) 
     \includegraphics[width=0.9\linewidth]{resources/ETC.pdf}
     \caption{Estimated to Complete}
 \end{figure}
-Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso degli otto sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per quasi tutti i periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, nel quarto sprint si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. Dal quinto sprint in poi, la linea AC+ETC si mantiene prossima al valore desiderato (BAC). Dal settimo sprint inoltre si osserva una diminuzione della proiezione AC+ETC, risultato di un aumento della produttività del gruppo. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
+Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso dei dodici sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per i primi tre periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, nel quarto sprint si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. Dal quinto sprint in poi, la linea AC+ETC si mantiene prossima al valore desiderato (BAC). Dal settimo sprint inoltre si osserva una diminuzione della proiezione AC+ETC, risultato di un aumento della produttività del gruppo. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
 Dal decimo sprint la linea AC+ETC, grazie alla redistribuzione delle ore si trova quasi nello stesso punto della linea del BAC.
 
 \subsection{PC06-CV (Cost Variance), PC07-SV (Schedule Variance) e PC08-BV (Budget Variance)}
@@ -958,7 +961,7 @@ Dal decimo sprint la linea AC+ETC, grazie alla redistribuzione delle ore si trov
     \includegraphics[width=0.9\linewidth]{resources/CV, SV, BV.pdf}
     \caption{Cost Variance, Schedule Variance e Budget Variance}
 \end{figure}
-Il grafico illustra l'andamento delle tre varianze negli otto sprint$^G$: al termine del terzo sprint$^G$ si osserva un avvicinamento di CV e BV al limite inferiore, dovuto al periodo di sessione universitaria parzialmente previsto; la SV è rimasta stabile, suggerendo che il team ha deliberatamente pianificato meno lavoro in quel periodo per far fronte alla sessione, contenendo il ritardo sulla pianificazione a scapito però dell'efficienza$^G$ economica. Nel quarto sprint$^G$ CV e BV recuperano correttamente, tuttavia la SV mostra un leggero decremento, indicando che il rallentamento del terzo sprint$^G$ non è stato pienamente recuperato in termini di valore prodotto. Per il quinto e sesto sprint i valori si mantengono prossimi allo zero, evidenziando un recupero efficace e un riallineamento complessivo rispetto agli obiettivi pianificati. Nel settimo e ottavo sprint inoltre si nota un innalzamento di CV e BV dovuto ad un aumento della produttività del gruppo rispetto ai periodi precedenti.
+Il grafico illustra l'andamento delle tre varianze nei dodici sprint$^G$: al termine del terzo sprint$^G$ si osserva un avvicinamento di CV e BV al limite inferiore, dovuto al periodo di sessione universitaria parzialmente previsto; la SV è rimasta stabile, suggerendo che il team ha deliberatamente pianificato meno lavoro in quel periodo per far fronte alla sessione, contenendo il ritardo sulla pianificazione a scapito però dell'efficienza$^G$ economica. Nel quarto sprint$^G$ CV e BV recuperano correttamente, tuttavia la SV mostra un leggero decremento, indicando che il rallentamento del terzo sprint$^G$ non è stato pienamente recuperato in termini di valore prodotto. Per il quinto e sesto sprint i valori si mantengono prossimi allo zero, evidenziando un recupero efficace e un riallineamento complessivo rispetto agli obiettivi pianificati. Nel settimo e ottavo sprint inoltre si nota un innalzamento di CV e BV dovuto ad un aumento della produttività del gruppo rispetto ai periodi precedenti. Dal decimo sprint, grazie alla ridistribuzione delle ore con conseguente ricalcolo del preventivo, viene registrato un reallineamento delle varianze entro i limiti accettabili.
 
 \subsection{Indice di Gulpease}
 \begin{figure}[H]

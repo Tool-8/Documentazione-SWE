@@ -354,6 +354,8 @@
 
         \hline
         \endlastfoot
+            \hline 
+            1.7 & Stefano Maso & Rimozioni requisiti in seguito a confronto con azienda Zucchetti & 07/05/206 & Spadiliero Ruben \\
             \hline
             1.6 & Niccolò Feltrin & Modifiche \UCRef{salva_err}, \UCRef{salva_err_sovra}, \UCRef{salva_err_diff}, \UCRef{salva_err_agg}, rimosso caso d'uso Formattazione Testo, modifica fig. 23, modifica \UCRef{traduci_redo} & 10/04/2026 & Besnik Murtezan \\
             \hline
@@ -4829,8 +4831,6 @@
             \reqF{O} & Il sistema deve consentire all'utente di rimuovere il testo originale di una traduzione precedentemente inserita & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema deve notificare all'utente la perdita del testo originale di riferimento qualora venga eliminato, lasciando la traduzione priva di collegamento & \UCRef{traduci_redo} \\ \hline
             \reqF{O} & Il sistema non deve consentire l'inserimento di una traduzione all'interno di una porzione di testo già tradotta & \UCRef{traduci} \\ \hline
-            \reqF{O} & Il sistema deve consentire la selezione esclusivamente all'interno delle porzioni di testo tradotte, impedendo la selezione di altre parti del testo durante tale operazione & \UCRef{traduci} \\ \hline
-            \reqF{O} & Il sistema deve consentire la selezione esclusivamente all'interno delle porzioni di testo originale (associato ad una traduzione), impedendo la selezione di altre parti del testo durante tale operazione & \UCRef{traduci} \\ \hline
             \reqF{O} & L'agente deve produrre traduzioni corrette nella lingua selezionata & \UCRef{traduci} \\ \hline
             \reqF{O} & Il sistema alla chiusura di una nota, se presenti delle modifiche non salvate deve avvisare l'utente della presenza di modifiche & \UCRef{chiudi} \\ \hline
             \reqF{O} & Il sistema in caso di problemi di connessione con l'agente esterno deve avvisare l'utente & \UCRef{riassumi_llm_err}, \UCRef{riscrivi_llm_err}, \UCRef{traduci_llm_err}, \UCRef{genera_llm_err}, \UCRef{critica_llm_err} \\ \hline
@@ -4858,7 +4858,6 @@
             \reqF{O} & Il sistema deve permettere all'utente di inserire elementi in un elenco puntato o numerato & \UCRef{elem_punt}, \UCRef{elem_num} \\ \hline
             \reqF{O} & Il sistema deve permettere all'utente di rimuovere elementi da un elenco puntato o numerato & \UCRef{rimozione_elem}, \UCRef{rimozione_elem_num}, \UCRef{rimozione_elem_punt} \\ \hline
             \reqF{O} & Il sistema deve avvisare l'utente in caso di problemi di connessione con l'agente esterno durante la ritraduzione di una porzione di testo precedentemente tradotta & \UCRef{ritraduci_llm_err} \\ \hline
-            \reqF{O} & Il sistema deve impedire la selezione contemporanea di porzioni di testo appartenenti a una traduzione (testo originale o testo tradotto) e porzioni di testo non appartenenti ad alcuna traduzione & \UCRef{traduci}, \UCRef{seleziona} \\ \hline
             \reqF{D} & Il sistema deve aggiornare automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & \UCRef{ricerca} \\ \hline
             \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in PDF & \UCRef{esporta_pdf} \\ \hline
             \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in HTML & \UCRef{esporta_html} \\ \hline
@@ -4972,31 +4971,31 @@
                 \UCRef{arch_data} & RF-O-1 \\ \hline
                 \UCRef{arch_ult_data} & RF-O-1 \\ \hline
                 \UCRef{apri} & RF-O-2\\ \hline
-                \UCRef{vis-editor-apri} & RF-O-84 \\ \hline
-                \UCRef{apri_err} & RF-O-85 \\ \hline
-                \UCRef{apri_server_err} & RF-O-86\\ \hline
+                \UCRef{vis-editor-apri} & RF-O-82 \\ \hline
+                \UCRef{apri_err} & RF-O-83 \\ \hline
+                \UCRef{apri_server_err} & RF-O-84\\ \hline
                 \UCRef{chiudi} & RF-O-3\\ \hline
-                \UCRef{chiudi_salva} & RF-O-87 \\ \hline
+                \UCRef{chiudi_salva} & RF-O-85 \\ \hline
                 \UCRef{crea} & RF-O-4 \\ \hline
                 \UCRef{salva} & RF-O-5\\ \hline
                 \UCRef{salva_primo} & RF-O-6 \\ \hline
-                \UCRef{salva_modifiche} & RF-O-88 \\ \hline
-                \UCRef{salva_err} & RF-O-89 \\ \hline
-                \UCRef{salva_err_sovra} & RF-O-90 \\ \hline
-                \UCRef{salva_err_diff} & RF-O-91 \\ \hline
-                \UCRef{salva_err_agg} & RF-O-92 \\ \hline
+                \UCRef{salva_modifiche} & RF-O-86 \\ \hline
+                \UCRef{salva_err} & RF-O-87 \\ \hline
+                \UCRef{salva_err_sovra} & RF-O-88 \\ \hline
+                \UCRef{salva_err_diff} & RF-O-89 \\ \hline
+                \UCRef{salva_err_agg} & RF-O-90 \\ \hline
                 \UCRef{salva_nome_err} & RF-O-50 \\ \hline
-                \UCRef{salva_server_err} & RF-O-93 \\ \hline
+                \UCRef{salva_server_err} & RF-O-91 \\ \hline
                 \UCRef{clona} & RF-O-7, RF-O-8, RF-O-9\\ \hline
-                \UCRef{clona_err} & RF-O-94 \\ \hline
-                \UCRef{clona_server_err} & RF-O-95\\ \hline
+                \UCRef{clona_err} & RF-O-92 \\ \hline
+                \UCRef{clona_server_err} & RF-O-93\\ \hline
                 \UCRef{ricerca} & RF-O-10, RF-D-1, RF-D-10\\ \hline
                 \UCRef{elimina} & RF-O-11 \\ \hline
-                \UCRef{elim_conf} & RF-O-96 \\ \hline
-                \UCRef{elim_server_err} & RF-O-97 \\ \hline
+                \UCRef{elim_conf} & RF-O-94 \\ \hline
+                \UCRef{elim_server_err} & RF-O-95 \\ \hline
                 \UCRef{rinomina} & RF-O-12 \\ \hline
-                \UCRef{rinom_err} & RF-O-98 \\ \hline
-                \UCRef{rinom_server_err} & RF-O-99\\ \hline
+                \UCRef{rinom_err} & RF-O-96 \\ \hline
+                \UCRef{rinom_server_err} & RF-O-97\\ \hline
                 \UCRef{esporta} & RF-O-13, RF-O-15, RF-O-16, RF-O-17 \\ \hline
                 \UCRef{esporta_md} & RF-O-48 \\ \hline
                 \UCRef{esporta_pdf} & RF-D-2 \\ \hline
@@ -5005,11 +5004,11 @@
                 \UCRef{esporta_arch_md} & RF-O-49 \\ \hline
                 \UCRef{esporta_arch_pdf} & RF-D-4 \\ \hline
                 \UCRef{esporta_arch_html} & RF-D-5 \\ \hline
-                \UCRef{esporta_arch_server_err} & RF-O-100 \\ \hline
+                \UCRef{esporta_arch_server_err} & RF-O-98 \\ \hline
                 \UCRef{importa} & RF-O-18, RF-O-19 \\ \hline
-                \UCRef{importa_md} & RF-O-101 \\ \hline
+                \UCRef{importa_md} & RF-O-99 \\ \hline
                 \UCRef{importa_err} & RF-O-20 \\ \hline
-                \UCRef{importa_server_err} & RF-O-102\\ \hline
+                \UCRef{importa_server_err} & RF-O-100\\ \hline
                 \UCRef{visua_formattato} & RF-O-22, RF-O-23, RF-O-24, RF-D-12, RF-OP-1\\ \hline
                 \UCRef{cambio_visua} & RF-O-25 \\ \hline
                 \UCRef{cambio_visua_markdown} & RF-O-25 \\ \hline
@@ -5030,40 +5029,40 @@
                 \UCRef{commento_rim} & RF-O-27, RF-D-6, RF-O-28, RF-O-35 \\ \hline
                 \UCRef{elenco} & RF-O-36, RF-O-37\\ \hline
                 \UCRef{elenco_num} & RF-O-36 \\ \hline
-                \UCRef{elem_num} & RF-O-103 \\ \hline
+                \UCRef{elem_num} & RF-O-101 \\ \hline
                 \UCRef{elenco_punt} & RF-O-37 \\ \hline
-                \UCRef{elem_punt} & RF-O-103 \\ \hline
-                \UCRef{rimozione_elem} & RF-O-104 \\ \hline
-                \UCRef{rimozione_elem_num} & RF-O-104 \\ \hline
-                \UCRef{rimozione_elem_punt} & RF-O-104 \\ \hline
+                \UCRef{elem_punt} & RF-O-101 \\ \hline
+                \UCRef{rimozione_elem} & RF-O-102 \\ \hline
+                \UCRef{rimozione_elem_num} & RF-O-102 \\ \hline
+                \UCRef{rimozione_elem_punt} & RF-O-102 \\ \hline
                 \UCRef{annulla} & RF-O-38, RF-D-8 \\ \hline
                 \UCRef{ripristina} & RF-O-39, RF-D-8  \\ \hline
-                \UCRef{seleziona} & RF-O-40, RF-O-106 \\ \hline
+                \UCRef{seleziona} & RF-O-40 \\ \hline
                 \UCRef{copia} & RF-O-41, RF-O-43, RF-O-44 \\ \hline
                 \UCRef{taglia} & RF-O-42, RF-O-43, RF-O-44 \\ \hline
                 \UCRef{incolla} & RF-O-45, RF-O-46, RF-O-47, RF-D-9 \\ \hline
-                \UCRef{riassumi} & RF-O-58, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-83, RF-OP-3  \\ \hline
-                \UCRef{riassumi_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
-                \UCRef{riscrivi} & RF-O-59, RF-O-60, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-83, RF-OP-3 \\ \hline
+                \UCRef{riassumi} & RF-O-58, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-81, RF-OP-3  \\ \hline
+                \UCRef{riassumi_llm_err} & RF-O-69, RF-O-79, RF-O-82 \\ \hline
+                \UCRef{riscrivi} & RF-O-59, RF-O-60, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-81, RF-OP-3 \\ \hline
                 \UCRef{riscrivi_variazione} & RF-O-60\\ \hline
                 \UCRef{riscrivi_modifica} & RF-O-60\\ \hline
                 \UCRef{riscrivi_grammatica} & RF-O-60\\ \hline
                 \UCRef{riscrivi_lessico} & RF-O-60\\ \hline
                 \UCRef{riscrivi_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
-                \UCRef{traduci} & RF-O-61, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-73, RF-O-74, RF-O-76, RF-O-77, RF-O-78, RF-O-79, RF-O-83, RF-O-106, RF-OP-3 \\ \hline
-                \UCRef{traduci_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
+                \UCRef{traduci} & RF-O-61, RF-O-63, RF-O-64, RF-O-65, RF-O-66, RF-O-67, RF-O-68, RF-O-73, RF-O-74, RF-O-76, RF-O-77, RF-O-81, RF-OP-3 \\ \hline
+                \UCRef{traduci_llm_err} & RF-O-69, RF-O-79, RF-O-80 \\ \hline
                 \UCRef{traduci_redo} & RF-O-72, RF-O-71, RF-O-75 \\ \hline
-                \UCRef{ritraduci_llm_err} & RF-O-105 \\ \hline
+                \UCRef{ritraduci_llm_err} & RF-O-103 \\ \hline
                 \UCRef{genera} & RF-O-62, RF-O-67, RF-O-70,  \\ \hline
-                \UCRef{genera_llm_err} & RF-O-69, RF-O-81, RF-O-82, RF-O-83, RF-D-11, RF-OP-3 \\ \hline
-                \UCRef{critica} & RF-O-51, RF-O-68, RF-O-83, RF-OP-3\\ \hline
+                \UCRef{genera_llm_err} & RF-O-69, RF-O-79, RF-O-80, RF-O-81, RF-D-11, RF-OP-3 \\ \hline
+                \UCRef{critica} & RF-O-51, RF-O-68, RF-O-81, RF-OP-3\\ \hline
                 \UCRef{critica_rosso} & RF-O-52 \\ \hline
                 \UCRef{critica_bianco} & RF-O-53 \\ \hline
                 \UCRef{critica_giallo} & RF-O-54 \\ \hline
                 \UCRef{critica_nero} & RF-O-55 \\ \hline
                 \UCRef{critica_verde} & RF-O-56 \\ \hline
                 \UCRef{critica_blu} & RF-O-57 \\ \hline
-                \UCRef{critica_llm_err} & RF-O-69, RF-O-81, RF-O-82 \\ \hline
+                \UCRef{critica_llm_err} & RF-O-69, RF-O-79, RF-O-80 \\ \hline
                 \UCRef{registra} & RF-OP-4, RF-OP-17, RF-OP-18, RF-OP-19 \\ \hline
                 \UCRef{reg_nome} & RF-OP-4 \\ \hline
                 \UCRef{reg_nome_err} & RF-OP-5, RF-OP-21, RF-OP-22, RF-OP-23 \\ \hline

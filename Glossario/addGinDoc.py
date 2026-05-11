@@ -128,6 +128,14 @@ def apply_tags_to_text(text: str, patterns: List[Tuple[str, Pattern]], tex_file:
     ):
         link_ranges.append((m.start(), m.end()))
 
+        # Ambienti lstlisting <-- NUOVO
+    for m in re.finditer(
+        r'\\begin\{lstlisting\}.*?\\end\{lstlisting\}',
+        text,
+        flags=re.MULTILINE | re.DOTALL
+    ):
+        link_ranges.append((m.start(), m.end()))
+
     # \node TikZ
     for m in re.finditer(r'\\node\b.*?;', text, flags=re.MULTILINE | re.DOTALL):
         start, end = m.start(), m.end()
