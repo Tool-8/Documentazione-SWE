@@ -187,26 +187,46 @@ Sono inclusi gli strumenti, i framework e le librerie utilizzati per lo sviluppo
 Framework e librerie utilizzate per lo sviluppo backend e frontend.
 
 \subsubsection{TypeScript}
-TypeScript è un linguaggio basato su JavaScript che introduce la tipizzazione statica, migliorando la manutenibilità e la robustezza del codice.
+TypeScript è un linguaggio basato su JavaScript che introduce la tipizzazione statica, migliorando la manutenibilità e la robustezza del codice. Tra le funzionalità offerte permette infatti di definire:
+\begin{itemize}
+    \item Tipi Statici
+    \item Interfacce 
+    \item Template (Generics)
+    \item Enumerazioni
+\end{itemize}
+Il tutto è supportato dal compilatore statico \textit{TSC (TypeScript Compiler)} che, inizialmente effettua la validazione del codice e dei tipi definiti senza l'esecuzione, e successivamente, in assenza di errori, produce codice JavaScript.
+Le direttive TypeScript sono disponibili solo in fase di sviluppo, poichè la "compilazione" termina comunque con la produzione di codice JavaScript. \\
+
+Ciononostante, TypeScript ed il relativo compilatore sono uno strumento molto utile per verificare la correttezza del codice in fase di sviluppo (grazie anche ad un ricco supporto da parte degli IDE moderni) prima ancora della sua esecuzione, seguendo l'approccio \textit{"fail fast"}, ovvero l'obiettivo di trovare errori il prima possibile. \\
+
+Il corretto utilizzo di TypeScript aiuta quindi a mitigare il debito tecnologico del progetto, motivo principale per il quale è stato inserito tra le tecnologie di sviluppo. Altra motivazione è la compatibilità con il framework Vue (vedere sezione successiva) utilizzato per lo sviluppo dell'interfaccia utente.
+
 \begin{itemize}
     \item \textbf{Versione}: 5.9.3
     \item \textbf{Documentazione}: \url{https://www.typescriptlang.org/docs/} (Consultato 09/04/2026)
 \end{itemize}
 
 \subsubsection{Vue.js}
-Vue è un framework open source per lo sviluppo di interfacce utente ed \textit{SPA} (Single Page Application). Si basa su una logica definita per componenti, in cui ogni elemento dell'interfaccia utente viene implementato come componente singolo e poi integrato all'interno di altri componenti "contenitori" fino ad arrivare al componente "radice", andando a creare una gerarchia chiara e strutturata dell'intera interfaccia utente. 
-Grazie alla gestione dinamica dei dati tra i componenti, attraverso l'utilizzo di \texttt{props} ed \texttt{emits} (idiomi del framework), si ottiene una esperienza utente particolarmente reattiva: ogni componente infatti si aggiorna automaticamente in seguito a modifiche avvenute sui componenti collegati ad esso.
-Vue inoltre mette a disposizione l'utilizzo del \texttt{router}, ulteriore strumento nativo del framework, con cui è possibile caricare dinamicamente contenuto all'interno della pagina senza eseguire ulteriori richieste: il documento HTML infatti viene richiesto solamente al primo accesso all'applicazione; una volta ottenuto il documento HTML "scheletro", il contenuto viene dinamicamente caricato e modificato attraverso Vue in base alla navigazione. Visivamente l'utente ha l'impressione di interagire con una "singola" pagina (da cui il termine SPA), in quanto il browser non aggiorna l'intero documento HTML della pagina ma sfrutta le funzionalità di Vue per aggiornare solamente le parti necessarie. 
+\textbf{Vue è un framework JavaScript open source per lo sviluppo di interfacce utente ed \textit{"SPA"} (Single Page Application)}. Si basa su una logica definita per componenti, in cui ogni elemento dell'interfaccia utente viene implementato come componente singolo e poi integrato all'interno di altri componenti \textit{"contenitori"} fino ad arrivare al componente \textit{"radice"}, andando a creare una gerarchia chiara e strutturata dell'intera interfaccia utente. In aggiunta ai componenti vengono definite anche le funzioni \texttt{"composables"}, richiamabili all'interno dei componenti stessi. Le componenti possono essere sviluppate utilizzando JavaScript come linguaggio di scripting oppure, come effettuato nel nostro progetto, sfruttare il supporto a TypeScript per irrobustire l'architettura. \\
 
-La scelta di utilizzare un framework per il frontend rispetto ad un linguaggio di scripting puro (vanilla JS) è basata sulle seguenti motivazioni:
+Punto di forza del framework è la possibilità di ottenere un'interfaccia utente particolarmente reattiva, grazie alla gestione dinamica dei dati tra i componenti basata sull'utilizzo di \texttt{props} ed \texttt{emits} (idiomi del framework): ogni componente infatti si aggiorna automaticamente in seguito a modifiche avvenute sui componenti collegati ad esso.\\
+
+Vue inoltre mette a disposizione l'utilizzo del \texttt{router}, ulteriore strumento nativo del framework, con cui è possibile caricare dinamicamente contenuto all'interno della pagina senza eseguire ulteriori richieste: il documento HTML infatti viene richiesto solamente al primo accesso all'applicazione; una volta ottenuto il documento HTML "scheletro", il contenuto viene dinamicamente caricato e modificato attraverso Vue in base alla navigazione. Visivamente l'utente ha l'impressione di interagire con una "singola" pagina (da cui il termine SPA), in quanto il browser non aggiorna l'intero documento HTML della pagina ma sfrutta le funzionalità di Vue per aggiornare solamente le parti necessarie. \\
+
+La scelta di utilizzare il framework Vue per il frontend rispetto a sviluppare unicamente utilizzando JavaScript puro è basata sulle seguenti motivazioni:
     \begin{itemize}
-        \item \textbf{Organizzazione del codice:} 
-        \item \textbf{Riutilizzo di codice:}
-        \item \textbf{Manutenibilità del codice:}
-        \item \textbf{Organizzazione del codice:}
-        \item \textbf{Organizzazione del codice:}
+        \item \textbf{Organizzazione del codice:} ogni componente è costituito da 3 parti: 
+        \begin{itemize}
+            \item \textbf{template HTML:} contiene i tag HTML necessari al componente, muniti delle direttive di Vue (ex. \texttt{v-on | v-for | v-bind}).
+            \item \textbf{script TypeScript:} contiene la logica di comportamento compresa delle chiamate alle funzioni composables; viene sfruttato il supporto a TypeScript per ottenere componenti architetturalmente più robuste rispetto .
+            \item \textbf{stile CSS:} contiene il foglio di stile per il componente (applicato in maniera globale).
+        \end{itemize}
+        Tale suddivisione permette di avere una gestione più pulita del codice e di localizzare le eventuali modifiche, diminuendo enormemente il rischio di creare l'antipattern \textit{"Big Ball of Mud"} (facilmente raggiungibile in caso si utilizzi solamente JavaScript puro).
+        \item \textbf{Riutilizzo di codice:} ogni componente può essere riutilizzato in qualsiasi altro punto dell'interfaccia utente ed eventualmente personalizzato evitando la ripetizione di codice. 
+        \item \textbf{Manutenibilità del codice:} grazie alla logica \textit{"a componenti"}, ogni modifica o estensione di codice è localizzata in un punto unico, velocizzando e semplificando le attività di manutenzione.  
+        \item \textbf{Risorse disponibili:} la scelta del framework è stata basata per buona parte anche su tempo disponibile e capacità dei singoli membri del gruppo. Cofrontato con gli altri 2 principali framework per sviluppo frontend \textit{Angular} e \textit{React}, \textbf{Vue} è stato considerato come il giusto compromesso tra la rigidezza di Angular e la flessibilità di React, in quanto offre le funzionalità necessarie al progetto senza una curva di apprendimento troppo alta che avrebbe impattato le risorse disponibili.
     \end{itemize}
- Si basa su HTML, CSS, e JavaScript e fornisce un modello di programmazione dichiarativa basato su componenti che aiuta l'utilizzatore a costruire interfacce reattive di qualsiasi complessità. L'utilizzo di un framework per 
+
 \begin{itemize}
     \item \textbf{Versione}: 3.5+
     \item \textbf{Documentazione}: \url{https://vuejs.org/guide/introduction.html}
