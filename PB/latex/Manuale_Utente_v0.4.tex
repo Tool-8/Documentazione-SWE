@@ -8,6 +8,8 @@
 
 % Lingua 
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[italian]{babel}
 
 % Margini
@@ -104,7 +106,7 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
     \hline
-  0.4 & Ruben Spadiliero & Stesura sezione 4.2 & 10/05/2026 & - \\
+  0.4 & Ruben Spadiliero & Stesura sezione 4.2 & 10/05/2026 & Gabriele Disa \\
     \hline
   0.3 & Besnik Murtezan & Stesura sezioni 3.4 , 3.5 , 4.1 & 06/05/2026 & Niccolò Feltrin \\
   \hline
@@ -133,7 +135,7 @@ Il presente documento ha lo scopo di fornire un supporto completo agli utenti de
 Eventuali termini tecnici sono definiti all'interno del documento "Glossario".
 
 \subsection{Scopo del prodotto}
-Il prodotto finale propone di realizzare un software che permetta la scrittura di testo con marcatori in formato MarkDown, la sua visualizzazione formattata correttamente e l’interazione con un LLM. In particolare, l’utilizzo di LLM verrà sfruttato da Second Brain per fornire funzionalità di riassunto, riscrittura, traduzione e generazione di testo in aggiunta ad una forma di critica secondo il modello dei ”Sei Cappelli per Pensare” di Edward De Bono. 
+Il prodotto finale propone di realizzare un software che permetta la scrittura di testo con marcatori in formato Markdown, la sua visualizzazione formattata correttamente e l’interazione con un LLM. In particolare, l’utilizzo di LLM verrà sfruttato da Second Brain per fornire funzionalità di riassunto, riscrittura, traduzione e generazione di testo in aggiunta ad una forma di critica secondo il modello dei ”Sei Cappelli per Pensare” di Edward De Bono. 
 
 \subsection{Riferimenti}
 \subsubsection{Riferimenti normativi}
@@ -162,7 +164,7 @@ Linux & Debian 12 \\
 Linux & Fedora 39 \\ 
 
 Windows & Windows 10 (WSL2) \\ 
-Windows & Windows 11 \\ 
+Windows & Windows 11 (WSL2) \\ 
 
 macOS & macOS 11 Big Sur \\ 
 macOS & macOS 12 Monterey \\ \hline
@@ -177,9 +179,9 @@ macOS & macOS 12 Monterey \\ \hline
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Software} & \textbf{Versione} & \textbf{Download} \\ \hline
-Docker & v29.0.1 & \href{https://www.docker.com}{docker.com} \\ 
+Docker & v29+ & \href{https://www.docker.com}{docker.com} \\ 
 & & \small (Consultato: 04/04/2026) \\ \hline
-Makefile & v4.3 & \href{https://www.gnu.org/software/make/}{Sito Ufficiale GNU Make} \\ \hline
+GNU Make & v4.3 & \href{https://www.gnu.org/software/make/}{Sito Ufficiale GNU Make} \\ \hline
 
 
 \end{tabular}
@@ -222,6 +224,8 @@ Safari & 15+ \\ \hline
 
 \section{Istruzioni per l'installazione}
 In questa sezione vengono fornite le istruzioni per l'installazione del prodotto software "Second Brain". Si consiglia di seguire attentamente i passaggi descritti per garantire un'installazione corretta.
+
+\textbf{Nota per utenti Windows:} tutti i comandi riportati all'interno di questa guida devono essere eseguiti tramite un ambiente Linux compatibile, ad esempio utilizzando WSL2 (\textit{Windows Subsystem for Linux 2}). L'esecuzione tramite PowerShell o Prompt dei comandi non è supportata.
 
 \subsection{Clonazione repository}
 È possibile ottenere una copia del progetto "Second Brain" attraverso due metodi principali:
@@ -404,8 +408,7 @@ Dopo aver installato l'applicazione, l'esecuzione avviene nel seguente modo:
     ------------------------------------------
     
       DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-    \end{lstlisting}
-
+    \end{lstlisting}    
     
   \item Accedere all'applicazione aprendo il proprio browser all'indirizzo: \href{http://localhost:8080}{http://localhost:8080} (in caso sia stata indicata una porta differente nel file \texttt{.env} sostituire il valore \texttt{8080} con quello della porta utente impostata)
 
@@ -465,7 +468,7 @@ Di seguito vengono presentate in dettaglio le funzionalità dell'archivio:
 Per creare una nota nuova è sufficiente cliccare sul relativo bottone \fcolorbox{black}{cyan!50}{Nuova nota} presente all'interno della SideBar (elemento \#2 nella \autoref{fig:archivio_note}). In seguito verrà aperto l'Editor di note con contenuto vuoto. (vedere \autoref{subsec:editor_note} per istruzioni dettagliate sull'Editor)
 
 \subsubsection{Importazione Note}
-SecondBrain permette anche la creazione di una nota attraverso l'importazione di un file locale in formato MarkDown selezionato dall'utente. Per utilizzare tale funzione è sufficiente cliccare il relativo bottone \fcolorbox{black}{cyan!50}{Importa nota} (elemento \#6 nella \autoref{fig:archivio_note}) all'interno dell'archivio note. In seguito verrà aperta una finestra modale in cui selezionare il file desiderato:
+SecondBrain permette anche la creazione di una nota attraverso l'importazione di un file locale in formato Markdown selezionato dall'utente. Per utilizzare tale funzione è sufficiente cliccare il relativo bottone \fcolorbox{black}{cyan!50}{Importa nota} (elemento \#6 nella \autoref{fig:archivio_note}) all'interno dell'archivio note. In seguito verrà aperta una finestra modale in cui selezionare il file desiderato:
 
 \begin{center}
   \begin{figure}[H]
@@ -499,7 +502,7 @@ Qualora si tentasse di importare un file con formato non supportato il sistema n
 \end{center}
 
 \subsubsection{Apertura Note}\label{subsubsec:apertura_nota}
-Cliccando con il tasto sx una delle note presenti nell'archivio (elemento \#5 nella \autoref{fig:archivio_note}) si aprirà l'Editor di note; al suo interno è possibile visualizzare e modificare il contenuto della nota. (vedere \autoref{subsec:editor_note} per istruzioni dettagliate sull'Editor)
+Cliccando con il tasto sinistro una delle note presenti nell'archivio (elemento \#5 nella \autoref{fig:archivio_note}) si aprirà l'Editor di note; al suo interno è possibile visualizzare e modificare il contenuto della nota. (vedere \autoref{subsec:editor_note} per istruzioni dettagliate sull'Editor)
 
 \subsubsection{Ricerca Note}
 Per effettuare una ricerca delle note in base al nome è sufficiente inserire il termine nella casella di ricerca (elemento \#3 nella \autoref{fig:archivio_note}) e premere "Invio".
@@ -568,7 +571,7 @@ Cliccando con il tasto destro su una nota all'interno dell'archivio (elemento \#
   \paragraph{\fcolorbox{black}{blue!15}{Clonazione nota}}\label{par:clona_archivio}
 
     Cliccando sulla relativa opzione \fcolorbox{black}{cyan!50}{Clona} del menu contestuale (\autoref{fig:menu_contestuale}), l'utente può clonare la nota selezionata (creare una copia) attraverso la finestra modale visualizzata.
-    Il sistema propone il titolo originale seguito dal dataora di clonazione come titolo per la nota clonata; l'utente può in ogni caso personalizzarlo. 
+    Il sistema propone il titolo originale seguito dalla data e ora di clonazione come titolo per la nota clonata; l'utente può in ogni caso personalizzarlo. 
 
     \begin{center}
       \begin{figure}[H]
@@ -667,10 +670,10 @@ Questa schermata contiene:
 \begin{enumerate}
   \item \textbf{Titolo Nota:} il nome della nota è visualizzato assieme ad un indicatore dello stato di salvataggio.
   \item \textbf{Area di modifica:} sezione in cui l'utente può scrivere e modificare il contenuto della nota, usufruendo anche delle altre funzionalità di supporto fornite dall'editor.
-  \item \textbf{Area di rendering:} sezione in cui viene visualizzato il contenuto presente nell'area di modifica formattato secondo la sintassi MarkDown.
+  \item \textbf{Area di rendering:} sezione in cui viene visualizzato il contenuto presente nell'area di modifica formattato secondo la sintassi Markdown.
   \item \textbf{Pulsante Sidebar:} pulsante con cui si accede alla barra di navigazione laterale.
   \item \textbf{Selettore Visualizzazione:} permette all'utente di selezionare il layout dell'editor in base alle proprie esigenze.
-  \item \textbf{Barra formattazione testo:} contiene i pulsanti tramite cui vengono applicati i relativi stili al testo selezionato tramite marcatori di sintassi MarkDown.
+  \item \textbf{Barra formattazione testo:} contiene i pulsanti tramite cui vengono applicati i relativi stili al testo selezionato tramite marcatori di sintassi Markdown.
   \item \textbf{Barra azioni IA:} contiene i pulsanti con cui si possono eseguire azioni IA per applicare modifiche al contenuto della nota.
   \item \textbf{Pulsanti UNDO-REDO:} permettono all'utente di annullare l'ultimo comando eseguito o ripetere l'ultimo comando annullato. 
   \item \textbf{Contatore caratteri:} un indicatore che tiene conto del numero totale di lettere e parole all'interno della nota.
@@ -710,7 +713,7 @@ Di seguito vengono presentate in dettaglio le funzionalità fornite all'interno 
 
   \subsubsection{Scrittura contenuto}
 
-  L'utente può lavorare al contenuto della nota all' interno dell'area di modifica (elemento \#2 nella \autoref{fig:editor_note}). È possibile aggiungere manualmente marcatori di sintassi MarkDown oppure usufruire dei bottoni presenti nella barra degli stili di testo (elemento \#6 nella \autoref{fig:editor_note}), la quale offre le seguenti formattazioni (componibili fra loro):
+  L'utente può lavorare al contenuto della nota all' interno dell'area di modifica (elemento \#2 nella \autoref{fig:editor_note}). È possibile aggiungere manualmente marcatori di sintassi Markdown oppure usufruire dei bottoni presenti nella barra degli stili di testo (elemento \#6 nella \autoref{fig:editor_note}), la quale offre le seguenti formattazioni (componibili fra loro):
       \begin{itemize}
         \item \texttt{Grassetto | Corsivo | Sottolineato | Barrato}
         \item \texttt{Commento | Link}
@@ -899,7 +902,7 @@ Di seguito vengono presentate in dettaglio le funzionalità fornite all'interno 
   I due pulsanti presenti nella barra in alto a sinistra (elemento \#8 nella \autoref{fig:editor_note}) servono rispettivamente per:
     \begin{itemize}
       \item \textbf{UNDO:} annullare l'ultima modifica eseguita dall'utente. È possibile eseguire molteplici \texttt{UNDO} in successione fino alla prima modifica registrata. 
-      \item \textbf{REDO:} ripristinare l'effetto generato da un'azione di \texttt{UNDO}. È possibile eseguire molteplici \texttt{REDO} finchè non si ripristina il contenuto all'ultima modifica eseguita.
+      \item \textbf{REDO:} ripristinare l'effetto generato da un'azione di \texttt{UNDO}. È possibile eseguire molteplici \texttt{REDO} finché non si ripristina il contenuto all'ultima modifica eseguita.
     \end{itemize}
 
     \begin{center}
