@@ -108,6 +108,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  0.8 & Niccolò Feltrin & Aggiornata sezione architettura logica frontend (sezione 3.2) & 12/05/2026 & - \\
+  \hline
   0.7 & Besnik Murtezan & Aggiornate descrizioni tecnologie frontend & 11/05/2026 & Niccolò Feltrin \\
   \hline
   0.6 & Stefano Maso & Modifica sezione LLM & 24/04/2026 & - \\
@@ -495,6 +497,220 @@ Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la st
     \item \textbf{GreenHat} - propone idee alternative e riformulazioni possibili del contenuto
     \item \textbf{BlueHat} - valuta la chiarezza espositiva e il processo comunicativo del testo, fornendo una riflessione sull'organizzazione del contenuto
 \end{itemize}
+
+\subsection{Frontend}
+
+\paragraph{Root Component}
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{resources/frontend/Appvue.png}
+    \caption{Diagramma UML gerarchia principale frontend}
+    \label{fig:root-component-vue}
+\end{figure}
+\subparagraph{App} Rappresenta il componente radice dell'applicazione, responsabile per l'inizializzazione dell'interfaccia. Al suo interno vengono istanziati i componenti trasversali all'intera applicazione: \texttt{ActionModal}, \texttt{ToastList} e \texttt{AppLayout}.
+\subparagraph{AppLayout} Componente che rappresenta il layout principale dell'applicazione. Al suo interno vengono definiti la barra laterale di navigazione (\texttt{AppSidebar}) e l'area di contenuto dinamico (\texttt{RouterView}). Il componente garantisce che la struttura della pagina rimanga stabile mentre il contenuto centrale viene sostituito in base al \texttt{URL} attivo.
+\subparagraph{RouterView} Componente nativo di \texttt{Vue Router} che funge da contenitore dinamico all'interno di \textitt{AppLayout}, responsabile del rendering della pagina corrispondente alla rotta \texttt{URL} attiva. A seconda del percorso di navigazione, il componente monta in tempo reale la pagina appropriata: \texttt{NoteEditorPage} (pagina dell'editor della nota) e \texttt{NoteArchivePage} (pagina dell'archivio delle note). La mappatura è definita in \texttt{index.ts}.:
+\begin{itemize}
+    \item \texttt{/} - la radice è configurata per reindirizzare verso l'archivio delle note, rendendo la pagina la vista iniziale dell'applicazione
+    \item \texttt{/notes/new} - route che reindirizza alla pagina di editor vuota, per la creazione di una nuova nota
+    \item \texttt{/notes/:id} - route che permette di aprire una nota e visualizzarla nella pagina di editor, dove \texttt{:id} rappresenta un parametro dinamico che identifica univocamente la nota da caricare
+\end{itemize}
+
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resources/frontend/AppSidebar.png}
+    \caption{Diagramma UML componente AppSidebar}
+    \label{fig:app-sidebar}
+\end{figure}
+\subparagraph{AppSidebar} Componente di navigazione principale dell'applicazione, reso come elemento \texttt{<aside>} persistente sul lato sinistro dell'interfaccia. Implementa un comportamento di apertura / chiusura reattivo: tramite \texttt{Vue Router} si chiude automaticamente quando l'utente apre l'editor dell'applicazione. L'utente può controllare la visibilità manualmente tramite un pulsante di toggle. All'interno sono definiti due componenti, \texttt{NavButton} e \texttt{NavItem}, e un selettore per il tema dell'applicazione.
+\subparagraph{NavButton} Bottone che rappresenta una chiamata all'azione - segnala all'utente un'operazione da compiere.
+\subparagraph{NavItem} Bottone che rappresenta una destinazione di navigazione - segnala all'utente dove si trova nell'applicazione (la route attiva). Quando il link corrisponde alla rotta corrente, viene applicato uno stile visivo distinto, che funge da indicatore di posizione nella navigazione.
+\subparagraph{useTheme} Composable che si occupa della gestione del tema visivo dell'applicazione (chiaro / scuro / sistema); recupera la preferenza salvata in \texttt{localStorage} e lo applica in modo immediato, garantendo una visione persistente tra sessioni diverse. In assenza di una preferenza salvata, il tema predefinito è system, che delega la scelta al sistema operativo. Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{setTheme(Theme \$t)} - applica il tema passato dalla funzione e lo memorizza nella variabile \texttt{theme}.
+\end{itemize}
+
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resources/frontend/ActionModal.png}
+    \caption{Diagramma UML componente ActionModal}
+    \label{fig:action-modal}
+\end{figure}
+\subparagraph{ActionModal} Componente che centralizza tutte le finestre di dialogo dell'applicazione, fungendo da registro globale dei modal. Tutti i modali vengono dichiarati in un unico punto e resi disponibili globalmente tramite il composable \texttt{useModals}. Ogni modale espone tramite \textit{scoped slot} le variabili \texttt{resolve} (comunica il valore di chiusura) e \texttt{args} (argomenti passati all'apertura). I modali strutturati sono:
+\begin{itemize}
+    \item \texttt{RenamePromise} - modale per la rinomina, composto da un input testuale per inserire il nome desiderato
+    \item \texttt{SaveAsPromise} - modale per il salvataggio con nome, simile al modale della rinomina
+    \item \texttt{DeletePromise} - modale semplice per l'eliminazione, con un bottone di conferma
+    \item \texttt{ClonePromise} - modale per la clonazione, composto da un input testuale per inserire il nome della nota clonata. Di default presenta un nome univoco all'archivio per facilitare l'azione all'utente
+    \item \texttt{SavePromise} - modale per il salvataggio con conflitto, ovvero quando si presenta un incongruenza tra le modifiche locali e la versione persistita nell'archivio. Mostra tre opzioni: salvataggio con nome, aggiornamento della nota esistente o sovrascrittura della nota presente in archivio
+    \item \texttt{DiscardPromise} - modale di avviso per il salvataggio della nota, azionato quando l'utente vuole uscire dall'editor della nota con modifiche non salvate
+\end{itemize}
+\subparagraph{BaseModal} Componente che definisce la struttura scheletrica comune a tutti i dialog dell'applicazione, esponendo tre slot (header, body e footer) che permettono ai componenti di iniettare il contenuto specifico mantenendo una presentazione visiva coerente. Segue la descrizione dei \textit{prop}:
+\begin{itemize}
+    \item \texttt{string \$title} - titolo del modale
+\end{itemize}
+\subparagraph{useModals} Composable che si occupa della gestione dei dialog dell'applicazione, implementato tramite il pattern \textit{Promise-based modal}, offerto dalla funzione \texttt{createTemplatePromise} della libreria \texttt{VueUse}. Ogni modale è modellato come una \texttt{Promise}: quando viene aperto, restituisce una \texttt{Promise} tipizzata che si risolve con il valore corrispondente alla scelta dell'utente, permettendo ai componenti di attenderne il risultato in modo asincrono tramite \texttt{await}. Tutti i modali sono configurati come \textit{Singleton}.
+
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resources/frontend/ToastList.png}
+    \caption{Diagramma UML componente ToastList}
+    \label{fig:taost-list}
+\end{figure}
+\subparagraph{ToastList} Componente responsabile del rendering delle notifiche toast attiva nell'applicazione. Il componente utilizza il composable useToast per utilizzare la lista delle notifiche dinamica, da cui ottiene l'elenco dei toast attivi. Per ogni elemento della lista il componente renderizza un \texttt{ActionToast}, passandogli i dati necessari e delegando la gestione della chiusura tramite l'evento \texttt{@close}.
+\subparagraph{ActionToast} Componente che definisce la struttura di un singolo toast, composto dal titolo, il messaggio e il pulsante di chiusura. Il prop \texttt{type} determina la variante della notifica, che può essere di successo, di errore, di avvertenza o di info. Tramite una serie di mappe il \texttt{type} è associato ad una combinazione distinta di colori, che identificano visualmente il tipo del toast. L'icona nello stesso modo viene selezionata dinamicamente. Segue la descrizione dei \textit{prop}:
+\begin{itemize}
+    \item \texttt{string \$title} - titolo del toast
+    \item \texttt{string \$message} - messaggio della notifica
+    \item \texttt{ToastType \$type} - tipo del toast. ToastType è un \textit{Union Type} definito nel composable \texttt{useToast}
+\end{itemize}
+Segue la descrizione degli \textit{emit}:
+\begin{itemize}
+    \item \texttt{close: []} - evento emesso al click del pulsante di chiusura
+\end{itemize}
+\subparagraph{useToast} Composable che si occupa della gestione dello stato globale delle notifiche toast. Mantiene una lista reattiva \texttt{toasts} di notifiche attive. Ogni elemento della lista è identificato univocamente da un id generato tramite \texttt{Date.now()}. L'aggiunta dei toast è gestita tramite la funzione interna \texttt{updateState}, che pianifica la rimozione automatica tramite un timeout, definito di default come \texttt{defaultTimeout} o \texttt{defaultErrorTimeout} (di lunghezza maggiore). Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{successToast(string \$title, string \$message, number \$timeout = defaultTimeout)} - chiama \texttt{updateState} con il \texttt{type} success
+    \item \texttt{errorToast(string \$title, string \$message, number \$timeout = defaultErrorTimeout)} - chiama \texttt{updateState} con il \texttt{type} error
+    \item \texttt{warningToast(string \$title, string \$message, number \$timeout = defaultTimeout)} - chiama \texttt{updateState} con il \texttt{type} warning
+    \item \texttt{infoToast(string \$title, string \$message, number \$timeout = defaultTimeout)} - chiama \texttt{updateState} con il \texttt{type} info
+    \item \texttt{removeToast(number \$id)} - rimuove nella lista di toast quello corrispondente all'\texttt{id} passato nella funzione
+\end{itemize}
+
+\paragraph{Comunicazione con backend}
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{resources/frontend/apiClient.png}
+    \caption{Diagramma UML struttura comunicazione con backend}
+    \label{fig:api-client}
+\end{figure}
+\subparagraph{Note (type)} Modello base contenente i metadati della nota:
+\begin{itemize}
+    \item \texttt{string \$id} - id univoco della nota
+    \item \texttt{string \$name} - nome della nota
+    \item \texttt{string \$last\_edit} - data dell'ultima modifica
+    \item \texttt{string \$creation} - data della creazione
+\end{itemize}
+\subparagraph{NoteWithContent (type)} Estensione di \texttt{Note}:
+\begin{itemize}
+    \item \texttt{string \$content} - contenuto della nota
+\end{itemize}
+\subparagraph{NoteAPI (type)} Modello della nota restituito dal backend:
+\begin{itemize}
+    \item \texttt{string \$id} - id univoco della nota
+    \item \texttt{string \$title} - nome della nota
+    \item \texttt{string \$updated\_at} - data dell'ultima modifica
+    \item \texttt{string \$created\_at} - data della creazione
+    \item \texttt{string \$content\_md} - contenuto della nota
+\end{itemize}
+\subparagraph{apiClient} Definisce una istanza centralizzata di \textit{Axios} (\texttt{AxiosInstance}) per comunicare con il backend. Configura i parametri \texttt{baseURL}, \texttt{timeout}, headers HTTP e la gestione delle risposte. Include inoltre un interceptor per gestire gli errori di export convertendo le risposte da \textit{Blob} in oggetti \textit{JSON} leggibili dal frontend.
+\subparagraph{noteService} Modulo che centralizza la gestione delle operazioni CRUD e delle funzionalità di import / export delle note tramite API REST, utilizzando \texttt{apiClient} per la comunicazione con il backend. Include funzioni di formattazione per la data (\texttt{formateDate}) e per la nota ricevuta (da \texttt{NoteAPI} a \texttt{Note} / \texttt{NoteWithContent}). Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{getAll(): Promise<Note[]>} - ottiene la lista intera delle note archiviate nel server locale
+    \item \texttt{get(string \$id): Promise<NoteWithContent>} - riceve l'intera nota (metadati e contenuto) in base all'\texttt{id} univoco
+    \item \texttt{rename(string \$id, string \$newName): Promise<Note>} - aggiorna il nome della nota con identificativo \texttt{id}
+    \item \texttt{remove(string \$id): Promise<void>} - elimina una nota con identificativo \texttt{id}
+    \item \texttt{store(string \$name, string \$content): Promise<Note>} - archivia una nuova nota nel server locale e ritorna i metadati della nota generati (\texttt{id}, \texttt{created\_at}, \texttt{content\_md})
+    \item \texttt{update(string \$id, string \$title, string \$content): Promise<NoteWithContent>} - aggiorna il nome e il contenuto della nota con identificativo \texttt{id}
+    \item \texttt{export(string \$id, 'pdf' | 'md' | 'html' \$format): Promise<void>} - esporta la nota con identificativo \texttt{id} nel formato specificato
+    \item \texttt{exportRaw(string \$name, string \$content, 'pdf' | 'md' | 'html' \$format): Promise<void>} - utilizza il backend per esportare una nota non presente nell'archivio nel formato specificato
+    \item \texttt{import(FormData \$file): Promise<Note>} - importa una nota in formato md e ritorna la nota insieme ai metadati
+\end{itemize}
+\subparagraph{aiService} Modulo che centralizza le richieste API relative all'interazione con i servizi di IA, utilizzando \texttt{apiClient} per la comunicazione con il backend. Il modulo espone le seguenti interfacce:
+\begin{itemize}
+    \item \texttt{AiAction} - \textit{Union Type} che indica il tipo di azione: \texttt{summarize}, \texttt{translate}, \texttt{rewrite}, \texttt{blackhat}, \texttt{bluehat}, \texttt{greenhat}, \texttt{redhat}, \texttt{whitehat}, \texttt{yellowhat}, \texttt{distant writing}
+    \item \texttt{AiTone} - \textit{Union Type} che indica il tono della riscrittura: \texttt{grammar}, \texttt{extension}, \texttt{lexicon}, \texttt{stylistic}
+    \item \texttt{AiLang} - \textit{Union Type} che indica la lingua della traduzione: \texttt{it}, \texttt{en}, \texttt{fr}, \texttt{de}, \texttt{es}, \texttt{pt}
+    \item \texttt{AiOptions} - interfaccia che ha due proprietà: \texttt{style}, una tupla di \texttt{AiTone} (minimo 1 valore), e la lingua opzionale \texttt{lang}
+\end{itemize}
+Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{process(string \$content, AiAction \$action, AiOptions \$options): Promise<string>} - compone l'endpoint API corretto in base all'azione ed invia una richiesta POST con \texttt{apiClient}
+    \item \texttt{translate(string \$content, AiLang \$lang = 'en'): Promise<string>} - traduce il contenuto nella lingua desiderata
+    \item \texttt{summarize(string \$content): Promise<string>} - riassume il contenuto
+    \item \texttt{rewrite(string \$content, [AiTone, ...AiTone[]] \$style): Promise<string>} - riscrive il contenuto in base ai toni desiderati
+    \item \texttt{blackhat(string \$content): Promise<string>} - critica il contenuto secondo il cappello nero
+    \item \texttt{bluehat(string \$content): Promise<string>} - critica il contenuto secondo il cappello blu
+    \item \texttt{greenhat(string \$content): Promise<string>} - critica il contenuto secondo il cappello verde
+    \item \texttt{redhat(string \$content): Promise<string>} - critica il contenuto secondo il cappello rosso
+    \item \texttt{whitehat(string \$content): Promise<string>} - critica il contenuto secondo il cappello bianco
+    \item \texttt{yellowhat(string \$content): Promise<string>} - critica il contenuto secondo il cappello giallo
+    \item \texttt{distantWriting(string \$content): Promise<string>} - ritorna una risposta in base al prompt inviato tramite \texttt{content}
+\end{itemize}
+\subparagraph{serviceHandler} Funzione di utilità utilizzata per la gestione degli errori nelle chiamate al servizi del frontend. Ogni operazione asincrona di \texttt{noteService} e \texttt{aiService} viene eseguita tramite \texttt{serviceHandler}. Restituisce il risultato della promessa e intercetta eventuali eccezioni generate da \textit{Axios}. In particolare, in caso di errori di rete o timeout restituisce un messaggio di connessione dedicato, mentre per gli errori HTTP propaga il messaggio ricevuto dal backend (comunemente mostrato successivamente in un toast di errore).
+
+\paragraph{Composables Note \& AI}
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/frontend/useNotes.png}
+    \caption{Diagramma UML composable useNotes}
+    \label{fig:use-notes}
+\end{figure}
+\subparagraph{useNotes} - Composable che incapsula la logica di gestione delle note, centralizzando lo stato, le chiamate API e la gestione degli errori tramite l'utilizzo di \texttt{noteService}. Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{fetchNotes(): Promise<null>} - aggiorna l'archivio locale memorizzato in \texttt{notes}. Durante l'esecuzione abilita la variabile di stato reattiva \texttt{loading}, che viene disattivato al termine dell'operazione. Qualora \texttt{noteService} lancia un errore, memorizza il messaggio dentro la variabile reattiva \texttt{error}.
+    \item \texttt{getNote(string \$id): Promise<NoteWithContent | null>} - ritorna la nota in base all'\texttt{id} univoco. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore.
+    \item \texttt{refreshNote(string \$id): Promise<NoteWithContent | null>} - aggiorna e ritorna il metadata e il contenuto della nota in base all'\texttt{id} univoco, mostrando un toast di successo se l'operazione è andata a buon fine. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore.
+    \item \texttt{saveNote(NoteWithContent \$note, string \$content, string \$name, boolean \$overwrite = false): Promise<null>} - salva il nome e contenuto della nota in base all'\texttt{id} univoco preso dal parametro \texttt{note}. In caso il contenuto e il nome di \texttt{note} è uguale a \texttt{content} e \texttt{name} rispettivamente, e il booleano \texttt{overwrite} è settato a \texttt{false}, mostra un toast di info senza effettuare modifiche. Altrimenti:
+    \begin{itemize}
+        \item In caso \texttt{note.last\_edit} è diverso dal \texttt{last\_edit} della versione presente in archivio (conflitto), lancia un errore di tipo \texttt{NoteNotUpdatedError}
+        \item Altrimenti aggiorna il nome e il contenuto della nota
+    \end{itemize}
+    Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore, altrimenti mostra un toast di successo.
+    \item \texttt{renameNote(Note \$note, string \$newName): Promise<null>} - rinomina la nota in base all'\texttt{id} univoco preso dal parametro \texttt{note}. In caso il nome di \texttt{note} è uguale a \texttt{newName}, mostra un toast di info senza effettuare modifiche. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore, altrimenti mostra un toast di successo.
+    \item \texttt{removeNote(string \$id): Promise<null>} - elimina una nota dall'archivio in base all'\texttt{id} univoco, mostrando un toast di successo se l'operazione è andata a buon fine. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore.
+    \item \texttt{storeNote(string \$name, string \$content): Promise<Note | null>} - archivia una nuova nota nel server locale e ritorna i metadati della nota generati, mostrando un toast di successo se l'operazione è andata a buon fine. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore.
+    \item \texttt{cloneNote(string \$id, string \$name): Promise<null>} - clona una nota in base all'\texttt{id} univoco, mostrando un toast di successo se l'operazione è andata a buon fine. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore.
+    \item \texttt{exportNote(string \$id, 'pdf' | 'md' | 'html' \$format): Promise<void} - esporta la nota con identificativo \texttt{id} nel formato specificato, mostrando un toast di successo se l'operazione è andata a buon fine. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore.
+    \item \texttt{exportNoteFromRaw(string \$name, string \$content, 'pdf' | 'md' | 'html' \$format): Promise<void>} - esporta una nota non presente nell'archivio nel formato specificato. In caso \texttt{content} sia vuoto, viene mostrato un toast di avvertenza e si interrompe l'azione. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore, altrimenti mostra un toast di successo.
+    \item \texttt{importNote(File \$file): Promise<void>} - importa e archivia una nota da file, validando il formato in md e inviandolo al backend tramite \texttt{FormData}. Qualora \texttt{noteService} lancia un errore, lo mostra in un toast di errore, altrimenti mostra un toast di successo.
+\end{itemize}
+\subparagraph{NoteNotUpdatedError} Errore che estende \texttt{Error} e che indica un conflitto di salvataggio causato da una versione non aggiornata della nota.
+
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/frontend/useAi.png}
+    \caption{Diagramma UML composable useAi}
+    \label{fig:use-ai}
+\end{figure}
+\subparagraph{useAi}
+
+\paragraph{Pagina di archivio note}
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/frontend/NoteArchivePage.png}
+    \caption{Diagramma UML pagina di archivio}
+    \label{fig:note-archive-page}
+\end{figure}
+\subparagraph{NoteArchivePage}
+\subparagraph{useContextMenu}
+\subparagraph{ContextAction (Type)}
+\subparagraph{ContextMenu}
+
+\paragraph{Pagina di editor note}
+\vspace{0.5em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{resources/frontend/NoteEditorPage.png}
+    \caption{Diagramma UML pagina di editor}
+    \label{fig:note-editor-page}
+\end{figure}
+\subparagraph{NoteEditorPage}
+\subparagraph{AsideAI}
+\subparagraph{NoteEditorHeader}
+\subparagraph{NoteEditorActions}
+\subparagraph{NoteEditorToolbar}
+\subparagraph{NoteEditorContent}
+\subparagraph{useNoteEditor}
+\subparagraph{useNoteEditorUI}
 
 \subsection{Architettura di deployment}
 La scelta della tipologia di \textbf{architettura di deployment} è stata guidata dal contesto di utilizzo del prodotto, dai requisiti di scalabilità previsti dal capitolato e dalle caratteristiche dello stack tecnologico.
