@@ -106,6 +106,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
     \hline
+  0.5 & Gabriele Disa & Riscrittura sezione 3 & 12/05/2026 & - \\
+    \hline
   0.4 & Ruben Spadiliero & Stesura sezione 4.2 & 10/05/2026 & Gabriele Disa \\
     \hline
   0.3 & Besnik Murtezan & Stesura sezioni 3.4 , 3.5 , 4.1 & 06/05/2026 & Niccolò Feltrin \\
@@ -227,6 +229,7 @@ In questa sezione vengono fornite le istruzioni per l'installazione del prodotto
 
 \textbf{Nota per utenti Windows:} tutti i comandi riportati all'interno di questa guida devono essere eseguiti tramite un ambiente Linux compatibile, ad esempio utilizzando WSL2 (\textit{Windows Subsystem for Linux 2}). L'esecuzione tramite PowerShell o Prompt dei comandi non è supportata.
 
+
 \subsection{Clonazione repository}
 È possibile ottenere una copia del progetto "Second Brain" attraverso due metodi principali:
 \begin{enumerate}
@@ -237,6 +240,13 @@ In questa sezione vengono fornite le istruzioni per l'installazione del prodotto
   \begin{lstlisting}
     git clone https://github.com/Tool-8/SecondBrain.git
   \end{lstlisting}
+
+  Successivamente è necessario entrare nella cartella del progetto:
+
+  \begin{lstlisting}
+    cd SecondBrain
+  \end{lstlisting}
+
   \item \textbf{Download diretto:}
   
   In alternativa, è possibile scaricare direttamente il file ZIP del repository dal seguente link:
@@ -245,7 +255,7 @@ In questa sezione vengono fornite le istruzioni per l'installazione del prodotto
     \url{https://github.com/Tool-8/SecondBrain}
   \end{center}
 
-  Dopo aver scaricato il file ZIP, è necessario estrarlo in una directory a scelta sul proprio computer.
+  Dopo aver scaricato il file ZIP, è necessario estrarlo in una directory a scelta sul proprio computer e aprire un terminale all'interno della cartella estratta.
 
 \end{enumerate}
 
@@ -254,179 +264,209 @@ Per utilizzare le funzionalità di interazione con LLM, è necessario ottenere u
 
 Il nostro team ha scelto di utilizzare LLM gestite dall'azienda Zucchetti, pertanto è necessario accordarsi con essa per ottenere le chiavi API necessarie.
 
+Le informazioni relative al servizio LLM possono essere configurate tramite il file \texttt{.env} posto nella root del progetto, come descritto nella sottosezione successiva.
+
 \subsection{Configurazione ambiente}
-All'interno della cartella "src" è necessario creare un file di configurazione ".env".
-\begin{enumerate}
-  \item Aprire un terminale e spostarsi nella directory "src" del progetto.
-  
-  \begin{lstlisting}
-    cd path/to/SecondBrain/src
-  \end{lstlisting}
+Il sistema di deploy può essere avviato anche senza creare manualmente alcun file di configurazione: in assenza di configurazione esplicita vengono usati valori di default e l'applicazione viene resa disponibile all'indirizzo \texttt{http://localhost:8080}.
 
-  \item Creare un file ".env" e inserire al suo interno il seguente contenuto:
-  
-  \begin{lstlisting}
-    APP_NAME=SecondBrain
-    APP_ENV=local
-    APP_KEY=<TUA_CHIAVE_APP_KEY>
-    APP_DEBUG=true
-    APP_URL=http://localhost:8080
-
-    APP_LOCALE=en
-    APP_FALLBACK_LOCALE=en
-    APP_FAKER_LOCALE=en_US
-
-    APP_MAINTENANCE_DRIVER=file
-    # APP_MAINTENANCE_STORE=database
-
-    # PHP_CLI_SERVER_WORKERS=4
-
-    BCRYPT_ROUNDS=12
-
-    LOG_CHANNEL=stack
-    LOG_STACK=single
-    LOG_DEPRECATIONS_CHANNEL=null
-    LOG_LEVEL=debug
-
-    DB_CONNECTION=pgsql
-    DB_HOST=db
-    DB_PORT=5432
-    DB_DATABASE=secondbrain
-    DB_USERNAME=secondbrain
-    DB_PASSWORD=secret
-
-    SESSION_DRIVER=file
-    SESSION_LIFETIME=120
-    SESSION_ENCRYPT=false
-    SESSION_PATH=/
-    SESSION_DOMAIN=null
-
-    BROADCAST_CONNECTION=log
-    FILESYSTEM_DISK=local
-    QUEUE_CONNECTION=sync
-
-    CACHE_STORE=file
-    # CACHE_PREFIX=
-
-    MEMCACHED_HOST=127.0.0.1
-
-    REDIS_CLIENT=phpredis
-    REDIS_HOST=127.0.0.1
-    REDIS_PASSWORD=null
-    REDIS_PORT=6379
-
-    MAIL_MAILER=log
-    MAIL_SCHEME=null
-    MAIL_HOST=127.0.0.1
-    MAIL_PORT=2525
-    MAIL_USERNAME=null
-    MAIL_PASSWORD=null
-    MAIL_FROM_ADDRESS="hello@example.com"
-    MAIL_FROM_NAME="${APP_NAME}"
-
-    AWS_ACCESS_KEY_ID=
-    AWS_SECRET_ACCESS_KEY=
-    AWS_DEFAULT_REGION=us-east-1
-    AWS_BUCKET=
-    AWS_USE_PATH_STYLE_ENDPOINT=false
-
-    VITE_APP_NAME="${APP_NAME}"
-    VITE_DEV_SERVER_URL=http://localhost:5173
-
-    LLM_BASE_URL=<URL_BASE_LLM>
-    LLM_API_KEY=<TUA_CHIAVE_API_KEY>
-    # Modelli ['qwen3:30b','devstral:24b','gpt-oss:20b','gemma3:27b','gemma3:1b','deepseek-r1:8b','qwen3:1.7b']
-    LLM_MODEL=gemma3:4b
-  \end{lstlisting}
-
-  \item Sostituire i valori di \verb|<URL_BASE_LLM>| e \verb|<TUA_CHIAVE_API_KEY>| con quelli ottenuti da Zucchetti. In caso la porta \texttt{8080} sia già utilizzata da un servizio differente, è necessario modificare anche il valore \verb|APP_URL| (o in alternativa sospendere il servizio utilizzante).
-  
-  \begin{lstlisting}
-    APP_URL=http://localhost:<PORTA_UTENTE>
-
-    LLM_BASE_URL=<URL_BASE_LLM>      
-    LLM_API_KEY=<TUA_CHIAVE_API_KEY>
-  \end{lstlisting}
-\end{enumerate}
-
-\subsection{Installazione Dipendenze}
-  All'interno della cartella "SecondBrain" è necessario eseguire il processo di installazione delle dipendenze.
+Per un utilizzo corretto in ambiente di produzione, tuttavia, si raccomanda di creare un file \texttt{.env} nella root del progetto, cioè nella cartella \texttt{SecondBrain}, non nella sottocartella \texttt{src}.
 
 \begin{enumerate}
+  \item Aprire un terminale e spostarsi nella root del progetto:
 
-  \item Aprire un terminale e spostarsi all'interno della root del progetto: 
   \begin{lstlisting}
     cd path/to/SecondBrain
   \end{lstlisting}
 
-  \item Eseguire il processo di build dell'applicazione con i seguenti comandi da eseguire in sequenza:
+  \item Creare o modificare il file \texttt{.env}:
 
   \begin{lstlisting}
-    make prod
-    make composer-install
-    make bash
-      php artisan key:generate
-      php artisan migrate
-      exit
-    make npm-install
-
-    ------------------------------------------
-      O in caso non sia disponibile Makefile
-    ------------------------------------------
-    
-    DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-
-    DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.yml -f docker-compose.prod.yml exec app composer install
-
-    DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.yml -f docker-compose.prod.yml exec app sh
-
-      php artisan key:generate
-      php artisan migrate
-      exit
-
-    DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.yml -f docker-compose.prod.yml exec app npm install
+    nano .env
   \end{lstlisting}
 
-  \item L'applicazione viene avviata automaticamente al termine dell'installazione. In caso si voglia terminare è sufficiente eseguire il comando:
-  
+  \item Inserire il seguente contenuto di esempio:
+
   \begin{lstlisting}
-    make down
+    APP_PORT=8080
+    APP_NAME=SecondBrain
+    APP_ENV=production
+    APP_DEBUG=false
+    APP_URL=http://localhost:8080
+
+    APP_KEY=
+
+    SESSION_DRIVER=database
+    CACHE_STORE=database
+    QUEUE_CONNECTION=database
+
+    LOG_CHANNEL=stack
+    LOG_STACK=single
+    LOG_LEVEL=info
+
+    MAIL_MAILER=log
+    MAIL_HOST=127.0.0.1
+    MAIL_PORT=2525
+    MAIL_USERNAME=null
+    MAIL_PASSWORD=null
+    MAIL_ENCRYPTION=null
+    MAIL_FROM_ADDRESS=hello@example.com
+    MAIL_FROM_NAME=SecondBrain
+
+    LLM_BASE_URL=<URL_BASE_LLM>
+    LLM_API_KEY=<TUA_CHIAVE_API_KEY>
+    LLM_MODEL=<MODELLO_LLM>
+  \end{lstlisting}
+
+  \item Sostituire i valori di \verb|<URL_BASE_LLM>|, \verb|<TUA_CHIAVE_API_KEY>| e \verb|<MODELLO_LLM>| con quelli forniti da Zucchetti. Ad esempio:
+
+  \begin{lstlisting}
+    LLM_BASE_URL=https://esempio-llm.zucchetti.it
+    LLM_API_KEY=chiave_api_personale
+    LLM_MODEL=gemma3:4b
+  \end{lstlisting}
+
+  \item Se la porta \texttt{8080} è già utilizzata da un altro servizio, modificare il valore di \texttt{APP\_PORT} e aggiornare coerentemente anche \texttt{APP\_URL}. Ad esempio:
+
+  \begin{lstlisting}
+    APP_PORT=8090
+    APP_URL=http://localhost:8090
   \end{lstlisting}
 
 \end{enumerate}
 
+\textbf{Nota su APP\_KEY:} se il valore \texttt{APP\_KEY} viene lasciato vuoto, il container genera automaticamente una chiave applicativa al primo avvio. Per ambienti di produzione si consiglia però di impostare una chiave stabile, così da evitare problemi con sessioni, cookie e dati cifrati in caso di ricreazione del container.
+
+Una chiave stabile può essere generata dopo il primo avvio tramite il comando:
+
+\begin{lstlisting}
+    make deploy-key
+\end{lstlisting}
+
+Il valore prodotto deve poi essere copiato nel file \texttt{.env}:
+
+\begin{lstlisting}
+    APP_KEY=base64:VALORE_GENERATO
+\end{lstlisting}
+
+\subsection{Istruzioni per l'installazione}
+All'interno della cartella \texttt{SecondBrain} è possibile installare e avviare l'applicazione con un unico comando:
+
+\begin{lstlisting}
+    make deploy
+\end{lstlisting}
+
+Il comando esegue automaticamente le seguenti operazioni:
+\begin{itemize}
+    \item costruzione dell'immagine Docker;
+    \item installazione delle dipendenze PHP tramite Composer all'interno dell'immagine;
+    \item installazione delle dipendenze JavaScript e build degli asset frontend tramite Vite;
+    \item avvio di un unico container contenente Nginx, PHP-FPM e il worker delle code Laravel;
+    \item creazione del database SQLite, se non già presente;
+    \item esecuzione automatica delle migration Laravel;
+    \item creazione dei volumi Docker necessari alla persistenza dei dati.
+\end{itemize}
+
+Non è necessario eseguire manualmente i comandi \texttt{composer install}, \texttt{npm install}, \texttt{php artisan key:generate} o \texttt{php artisan migrate}: queste operazioni vengono gestite automaticamente dal sistema di deploy.
+
+\subsubsection{Comando equivalente senza Makefile}
+Nel caso in cui \texttt{make} non fosse disponibile, è possibile avviare il sistema tramite Docker Compose con il seguente comando:
+
+\begin{lstlisting}
+    DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.deploy.yml up -d --build
+\end{lstlisting}
+
 \subsection{Esecuzione Applicazione}
-Dopo aver installato l'applicazione, l'esecuzione avviene nel seguente modo:
-\begin{enumerate}
-  \item Avviare l'applicazione con il comando:
+Dopo l'avvio, l'applicazione è accessibile aprendo il proprio browser all'indirizzo:
 
-    \begin{lstlisting}
-      make prod    
+\begin{center}
+  \href{http://localhost:8080}{http://localhost:8080}
+\end{center}
 
-    ------------------------------------------
-      O in caso non sia disponibile Makefile
-    ------------------------------------------
-    
-      DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-    \end{lstlisting}    
-    
-  \item Accedere all'applicazione aprendo il proprio browser all'indirizzo: \href{http://localhost:8080}{http://localhost:8080} (in caso sia stata indicata una porta differente nel file \texttt{.env} sostituire il valore \texttt{8080} con quello della porta utente impostata)
+Nel caso in cui sia stata configurata una porta differente tramite \texttt{APP\_PORT}, sostituire \texttt{8080} con la porta indicata nel file \texttt{.env}.
 
-  \item Per terminare eventualmente l'applicazione è sufficiente eseguire il comando:
-  
-  \begin{lstlisting}
-    make down
+Ad esempio, con:
 
-  ------------------------------------------
-    O in caso non sia disponibile Makefile
-  ------------------------------------------
-    
-    DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.yml -f docker-compose.prod.yml down
-  \end{lstlisting}
+\begin{lstlisting}
+    APP_PORT=8090
+    APP_URL=http://localhost:8090
+\end{lstlisting}
 
-\end{enumerate} 
+l'applicazione sarà disponibile all'indirizzo:
 
-\newpage
+\begin{center}
+  \href{http://localhost:8090}{http://localhost:8090}
+\end{center}
+
+\subsection{Arresto dell'applicazione}
+Per arrestare l'applicazione è sufficiente eseguire:
+
+\begin{lstlisting}
+    make deploy-down
+\end{lstlisting}
+
+Comando equivalente senza Makefile:
+
+\begin{lstlisting}
+    DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose -f docker-compose.deploy.yml down
+\end{lstlisting}
+
+\subsection{Comandi utili per la gestione}
+Il sistema di deploy fornisce alcuni comandi utili per la gestione dell'applicazione.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Comando} & \textbf{Descrizione} \\ \hline
+\texttt{make deploy} & Costruisce e avvia il container dell'applicazione. \\ \hline
+\texttt{make deploy-down} & Arresta e rimuove il container dell'applicazione. \\ \hline
+\texttt{make deploy-build} & Costruisce l'immagine Docker senza avviare il container. \\ \hline
+\texttt{make deploy-logs} & Visualizza i log dell'applicazione e dei processi interni al container. \\ \hline
+\texttt{make deploy-ps} & Mostra lo stato del container. \\ \hline
+\texttt{make deploy-bash} & Apre una shell all'interno del container. \\ \hline
+\texttt{make deploy-migrate} & Esegue manualmente le migration Laravel. \\ \hline
+\texttt{make deploy-clear} & Pulisce la cache applicativa di Laravel. \\ \hline
+\texttt{make deploy-key} & Genera una chiave applicativa Laravel da inserire in \texttt{APP\_KEY}. \\ \hline
+\end{tabularx}
+\caption{Comandi di gestione del deploy}
+\end{table}
+
+\subsection{Persistenza dei dati}
+Il deploy utilizza un database SQLite salvato all'interno di un volume Docker. Il database viene creato automaticamente nel percorso interno:
+
+\begin{lstlisting}
+    /data/database.sqlite
+\end{lstlisting}
+
+Il volume Docker associato permette di mantenere i dati anche in caso di arresto o ricreazione del container.
+
+Viene inoltre utilizzato un volume dedicato alla cartella \texttt{storage} dell'applicazione Laravel, in modo da mantenere persistenti file generati, log e contenuti applicativi salvati su filesystem.
+
+\textbf{Attenzione:} la rimozione manuale dei volumi Docker comporta la perdita dei dati salvati dall'applicazione.
+
+\subsection{Verifica installazione}
+Per verificare che l'applicazione sia stata avviata correttamente è possibile eseguire:
+
+\begin{lstlisting}
+    curl -I http://localhost:8080
+\end{lstlisting}
+
+In caso di installazione corretta, la risposta dovrebbe contenere un codice HTTP positivo, ad esempio:
+
+\begin{lstlisting}
+    HTTP/1.1 200 OK
+\end{lstlisting}
+
+In alternativa, è possibile aprire direttamente il browser all'indirizzo configurato tramite \texttt{APP\_URL}.
+
+\subsection{Risoluzione problemi comuni}
+\begin{itemize}
+    \item \textbf{Porta già occupata:} modificare \texttt{APP\_PORT} e \texttt{APP\_URL} nel file \texttt{.env}.
+    \item \textbf{Errore relativo ad APP\_KEY:} generare una chiave con \texttt{make deploy-key} e inserirla nel file \texttt{.env}.
+    \item \textbf{Funzionalità IA non disponibili:} verificare che \texttt{LLM\_BASE\_URL}, \texttt{LLM\_API\_KEY} e \texttt{LLM\_MODEL} siano configurati correttamente.
+    \item \textbf{Applicazione non raggiungibile:} verificare lo stato del container con \texttt{make deploy-ps} e consultare i log con \texttt{make deploy-logs}.
+\end{itemize}
 
 \section{Istruzioni all'uso}
 Tramite Second Brain, l'utente ha la possibilità di:
