@@ -552,7 +552,7 @@ Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la st
     \item \texttt{SavePromise} - modale per il salvataggio con conflitto, ovvero quando si presenta un incongruenza tra le modifiche locali e la versione persistita nell'archivio. Mostra tre opzioni: salvataggio con nome, aggiornamento della nota esistente o sovrascrittura della nota presente in archivio
     \item \texttt{DiscardPromise} - modale di avviso per il salvataggio della nota, azionato quando l'utente vuole uscire dall'editor della nota con modifiche non salvate
 \end{itemize}
-\subparagraph{BaseModal} Componente che definisce la struttura scheletrica comune a tutti i dialog dell'applicazione, esponendo tre slot (header, body e footer) che permettono ai componenti di iniettare il contenuto specifico mantenendo una presentazione visiva coerente. Segue la descrizione dei \textit{prop}:
+\subparagraph{BaseModal} Componente che definisce la struttura scheletrica comune a tutti i dialog dell'applicazione, esponendo tre slot (header, body e footer) che permettono ai componenti di iniettare il contenuto specifico mantenendo una presentazione visiva coerente. Segue la descrizione dei \texttt{prop}:
 \begin{itemize}
     \item \texttt{string \$title} - titolo del modale
 \end{itemize}
@@ -566,13 +566,13 @@ Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la st
     \label{fig:taost-list}
 \end{figure}
 \subparagraph{ToastList} Componente responsabile del rendering delle notifiche toast attiva nell'applicazione. Il componente utilizza il composable useToast per utilizzare la lista delle notifiche dinamica, da cui ottiene l'elenco dei toast attivi. Per ogni elemento della lista il componente renderizza un \texttt{ActionToast}, passandogli i dati necessari e delegando la gestione della chiusura tramite l'evento \texttt{@close}.
-\subparagraph{ActionToast} Componente che definisce la struttura di un singolo toast, composto dal titolo, il messaggio e il pulsante di chiusura. Il prop \texttt{type} determina la variante della notifica, che può essere di successo, di errore, di avvertenza o di info. Tramite una serie di mappe il \texttt{type} è associato ad una combinazione distinta di colori, che identificano visualmente il tipo del toast. L'icona nello stesso modo viene selezionata dinamicamente. Segue la descrizione dei \textit{prop}:
+\subparagraph{ActionToast} Componente che definisce la struttura di un singolo toast, composto dal titolo, il messaggio e il pulsante di chiusura. Il prop \texttt{type} determina la variante della notifica, che può essere di successo, di errore, di avvertenza o di info. Tramite una serie di mappe il \texttt{type} è associato ad una combinazione distinta di colori, che identificano visualmente il tipo del toast. L'icona nello stesso modo viene selezionata dinamicamente. Segue la descrizione dei \texttt{prop}:
 \begin{itemize}
     \item \texttt{string \$title} - titolo del toast
     \item \texttt{string \$message} - messaggio della notifica
     \item \texttt{ToastType \$type} - tipo del toast. ToastType è un \textit{Union Type} definito nel composable \texttt{useToast}
 \end{itemize}
-Segue la descrizione degli \textit{emit}:
+Segue la descrizione degli \texttt{emit}:
 \begin{itemize}
     \item \texttt{close: []} - evento emesso al click del pulsante di chiusura
 \end{itemize}
@@ -707,7 +707,7 @@ Segue la descrizione dei metodi esposti:
     \label{fig:note-archive-page}
 \end{figure}
 \subparagraph{NoteArchivePage} Vista principale dell'archivio. Al montaggio, recupera la lista delle note tramite il composable \texttt{useNotes}; per ogni nota l'archivio renderizza un \texttt{NoteArchiveCard}, passandogli i metadati della nota tramite \texttt{prop}. La pagina espone una barra di ricerca che filtra le note per nome in tempo reale. Dispone inoltre di un pulsante di importante che consente di caricare una nota in formato Markdown tramite un input file. Ogni \texttt{NoteArchiveCard} supporta un menu contestuale \texttt{ContextMenu} che viene chiamato dall'evento \texttt{@contextmenu}, nativo del browser. La pagina definisce le azioni del menu contestuale tramite un array di oggetti \texttt{ContextAction}: rinomina, clonazione, esportazione in vari formati ed elimina. La pagina gestisce il click di una voce del menu contestuale tramite la funzione \texttt{handleAction}, che lega l'evento \texttt{@action-clicked} di \texttt{ContextMenu} con l'azione della voce (\texttt{handler} di \texttt{ContextAction}).
-\subparagraph{NoteArchiveCard} Componente che rappresenta una nota nell'archivio, visualizzando le informazioni principali. Quando cliccata, reindirizza tramite \texttt{<RouterLink>} alla rotta \texttt{/notes/:id} per aprirla nell'editor. Segue la descrizione dei \textit{prop}:
+\subparagraph{NoteArchiveCard} Componente che rappresenta una nota nell'archivio, visualizzando le informazioni principali. Quando cliccata, reindirizza tramite \texttt{<RouterLink>} alla rotta \texttt{/notes/:id} per aprirla nell'editor. Segue la descrizione dei \texttt{prop}:
 \begin{itemize}
     \item \texttt{string \$id} - id univoco della nota
     \item \texttt{string \$name} - nome della nota
@@ -718,7 +718,7 @@ Segue la descrizione dei metodi esposti:
 \begin{itemize}
     \item \texttt{string \$label} - nome della voce nel menu
     \item \texttt{(T \$item) => void | Promise<void> \$handler} - funzione opzionale sincrona / asincrona che riceve l'elemento come argomento
-    \item \texttt{ContextActionVariant \$variant} - opzionale, determina la variante visiva della voce (\texttt{ContextActionVariant} è un \textit{Union Type} che può essere \texttt{'default'} o \texttt{'warning'})
+    \item \texttt{ContextActionVariant \$variant} - opzionale, determina la variante visiva della voce. (\texttt{ContextActionVariant} è un \textit{Union Type} che può essere \texttt{'default'} o \texttt{'warning'})
 \end{itemize}
 \subparagraph{useContextMenu} Composable responsabile della gestione dello stato del menu contestuale. La variabile reattiva \texttt{selectedItem} di tipo \texttt{T} rappresenta il tipo di elemento selezionato. Oltre a \texttt{selectedItem}, mantiene due stati reattivi: \texttt{isOpen} (controlla la visibilità del menu), \texttt{position} (determina ale coordinate di rendering). Segue la descrizione dei metodi esposti:
 \begin{itemize}
@@ -726,13 +726,13 @@ Segue la descrizione dei metodi esposti:
     \item \texttt{openAt(number \$x, number \$y, T \$item)} - apre il menu contestuale alle coordinate passate come parametri
     \item \texttt{close()} - chiude il menu contestuale
 \end{itemize}
-\subparagraph{ContextMenu} Componente che gestisce il rendering del menu contestuale. Riceve la posizione e le voci del menu tramite \texttt{prop}. Viene montato direttamente sul \texttt{<body>} del documento tramite \texttt{Teleport}, meccanismo nativo di Vue che consente di renderizzare un componente al di fuori della gerarchia DOM del componente padre. Tramite la funzione \texttt{updateMenuPosition}, calcola la posizione definitiva del menu, attendendo che il DOM sia aggiornato prima di leggere le dimensioni reali dell'elemento (usando \texttt{nextTick}). Il componente quindi può gestire la visualizzazione correggendo automaticamente la posizione da destra a sinistra, o dall'alto al basso, mantenendo un padding minimo costante dai bordi dello schermo. Segue la descrizione dei \textit{prop}:
+\subparagraph{ContextMenu} Componente che gestisce il rendering del menu contestuale. Riceve la posizione e le voci del menu tramite \texttt{prop}. Viene montato direttamente sul \texttt{<body>} del documento tramite \texttt{Teleport}, meccanismo nativo di Vue che consente di renderizzare un componente al di fuori della gerarchia DOM del componente padre. Tramite la funzione \texttt{updateMenuPosition}, calcola la posizione definitiva del menu, attendendo che il DOM sia aggiornato prima di leggere le dimensioni reali dell'elemento (usando \texttt{nextTick}). Il componente quindi può gestire la visualizzazione correggendo automaticamente la posizione da destra a sinistra, o dall'alto al basso, mantenendo un padding minimo costante dai bordi dello schermo. Segue la descrizione dei \texttt{prop}:
 \begin{itemize}
     \item \texttt{ContextAction[] \$actions} - array di voci del menu
     \item \texttt{number \$x} - posizione x del menu
     \item \texttt{number \$y} - posizione y del menu
 \end{itemize}
-Segue la descrizione degli \textit{emit}:
+Segue la descrizione degli \texttt{emit}:
 \begin{itemize}
     \item \texttt{action-clicked: [ContextAction \$action]} - evento emesso quando l'utente clicca una voce del menu
     \item \texttt{close: []} - evento emesso quando l'utente clicca fuori dal menu contestuale (\texttt{onClickOutside})
@@ -760,12 +760,100 @@ Segue la descrizione degli \textit{emit}:
     \item \texttt{loadNote()} - carica la nota dall'archivio in base al parametro \texttt{id} nella rotta (\texttt{/notes/:id}) e aggiorna le variabili di stato
     \item \texttt{setEditorContent(string: html)} - aggiorna la variabile di stato reattiva \texttt{noteContent} con il parametro \texttt{html}
 \end{itemize}
-\subparagraph{useNoteEditorUI} Composable responsabile della gestione dell'interfaccia dell'editor. Si occupa esclusivamente della logica di presentazione, delegando la logica di business a \texttt{useNoteEditor} e le chiamate AI e \texttt{useAi}.
-\subparagraph{AsideAI}
-\subparagraph{NoteEditorHeader}
+\subparagraph{useNoteEditorUI} Composable responsabile della gestione dell'interfaccia dell'editor. Si occupa esclusivamente della logica di presentazione, delegando la logica di business a \texttt{useNoteEditor} e le chiamate AI e \texttt{useAi}. Lo stato gestito comprende:
+\begin{itemize}
+    \item la modalità di visualizzazione \texttt{viewMode}, che tramite l'\textit{Union Type} \texttt{ViewMode} può essere \texttt{editor}, \texttt{split} o \texttt{render}
+    \item lo stato del pannello AI (\texttt{isAiOpen}, \texttt{aiAction}, \texttt{selectedText}, \texttt{aiResult})
+    \item le opzioni di configurazione delle funzioni AI (\texttt{hatMode}, \texttt{languageMode}, \texttt{rewriteStyle})
+    \item il riferimento diretto all'elemento DOM dell'editor \texttt{editorRef}
+\end{itemize}
+Il composable gestisce il rendering Markdown tramite la libreria \textit{marked}. La formattazione del testo è gestita da \texttt{applyFormat}, che opera sulla selezione corrente del browser tramite \texttt{document.execCommand}. Il sistema undo / redo sfrutta anch'esso \texttt{execCommand}, delegando la gestione della cronologia al browser. Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{setViewMode(ViewMode \$mode)} - aggiorna la modalità di visualizzazione dell'editor
+    \item \texttt{setEditorRef{HTMLElement \$element}} - salva il riferimento all'elemento HTML dell'editor
+    \item \texttt{handleEditorInput()} - sincronizza il contenuto corrente dell'editor con lo stato dell'applicazione aggiornado il contenuto della nota
+    \item \texttt{undoEdit()} - esegue l'operazione di undo dell'ultima modifica effettuata nell'editor
+    \item \texttt{redoEdit()} - esegue l'operazione di redo dell'ultima modifica effettuata nell'editor
+    \item \texttt{applyFormat('ordered\_list' | 'unordered\_list' | 'bold' | 'italic' | 'underline' | 'strikethrough' | 'comment' | 'link' \$type)} - applica o rimuove una formattazione Markdown o HTML sul testo selezionato
+    \item \texttt{openAiPanel('summarize' | 'hats' | 'translate' | 'rewrite' | 'distant writing' \$action)} - apre il pannello delle funzionalità IA salvando il testo selezionato e l'azione richiesta
+    \item \texttt{closeAiPanel()} - chiude il pannello IA e resetta l'azione selezionata
+    \item \texttt{handleAiRun(payload): Promise<void>} - esegue l'elaborazione IA richiesta utilizzando \texttt{useAI}
+    \item \texttt{insertAiResult(InsertMode \$mode)} - inserisce nell'editor il risultato generato dall'IA secondo la modalità scelta (\texttt{InsertMode} \textit{Union Type} \texttt{= 'before' | 'after' | 'replace' | 'bottom'})
+    \item \texttt{handleBeforeInput()} - intercetta le modifiche effettuate all'interno di blocchi IA e segnala eventuali cambiamenti che potrebbero invalidare contenuti generati automaticamente
+    \item \texttt{handlePaste(ClipboardEvent \$event)} - gestisce l'incollaggio del testo nell'editor
+    \item \texttt{handleEditorKeydown(KeyboardEvent \$event)} - gestisce gli eventi della tastiera nell'editor
+    \item \texttt{stripAiMarkers(string \$html): string} - rimuove dal contenuto HTML tutti i marcatori e metadati associati ai blocchi IA, restituendo solo il testo effettivo
+    \item \texttt{retranslateAiBlock(HTMLElement \$child): Promise<void>} - rigenera automaticamente una traduzione IA aggiornata quando il testo sorgente viene modificato
+    \item \texttt{escapeHtml(string \$value): string} - effettua l'escape dei caratteri HTML speciali per prevenire interpretazioni non desiderate del contenuto
+    \item \texttt{htmlToMarkdownText(string \$html): string} - converte il contenuto HTML dell'editor in testo Markdown pulito, eliminando marcatori IA e normalizzando gli spazi
+    \item \texttt{formatList(string \$text, 'ordered\_list' | 'unordered\_list' \$type): string} - formatta un insieme di righe come lista ordinata o non ordinata
+    \item \texttt{handleListEnter(Node \$textNode, number \$cursorOffset, Range \$range): boolean} - gestisce automaticamente il comportamento del tasto \texttt{Enter} all'interno delle liste Markdown, continuando o terminando la lista
+\end{itemize}
+\subparagraph{AsideAI} Pannello laterlae dell'intelligenza artificiale, renderizzando come elemento \texttt{<aside>} sul lato destro dello schermo. Il pannello si adatta dinamicamente all'azione IA corrente tramite due \texttt{computed} property: \texttt{panelTitle} e \texttt{actionLabel}, che derivano il titolo e l'etichetta del pulsante principale dell'azione selezionata. Le opzioni di configurazione vengono mostrate condizionalmente in base all'azione:
+\begin{itemize}
+    \item un selettore del cappello per la modalità \textit{Sei cappelli di De Bono}
+    \item un selettore della lingua per la traduzione
+    \item un gruppo di pulsanti a selezione multipla per gli stili di riscrittura (grammatica, estensione, lessico e stile)
+\end{itemize}
+L'esecuzione dell'azione è gestita da \texttt{runAction}, che costituisce il payload corretto in base all'azione corrente, comunicandolo alla pagina padre tramite l'evento \texttt{run}. Il risultato restituito dall'IA viene visualizzato in un'area di testo scorrevole. Segue la descrizione dei \texttt{prop}:
+\begin{itemize}
+    \item \texttt{boolean \$open} - indica la visibilità del pannello
+    \item \texttt{AiAction \$action} - rappresenta l'azione IA selezionata
+    \item \texttt{string \$selectedText} - contiene il testo selezionato nell'editor
+    \item \texttt{string \$result} - contiene il risultato prodotto dall'IA
+    \item \texttt{boolean \$loading} - indica se una richiesta IA è attualmente in esecuzione (per mostrare uno stato di caricamento e disabilitare i controlli)
+    \item \texttt{HatMode \$hatMode} - definisce il cappello selezionato (\texttt{HatMode} \textit{Union Type} \texttt{= 'white' | 'red' | 'black' | 'yellow' | 'green' | 'blue' })
+    \item \texttt{LanguageMode \$languageMode} - rappresenta la lingua selezionata durante la traduzione (\texttt{LanguageMode} \textit{Union Type} \texttt{= 'it' | 'en' | 'fr' | 'de' | 'es' })
+    \item \texttt{RewriteStyle[] rewriteStyle} - contiene l'elenco degli stili di riscrittura selezionati (\texttt{RewriteStyle} \textit{Union Type} \texttt{= 'grammar' | 'extension' | 'lexicon' | 'stylistic' })
+\end{itemize}
+Segue la descrizione degli \texttt{emit}:
+\begin{itemize}
+    \item \texttt{close []} - emesso quando l'utente chiude il pannello
+    \item \texttt{update:hatMode [HatMode \$value]} - aggiorna il cappello selezionato
+    \item \texttt{update:languageMode [LanguageMode \$value]} - aggiorna la lingua scelta
+    \item \texttt{update:rewriteStyle [RewriteStyle \$value]} - aggiorna gli stili selezionati per la riscrittura
+    \item \texttt{run [payload]} - richiede l'esecuzione di un'operazione IA inviando l'azione selezionata, il testo da elaborare ed eventuali opzioni aggiuntive
+    \item \texttt{insert ['before' | 'after' | 'replace' | 'bottom' mode]} - richiede l'inserimento del risultato IA nell'editor specificando la modalità di inserimento
+\end{itemize}
+\subparagraph{NoteEditorHeader} Componente che costituisce l'intestazione dell'editor di note, strutturata in tre colonne. La prima colonna contiene un campo di input per il nome della nota, compatibile con la direttiva \texttt{v-model} di Vue, insieme all'indicatore di salvataggio per avvisare l'utente di modifiche non salvate. La colonna centrale presenta il selettore della modalità di visualizzazione (editor, split, render). La terza colonna monta il componente \texttt{NoteEditorActions}. Segue la descrizione dei \texttt{prop}:
+\begin{itemize}
+    \item \texttt{string \$name} - nome della nota
+    \item \texttt{boolean \$isDirty} - valore booleano che controlla se la noda ha subito modifiche
+    \item \texttt{ViewMode \$viewMode} - la modalità di visione dell'editor
+\end{itemize}
+Segue la descrizione degli \texttt{emit}:
+\begin{itemize}
+    \item \texttt{update:name [string \$value]} - emesso al cambio del nome della nota
+    \item \texttt{change-view [ViewMode \$mode]} - emesso al cambio della modalità di visualizzazione
+\end{itemize}
 \subparagraph{NoteEditorActions} Componente che raggruppa le azioni disponibili sulla nota nell'header dell'editor. Accede allo stato dell'editor tramite \texttt{useNoteEditor} sfruttando il meccanismo provide / inject. Espone tre controlli: il pulsante \textit{Salva}, che chiama \texttt{saveTheNote}; il pulsante \textit{Salva come...}, che chiama \texttt{saveTheNoteAs} e che viene disabilitato quando la nota è nuova; il pulsante \textit{Esporta}, che apre un menu contestuale con le opzioni di esportazione, tramite l'utilizzo di un menu contestuale.
-\subparagraph{NoteEditorToolbar} Componente che costruisce la barra degli strumenti dell'editor. Viene diviso verticalmente in tre gruppi funzionali: il primo gruppo contiene i controlli di cronologia (undo / redo), il secondo raccoglie i controlli di formattazione del testo e il terzo espone le azioni AI disponibili.
-\subparagraph{NoteEditorContent} Componente che costituisce l'area di lavoro principale dell'editor, diviso in due sezioni, sezione di editor e sezione di render.
+\subparagraph{NoteEditorToolbar} Componente che costruisce la barra degli strumenti dell'editor. Viene diviso verticalmente in tre gruppi funzionali: il primo gruppo contiene i controlli di cronologia (undo / redo), il secondo raccoglie i controlli di formattazione del testo e il terzo espone le azioni AI disponibili. Contiene inoltre un contatore di lettere / parole reattivo. Segue la descrizione dei \texttt{prop}:
+\begin{itemize}
+    \item \texttt{number \$wordCount} - numero di parole nella nota
+    \item \texttt{number \$charCount} - numero di lettere nella nota
+\end{itemize}
+Segue la descrizione degli \texttt{emit}:
+\begin{itemize}
+    \item \texttt{undo: []} - emesso quando si clicca il pulsante di undo
+    \item \texttt{redo: []} - emesso quando si clicca il pulsante di redo
+    \item \texttt{format: ['bold' | 'italic' | 'underline' | 'strikethrough' | 'comment' | 'link' | 'ordered\_list' | 'unordered\_list' \$type]} - emesso quando si clicca un pulsante di formattazione
+    \item \texttt{ai: [Exclude<AiAction, null> action]} - emesso quando si clicca un pulsante di interazione con IA
+\end{itemize}
+\subparagraph{NoteEditorContent} Componente che costituisce l'area di lavoro principale dell'editor, diviso in due sezioni, sezione di editor e sezione di render. La prima sezione delega al browser la gestione nativa della modifica del testo. Al montaggio, il contenuto iniziale viene iniettato direttamente nell'\texttt{innerHTML} dell'elemento. Un \texttt{watch} sul contenuto garantisce la sincronizzazione dell'\texttt{innerHTML} quando il contenuto viene modificato esternamente (ad esempio dopo un'operazione IA). Gli eventi nativi dell'editor vengono propagati alla pagina padre, che vengono gestiti tramite \texttt{useNoteEditorUI}. La seconda sezione, l'area di rendering, visualizza il contenuto Markdown convertito in HTML tramite la direttiva \texttt{v-html}.  Segue la descrizione dei \texttt{prop}:
+\begin{itemize}
+    \item \texttt{string \$content} - il contenuto Markdown della nota
+    \item \texttt{ViewMode \$viewMode} - la modalità di visione dell'editor
+    \item \texttt{string | Promise<string> \$renderHtml} - il contenuto renderizzato della nota
+\end{itemize}
+Segue la descrizione degli \texttt{emit}:
+\begin{itemize}
+    \item \texttt{editor-ready: [HTMLElement \$element]} - emesso al montaggio del componente, fornisce il riferimento a \texttt{HTMLElement}
+    \item \texttt{input: []} - emesso ogni volta che il contenuto dell'editor viene modificato dall'utente
+    \item \texttt{beforeInput: [InputEvent \$event]} - intercetta l'evento \texttt{beforeInput} per permettere di gestire o validare l'input in modo preventivo
+    \item \texttt{paste: [ClipboardEvent \$event]} - emesso durante l'incollaggio di contenuti nell'editor
+    \item \texttt{keydown: [KeyboardEvent \$event]} - notifica la pressione dei tasti da tastiera
+    \item \texttt{click: [MouseEvent \$event]} - emesso al click del mouse all'interno dell'editor
+\end{itemize}
 
 \subsection{Architettura di deployment}
 La scelta della tipologia di \textbf{architettura di deployment} è stata guidata dal contesto di utilizzo del prodotto, dai requisiti di scalabilità previsti dal capitolato e dalle caratteristiche dello stack tecnologico.
