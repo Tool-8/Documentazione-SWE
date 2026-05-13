@@ -502,7 +502,7 @@ Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la st
     \item \textbf{BlueHat} - valuta la chiarezza espositiva e il processo comunicativo del testo, fornendo una riflessione sull'organizzazione del contenuto
 \end{itemize}
 
-\subsection{Frontend}
+\subsubsection{Frontend}
 
 \paragraph{Root Component}
 \vspace{0.5em}
@@ -684,7 +684,19 @@ Segue la descrizione dei metodi esposti:
     \caption{Diagramma UML composable useAi}
     \label{fig:use-ai}
 \end{figure}
-\subparagraph{useAi}
+\subparagraph{useAi} Composable responsabile dell'integrazione con il servizio IA tramite l'utilizzo di \texttt{aiService}. Tutta la logica asincrona è centralizzata nella funzione privata \texttt{execute}, che si occupa di gestire le variabili reattive di stato \texttt{loading}, \texttt{error} e \texttt{result} (le prime due con funzione medesima a \texttt{useNotes}, mentre l'ultima per salvare la risposta del servizio). Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{translate(string \$content, AiLang \$lang = 'en'): Promise<void>} - traduce il contenuto nella lingua desiderata
+    \item \texttt{summarize(string \$content): Promise<void>} - riassume il contenuto
+    \item \texttt{rewrite(string \$content, [AiTone, ...AiTone[]] \$style): Promise<void>} - riscrive il contenuto in base ai toni desiderati
+    \item \texttt{distantWriting(string \$content): Promise<void>} - ritorna una risposta in base al prompt inviato tramite \texttt{content}
+    \item \texttt{blackhat(string \$content): Promise<void>} - critica il contenuto secondo il cappello nero
+    \item \texttt{bluehat(string \$content): Promise<void>} - critica il contenuto secondo il cappello blu
+    \item \texttt{greenhat(string \$content): Promise<void>} - critica il contenuto secondo il cappello verde
+    \item \texttt{redhat(string \$content): Promise<void>} - critica il contenuto secondo il cappello rosso
+    \item \texttt{whitehat(string \$content): Promise<void>} - critica il contenuto secondo il cappello bianco
+    \item \texttt{yellowhat(string \$content): Promise<void>} - critica il contenuto secondo il cappello giallo
+\end{itemize}
 
 \paragraph{Pagina di archivio note}
 \vspace{0.5em}
@@ -694,11 +706,37 @@ Segue la descrizione dei metodi esposti:
     \caption{Diagramma UML pagina di archivio}
     \label{fig:note-archive-page}
 \end{figure}
-\subparagraph{NoteArchivePage}
-\subparagraph{useContextMenu}
-\subparagraph{ContextAction (Type)}
-\subparagraph{ContextMenu}
-
+\subparagraph{NoteArchivePage} Vista principale dell'archivio. Al montaggio, recupera la lista delle note tramite il composable \texttt{useNotes}; per ogni nota l'archivio renderizza un \texttt{NoteArchiveCard}, passandogli i metadati della nota tramite \texttt{prop}. La pagina espone una barra di ricerca che filtra le note per nome in tempo reale. Dispone inoltre di un pulsante di importante che consente di caricare una nota in formato Markdown tramite un input file. Ogni \texttt{NoteArchiveCard} supporta un menu contestuale \texttt{ContextMenu} che viene chiamato dall'evento \texttt{@contextmenu}, nativo del browser. La pagina definisce le azioni del menu contestuale tramite un array di oggetti \texttt{ContextAction}: rinomina, clonazione, esportazione in vari formati ed elimina. La pagina gestisce il click di una voce del menu contestuale tramite la funzione \texttt{handleAction}, che lega l'evento \texttt{@action-clicked} di \texttt{ContextMenu} con l'azione della voce (\texttt{handler} di \texttt{ContextAction}).
+\subparagraph{NoteArchiveCard} Componente che rappresenta una nota nell'archivio, visualizzando le informazioni principali. Quando cliccata, reindirizza tramite \texttt{<RouterLink>} alla rotta \texttt{/notes/:id} per aprirla nell'editor. Segue la descrizione dei \textit{prop}:
+\begin{itemize}
+    \item \texttt{string \$id} - id univoco della nota
+    \item \texttt{string \$name} - nome della nota
+    \item \texttt{string \$last\_edit} - data di ultima modifica
+    \item \texttt{string \$creation} - data di creazione
+\end{itemize}
+\subparagraph{ContextAction (type)} Tipo generico che definisce la struttura di una voce del menu contestuale. Il parametro \texttt{T} indica il tipo dell'elemento su cui l'azione opera:
+\begin{itemize}
+    \item \texttt{string \$label} - nome della voce nel menu
+    \item \texttt{(T \$item) => void | Promise<void> \$handler} - funzione opzionale sincrona / asincrona che riceve l'elemento come argomento
+    \item \texttt{ContextActionVariant \$variant} - opzionale, determina la variante visiva della voce (\texttt{ContextActionVariant} è un \textit{Union Type} che può essere \texttt{'default'} o \texttt{'warning'})
+\end{itemize}
+\subparagraph{useContextMenu} Composable responsabile della gestione dello stato del menu contestuale. La variabile reattiva \texttt{selectedItem} di tipo \texttt{T} rappresenta il tipo di elemento selezionato. Oltre a \texttt{selectedItem}, mantiene due stati reattivi: \texttt{isOpen} (controlla la visibilità del menu), \texttt{position} (determina ale coordinate di rendering). Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{open(MouseEvent \$event, T \$item)} - apre il menu contestuale alle coordinate del puntatore, passando l'elemento selezionato tramite \texttt{item}. Utilizza la funzione \texttt{preventDefault} per sopprimere il menu contestuale predefinito del browser
+    \item \texttt{openAt(number \$x, number \$y, T \$item)} - apre il menu contestuale alle coordinate passate come parametri
+    \item \texttt{close()} - chiude il menu contestuale
+\end{itemize}
+\subparagraph{ContextMenu} Componente che gestisce il rendering del menu contestuale. Riceve la posizione e le voci del menu tramite \texttt{prop}. Viene montato direttamente sul \texttt{<body>} del documento tramite \texttt{Teleport}, meccanismo nativo di Vue che consente di renderizzare un componente al di fuori della gerarchia DOM del componente padre. Tramite la funzione \texttt{updateMenuPosition}, calcola la posizione definitiva del menu, attendendo che il DOM sia aggiornato prima di leggere le dimensioni reali dell'elemento (usando \texttt{nextTick}). Il componente quindi può gestire la visualizzazione correggendo automaticamente la posizione da destra a sinistra, o dall'alto al basso, mantenendo un padding minimo costante dai bordi dello schermo. Segue la descrizione dei \textit{prop}:
+\begin{itemize}
+    \item \texttt{ContextAction[] \$actions} - array di voci del menu
+    \item \texttt{number \$x} - posizione x del menu
+    \item \texttt{number \$y} - posizione y del menu
+\end{itemize}
+Segue la descrizione degli \textit{emit}:
+\begin{itemize}
+    \item \texttt{action-clicked: [ContextAction \$action]} - evento emesso quando l'utente clicca una voce del menu
+    \item \texttt{close: []} - evento emesso quando l'utente clicca fuori dal menu contestuale (\texttt{onClickOutside})
+\end{itemize}
 \paragraph{Pagina di editor note}
 \vspace{0.5em}
 \begin{figure}[H]
@@ -707,14 +745,27 @@ Segue la descrizione dei metodi esposti:
     \caption{Diagramma UML pagina di editor}
     \label{fig:note-editor-page}
 \end{figure}
-\subparagraph{NoteEditorPage}
+\subparagraph{NoteEditorPage} Vista principale dell'editor di note. Al suo interno vengono montati \texttt{NoteEditorHeader}, \texttt{NoteEditorToolbar} e \texttt{NoteEditorContent}. La pagina implementa un guard di navigazione tramite \texttt{onBeforeRouteLeave}: quando l'utente tenta di abbandonare la pagina con modifiche non salvate, viene aperto il modale \texttt{DiscardPromise}.
+\subparagraph{useNoteEditor} Composable che gestisce lo stato e la logica della nota nell'editor. All'interno viene implementato il pattern provide / inject di Vue (\texttt{provideNoteEditor} / \texttt{useNoteEditor}) per rendere lo stato disponibile all'intera gerarchia di componenti figli della pagina. Lo stato centrale è composto da \texttt{noteContent} e \texttt{noteName}, che rappresentano il contenuto e il nome della nota, e da \texttt{isDirty}, che segnala la presenza di modifiche non salvate tramite un \texttt{watch} che confronta il contenuto attuale con quello originale (normalizzando prima il testo tramite \texttt{normalizeEditorHtml}). Segue la descrizione dei metodi esposti:
+\begin{itemize}
+    \item \texttt{saveTheNote(boolean \$exit = false)} - gestisce i diversi casi di salvataggio:
+    \begin{itemize}
+        \item Primo salvataggio: controlla se l'editor non ha un id associato, e chiama la funzione privata \texttt{saveNew} per archiviare la nota nel server locale
+        \item Salvataggio nota esistente: salva il nome e il contenuto della nota in base all'\texttt{id} univoco
+        \item In caso di conflitto (\texttt{NoteNotUpdatedError}), apre il modale \texttt{SavePromise}: in base alla scelta dell'utente, chiama le funzioni private di sovrascrittura (\texttt{overwrite}), di salvataggio con nome (\texttt{saveAs}) o di aggiornamento (\texttt{update})
+    \end{itemize}
+    il booleano \texttt{exit} indica se alla fine del salvataggio il composable dovrebbe cambiare rotta per aggiornare l'\texttt{id} all'interno della rotta (nel caso di primo salvataggio e del salvataggio con nome)
+    \item \texttt{saveTheNoteAs(boolean \$exit = false)} - gestisce il salvataggio con nome. Mostra un toast di errore in caso si tratti di una nuova nota non presente nell'archivio. Il booleano \texttt{exit} ha la stessa funzione di quello citato sopra
+    \item \texttt{exportTheNote('pdf' | 'md' | 'html' \$format)} - chiama la funzione \texttt{exportNoteFromRaw} di \texttt{useNotes} con lo stato corrente della nota
+    \item \texttt{loadNote()} - carica la nota dall'archivio in base al parametro \texttt{id} nella rotta (\texttt{/notes/:id}) e aggiorna le variabili di stato
+    \item \texttt{setEditorContent(string: html)} - aggiorna la variabile di stato reattiva \texttt{noteContent} con il parametro \texttt{html}
+\end{itemize}
+\subparagraph{useNoteEditorUI} Composable responsabile della gestione dell'interfaccia dell'editor. Si occupa esclusivamente della logica di presentazione, delegando la logica di business a \texttt{useNoteEditor} e le chiamate AI e \texttt{useAi}.
 \subparagraph{AsideAI}
 \subparagraph{NoteEditorHeader}
-\subparagraph{NoteEditorActions}
-\subparagraph{NoteEditorToolbar}
-\subparagraph{NoteEditorContent}
-\subparagraph{useNoteEditor}
-\subparagraph{useNoteEditorUI}
+\subparagraph{NoteEditorActions} Componente che raggruppa le azioni disponibili sulla nota nell'header dell'editor. Accede allo stato dell'editor tramite \texttt{useNoteEditor} sfruttando il meccanismo provide / inject. Espone tre controlli: il pulsante \textit{Salva}, che chiama \texttt{saveTheNote}; il pulsante \textit{Salva come...}, che chiama \texttt{saveTheNoteAs} e che viene disabilitato quando la nota è nuova; il pulsante \textit{Esporta}, che apre un menu contestuale con le opzioni di esportazione, tramite l'utilizzo di un menu contestuale.
+\subparagraph{NoteEditorToolbar} Componente che costruisce la barra degli strumenti dell'editor. Viene diviso verticalmente in tre gruppi funzionali: il primo gruppo contiene i controlli di cronologia (undo / redo), il secondo raccoglie i controlli di formattazione del testo e il terzo espone le azioni AI disponibili.
+\subparagraph{NoteEditorContent} Componente che costituisce l'area di lavoro principale dell'editor, diviso in due sezioni, sezione di editor e sezione di render.
 
 \subsection{Architettura di deployment}
 La scelta della tipologia di \textbf{architettura di deployment} è stata guidata dal contesto di utilizzo del prodotto, dai requisiti di scalabilità previsti dal capitolato e dalle caratteristiche dello stack tecnologico.
