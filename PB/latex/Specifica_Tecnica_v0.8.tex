@@ -529,8 +529,16 @@ Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la st
     \label{fig:app-sidebar}
 \end{figure}
 \subparagraph{AppSidebar} Componente di navigazione principale dell'applicazione, reso come elemento \texttt{<aside>} persistente sul lato sinistro dell'interfaccia. Implementa un comportamento di apertura / chiusura reattivo: tramite \texttt{Vue Router} si chiude automaticamente quando l'utente apre l'editor dell'applicazione. L'utente può controllare la visibilità manualmente tramite un pulsante di toggle. All'interno sono definiti due componenti, \texttt{NavButton} e \texttt{NavItem}, e un selettore per il tema dell'applicazione.
-\subparagraph{NavButton} Bottone che rappresenta una chiamata all'azione - segnala all'utente un'operazione da compiere.
-\subparagraph{NavItem} Bottone che rappresenta una destinazione di navigazione - segnala all'utente dove si trova nell'applicazione (la route attiva). Quando il link corrisponde alla rotta corrente, viene applicato uno stile visivo distinto, che funge da indicatore di posizione nella navigazione.
+\subparagraph{NavButton} Bottone che rappresenta una chiamata all'azione - segnala all'utente un'operazione da compiere. Segue la descrizione dei \texttt{prop}:
+\begin{itemize}
+    \item \texttt{string \$label} - label del bottone
+    \item \texttt{string \$to} - rotta di reindirizzamento
+\end{itemize}
+\subparagraph{NavItem} Bottone che rappresenta una destinazione di navigazione - segnala all'utente dove si trova nell'applicazione (la route attiva). Quando il link corrisponde alla rotta corrente, viene applicato uno stile visivo distinto, che funge da indicatore di posizione nella navigazione. Segue la descrizione dei \texttt{prop}:
+\begin{itemize}
+    \item \texttt{string \$label} - label del bottone
+    \item \texttt{string \$to} - rotta di reindirizzamento
+\end{itemize}
 \subparagraph{useTheme} Composable che si occupa della gestione del tema visivo dell'applicazione (chiaro / scuro / sistema); recupera la preferenza salvata in \texttt{localStorage} e lo applica in modo immediato, garantendo una visione persistente tra sessioni diverse. In assenza di una preferenza salvata, il tema predefinito è system, che delega la scelta al sistema operativo. Segue la descrizione dei metodi esposti:
 \begin{itemize}
     \item \texttt{setTheme(Theme \$t)} - applica il tema passato dalla funzione e lo memorizza nella variabile \texttt{theme}.
