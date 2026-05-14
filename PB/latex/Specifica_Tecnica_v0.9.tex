@@ -4,6 +4,12 @@
 \usepackage{float}
 \usepackage{tabularx}
 
+% Struttura cartelle frontend
+\usepackage{forest}
+\usepackage{xcolor}
+\definecolor{commentgray}{RGB}{140,140,140}
+
+
 % Lingua 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -108,7 +114,9 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  0.8 & Niccolò Feltrin & Aggiornata sezione architettura logica frontend (sezione 3.2) & 12/05/2026 & Spadiliero Ruben \\
+  0.9 & Niccolò Feltrin & Aggiunta introduzione al frontend (sezione 3.1.2) & 14/05/2026 & - \\
+  \hline
+  0.8 & Niccolò Feltrin & Aggiornata sezione architettura logica frontend (sezione 3.1.2) & 12/05/2026 & Spadiliero Ruben \\
   \hline
   0.7 & Besnik Murtezan & Aggiornate descrizioni tecnologie frontend & 11/05/2026 & Niccolò Feltrin \\
   \hline
@@ -502,7 +510,86 @@ Tutte le strategy implementano \textit{LlmStrategyInterface} e condividono la st
     \item \textbf{BlueHat} - valuta la chiarezza espositiva e il processo comunicativo del testo, fornendo una riflessione sull'organizzazione del contenuto
 \end{itemize}
 
+\newpage
+
 \subsubsection{Frontend}
+Il \textit{frontend} dell'applicazione è sviluppato con il framework Vue.js, adottando nativamente il pattern architetturale \textit{MVVM} (Model-View-ViewModel), che separa le responsabilità tra logica di business, stato dell'interfaccia e presentazione visiva. In particolare, il ViewModel è implementato tramite la \textit{Composition API}, che gestisce lo stato locale del componente, reagisce ai cambiamenti del Model e aggiorna la View in modo reattivo. La struttura delle cartelle è la seguente:
+
+
+\forestset{
+  comment/.style={text=commentgray, font=\ttfamily\small\itshape}
+}
+
+\vspace{0.5em}
+
+\begin{forest}
+  for tree={
+    font=\ttfamily\small,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+[ts/
+[components/
+[\# Componenti UI base, comment]
+  [icons/
+  [\# Componenti icone, comment]
+  ]
+  [layout/
+  [\# Componenti di layout, comment]
+  [navigation/
+  [\# Bottoni di navigazione (NavButton{,} NavItem), comment]
+  ]
+  ]
+  ]
+  [composables/
+  [\# Composables dell'applicazione, comment]
+  ]
+  [errors/
+  [\# Errori custom, comment]
+  ]
+  [layout/
+  [AppLayout.vue]
+  ]
+  [pages/
+  [NoteEditorPage.vue]
+  [NoteArchivePage.vue]
+  ]
+  [router/
+  [index.ts]
+  ]
+  [services/
+  [\# File per chiamate API al backend attraverso la libreria Axios, comment]
+  ]
+  [tests/
+  [\# Test unitari del frontend, comment]
+  ]
+  [types/
+  [\# Tipi utilizzati globalmente nell'applicazione, comment]
+  ]
+  [utils/
+  [\# Funzioni di utilità, comment]
+  ]
+  [app.ts]
+  [App.vue]
+]
+
+\end{forest}
+
+
 
 \paragraph{Root Component}
 \vspace{0.5em}
