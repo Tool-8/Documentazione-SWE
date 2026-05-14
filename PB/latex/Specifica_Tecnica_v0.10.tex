@@ -3,6 +3,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{float}
 \usepackage{tabularx}
+\usepackage{listings}
 
 % Struttura cartelle frontend
 \usepackage{forest}
@@ -113,7 +114,7 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
-  0.10 & Gabriele Disa & Aggiornamento sistema di deploy (sezione 3.2) & 14/05/2026 & - \\
+  0.10 & Gabriele Disa & Aggiornamento sistema di deploy (sezione 3.2) & 14/05/2026 & Stefano Maso \\
   \hline
   0.9 & Niccolò Feltrin & Aggiunta introduzione al frontend (sezione 3.1.2) & 14/05/2026 & Besnik Murtezan \\
   \hline
@@ -544,50 +545,49 @@ Il \textit{frontend} dell'applicazione è sviluppato con il framework Vue.js, ad
     before computing xy={l=15pt},
   }
 [ts/
-[components/
-[\# Componenti UI base, comment]
-  [icons/
-  [\# Componenti icone, comment]
-  ]
-  [layout/
-  [\# Componenti di layout, comment]
-  [navigation/
-  [\# Bottoni di navigazione (NavButton{,} NavItem), comment]
-  ]
-  ]
+  [components/
+    [{\# Componenti UI base, comment}]
+    [icons/
+      [{\# Componenti icone, comment}]
+    ]
+    [layout/
+      [{\# Componenti di layout, comment}]
+      [navigation/
+        [{\# Bottoni di navigazione (NavButton, NavItem), comment}]
+      ]
+    ]
   ]
   [composables/
-  [\# Composables dell'applicazione, comment]
+    [{\# Composables dell'applicazione, comment}]
   ]
   [errors/
-  [\# Errori custom, comment]
+    [{\# Errori custom, comment}]
   ]
   [layout/
-  [AppLayout.vue]
+    [AppLayout.vue]
   ]
   [pages/
-  [NoteEditorPage.vue]
-  [NoteArchivePage.vue]
+    [NoteEditorPage.vue]
+    [NoteArchivePage.vue]
   ]
   [router/
-  [index.ts]
+    [index.ts]
   ]
   [services/
-  [\# File per chiamate API al backend attraverso la libreria Axios, comment]
+    [{\# File per chiamate API al backend attraverso la libreria Axios, comment}]
   ]
   [tests/
-  [\# Test unitari del frontend, comment]
+    [{\# Test unitari del frontend, comment}]
   ]
   [types/
-  [\# Tipi utilizzati globalmente nell'applicazione, comment]
+    [{\# Tipi utilizzati globalmente nell'applicazione, comment}]
   ]
   [utils/
-  [\# Funzioni di utilità, comment]
+    [{\# Funzioni di utilità, comment}]
   ]
   [app.ts]
   [App.vue]
 ]
-
 \end{forest}
 
 
@@ -983,17 +983,26 @@ Nel sistema di deploy finale, l'applicazione è eseguita all'interno di un unico
 \end{itemize}
 
 \subsubsection{Persistenza dei dati}
-La persistenza dei dati è gestita tramite un database SQLite salvato in un volume Docker dedicato.
+La persistenza dei dati è gestita tramite volumi Docker dedicati. Nel progetto attuale le note vengono salvate come file testuali nello storage locale di Laravel, mentre il database SQLite viene utilizzato solo per le tabelle infrastrutturali previste dalle migration Laravel, come sessioni, cache e code.
 
 \begin{itemize}
-    \item Il database applicativo viene creato automaticamente nel percorso interno:
+    \item Le note e gli altri file applicativi vengono preservati tramite un volume Docker associato alla cartella:
+        \begin{lstlisting}
+        /var/www/html/storage
+        \end{lstlisting}
+
+    \item Il database SQLite viene creato automaticamente nel percorso interno:
         \begin{lstlisting}
         /data/database.sqlite
         \end{lstlisting}
+
     \item Il percorso \texttt{/data} viene associato a un volume Docker persistente;
-    \item la cartella \texttt{storage} di Laravel viene anch'essa associata a un volume Docker, in modo da preservare file generati, log e contenuti applicativi salvati su filesystem;
-    \item le migration Laravel vengono eseguite automaticamente all'avvio del container.
+
+    \item Il database SQLite non contiene le note, ma dati infrastrutturali Laravel, come sessioni, cache e code;
+
+    \item Le migration Laravel vengono eseguite automaticamente all'avvio del container.
 \end{itemize}
+
 
 \subsubsection{Build degli asset frontend}
 Gli asset frontend non vengono compilati in fase di esecuzione del container. Durante la build dell'immagine Docker viene eseguita una fase dedicata alla compilazione del frontend tramite Vite.
@@ -1041,7 +1050,7 @@ Rispetto all'ambiente di sviluppo o a precedenti configurazioni, il deploy final
 
 \begin{itemize}
     \item \texttt{web}: le funzionalità di web server sono incluse nel container \texttt{app} tramite Nginx;
-    \item \texttt{db}: PostgreSQL non viene avviato, poiché il deploy finale utilizza SQLite persistente;
+    \item \texttt{db}: PostgreSQL non viene avviato;
     \item \texttt{vite}: la compilazione degli asset frontend avviene durante la build dell'immagine Docker e non tramite un dev server in produzione.
 \end{itemize}
 
