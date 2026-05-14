@@ -113,6 +113,8 @@
   \hline
   \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
   \hline
+  0.10 & Gabriele Disa & Aggiornamento sistema di deploy (sezione 3.2) & 14/05/2026 & - \\
+  \hline
   0.9 & Niccolò Feltrin & Aggiunta introduzione al frontend (sezione 3.1.2) & 14/05/2026 & Besnik Murtezan \\
   \hline
   0.8 & Niccolò Feltrin & Aggiornata sezione architettura logica frontend (sezione 3.1.2) & 12/05/2026 & Spadiliero Ruben \\
@@ -951,39 +953,99 @@ Segue la descrizione degli \texttt{emit}:
 
 \subsection{Architettura di deployment}
 La scelta della tipologia di \textbf{architettura di deployment} è stata guidata dal contesto di utilizzo del prodotto, dai requisiti di scalabilità previsti dal capitolato e dalle caratteristiche dello stack tecnologico.
+
 Non avendo ricevuto indicazioni specifiche riguardo a vincoli di deployment e non prevedendo significative espansioni o modifiche strutturali, il team ha optato per un'\textbf{architettura monolitica}. Questa soluzione, oltre ad essere in linea con le esigenze del prodotto, semplifica e velocizza la fase di progettazione e sviluppo ed evita la complessità introdotta da un'architettura a microservizi.
 
 \vspace{1em}
 
-Il deployment viene gestito tramite \textbf{Docker Compose} perché, fornendo un ambiente di esecuzione preconfigurato e isolato, si semplificano notevolmente le operazioni di deployment e di manutenzione in qualsiasi ambiente, purché questo supporti Docker, e si evita la necessità di configurazione manuale.
+Il deployment finale viene realizzato tramite un'\textbf{immagine Docker monolitica}, contenente al proprio interno tutti i componenti necessari all'esecuzione dell'applicazione: server web, runtime PHP, codice applicativo Laravel, dipendenze backend, build degli asset frontend e worker delle code. In questo modo l'applicazione può essere avviata in modo riproducibile su qualunque ambiente che supporti Docker, senza richiedere l'installazione manuale di Composer, Node.js, npm o altre dipendenze applicative sulla macchina ospitante.
 
-\subsubsection{Organizzazione dei container}
-Nonostante l'adozione di un'architettura monolitica dal punto di vista applicativo, il sistema è strutturato in più container al fine di separare le responsabilità tecniche e migliorare la gestione dell'ambiente di esecuzione.
+\vspace{1em}
+
+Docker Compose viene utilizzato come strumento di supporto per semplificare l'avvio del container, la configurazione delle variabili d'ambiente, il mapping delle porte e la gestione dei volumi persistenti. Nel deploy finale non viene però adottata una suddivisione in più container: Docker Compose avvia un unico servizio applicativo, mantenendo il sistema semplice da distribuire anche su server di produzione.
+
+\subsubsection{Organizzazione del container}
+Nel sistema di deploy finale, l'applicazione è eseguita all'interno di un unico container denominato \texttt{app}. Tale container racchiude le responsabilità tecniche necessarie all'erogazione del servizio, pur mantenendo l'architettura applicativa monolitica.
+
 \begin{itemize}
     \item \texttt{app}
         \begin{itemize}
-            \item Contiene l'applicazione Laravel
-            \item Gestisce la business logic
-            \item Interagisce con il database PostgreSQL (opzionale)
+            \item Contiene l'applicazione Laravel;
+            \item contiene le dipendenze PHP installate tramite Composer durante la fase di build dell'immagine;
+            \item contiene gli asset frontend compilati tramite Vite durante la fase di build dell'immagine;
+            \item utilizza Nginx come web server e punto di ingresso per le richieste HTTP;
+            \item utilizza PHP-FPM per l'esecuzione del codice PHP dell'applicazione;
+            \item esegue il worker delle code Laravel;
+            \item utilizza Supervisor per gestire i processi interni al container;
+            \item espone l'applicazione sulla porta interna \texttt{8080}, mappabile su una porta esterna configurabile;
+            \item utilizza SQLite come sistema di persistenza dei dati applicativi.
         \end{itemize}
-    \item \texttt{web}
-        \begin{itemize}
-            \item Utilizza nginx come web server
-            \item Espone l'applicazione sulla porta 8080
-            \item Funge da punto di ingresso per le richieste HTTP
-            \item Inoltra le richieste al container \texttt{app}
-        \end{itemize} 
-    \item \texttt{db}
-        \begin{itemize}
-            \item Utilizza PostgreSQL
-            \item Responsabile della persistenza dei dati qualora si opti per questa soluzione invece che per la persistenza su filesystem
-        \end{itemize}
-    \item \texttt{vite}(sviluppo)
-        \begin{itemize}
-            \item Esegue un dev server per la compilazione dinamica di JavaScript e CSS
-            \item Espone le risorse sulla porta 5173
-        \end{itemize}
-    \end{itemize}
+\end{itemize}
+
+\subsubsection{Persistenza dei dati}
+La persistenza dei dati è gestita tramite un database SQLite salvato in un volume Docker dedicato.
+
+\begin{itemize}
+    \item Il database applicativo viene creato automaticamente nel percorso interno:
+        \begin{lstlisting}
+        /data/database.sqlite
+        \end{lstlisting}
+    \item Il percorso \texttt{/data} viene associato a un volume Docker persistente;
+    \item la cartella \texttt{storage} di Laravel viene anch'essa associata a un volume Docker, in modo da preservare file generati, log e contenuti applicativi salvati su filesystem;
+    \item le migration Laravel vengono eseguite automaticamente all'avvio del container.
+\end{itemize}
+
+\subsubsection{Build degli asset frontend}
+Gli asset frontend non vengono compilati in fase di esecuzione del container. Durante la build dell'immagine Docker viene eseguita una fase dedicata alla compilazione del frontend tramite Vite.
+
+\begin{itemize}
+    \item Le dipendenze JavaScript vengono installate durante la build;
+    \item Vite produce gli asset statici ottimizzati per l'ambiente di produzione;
+    \item gli asset generati vengono copiati nell'immagine finale e serviti da Nginx;
+    \item non è necessario eseguire un dev server Vite nell'ambiente di produzione.
+\end{itemize}
+
+Il container \texttt{vite} rimane quindi utile esclusivamente in contesti di sviluppo, mentre non fa parte dell'architettura di deploy finale.
+
+\subsubsection{Configurazione e avvio}
+La configurazione del deploy avviene tramite variabili d'ambiente, definite nel file \texttt{.env} posto nella root del progetto o direttamente nell'ambiente di esecuzione del container.
+
+Il comando principale di avvio è:
+
+\begin{lstlisting}
+make deploy
+\end{lstlisting}
+
+Tale comando costruisce l'immagine Docker monolitica e avvia il container tramite il file \texttt{docker-compose.deploy.yml}. Il sistema di avvio si occupa automaticamente di:
+
+\begin{itemize}
+    \item creare il file di configurazione Laravel all'interno del container;
+    \item generare una chiave applicativa, se non già configurata;
+    \item creare il database SQLite, se non presente;
+    \item eseguire le migration;
+    \item preparare le cache applicative;
+    \item avviare Nginx, PHP-FPM e il worker delle code Laravel.
+\end{itemize}
+
+La porta esterna può essere configurata tramite la variabile \texttt{APP\_PORT}; internamente il container espone il servizio sulla porta \texttt{8080}. Ad esempio, impostando:
+
+\begin{lstlisting}
+APP_PORT=8090
+APP_URL=http://localhost:8090
+\end{lstlisting}
+
+l'applicazione sarà accessibile sulla porta \texttt{8090}, mentre il servizio interno continuerà a utilizzare la porta \texttt{8080}.
+
+\subsubsection{Container non presenti nel deploy finale}
+Rispetto all'ambiente di sviluppo o a precedenti configurazioni, il deploy finale non prevede i seguenti container separati:
+
+\begin{itemize}
+    \item \texttt{web}: le funzionalità di web server sono incluse nel container \texttt{app} tramite Nginx;
+    \item \texttt{db}: PostgreSQL non viene avviato, poiché il deploy finale utilizza SQLite persistente;
+    \item \texttt{vite}: la compilazione degli asset frontend avviene durante la build dell'immagine Docker e non tramite un dev server in produzione.
+\end{itemize}
+
+Questa organizzazione consente di ottenere un deploy più semplice e portabile, mantenendo un unico container applicativo e riducendo le dipendenze operative richieste all'ambiente ospitante.
 
 \newpage
 
