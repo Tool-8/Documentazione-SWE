@@ -899,8 +899,6 @@ Nonostante l'adozione di un'architettura monolitica dal punto di vista applicati
         \end{itemize}
     \end{itemize}
 
-\subsection{Architettura di dettaglio}
-
 \newpage
 
 \newcounter{RF@O}
@@ -923,122 +921,122 @@ Nonostante l'adozione di un'architettura monolitica dal punto di vista applicati
             \textbf{Requisito} & \textbf{Descrizione} & \textbf{Rispettato} \\ \hline
             \endfirsthead
             \hline
-            \reqF{O} & Il sistema deve permettere all'utente di visualizzare l'archivio delle note presenti e per ogni nota il suo nome, la data di creazione e la data dell'ultima modifica & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di aprire una nota & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di uscire da una nota & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di creare una nuova nota & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di salvare la nota su cui sta lavorando & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di salvare una nota non ancora presente nell'archivio per la prima volta & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di clonare una nota & NO \\ \hline
-            \reqF{O} & Alla clonazione di una nota, il sistema deve assegnare automaticamente un nome di default (es. "Nota \textit{data-ora}") che l’utente può modificare & NO \\ \hline
-            \reqF{O} & Il nome di default generato nella clonazione di una nota deve essere univoco all'interno dell'archivio e facilmente riconoscibile all'utente & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di ricercare le note per nome nell'archivio & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di eliminare una nota & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di rinominare una nota & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota aperta & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio & NO \\ \hline
-            \reqF{O} & L’esportazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri & NO \\ \hline
-            \reqF{O} & L’esportazione deve preservare correttamente i caratteri Unicode del testo (es. accenti e simboli), senza sostituzioni o corruzione & NO \\ \hline
-            \reqF{O} & Al termine dell’esportazione, il sistema deve notificare esplicitamente l’errore di esportazione all'utente & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di importare una nota & NO \\ \hline
-            \reqF{O} & L’importazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri (incl. Unicode) & NO \\ \hline
-            \reqF{O} & In caso di file non valido o corrotto, il sistema deve interrompere l’importazione senza creare note parziali e deve notificare chiaramente l’errore all’utente & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all’utente di scrivere nell'editor con caratteri Unicode (es. lettere accentate e simboli) & NO \\ \hline
-            \reqF{O} & Il sistema deve compilare la sintassi Markdown  & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere la visualizzazione del documento formattato secondo la sintassi Markdown &  NO \\ \hline
-            \reqF{O} & L'aggiornamento della visualizzazione formattata deve avvenire in un tempo adeguatamente veloce & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere di cambiare modalità di visualizzazione & NO \\ \hline
-            \reqF{O} & Il sistema deve fornire un'area di editing di testo in cui è possibile inserire e modificare del testo per la compilazione Markdown & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere l'applicazione di formattazioni Markdown senza scrivere manualmente la sintassi & NO \\ \hline
-            \reqF{O} & L’editor deve rispondere all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo grassetto senza scrivere manualmente la sintassi & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo corsivo senza scrivere manualmente la sintassi & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo sottolineato senza scrivere manualmente la sintassi & NO \\ \hline
-            \reqF{O} & Il sistema deve consentire l’applicazione e la rimozione della formattazione testo barrato senza richiedere l’inserimento manuale della sintassi & NO \\ \hline
-            \reqF{O} & Il sistema deve consentire l'inserimento e la rimozione di link ipertestuali senza richiedere l'inserimento manuale della sintassi & NO \\ \hline
-            \reqF{O} & L’editor deve rendere i link ipertestuali facilmente riconoscibili (es. evidenziandoli graficamente) e distinguibili dal testo normale & NO \\ \hline
-            \reqF{O} & Il sistema deve consentire l'applicazione e la rimozione della formattazione testo commentato senza richiedere l'inserimento manuale della sintassi & NO \\ \hline
-            \reqF{O} & Il sistema deve consentire l'inserimento di elenchi numerati & NO \\ \hline
-            \reqF{O} & Il sistema deve consentire l'inserimento di elenchi puntati & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di annullare l'ultima modifica fatta & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di ripristinare la modifica precedentemente annullata & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di copiare il testo selezionato & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di tagliare il testo selezionato & NO \\ \hline
-            \reqF{O} & L'editor deve poter fare copiare e tagliare all'utente il testo in modo fluido, senza ritardi percepibili & NO \\ \hline
-            \reqF{O} & L'editor deve preservare correttamente il contenuto e la struttura del testo copiato e tagliato, senza perdita o alterazioni di caratteri & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di incollare del testo nell'area di testo & NO \\ \hline
-            \reqF{O} & L'editor deve poter fare incollare all'utente il testo in modo fluido, senza ritardi percepibili & NO \\ \hline
-            \reqF{O} & L'editor deve preservare e incollare correttamente il contenuto e la struttura del testo, senza perdita o alterazioni di caratteri & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota aperta in MD & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in MD & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente della presenza di una nota con lo stesso nome in seguito al primo salvataggio & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo secondo il modello dei "Sei Cappelli" & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Emotiva" (Cappello Rosso) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Neutra" (Cappello Bianco) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Ottimista" (Cappello Giallo) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione dell'avvocato del Diavolo" (Cappello Nero) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Originale" (Cappello Verde) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di riassumere del testo tramite un agente esterno & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di riscrivere del testo tramite un agente esterno & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di scegliere il modo in cui verrà riscritto il testo (correzione grammaticale, estensione del testo, miglioramento del lessico, variazione stilistica) & NO   \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di tradurre del testo tramite un agente esterno & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di sostituire nell'editor il testo originale con quello generate dall'agente esterno (riassunto, riscrittura, traduzione) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in seguito alla selezione del testo originale, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in coda a tutto il testo presente nell'editor, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di "rifiutare" il testo generato dall'agente esterno (riassunto, riscrittura, traduzione) & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di copiare negli appunti il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & NO \\ \hline
-            \reqF{O} & L'agente esterno deve produrre testo grammaticalmente, sintatticamente e semanticamente corretto & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso dell'impossibilità nell'eseguire una richiesta & NO  \\ \hline
-            \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione (Distant Writing) & NO \\ \hline
-            \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo tradotto viene modificato & NO \\ \hline
-            \reqF{O} & Il sistema deve consentire all’utente di aggiornare una traduzione precedentemente inserita se il testo originale è presente ed è stato modificato & NO \\ \hline
-            \reqF{O} & Il sistema deve consentire all'utente di rimuovere una traduzione precedentemente inserita & NO \\ \hline
-            \reqF{O} & Il sistema deve consentire all'utente di rimuovere il testo originale di una traduzione precedentemente inserita & NO \\ \hline
-            \reqF{O} & Il sistema deve notificare all'utente la perdita del testo originale di riferimento qualora venga eliminato, lasciando la traduzione priva di collegamento & NO \\ \hline
-            \reqF{O} & Il sistema non deve consentire l'inserimento di una traduzione all'interno di una porzione di testo già tradotta & NO \\ \hline
-            \reqF{O} & L'agente deve produrre traduzioni corrette nella lingua selezionata & NO \\ \hline
-            \reqF{O} & Il sistema alla chiusura di una nota, se presenti delle modifiche non salvate deve avvisare l'utente della presenza di modifiche & NO \\ \hline
-            \reqF{O} & Il sistema in caso di problemi di connessione con l'agente esterno deve avvisare l'utente & NO  \\ \hline
-            \reqF{O} & Durante una richiesta alla LLM, il sistema deve fornire all’utente un feedback chiaro sullo stato dell’operazione (es. indicatore di caricamento/elaborazione) fino al completamento o alla segnalazione di errore & NO \\ \hline
-            \reqF{O} & Il feedback sullo stato della comunicazione con la LLM deve essere non bloccante e deve evitare che l’utente avvii richieste duplicate inconsapevolmente & NO\\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di visualizzare l'editor con il contenuto della nota dopo l'apertura di questa & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di tentativo di apertura di una nota non più esistente & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di fallimento dell'apertura di una nota a causa di problemi di connessione al server & NO \\ \hline
-            \reqF{O} & In caso di tentativo di chiusura di una nota con modifiche non salvate, il sistema deve avvisare l'utente e chiedere se desidera salvare le modifiche prima di chiudere & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di salvare le modifiche effettuate all'interno di una nota & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di presenza di una versione più recente della nota aperta nell'archivio & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di sovrascrivere la nota presente nell'archivio con la versione aperta in caso di conflitto di versioni & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di salvare la nota aperta con un nuovo nome in caso di conflitto con la versione presente nell'archivio & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di aggiornare la nota aperta con le modifiche presenti nella versione più recente nell'archivio in caso di conflitto di versioni & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di errori durante il salvataggio della nota causati da problemi di connessione al server & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di tentativo di clonazione di una nota non più esistente & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare in caso di impossibilità di clonare una nota a causa di problemi di connessione al server & NO \\ \hline
-            \reqF{O} & Il sistema deve chiedere all'utente di confermare l'eliminazione di una nota & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di impossibilità di eliminazione di una nota a causa di problemi di connessione al server & NO \\ \hline
-            \reqF{O} & Il sistema deve impedire all'utente di rinominare una nota con un nome già presente nell'archivio e visualizzare un messaggio di errore & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di impossibilità di rinominare una nota a causa di problemi di connessione al server & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di impossibilità di esportare una nota a causa di problemi di connessione al server & NO \\ \hline
-            \reqF{O} & Il sistema deve dare la possibilità all'utente di importare una nota in formato MD & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di problemi di connessione al server durante l'importazione di una nota & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di inserire elementi in un elenco puntato o numerato & NO \\ \hline
-            \reqF{O} & Il sistema deve permettere all'utente di rimuovere elementi da un elenco puntato o numerato & NO \\ \hline
-            \reqF{O} & Il sistema deve avvisare l'utente in caso di problemi di connessione con l'agente esterno durante la ritraduzione di una porzione di testo precedentemente tradotta & NO \\ \hline
-            \reqF{D} & Il sistema deve aggiornare automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & NO \\ \hline
-            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in PDF & NO \\ \hline
-            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in HTML & NO \\ \hline
-            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in PDF & NO \\ \hline
-            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in HTML & NO \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di visualizzare l'archivio delle note presenti e per ogni nota il suo nome, la data di creazione e la data dell'ultima modifica & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di aprire una nota & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di uscire da una nota & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di creare una nuova nota & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di salvare la nota su cui sta lavorando & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di salvare una nota non ancora presente nell'archivio per la prima volta & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di clonare una nota & SI \\ \hline
+            \reqF{O} & Alla clonazione di una nota, il sistema deve assegnare automaticamente un nome di default (es. "Nota \textit{data-ora}") che l’utente può modificare & SI \\ \hline
+            \reqF{O} & Il nome di default generato nella clonazione di una nota deve essere univoco all'interno dell'archivio e facilmente riconoscibile all'utente & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di ricercare le note per nome nell'archivio & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di eliminare una nota & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di rinominare una nota & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota aperta & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio & SI \\ \hline
+            \reqF{O} & L’esportazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri & SI \\ \hline
+            \reqF{O} & L’esportazione deve preservare correttamente i caratteri Unicode del testo (es. accenti e simboli), senza sostituzioni o corruzione & SI \\ \hline
+            \reqF{O} & Al termine dell’esportazione, il sistema deve notificare esplicitamente l’errore di esportazione all'utente & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di importare una nota & SI \\ \hline
+            \reqF{O} & L’importazione deve preservare integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri (incl. Unicode) & SI \\ \hline
+            \reqF{O} & In caso di file non valido o corrotto, il sistema deve interrompere l’importazione senza creare note parziali e deve notificare chiaramente l’errore all’utente & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all’utente di scrivere nell'editor con caratteri Unicode (es. lettere accentate e simboli) & SI \\ \hline
+            \reqF{O} & Il sistema deve compilare la sintassi Markdown  & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere la visualizzazione del documento formattato secondo la sintassi Markdown &  SI \\ \hline
+            \reqF{O} & L'aggiornamento della visualizzazione formattata deve avvenire in un tempo adeguatamente veloce & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere di cambiare modalità di visualizzazione & SI \\ \hline
+            \reqF{O} & Il sistema deve fornire un'area di editing di testo in cui è possibile inserire e modificare del testo per la compilazione Markdown & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione di formattazioni Markdown senza scrivere manualmente la sintassi & SI \\ \hline
+            \reqF{O} & L’editor deve rispondere all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo grassetto senza scrivere manualmente la sintassi & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo corsivo senza scrivere manualmente la sintassi & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere l'applicazione e la rimozione della formattazione testo sottolineato senza scrivere manualmente la sintassi & SI \\ \hline
+            \reqF{O} & Il sistema deve consentire l’applicazione e la rimozione della formattazione testo barrato senza richiedere l’inserimento manuale della sintassi & SI \\ \hline
+            \reqF{O} & Il sistema deve consentire l'inserimento e la rimozione di link ipertestuali senza richiedere l'inserimento manuale della sintassi & SI \\ \hline
+            \reqF{O} & L’editor deve rendere i link ipertestuali facilmente riconoscibili (es. evidenziandoli graficamente) e distinguibili dal testo normale & SI \\ \hline
+            \reqF{O} & Il sistema deve consentire l'applicazione e la rimozione della formattazione testo commentato senza richiedere l'inserimento manuale della sintassi & SI \\ \hline
+            \reqF{O} & Il sistema deve consentire l'inserimento di elenchi numerati & SI \\ \hline
+            \reqF{O} & Il sistema deve consentire l'inserimento di elenchi puntati & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di annullare l'ultima modifica fatta & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di ripristinare la modifica precedentemente annullata & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di copiare il testo selezionato & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di tagliare il testo selezionato & SI \\ \hline
+            \reqF{O} & L'editor deve poter fare copiare e tagliare all'utente il testo in modo fluido, senza ritardi percepibili & SI \\ \hline
+            \reqF{O} & L'editor deve preservare correttamente il contenuto e la struttura del testo copiato e tagliato, senza perdita o alterazioni di caratteri & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di incollare del testo nell'area di testo & SI \\ \hline
+            \reqF{O} & L'editor deve poter fare incollare all'utente il testo in modo fluido, senza ritardi percepibili & SI \\ \hline
+            \reqF{O} & L'editor deve preservare e incollare correttamente il contenuto e la struttura del testo, senza perdita o alterazioni di caratteri & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota aperta in MD & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in MD & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente della presenza di una nota con lo stesso nome in seguito al primo salvataggio & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo secondo il modello dei "Sei Cappelli" & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Emotiva" (Cappello Rosso) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Neutra" (Cappello Bianco) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Ottimista" (Cappello Giallo) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione dell'avvocato del Diavolo" (Cappello Nero) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Originale" (Cappello Verde) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di riassumere del testo tramite un agente esterno & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di riscrivere del testo tramite un agente esterno & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di scegliere il modo in cui verrà riscritto il testo (correzione grammaticale, estensione del testo, miglioramento del lessico, variazione stilistica) & SI   \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di tradurre del testo tramite un agente esterno & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di sostituire nell'editor il testo originale con quello generate dall'agente esterno (riassunto, riscrittura, traduzione) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in seguito alla selezione del testo originale, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di aggiungere nell'editor, in coda a tutto il testo presente nell'editor, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di "rifiutare" il testo generato dall'agente esterno (riassunto, riscrittura, traduzione) & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di copiare negli appunti il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & SI \\ \hline
+            \reqF{O} & L'agente esterno deve produrre testo grammaticalmente, sintatticamente e semanticamente corretto & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso dell'impossibilità nell'eseguire una richiesta & SI  \\ \hline
+            \reqF{O} & Il sistema deve commentare il testo selezionato dall’utente utilizzato per interrogare la generazione (Distant Writing) & SI \\ \hline
+            \reqF{O} & Se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema deve avvisarlo ogni volta che il testo tradotto viene modificato & SI \\ \hline
+            \reqF{O} & Il sistema deve consentire all’utente di aggiornare una traduzione precedentemente inserita se il testo originale è presente ed è stato modificato & SI \\ \hline
+            \reqF{O} & Il sistema deve consentire all'utente di rimuovere una traduzione precedentemente inserita & SI \\ \hline
+            \reqF{O} & Il sistema deve consentire all'utente di rimuovere il testo originale di una traduzione precedentemente inserita & SI \\ \hline
+            \reqF{O} & Il sistema deve notificare all'utente la perdita del testo originale di riferimento qualora venga eliminato, lasciando la traduzione priva di collegamento & SI \\ \hline
+            \reqF{O} & Il sistema non deve consentire l'inserimento di una traduzione all'interno di una porzione di testo già tradotta & SI \\ \hline
+            \reqF{O} & L'agente deve produrre traduzioni corrette nella lingua selezionata & SI \\ \hline
+            \reqF{O} & Il sistema alla chiusura di una nota, se presenti delle modifiche non salvate deve avvisare l'utente della presenza di modifiche & SI \\ \hline
+            \reqF{O} & Il sistema in caso di problemi di connessione con l'agente esterno deve avvisare l'utente & SI  \\ \hline
+            \reqF{O} & Durante una richiesta alla LLM, il sistema deve fornire all’utente un feedback chiaro sullo stato dell’operazione (es. indicatore di caricamento/elaborazione) fino al completamento o alla segnalazione di errore & SI \\ \hline
+            \reqF{O} & Il feedback sullo stato della comunicazione con la LLM deve essere non bloccante e deve evitare che l’utente avvii richieste duplicate inconsapevolmente & SI\\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di visualizzare l'editor con il contenuto della nota dopo l'apertura di questa & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di tentativo di apertura di una nota non più esistente & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di fallimento dell'apertura di una nota a causa di problemi di connessione al server & SI \\ \hline
+            \reqF{O} & In caso di tentativo di chiusura di una nota con modifiche non salvate, il sistema deve avvisare l'utente e chiedere se desidera salvare le modifiche prima di chiudere & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di salvare le modifiche effettuate all'interno di una nota & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di presenza di una versione più recente della nota aperta nell'archivio & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di sovrascrivere la nota presente nell'archivio con la versione aperta in caso di conflitto di versioni & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di salvare la nota aperta con un nuovo nome in caso di conflitto con la versione presente nell'archivio & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di aggiornare la nota aperta con le modifiche presenti nella versione più recente nell'archivio in caso di conflitto di versioni & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di errori durante il salvataggio della nota causati da problemi di connessione al server & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di tentativo di clonazione di una nota non più esistente & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare in caso di impossibilità di clonare una nota a causa di problemi di connessione al server & SI \\ \hline
+            \reqF{O} & Il sistema deve chiedere all'utente di confermare l'eliminazione di una nota & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di impossibilità di eliminazione di una nota a causa di problemi di connessione al server & SI \\ \hline
+            \reqF{O} & Il sistema deve impedire all'utente di rinominare una nota con un nome già presente nell'archivio e visualizzare un messaggio di errore & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di impossibilità di rinominare una nota a causa di problemi di connessione al server & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di impossibilità di esportare una nota a causa di problemi di connessione al server & SI \\ \hline
+            \reqF{O} & Il sistema deve dare la possibilità all'utente di importare una nota in formato MD & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di problemi di connessione al server durante l'importazione di una nota & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di inserire elementi in un elenco puntato o numerato & SI \\ \hline
+            \reqF{O} & Il sistema deve permettere all'utente di rimuovere elementi da un elenco puntato o numerato & SI \\ \hline
+            \reqF{O} & Il sistema deve avvisare l'utente in caso di problemi di connessione con l'agente esterno durante la ritraduzione di una porzione di testo precedentemente tradotta & SI \\ \hline
+            \reqF{D} & Il sistema deve aggiornare automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & SI \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in PDF & SI \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota aperta in HTML & SI \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in PDF & SI \\ \hline
+            \reqF{D} & Il sistema deve permettere all'utente di esportare una nota direttamente dall'archivio in HTML & SI \\ \hline
             \reqF{D} & Il sistema deve permettere all'utente di utilizzare scorciatoie da tastiera per formattare il testo & NO \\ \hline
             \reqF{D} & Il sistema deve comunicare all'utente eventuali errori grammaticali nell'editor & NO \\ \hline
             \reqF{D} & Il sistema deve consentire all’utente di eseguire un minimo di 20 operazioni consecutive di annullamento e di ripristino delle modifiche sull’editor della nota corrente & NO \\ \hline
             \reqF{D} & In caso di incollaggio di contenuti non testuali, l’editor deve mantenere la reattività e mostrare una notifica non bloccante che spieghi l’azione effettuata (rifiuto o conversione in testo) & NO \\ \hline
-            \reqF{D} & L'archivio deve aggiornarsi dinamicamente con i risultati della ricerca ad ogni modifica dell’input con una risposta percepita come immediata dall’utente &  NO \\ \hline
-            \reqF{D} & L'editor deve evidenziare in modo chiaro e distinguibile la porzione di testo utilizzato come prompt per l'interrogazione del LLM, così da renderla immediatamente riconoscibile all'utente & NO \\ \hline
-            \reqF{D} & L’aggiornamento della visualizzazione formattata non deve bloccare l’input dell’utente durante la digitazione & NO \\ \hline
-            \reqF{OP} & Il sistema deve aggiornare automaticamente la visualizzazione del testo formattato ad ogni modifica del Markdown, senza richiedere un’azione esplicita & NO \\ \hline
+            \reqF{D} & L'archivio deve aggiornarsi dinamicamente con i risultati della ricerca ad ogni modifica dell’input con una risposta percepita come immediata dall’utente &  SI \\ \hline
+            \reqF{D} & L'editor deve evidenziare in modo chiaro e distinguibile la porzione di testo utilizzato come prompt per l'interrogazione del LLM, così da renderla immediatamente riconoscibile all'utente & SI \\ \hline
+            \reqF{D} & L’aggiornamento della visualizzazione formattata non deve bloccare l’input dell’utente durante la digitazione & SI \\ \hline
+            \reqF{OP} & Il sistema deve aggiornare automaticamente la visualizzazione del testo formattato ad ogni modifica del Markdown, senza richiedere un’azione esplicita & SI \\ \hline
             \reqF{OP} & Il sistema deve comunicare all'utente eventuali errori di sintassi nei marcatori nell'editor & NO \\ \hline
             \reqF{OP} & L'editor deve permettere all'utente di interagire direttamente con la LLM tramite marcatori & NO \\ \hline
             \reqF{OP} & Il sistema deve permettere all'utente di registrarsi tramite nome utente e password & NO \\ \hline
