@@ -1,0 +1,144 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(4cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Verbale 15 Maggio 2026};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\@date \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white.png} \\[1.5ex]
+  \textbf{\LARGE Verbale riunione}
+}
+\author{}
+\date{15/05/2026}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica}\\
+  \hline
+  1.0 & Murtezan Besnik & Prima stesura & 15/05/2026 & - \\
+  \hline
+\end{tabular}
+\caption{Storico revisioni}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\section*{Motivazioni riunione}
+Riunione di restrospettiva sprint \#13 e preparazione periodo di conclusione progetto. Discussione considerazioni Prof. Cardin in seguito a presentazione PB.
+
+\section*{Partecipanti}
+A questa riunione hanno partecipato:
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Nome} & \textbf{Ruolo}\\
+  \hline
+  Besnik Murtezan & Responsabile \\
+  \hline
+  Gabriele Disa & Verificatore \\
+  \hline
+  Giuliano Banchieri & Amministratore \\
+  \hline
+  Niccolò Feltrin & Amministratore \\
+  \hline
+  Ruben Spadiliero & Verificatore \\
+  \hline
+  Stefano Maso & Verificatore \\
+  \hline
+\end{tabular}
+\label{tab:partecipazione}
+\end{table}
+
+\section*{Verbale}
+
+La riunione è stata convocata con l’obiettivo di analizzare i risultati del periodo terminato e pianificare il lavoro finale per terminare il progetto, oltre che per valutare le considerazioni sollevate dal Prof. Cardin in seguito alla presentazione PB (effettuata il giorno stesso).\\
+
+Il gruppo ha reagito positivamente alle valide osservazioni effettuate dal Prof. Cardin in sede di presentazione PB (svolta il giorno stesso): i membri si trovano in accordo sulla necessità di migliorare la preparazione tecnica e curare la scelta dei termini utilizzati per le future presentazioni.\\ 
+
+Le attività individuate riguardano l'aggiornamento dei documenti di PdP e PdQ con i dati del periodo precedente e la preparazione alla revisone PB con il Prof. Vardanega del resto dei documenti.\\
+
+Vengono infine assegnati nuovi ruoli per il periodo conclusivo con termine il giorno 18-05-2026.
+
+\section*{To-Do}
+\begin{itemize}
+\item \textbf{Assegnato a Besnik Murtezan [Responsabile]:}
+    \begin{enumerate}
+    \item Compilare il verbale della riunione del 15/05/2026 (Issue$^G$ \#286)
+    \end{enumerate}
+\item \textbf{Assegnato a Giuliano Banchieri, Niccolò Feltrin [Amministratori]:}
+        \begin{enumerate}
+        \item Aggiornare Piano di Qualifica$^G$ (Issue$^G$ \#281 - \#284)
+        \item Aggiornare Piano di Progetto$^G$ (Issue$^G$ \#282)
+        \item Aggiornare preventivo finale nella Lettera di Presentazione (Issue$^G$ \#283) 
+        \end{enumerate}
+\item \textbf{Assegnato a Stefano Maso, Gabriele Disa, Ruben Spadiliero [Verificatori]:}
+    \begin{enumerate}
+    \item Verifica completezza Glossario (Issue$^G$ \#285)
+    \item Verifica$^G$ aggiornamenti documenti
+  \end{enumerate}
+\end{itemize}
+\end{document}
