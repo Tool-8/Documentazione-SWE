@@ -31,8 +31,16 @@
     ],
   "B": [
     {
+      "termine": "Backend",
+      "definizione": "Infrastruttura tecnologica ed invisibile di un sito o applicazione, che opera su un server remoto. Gestisce l'elaborazione dei dati, la logica di business, l'autenticazione degli utenti e la comunicazione con la base di dati."
+    },
+    {
       "termine": "Baseline", 
       "definizione": "Stato fissato di artefatti considerato stabile e sufficientemente maturo."
+    },
+    {
+      "termine": "Blob",
+      "definizione": "Tipo di dato utilizzato per memorizzare file binari di grandi dimensioni (come immagini, video o file audio) direttamente all'interno di una applicazione."
     },
     {
       "termine": "Branch",
@@ -63,8 +71,11 @@
         {
         "termine": "Container",
         "definizione": "I container sono una tecnologia che consente di raggruppare e isolare le applicazioni con l'intero ambiente di runtime. In questo modo è più semplice mantenere un comportamento e una funzionalità coerenti, spostando al contempo l'applicazione posta all'interno del container tra ambienti (sviluppo, test, produzione) e tra cloud pubblico, privato, ibrido e on premise. Essendo leggeri e portabili, i container offrono la possibilità di uno sviluppo più rapido per venire incontro alle esigenze aziendali quando emergono."
+    },
+    {
+      "termine": "CRUD",
+      "definizione": "Acronimo di Create, Read, Update, Delete (Creazione, Lettura, Aggiornamento, Cancellazione). Rappresenta le quattro operazioni fondamentali per la gestione persistente dei dati."
     }
-
   ],
   "D": [
     {
@@ -78,9 +89,17 @@
     {
       "termine": "Docker",
       "definizione": "Software per l'esecuzione di applicazioni in ambienti isolati detti container."
+    },
+    {
+      "termine": "DOM",
+      "definizione": "Document Object Model, è l'interfaccia di programmazione utilizzata dal browser per rappresentare e manipolare i documenti web."
     }
   ],
   "E": [
+    {
+      "termine": "Editor",
+      "definizione": "Area per scrivere, creare o modificare file digitali."
+    },
     {
       "termine": "Efficacia",
       "definizione": "Indica il modo con cui un insieme di attività raggiunge gli obiettivi attesi."
@@ -88,12 +107,20 @@
     {
       "termine": "Efficienza",
       "definizione": "Rapporto tra risultati ottenuti e risorse utilizzate per ottenerli."
+    },
+    {
+      "termine": "Evento",
+      "definizione": "Azione o accadimento rilevante all'interno del sistema. Il programma rimane \"in ascolto\" e attiva porzioni di codice specifiche in risposta."
     }
   ],
   "F": [
     {
         "termine": "Framework",
         "definizione": "Un framework software è un'impalcatura predefinita di componenti, librerie di codice e linee guida che fornisce una base strutturata per lo sviluppo di applicazioni, semplificando ed organizzando in maniera omogenea il lavoro degli sviluppatori. Consente di riutilizzare codice, aumentare la velocità di sviluppo ed imporre standard di progettazione."
+    },
+    {
+      "termine": "Frontend",
+      "definizione": "Parte di un sito o applicazione web con cui l'utente interagisce direttamente. Include tutto ciò che è visibile sullo schermo, e si occupa di trasformare il codice in un'esperienza visiva e interattiva."
     },
     {
       "termine": "Funzionalità",
@@ -114,7 +141,12 @@
         "definizione": "GitHub è una piattaforma di hosting di codice sorgente basata su Git, che fornisce strumenti per la gestione dei repository, la collaborazione tra sviluppatori e il controllo delle versioni dei progetti software. Su GitHub, gli sviluppatori possono caricare i propri progetti, tenere traccia delle modifiche tramite commit, creare e gestire branch, collaborare con altri utenti tramite problemi e richieste di pull, e distribuire le proprie applicazioni."
     }
   ],
-  "H": [],
+  "H": [
+    {
+      "termine": "HTTP",
+      "definizione": "Acronimo di HyperText Transfer Protocol, è il sistema fondamentale utilizzato su internet per far comunicare i browser (come Chrome o Safari) con i server che ospitano i siti web, permettendo il caricamento delle pagine."
+    }
+  ],
   "I": [
     {
         "termine": "Ingegneria del software",
@@ -125,7 +157,12 @@
       "definizione": "All'interno di GitHub, indica un'attività che richiede modifiche al codice sorgente per essere svolta, può essere un bug, una feature da aggiungere o qualcosa definito dagli sviluppatori."
     }
   ],
-  "J": [],
+  "J": [
+    {
+      "termine": "JSON",
+      "definizione": "Formato di testo leggero e standard, indipendente dal linguaggio di programmazione, utilizzato per archiviare e trasmettere dati strutturati tra un server e un'applicazione web o mobile."
+    }
+  ],
   "K": [],
   "L": [
     {
@@ -143,8 +180,20 @@
         "definizione": "Il manuale utente è un documento che fornisce istruzioni dettagliate e chiare su come installare e utilizzare un prodotto, un sistema o un software. Esso è progettato per aiutare gli utenti a comprendere le funzionalità, le operazioni e le caratteristiche del prodotto, fornendo informazioni su come configurarlo e utilizzarlo correttamente. Il manuale utente può includere un'introduzione al prodotto, le istruzioni passo-passo per l'uso e i contatti per l'assistenza tecnica."
     },
     {
+      "termine": "Markdown",
+      "definizione": "Linguaggio leggero che permette di formattare il testo (aggiungendo grassetto, corsivo, elenchi, ecc.) usando simboli semplici da tastiera."
+    },
+    {
+      "termine": "Metadata",
+      "definizione": "Informazioni strutturate che descrivono, spiegano o localizzano un'informazione principale, rendendola più facile da identificare, organizzare e comprendere."
+    },
+    {
         "termine": "Milestone",
         "definizione": "Una milestone è un punto di riferimento significativo o un obiettivo importante all'interno di un progetto, utilizzato per misurare il progresso e il raggiungimento di determinati traguardi. Le milestone sono solitamente associate a date specifiche o a completamenti di specifiche attività o fasi di un progetto. Servono come punti di controllo per valutare se il progetto sta procedendo secondo i piani e per identificare eventuali ritardi o problemi. Le milestone possono essere utilizzate anche per comunicare i progressi del progetto alle parti interessate e per stabiliare scadenze chiare e tangibili per il completamento delle attività."
+    },
+    {
+        "termine": "Modale",
+        "definizione": "Elemento grafico che compare in primo piano sopra il contenuto principale di una pagina web."
     },
     {
         "termine": "Modello a V",
@@ -203,6 +252,14 @@
   "Q": [],
   "R": [
     {
+      "termine": "Render",
+      "definizione": "Prodotto risultante dal rendering di un file."
+    },
+    {
+      "termine": "Rendering",
+      "definizione": "Processo attraverso cui un programma legge il file di testo semplice contente i simboli speciali Markdown e lo converte visivamente nel formato formattato definitivo (con titoli grandi, grassetti, tabelle, ecc.)"
+    },
+    {
       "termine": "Repository",
       "definizione": "Uno spazio condiviso tra i membri del gruppo, in cui viene memorizzato e versionato il codice sorgente prodotto."
     },
@@ -249,6 +306,14 @@
     {
       "termine": "Test",
       "definizione": "Processo dello sviluppo software che si occupa di verificare la funzionalità di una o più parti del prodotto."
+    },
+    {
+      "termine": "Timeout",
+      "definizione": "Limite di tempo stabilito entro ci un server o un browser deve completare un'operazione di rete."
+    },
+    {
+      "termine": "Toast",
+      "definizione": "Piccola notifica a comparsa che appare sullo schermo per fornire un breve riscontro visivo all'utente, per poi scomparire automaticamente dopo pochi secondi."
     }
   ],
   "U": [],
