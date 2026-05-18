@@ -112,6 +112,14 @@
     {
         "termine": "GitHub",
         "definizione": "GitHub è una piattaforma di hosting di codice sorgente basata su Git, che fornisce strumenti per la gestione dei repository, la collaborazione tra sviluppatori e il controllo delle versioni dei progetti software. Su GitHub, gli sviluppatori possono caricare i propri progetti, tenere traccia delle modifiche tramite commit, creare e gestire branch, collaborare con altri utenti tramite problemi e richieste di pull, e distribuire le proprie applicazioni."
+    },
+    {
+        "termine": "GitHub Actions",
+        "definizione": "GitHub Actions è una funzionalità di GitHub che consente agli sviluppatori di automatizzare i processi di sviluppo, test e distribuzione del software direttamente all'interno della piattaforma. Con GitHub Actions, è possibile creare flussi di lavoro personalizzati che si attivano in risposta a eventi specifici, come push o pull request. Questi flussi di lavoro possono includere una serie di azioni personalizzate, consentendo agli sviluppatori di automatizzare attività come la compilazione del codice, l'esecuzione dei test e la distribuzione del software in ambienti di produzione."
+    },
+    {
+        "termine": "Glossario",
+        "definizione": "Il glossario è un documento che contiene una raccolta di termini e definizioni specifici utilizzati all'interno di un progetto o di un contesto particolare. Il glossario serve a fornire una comprensione chiara e condivisa di concetti chiave, facilitando la comunicazione tra i membri del team e garantendo che tutti abbiano una comprensione comune dei termini utilizzati nel progetto."
     }
   ],
   "H": [],
@@ -161,7 +169,12 @@
         "definizione": "Nel documento Norme di Progetto sono riportate tutte le linee guida tecniche e procedurali stabilite per regolare l'esecuzione e il controllo di un progetto. Questo documento definisce standard e procedure relative all'organizzazione del lavoro, alla metodologia di sviluppo, alla gestione dei documenti, delle configurazioni e dei rischi, nonchè alla pianificazione e al monitoraggio delle attività del progetto."
     }
   ],
-  "O": [],
+  "O": [
+    {
+        "termine": "Obiettivo",
+        "definizione": "Un obiettivo è un risultato specifico e misurabile che un individuo, un team o un'organizzazione si impegna a raggiungere entro un determinato periodo di tempo. Gli obiettivi sono fondamentali per guidare le azioni e le decisioni, fornendo una direzione chiara per il raggiungimento di risultati desiderati. Gli obiettivi possono essere a breve termine o a lungo termine e devono essere realistici, specifici, misurabili, raggiungibili e rilevanti per essere efficaci."
+    }
+  ],
   "P": [
     {
       "termine": "Piano di Progetto",
@@ -251,7 +264,12 @@
       "definizione": "Processo dello sviluppo software che si occupa di verificare la funzionalità di una o più parti del prodotto."
     }
   ],
-  "U": [],
+  "U": [
+    {
+      "termine": "Use Case",
+      "definizione": "Un use case è una descrizione dettagliata di come un attore interagisce con un sistema per raggiungere un obiettivo specifico. Esso rappresenta un insieme di azioni o eventi che si verificano durante l'interazione tra l'attore e il sistema, evidenziando le funzionalità offerte dal sistema e le modalità di utilizzo da parte dell'attore."
+    }
+  ],
   "V": [
     {
       "termine": "Validazione",
