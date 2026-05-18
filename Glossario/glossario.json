@@ -139,6 +139,10 @@
   ],
   "M": [
     {
+        "termine": "Manuale Utente",
+        "definizione": "Il manuale utente è un documento che fornisce istruzioni dettagliate e chiare su come installare e utilizzare un prodotto, un sistema o un software. Esso è progettato per aiutare gli utenti a comprendere le funzionalità, le operazioni e le caratteristiche del prodotto, fornendo informazioni su come configurarlo e utilizzarlo correttamente. Il manuale utente può includere un'introduzione al prodotto, le istruzioni passo-passo per l'uso e i contatti per l'assistenza tecnica."
+    },
+    {
         "termine": "Milestone",
         "definizione": "Una milestone è un punto di riferimento significativo o un obiettivo importante all'interno di un progetto, utilizzato per misurare il progresso e il raggiungimento di determinati traguardi. Le milestone sono solitamente associate a date specifiche o a completamenti di specifiche attività o fasi di un progetto. Servono come punti di controllo per valutare se il progetto sta procedendo secondo i piani e per identificare eventuali ritardi o problemi. Le milestone possono essere utilizzate anche per comunicare i progressi del progetto alle parti interessate e per stabiliare scadenze chiare e tangibili per il completamento delle attività."
     },
@@ -228,6 +232,10 @@
     }
   ],
   "S": [
+    {
+      "termine": "Specifica Tecnica",
+      "definizione": "Documento che descrive in modo dettagliato le caratteristiche tecniche di un prodotto, sistema o componente, fornendo informazioni precise su tecnologie utilizzate e scelte architetturali"
+    },
     {
       "termine": "Sprint",
       "definizione": "Ciclo di lavoro di durata fissa, tipico dello sviluppo Agile, durante il quale il team si impegna a completare degli obiettivi prefissati."
