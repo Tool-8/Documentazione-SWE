@@ -1,0 +1,1538 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{fixltx2e} % (vecchio)
+
+% Lingua
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Margini
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}   % per immagini
+\usepackage{hyperref}   % per link
+\usepackage{caption}    % per didascalie
+\captionsetup[table]{labelformat=empty}
+\usepackage{ifthen}     % per \ifthenelse
+\usepackage{longtable}
+
+\usepackage{tikz}
+
+\usepackage{array}      % per tabelle
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{datetime}
+
+% Definisci un formato personalizzato
+\newdateformat{italianformat}{\THEDAY~\monthname[\THEMONTH]~\THEYEAR}
+\newdate{dataverbale}{12}{01}{2026}
+
+% Definizione del formato con le barre
+\newdateformat{slashdate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% Per logo in ogni pagina
+\usepackage{eso-pic}
+\usepackage{tikz}
+\AddToShipoutPictureBG{%
+  \ifthenelse{\value{page}>1}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      % Icona
+      \node[anchor=north west, inner sep=0pt] at ([xshift=28pt,yshift=-28pt]current page.north west) 
+        {\includegraphics[width=1cm, height=1cm]{resources/Tool-8_icon_white.png}};
+      
+      % Riga
+      \draw[black, line width=0.5pt] ([xshift=28pt + 1cm, yshift=-28pt - 0.6cm]current page.north west) 
+            -- ++(3cm, 0);
+      % Testo
+      \node[anchor=west, text=black, font=\small] at ([xshift=28pt + 1cm, yshift=-28pt - 0.4cm]current page.north west) 
+        {Piano di Qualifica};
+    \end{tikzpicture}
+  }{}
+}
+
+
+%------Ridefinizione maketitle-------
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{\fill}
+  \begin{center}
+    {\LARGE \bfseries \@title \par}
+    \vskip 1em
+    {\large \@author \par}
+    \vskip 1em
+    {\large\slashdate{\displaydate{dataverbale}} \par}
+  \end{center}
+  \vspace*{\fill}
+}
+\makeatother
+%-----------------------------------
+
+\title{%
+  \includegraphics[width=10cm]{resources/Tool-8_white_2.png} \\[1.5ex]
+  \textbf{\LARGE Piano di Qualifica}
+}
+\author{}
+\date{\dataverbale}
+\begin{document}
+\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{resources/Abstract_lines.png}};
+
+\maketitle
+
+\newpage
+
+\section*{Revisioni}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|M{0.8cm}|p{3cm}|p{4.1cm}|M{1.8cm}|p{3cm}|}
+  \hline
+  \textbf{Ver.} & \textbf{Autore} & \textbf{Modifiche} & \textbf{Data} & \textbf{Verifica} \\
+  \hline
+  1.8 & Niccolò Feltrin & Aggiunta test unità frontend e test di accettazione, aggiornamento grafici del cruscotto con Sprint 13 & 18/05/2026 & Stefano Maso \\
+  \hline
+  1.7 & Besnik Murtezan & Aggiornamento grafici del cruscotto con Sprint 11 e 12 & 09/05/2026 & Stefano Maso \\
+  \hline
+  1.6 & Stefano Maso & Aggiunte metriche per il processo di verifica, aggiunti test di integrazione, aggiunte sezioni cruscotto & 03/05/2026 & Besnik Murtezan \\
+  \hline
+  1.5 & Stefano Maso & Aggiornamento grafici del cruscotto con Sprint 10 e aggiunta Test di Unità & 29/04/2026 & Spadiliero Ruben \\
+  \hline
+  1.4 & Spadiliero Ruben & Aggiornamento grafici del cruscotto con Sprint 9 & 24/04/2026 & Banchieri Giuliano \\
+  \hline
+  1.3 & Giuliano Banchieri & Aggiornamento grafici del cruscotto con Sprint 8 & 17/04/2026 & Spadiliero Ruben \\
+  \hline
+  1.2 & Gabriele Disa & Aggiornati grafici del cruscotto con Sprint 7 (insieme all'analisi), aggiornato indice di Gulpease con Manuale Utente e Specifica Tecnica & 13/04/2026 & Besnik Murtezan \\
+  \hline
+  1.1 & Giuliano Banchieri & Aggiunta test di unità & 09/04/2026 & Besnik Murtezan \\
+  \hline
+  1.0 & Besnik Murtezan & Approvazione documento per RTB & 25/03/2026 & Stefano Maso \\
+  \hline
+  0.6 & Niccolò Feltrin & Aggiornati grafici del cruscotto con Sprint 6 (insieme all'analisi) & 25/03/2026 & Stefano Maso \\
+  \hline
+  0.5 & Niccolò Feltrin & Aggiornati grafici del cruscotto con Sprint 5 (insieme all'analisi), aggiornato indice di Gulpease con verbale esterno 16/03/2026 e interno 18/03/2026 & 24/03/2026 & Stefano Maso \\
+  \hline
+  0.4 & Niccolò Feltrin & Aggiornato calcolo indice di Gulpease in AdR (v1.0) e verbale interno 3/3/2026, aggiunti test di sistema & 10/03/2026 & Giuliano Banchieri \\
+  \hline
+  0.3 & Niccolò Feltrin & Aggiornati grafici del cruscotto con Sprint 4 (insieme all'analisi), e aggiunto calcolo dell'indice di Gulpease su verbali e documenti per RTB & 06/03/2026 & Giuliano Banchieri \\
+  \hline
+  0.2 & Stefano Maso & Aggiornamento Cruscotto di valutazione a seguito del terzo sprint & 17/02/2026 & Besnik Murtezan \\
+  \hline
+  0.1 & Stefano Maso & Prima stesura documento completo & \slashdate{\displaydate{dataverbale}} & Besnik Murtezan \\
+  \hline
+\end{tabular}
+\label{tab:revisioni}
+\end{table}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduzione}
+\subsection{Scopo del documento}
+Il Piano di Qualifica$^G$ definisce le metriche di valutazione del prodotto, sulla base dei requisiti e delle aspettative della proponente$^G$, in modo da poter definire la qualità del prodotto attraverso un processo di continuo miglioramento.
+Il Piano di Qualifica$^G$ è concepito per essere incrementale e dinamico, soprattutto per quanto riguarda le metriche descritte e punta a dare una valutazione il più oggettiva possibile di ciò che è stato realizzato. Eventuali termini tecnici sono definiti all'interno del documento "Glossario".
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \href{https://tool-8.github.io/Documentazione-SWE/}{Norme di Progetto v1.0}
+    \item Capitolato$^G$ C6 - Progetto$^G$ Second Brain:    \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
+\end{itemize}
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item Lezione \textit{Progettazione$^G$ Software (T6)} del corso di \textit{Ingegneria del software$^G$}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T06.pdf}
+    \item Lezione \textit{Qualità di prodotto (T7)} del corso di \textit{Ingegneria del software$^G$}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T0.pdf}
+    \item Lezione \textit{Qualità di processo (T8)} del corso di \textit{Ingegneria del software$^G$}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf}
+    \item Lezione \textit{Verifica$^G$ e validazione$^G$: introduzione (T9)} del corso di \textit{Ingegneria del software$^G$}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf}
+    \item Lezione \textit{Verifica$^G$ e validazione$^G$: analisi statica (T10)} del corso di \textit{Ingegneria del software$^G$}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T10.pdf}
+    \item Lezione \textit{Verifica$^G$ e validazione$^G$: analisi dinamica aka testing (T11)} del corso di \textit{Ingegneria del software$^G$}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf}
+    \item Metriche di progetto$^G$ (\textit{Earned Value Analysis}): \\ \url{https://it.wikipedia.org/wiki/Metriche_di_progetto}
+\end{itemize}
+\subsection{Codifica delle metriche}
+Una metrica è identificata dal seguente formato di codice: 
+\begin{center}
+    [Tipo][Id]-[Acronimo]
+\end{center}
+\begin{itemize}
+    \item \textbf{Tipo}: può essere PC (per un processo) o PD (per un prodotto)
+    \item \textbf{Id}: identificativo all'interno di un certo tipo di metrica
+    \item \textbf{Acronimo}: acronimo del nome della metrica
+\end{itemize}
+Ogni metrica avrà una descrizione, i valori accettabili e quelli preferibili.
+
+\section{Qualità di processo}
+La qualità è determinata dai processi che la compongono, misurata scegliendo delle buone metriche di misurazione di qualità e anche buoni strumenti (serve automazione e oggettività). 
+\subsection{Processi primari}
+\subsubsection{Fornitura}
+Per definire le metriche adottate per i processi primari di fornitura andremo a fare riferimento alla tecnica denominata \textit{EVA} (\textit{Earned Value Analysis}) che consenste di calcolare in termini di tempo, denaro speso e valore del lavoro realizzato e di valutare le performance del progetto.\\ Tra queste individuiamo:
+\begin{itemize}
+    \item \textbf{Budget at Completion (BAC)}: valore previsto inizialmente per la realizzazione del progetto$^G$
+    \item \textbf{Estimated at Completion (EAC)}: revisione del valore stimato per la realizzazione del progetto$^G$
+    \item \textbf{Planned Value (PV)}: costo previsto per realizzare le attività di progetto$^G$ per la data stabilita (tempo o denaro)
+    \item \textbf{Actual Cost (AC)}: costo effettivamente sostenuto alla data stabilita (tempo o denaro)
+    \item \textbf{Earned Value (EV)}: valore delle attività sostenute alla data stabilita (tempo o denaro)
+    \item \textbf{Estimated to Complete (ETC)}: valore stimato per completare le attività rimanenti necessarie per concludere il progetto$^G$
+    \item \textbf{Cost Variance (CV)}: misura la variazione del valore ottenuto (EV) rispetto al costo effettivo (AC)
+    \item \textbf{Schedule Variance (SV)}: misura la variazione del valore ottenuto (EV) rispetto al costo pianificato (PV)
+    \item \textbf{Budget Variance (BV)}: misura la variazione dal costo attuale (AC) rispetto al costo atteso (CV)
+\end{itemize}
+Come riportato dal documento Dichiarazione di Impegni, il BAC corrisponde ad un valore di \textbf{€ 10.950,00}.
+\\
+Obiettivi di qualità per tali metriche: 
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PC01-EAC & Estimated at Completion & $\pm 5\%$ BAC & = BAC \\
+PC02-PV  & Planned Value           & $\geq 0$      & $\leq$ BAC \\
+PC03-AC  & Actual Cost             & $\geq 0$      & $\leq$ EAC \\
+PC04-EV  & Earned Value             & $\geq 0$      & $\leq$ EAC \\
+PC05-ETC & Estimated to Complete    & $\geq 0$      & $\leq$ EAC \\
+PC06-CV  & Cost Variance            & $\geq -7.5\%$ & $\geq 0$ \\
+PC07-SV  & Schedule Variance        & $\geq -7.5\%$ & $\geq 0$ \\
+PC08-BV  & Budget Variance          & $\pm 10\%$    & = 0 \\
+\hline
+\end{tabular}
+\caption{Metriche per i processi di fornitura}
+\label{tab:metriche-fornitura}
+\end{table}
+\subsubsection{Sviluppo}
+\textbf{Analisi dei Requisiti} Per l'attività di \textit{Analisi dei Requisiti$^G$} definiamo le seguenti metriche:
+\begin{itemize}
+    \item \textbf{Requirements stability index (RSI)}: misura la stabilità dei requisiti nel corso del tempo durante lo sviluppo$^G$ del progetto$^G$; è misurata nel suguente modo:
+    \begin{center}
+        \[
+        RSI = 1 - \left( \frac{N_{\text{modifiche}}}{N_{\text{requisiti totali}}} \right) \times 100
+        \]
+    \end{center}
+    Dove: \\
+    - N\textsubscript{modifiche} è il numero totale di modifiche apportate ai requisiti durante un periodo di tempo specifico \\
+    - N\textsubscript{requisiti totali} è il numero totale di requisiti del progetto$^G$
+\end{itemize}
+\textbf{Progettazione} Per l'attività di progettazione$^G$ definiamo le seguenti metriche:
+\begin{itemize}
+    \item \textbf{Structural fan-in (SFIN)}: misura la quantità dei moduli che utilizzano un modulo specifico, un valore alto significa che molte parti del sistema dipendono da un modulo in particolare
+    \item \textbf{Structural fan-out (SFOUT)}: misura il numero di moduli utilizzati da un modulo specifico, un valore alto significa che il modulo considerato dipende da molti altri moduli
+\end{itemize}
+\textbf{Codifica} Per l'attività di codifica definiamo le seguenti metriche:
+\begin{itemize}
+    \item \textbf{Linee di codice (LOC)}: misura la complessità del software in base al numero di linee di codice sorgente
+\end{itemize}
+Obiettivi per tali metriche:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PC09-RSI & Requirements stability index & $\geq 70\%$ & $100\%$ \\
+PC10-SFIN  & Structural fan-in           & -      & Masismo \\
+PC11-SFOUT  & Structural fan-out            & -      & Minimo \\
+PC12-LOC  & Linee di codice             & $\leq 50.000$      & $\leq 30.000$  \\
+\hline
+\end{tabular}
+\caption{Metriche per i processi di sviluppo}
+\label{tab:metriche-sviluppo}
+\end{table}
+
+\subsection{Processi di supporto}
+\subsubsection{Documentazione} 
+Per il processo di documentazione definiamo le seguenti metriche:
+\begin{itemize}
+    \item \textbf{Errori ortografici (EO)}: misura la quantità di errori ortografici individuati per documento
+    \item \textbf{Indice Gulpease (IG)}: misura la leggibilità di un documento in lingua italiana, calcolato nel seguente modo:
+        \[
+        IG = 89 + \frac{300 \times (num. frasi) - 10 \times (num. lettere) }{num. parole}
+        \]
+    Dove: \\
+    - \textit{num. frasi} è il numero di frasi nel documento \\
+    - \textit{num. lettere} è il numero di lettere nel documento \\
+    - \textit{num. parole} è il numero di parole nel documento
+\end{itemize}
+Obiettivi per tali metriche:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PC13-EO & Errori ortografici & 0 & 0 \\
+PC14-IG  & Indice Gulpease & 40-100      & 55-100 \\
+\hline
+\end{tabular}
+\caption{Metriche per i processi di supporto}
+\label{tab:metriche-supporto}
+\end{table}
+\subsubsection{Verifica}
+Per il processo di verifica andremo a definire le seguenti metriche:
+\begin{itemize}
+    \item \textbf{Percentuale dei test superati (PCTS)}: misura la percentuale di test, definiti nella sezione Testing superati, calcolato nel seguente modo: 
+    \[
+        PCTS = \frac{\text{num. test superati}}{\text{num. test totali}} \times 100
+    \]
+    \item \textbf{Statement coverage (SC)}: misura la percentuale degli statement del codice coperti dai test, ovvero eseguiti almeno una volta, calcolato nel seguente modo:
+    \[
+        SC = \frac{\text{statement eseguiti}}{\text{statement totali}} \times 100
+    \]
+    \item \textbf{Branch coverage (BC)}: misura la percentuale dei rami decisionali, ovvero i percorsi di esecuzione, del codice coperti dai test, cioè eseguiti almeno una volta, calcolato nel seguente modo:
+    \[
+        BC = \frac{\text{rami decisionali testati}}{\text{rami decisionali totali}} \times 100
+    \]
+    \item \textbf{Condition coverage (CC)}: misura la percentuale di condizioni logiche del codice che sono state eseguite durante i test, ovvero eseguite almeno una volta, calcolato nel seguente modo:
+    \[
+        CC = \frac{\text{condizioni logiche testate}}{\text{condizioni logiche totali}} \times 100
+    \]
+\end{itemize}
+Obiettivi per tali metriche:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PC15-PCTS & Percentuale dei test superati & $\geq 80\%$ & 100\% \\
+PC16-SC  & Statement coverage  & $\geq 80\%$ & 100\% \\
+PC17-BC  & Branch coverage  & $\geq 80\%$ & 100\% \\
+PC18-CC  & Condition coverage  & $\geq 80\%$ & 100\% \\
+\hline
+\end{tabular}
+\caption{Metriche per i processi di verifica}
+\label{tab:metriche-verifica}
+\end{table}
+
+\subsection{Processi organizzativi}
+Per i processi organizzativi definiamo le seguenti metriche:
+\begin{itemize}
+    \item \textbf{Non Calculated Risk (NCR)}: misura la quantità di rischi non previsti o non stimati
+    \item \textbf{Efficienza temporale (ET)}: misura quanto tempo viene impiegato per attività produttive rispetto alle ore individuali:
+    \[
+    ET = \frac{\text{Ore individuali}}{\text{Ore produttive}}
+    \]
+    Dove: \\
+    - \textit{Ore individuali} sono le ore che portano al raggiungimento di obiettivi \\
+    - \textit{Ore produttive} rappresentano il tempo totale trascorso come ore di orologio
+\end{itemize}
+Obiettivi per tali metriche:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PC19-NCR & Non Calculated Risk & $\leq 4$ & 0 \\
+PC20-ET  & Efficienza temporale  & $\leq 3$ & $\leq 1$ \\
+\hline
+\end{tabular}
+\caption{Metriche per i processi organizzativi}
+\label{tab:metriche-organizzativi}
+\end{table}
+
+
+
+
+\section{Qualità di prodotto}
+Questa sezione è dedicata agli obiettivi che un prodotto software di qualità dovrebbe avere. Ecco gli obiettivi di qualità esterni:
+\begin{itemize}
+    \item \textit{Adeguatezza funzionale}: cioè la capacità di fornire le funzionalità$^G$ e le caratteristiche previste, soddisfando i requisiti funzionali
+    \item \textit{Efficienza$^G$}: la capacità di fornire prestazioni adeguate e di utilizzo delle risorse di sistema
+    \item \textit{Usabilità}: cioè la misura all'apprendimento, comprensione e operabilità del prodotto da parte dell'utente
+    \item \textit{Affidabilità}: misura la capacità del prodotto di funzionare correttamente sotto determinate condizioni
+    \item \textit{Sicurezza}: la capacità del software di proteggere dati sensibili e prevenire accessi non autorizzati
+\end{itemize}
+Gli obiettivi di qualità interni:
+\begin{itemize}
+    \item \textit{Manutenibilità}: misura la facilità con cui il prodotto può essere modificato, aggiornato e corretto
+    \item \textit{Portabilità}: misura la facilità con cui il prodotto può essere trasferito da un ambiente ad un altro
+\end{itemize}
+\subsection{Adeguatezza funzionale}
+Per l'adeguatezza funzionale useremo le seguente metrica:
+\begin{itemize}
+    \item \textbf{Copertura dei requisiti obbligatori (CRO)}: misura la percentuale dei requisiti obbligatori soddisfatti
+    \[
+        CRO = \frac{N_{ros}}{N_{rot}} \times 100
+    \]
+    Dove:  \\
+    - N\textsubscript{ros} rappresentano il numero di requisiti obbligatori soddisfatti \\
+    - N\textsubscript{rot} rappresentano il numero di requisiti obbligatori totali
+\end{itemize}
+Obiettivi di qualità per tale metrica: 
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PD01-CRO & Copertura dei requisiti obbligatori & $100\%$ & $100\%$ \\
+\hline
+\end{tabular}
+\caption{Metriche per l'adeguatezza funzionale}
+\label{tab:metriche-adfunzionale}
+\end{table}
+\subsection{Efficienza}
+Per l'efficienza$^G$ usiamo la seguente metrica:
+\begin{itemize}
+    \item \textbf{Tempo di risposta medio (TM)}: misura il tempo impiegato dal software di gestire ed elaborare una richiesta fino al risultato finale
+\end{itemize}
+Obiettivi per tale metrica:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PD02-TM & Tempo di risposta medio & 3 secondi & 2 secondi \\
+\hline
+\end{tabular}
+\caption{Metriche per l'efficienza}
+\label{tab:metriche-efficienza}
+\end{table}
+\subsection{Usabilità}
+Per l'usabilità usiamo le seguenti metriche:
+\begin{itemize}
+    \item \textbf{Tempo di apprendimento (TA)}: misura il tempo impiegato dall'utente di imparare e utilizzare le funzionalità$^G$ del software 
+    \item \textbf{Raggiunta dell'obiettivo (RO)}: misura il numero di iterazioni necessarie all'utente per raggiungere il risultato voluto
+    \item \textbf{Errori dell'utente (EU)}: misura il numero di errori che l'utente compie prima di raggiungere l'obiettivo desiderato 
+\end{itemize}
+Obiettivi per tali metriche:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PD03-TA & Tempo di apprendimento & 20 minuti & 10 minuti \\
+PD04-RO & Raggiunta dell'obiettivo & 7 click & 4 click \\
+PD05-EU & Errori dell'utente & 3 & 0 \\
+\hline
+\end{tabular}
+\caption{Metriche per l'usabilità}
+\label{tab:metriche-usabilità}
+\end{table}
+\subsection{Affidabilità}
+Per l'affidabilità useremo la seguente metrica:
+\begin{itemize}
+    \item \textbf{Failure density (FD)}: misura in percentuale l'affidabilità del software
+    \[
+    FD = \frac{N_{tf}}{N_{te}} \times 100
+    \]
+    Dove: \\
+    - N\textsubscript{tf} rappresentano il numero di testi falliti \\
+    - N\textsubscript{te} rappresentano il numero di test$^G$ effettuati 
+\end{itemize}
+Obiettivi per tale metrica:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PD06-FD & Failure density & $10\%$ & $0\%$ \\
+\hline
+\end{tabular}
+\caption{Metriche per l'affidabilità}
+\label{tab:metriche-affidabilità}
+\end{table}
+\subsection{Manutenibilità}
+Per la manutenibilità andremo ad usare la seguente metrica:
+\begin{itemize}
+    \item \textbf{Complessità ciclomatica (CC)}: misura la complessità del software utilizzando il grafo di controllo del flusso
+    \[
+    v(G) = e - n + p
+    \]
+    Dove: \\
+    - G rappresenta il grafo \\
+    - e rappresenta il numero di archi in G \\
+    - n rappresenta il numero di nodi in G \\
+    - p rappresenta il numero delle componenti connesse da ogni arco 
+\end{itemize}
+Obiettivi per tale metrica:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PD07-CC & Complessità ciclomatica & $\leq 15$ & $\leq 10$ \\
+\hline
+\end{tabular}
+\caption{Metriche per la manutenibilità}
+\label{tab:metriche-manutenibilità}
+\end{table}
+\subsection{Portabilità}
+Per la portabilità andremo ad usare la seguente metrica:
+\begin{itemize}
+    \item \textbf{Browser supportati (BS)}: misura in percentuale le versioni dei browser supportati
+    \[ 
+        BS = \frac{N_{vbs}}{N_{vbp}} \times 100
+    \]
+    Dove: \\
+    - N\textsubscript{vbs} rappresenta il numero di versioni di browser supportate \\
+    - N\textsubscript{vbp} rappresenta il numero di versioni di browser previste da supportare
+\end{itemize}
+Obiettivi per tale metrica:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} \\
+\hline
+PD08-BS & Browser supportati & $100\%$ & $100\%$ \\
+\hline
+\end{tabular}
+\caption{Metriche per la portabilità}
+\label{tab:metriche-portabilità}
+\end{table}
+
+\section{Testing}
+In questa sezione verranno esplorate le metodologie di testing e la loro specifica. L'obiettivo è seguire il "\textit{Modello a V$^G$}", in cui ad ogni fase di sviluppo$^G$ corrisponde un tipo di test$^G$ da eseguire.\\
+I test$^G$ di dividono in:
+\begin{itemize}
+    \item \textbf{Test di unità}: vengono eseguiti sulle unità più semplici del codice e viene fatta corrispondere all'attività di codifica
+    \item \textbf{Test di integrazione}: vengono eseguiti per verificare la corretta integrazione tra le diverse unità software e viene fatta corrispondere all'attività di progettazione$^G$
+    \item \textbf{Test di sistema}: verificando il funzionamento corretto dell'intero sistema e soprattutto che tutti i requisiti siano soddisfatti; viene fatta corrispondere all'attività di \textit{Analisi dei Requisiti$^G$}
+    \item \textbf{Test di accettazione}: verificando, alla presenza del committente, che il prodotto finale soddisfi tutti i requisiti, se questo test$^G$ risulta superato si può procedere al rilascio
+\end{itemize}
+
+Per ogni test sarà indicato il suo stato:
+\begin{itemize}
+    \item \textbf{S} : il test$^G$ è stato eseguito ed è stato superato con successo
+    \item \textbf{F} : il test$^G$ è stato eseguito ma non è stato superato
+    \item \textbf{-} : il test$^G$ non è stato eseguito
+\end{itemize}
+
+\subsection{Test di unità}
+I test$^G$ di unità hanno lo scopo di verificare che le unità più semplici del codice funzionino correttamente. In seguito verranno elencati i vari test$^G$ e per ognuno il suo codice identificativo, l'oggetto di test, una descrizione e lo stato. \\
+
+\subsubsection{Backend}
+
+\newcounter{TU@}
+
+\newcommand{\testU}{%
+    \stepcounter{TU@}%
+    \noindent{TU-\arabic{TU@}}\quad\par
+}
+
+\begin{longtable}{|l|p{4cm}|p{8cm}|p{1cm}|}
+    \hline
+    \textbf{Test} & \textbf{Oggetto} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
+    \endfirsthead
+    \hline
+    \testU & NoteController & Verificare che index() restituisca 200 con la lista delle note - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che index() restituisca 200 con lista vuota quando non ci sono note - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 200 con i dati della nota - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 404 quando la nota non è trovata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che show(string \$id) restituisca 400 quando l'id è invalido - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) restituisca 201 con la nota creata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) utilizzi stringa vuota per content\_md assente - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che store(Request) restituisca 409 quando il titolo è già in uso - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 200 con la nota aggiornata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 404 quando la nota non è trovata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 409 quando il titolo è già in uso - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che update(Request, string \$id) restituisca 400 quando l'id è invalido - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 204 in caso di successo - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 404 quando la nota non è trovata - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 500 quando l'eliminazione fallisce - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che destroy(string \$id) restituisca 400 quando l'id è invalido - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteController & Verificare che un'eccezione RuntimeException sconosciuta restituisca 500 - verificato da \texttt{NoteControllerTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio ottenuta da NoteRepositoryInterface - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array restituisca i dettagli della nota corrispondente all'ID specificato - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che get(string \$id):array restituisca un errore in caso di nota non esistente per l'id specificato - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface la creazione di una nuova nota nell'archivio (e restituisca un valore di successo) - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che create(string \$title, string \$contentMd):array restituisca un errore in caso la creazione di una nuova nota non sia avvenuta qualora fosse già presente una nota con lo stesso nome - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array deleghi a NoteRepositoryInterface l'aggiornamento dei dettagli di una nota esistente (e ritorni un valore di successo) - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che update(string \$id, string \$title, string \$contentMd):array restituisca un errore e non deleghi l'aggiornamento dei dettagli della nota scelta qualora fosse già presente una nota con lo stesso nome - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteService & Verificare che delete(string \$id):void deleghi correttamente l'eliminazione della nota corrispondente all'ID specificato a NoteRepositoryInterface (e ritorni un valore di successo) - verificato da \texttt{NoteServiceTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che list():array restituisca correttamente la lista completa delle note nell'archivio - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che list():array restituisca una lista vuota quando non ci sono note nell'archivio - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che get(string \$id):array restituisca i dati completi della nota corrispondente all'ID specificato - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che venga gestita l'eccezione quando si tenta di utilizzare get(string \$id):array con un ID di una nota non esistente - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che create(string \$title, string \$contentMd):array crei correttamente una nuova nota nell'archivio, associandola ad un ID univoco - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il titolo della nota scelta - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che update(string \$id, string \$title, string \$contentMd):array aggiorni correttamente il contenuto della nota scelta - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che delete(string \$id):void elimini correttamente la nota corrispondente all'ID specificato - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che delete(string \$id):void gestisca correttamente l'eliminazione di una nota non esistente - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca true se un titolo è già utilizzato da un'altra nota con ID diverso da excludeId - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & NoteRepository & Verificare che isTitleUsed(string \$title, ?string \$excludeId = null):bool restituisca false se un titolo non è già utilizzato da un'altra nota con ID diverso da excludeId - verificato da \texttt{NoteRepositoryTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):Response restituisca 200 con il contenuto della nota esportata correttamente quando viene fornito un id valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che exportRaw(Request \$request):Response restituisca 200 con il contenuto esportato correttamente quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):JsonResponse restituisca 404 con messaggio "Note not found" quando il servizio lancia RuntimeException con messaggio NOT\_FOUND - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):JsonResponse restituisca 400 con messaggio "Invalid note id" quando il servizio lancia RuntimeException con messaggio INVALID\_ID - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):JsonResponse restituisca 400 con il messaggio di errore quando il servizio lancia InvalidArgumentException per formato non valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che exportRaw(Request \$request):JsonResponse restituisca 400 con il messaggio di errore quando il servizio lancia InvalidArgumentException per formato non valido - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportController & Verificare che export(Request \$request, string \$id):JsonResponse restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ExportControllerTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato Markdown dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che exportRaw(string \$title, string \$content, string \$format):array restituisca correttamente i dati in formato Markdown dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato HTML dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che exportRaw(string \$title, string \$content, string \$format):array restituisca correttamente i dati in formato HTML dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array restituisca correttamente i dati della nota in formato PDF dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che exportRaw(string \$title, string \$content, string \$format):array restituisca correttamente i dati in formato PDF dopo averne delegato l'esportazione a ExportStrategyInterface - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che export(string \$id, string \$format):array propaghi correttamente l'eccezione InvalidArgumentException qualora il formato richiesto non sia valido - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportService & Verificare che exportRaw(string \$title, string \$content, string \$format):array propaghi correttamente l'eccezione InvalidArgumentException qualora il formato richiesto non sia valido - verificato da \texttt{ExportServiceTest.php} & S \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta MdExport nel caso il formato richiesto sia "md" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta HtmlExport nel caso il formato richiesto sia "html" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface istanzi e restituisca la strategy concreta PdfExport nel caso il formato richiesto sia "pdf" - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
+    \testU & ExportStrategyFactory & Verificare che make(string \$format):ExportStrategyInterface lanci un'eccezione InvalidArgumentException qualora il formato richiesto non sia valido - verificato da \texttt{ExportStrategyFactoryTest.php} & S \\ \hline
+    \testU & MdExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato Markdown - verifcato da \texttt{MdExportTest.php} & S \\ \hline
+    \testU & HtmlExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato HTML - verifcato da \texttt{HtmlExportTest.php} & S \\ \hline
+    \testU & PdfExport & Verificare che export(string \$content, string \$title):string converta correttamente il contenuto della nota in formato PDF - verifcato da \texttt{PdfExportTest.php} & S\\ \hline
+    \testU & MdExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato Markdown - verifcato da \texttt{MdExportTest.php} & S \\ \hline
+    \testU & HtmlExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato HTML - verifcato da \texttt{HtmlExportTest.php} & S \\ \hline
+    \testU & PdfExport & Verificare che contentType():string restituisca il MIME type corrispondente al formato PDF - verifcato da \texttt{PdfExportTest.php} & S \\ \hline
+    \testU & MdExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato Markdown - verifcato da \texttt{MdExportTest.php} & S \\ \hline
+    \testU & HtmlExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato HTML - verifcato da \texttt{HtmlExportTest.php} & S \\ \hline
+    \testU & PdfExport & Verificare che extension():string restituisca l'estensione del file corrispondente al formato PDF - verifcato da \texttt{PdfExportTest.php} & S \\ \hline
+    \testU & ImportController & Verificare che invoke(Request \$request):JsonResponse restituisca 201 con i dati della nota importata in caso di successo - verificato da \texttt{ImportControllerTest.php} & S \\ \hline
+    \testU & ImportController & Verificare che invoke(Request \$request):JsonResponse restituisca 400 qualora il formato del file caricato non sia supportato - verificato da \texttt{ImportControllerTest.php} & S \\ \hline
+    \testU & ImportController & Verificare che invoke(Request \$request):JsonResponse restituisca 400 qualora il titolo della nota da importare sia già in uso - verificato da \texttt{ImportControllerTest.php} & S \\ \hline
+    \testU & ImportService & Verificare che handleUpload(UploadedFile \$file):Note deleghi correttamente il parsing del file a ImportStrategyInterface e la creazione della nota a NoteRepositoryInterface, restituendo la nota creata - verificato da \texttt{ImportServiceTest.php} & S \\ \hline
+    \testU & ImportService & Verificare che handleUpload(UploadedFile \$file):Note propaghi correttamente l'eccezione InvalidArgumentException qualora il formato del file non sia supportato - verificato da \texttt{ImportServiceTest.php} & S \\ \hline
+    \testU & ImportService & Verificare che handleUpload(UploadedFile \$file):Note lanci una RuntimeException con messaggio TITLE\_IN\_USE qualora il titolo della nota da importare sia già in uso - verificato da \texttt{ImportServiceTest.php} & S \\ \hline
+    \testU & ImportStrategyFactory & Verificare che make(string \$format):ImportStrategyInterface istanzi e restituisca la strategy concreta MdImport nel caso il formato richiesto sia "md" - verificato da \texttt{ImportStrategyFactoryTest.php} & S \\ \hline
+    \testU & ImportStrategyFactory & Verificare che make(string \$format):ImportStrategyInterface lanci un'eccezione InvalidArgumentException qualora il formato richiesto non sia supportato - verificato da \texttt{ImportStrategyFactoryTest.php} & S \\ \hline
+    \testU & MdImport & Verificare che parse(UploadedFile \$file):array restituisca correttamente il nome del file (senza estensione) come titolo e il contenuto del file come content - verificato da \texttt{MdImportTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che summarize(Request \$request):JsonResponse deleghi correttamente a LlmService il riassunto e restituisca il risultato in una risposta JSON con status 200 - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che translate(Request \$request):JsonResponse deleghi correttamente a LlmService l'elaborazione di un'azione di traduzione con opzioni (lingua della traduzione) e restituisca il risultato in una risposta JSON con status 200 - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che rewrite(Request \$request):JsonResponse deleghi correttamente a LlmService l'elaborazione di un'azione di riscrittura con opzioni (tono riscrittura) e restituisca il risultato in una risposta JSON con status 200 - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che hat(Request \$request, string \$type):JsonResponse deleghi correttamente a LlmService l'elaborazione di un'azione di critica del tipo specificato e restituisca il risultato in una risposta JSON con status 200 - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che distantWriting(Request \$request):JsonResponse deleghi correttamente a LlmService l'elaborazione di un'azione di generazione di testo e restituisca il risultato in una risposta JSON con status 200 - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che summarize(Request \$request) lanci una ValidationException qualora non venga passato il contenuto da riassumere - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che translate(Request \$request) lanci una ValidationException qualora la lingua selezionata non sia supportata - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che rewrite(Request \$request) lanci una ValidationException qualora il tono di riscrittura non sia specificato - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che hat(Request \$request, string \$type) restituisca un messaggio di errore in una risposta JSON con status 400 nel caso in cui il tipo di cappello non sia supportato - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che summarize(Request \$request) restituisca il messaggio di errore in una risposta JSON con status 502 in caso di errore di RuntimeException - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che translate(Request \$request) restituisca il messaggio di errore in una risposta JSON con status 502 in caso di errore di RuntimeException - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che rewrite(Request \$request) restituisca il messaggio di errore in una risposta JSON con status 502 in caso di errore di RuntimeException - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che hat(Request \$request, string \$type) restituisca il messaggio di errore in una risposta JSON con status 502 in caso di errore di RuntimeException - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmController & Verificare che distantWriting(Request \$request) restituisca il messaggio di errore in una risposta JSON con status 502 in caso di errore di RuntimeException - verificato da \texttt{LlmControllerTest.php} & S \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string deleghi correttamente a LlmStrategyFactory la creazione della strategy e restituisca il testo prodotto da LlmStrategyInterface - verificato da \texttt{LlmServiceTest.php} & S \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string restituisca correttamente il testo prodotto da LlmStrategyInterface anche in caso di risposta non attesa - verificato da \texttt{LlmServiceTest.php} & S \\ \hline
+    \testU & LlmService & Verificare che process(string \$content, string \$action, array \$options = []):string propaghi correttamente l'eccezione InvalidArgumentException qualora la factory non riconosca l'azione richiesta - verificato da \texttt{LlmServiceTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmSummarize nel caso l'azione richiesta sia "summarize" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmTranslate nel caso l'azione richiesta sia "translate" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmRewrite nel caso l'azione richiesta sia "rewrite" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmDistantWriting nel caso l'azione richiesta sia "distant writing" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmWhiteHat nel caso l'azione richiesta sia "whitehat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmRedHat nel caso l'azione richiesta sia "redhat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmBlackHat nel caso l'azione richiesta sia "blackhat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmYellowHat nel caso l'azione richiesta sia "yellowhat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmGreenHat nel caso l'azione richiesta sia "greenhat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface istanzi e restituisca la strategy concreta LlmBlueHat nel caso l'azione richiesta sia "bluehat" - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmStrategyFactory & Verificare che make(string \$action):LlmStrategyInterface lanci un'eccezione InvalidArgumentException qualora l'azione richiesta non sia valida - verificato da \texttt{LlmStrategyFactoryTest.php} & S \\ \hline
+    \testU & LlmResponseProcessor & Verificare che make(string \$prompt, string \$content):Response invii correttamente la richiesta HTTP alla LLM con header di autenticazione, modello e messaggi corretti, restituendo la risposta ottenuta - verificato da \texttt{LlmResponseProcessorTest.php} & S \\ \hline
+    \testU & LlmResponseProcessor & Verificare che handleError(Response \$response):void lanci una RuntimeException con messaggio strutturato qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmResponseProcessorTest.php} & S \\ \hline
+    \testU & LlmSummarize & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmSummarizeTest.php} & S \\ \hline
+    \testU & LlmSummarize & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmSummarizeTest.php} & S \\ \hline
+    \testU & LlmSummarize & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmSummarizeTest.php} & S \\ \hline
+    \testU & LlmTranslate & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmTranslateTest.php} & S \\ \hline
+    \testU & LlmTranslate & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmTranslateTest.php} & S \\ \hline
+    \testU & LlmTranslate & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmTranslateTest.php} & S \\ \hline
+    \testU & LlmRewrite & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmRewriteTest.php} & S \\ \hline
+    \testU & LlmRewrite & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmRewriteTest.php} & S \\ \hline
+    \testU & LlmRewrite & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmRewriteTest.php} & S \\ \hline    
+    \testU & LlmDistantWriting & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmDistantWritingTest.php} & S \\ \hline
+    \testU & LlmDistantWriting & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmDistantWritingTest.php} & S \\ \hline
+    \testU & LlmDistantWriting & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmDistantWritingTest.php} & S \\ \hline    
+    \testU & LlmWhiteHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmWhiteHatTest.php} & S \\ \hline
+    \testU & LlmWhiteHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmWhiteHatTest.php} & S \\ \hline
+    \testU & LlmWhiteHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmWhiteHatTest.php} & S \\ \hline    
+    \testU & LlmRedHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmRedHatTest.php} & S \\ \hline
+    \testU & LlmRedHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmRedHatTest.php} & S \\ \hline
+    \testU & LlmRedHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmRedHatTest.php} & S \\ \hline
+    \testU & LlmBlackHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmBlackHatTest.php} & S \\ \hline
+    \testU & LlmBlackHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmBlackHatTest.php} & S \\ \hline
+    \testU & LlmBlackHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmBlackHatTest.php} & S \\ \hline
+    \testU & LlmYellowHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmYellowHatTest.php} & S \\ \hline
+    \testU & LlmYellowHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmYellowHatTest.php} & S \\ \hline
+    \testU & LlmYellowHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmYellowHatTest.php} & S \\ \hline
+    \testU & LlmGreenHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmGreenHatTest.php} & S \\ \hline
+    \testU & LlmGreenHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmGreenHatTest.php} & S \\ \hline
+    \testU & LlmGreenHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmGreenHatTest.php} & S \\ \hline
+    \testU & LlmBlueHat & Verificare che process(Context \$context):string ritorni correttamente il testo generato - verificato da \texttt{LlmBlueHatTest.php} & S \\ \hline
+    \testU & LlmBlueHat & Verificare che process(Context \$context):string ritorni correttamente 'Risposta vuota' quando il modello ritorno una risposta dal contenuto vuoto - verificato da \texttt{LlmBlueHatTest.php} & S \\ \hline
+    \testU & LlmBlueHat & Verificare che process(Context \$context):string lanci un'eccezione qualora la risposta della LLM non sia andata a buon fine - verificato da \texttt{LlmBlueHatTest.php} & S \\ \hline
+\end{longtable}
+
+\subsubsection{Frontend}
+
+\begin{longtable}{|l|p{4cm}|p{8cm}|p{1cm}|}
+    \hline
+    \textbf{Test} & \textbf{Oggetto} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
+    \endfirsthead
+    \hline
+    \testU & useAi & Verificare che lo stato iniziale di \texttt{result} sia \texttt{null} - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che lo stato iniziale di \texttt{loading} sia \texttt{false} - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che lo stato iniziale di \texttt{error} sia \texttt{null} - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{loading} sia \texttt{true} durante l'esecuzione di un'operazione asincrona - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{result} contenga il valore atteso dopo un'esecuzione con successo - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{loading} sia \texttt{false} al termine dell'esecuzione con successo - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{error} sia \texttt{null} dopo un'esecuzione con successo - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{error} contenga il messaggio dell'eccezione in caso di errore - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{error} contenga il messaggio di default se l'eccezione non ha messaggio - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{result} sia \texttt{null} dopo un'esecuzione con errore - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{loading} sia \texttt{false} al termine dell'esecuzione con errore - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{error} e \texttt{result} vengano azzerati prima di ogni nuova esecuzione - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{translate} chiami \texttt{aiService.translate} con lingua di default \texttt{en} - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{translate} chiami \texttt{aiService.translate} con la lingua specificata - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{summarize} chiami \texttt{aiService.summarize} con il contenuto - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{rewrite} chiami \texttt{aiService.rewrite} con contenuto e stile - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{distantWriting} chiami \texttt{aiService.distantWriting} con il contenuto - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{bluehat} chiami \texttt{aiService.bluehat} con il contenuto - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{blackhat} chiami \texttt{aiService.blackhat} con il contenuto - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{redhat} chiami \texttt{aiService.redhat} con il contenuto - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{yellowhat} chiami \texttt{aiService.yellowhat} con il contenuto - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{greenhat} chiami \texttt{aiService.greenhat} con il contenuto - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useAi & Verificare che \texttt{whitehat} chiami \texttt{aiService.whitehat} con il contenuto - verificato da \texttt{useAi.spec.ts} & S \\ \hline
+    \testU & useContextMenu & Verificare che i valori iniziali di \texttt{isOpen}, \texttt{position} e \texttt{selectedItem} siano rispettivamente \texttt{false}, \texttt{\{x:0, y:0\}} e \texttt{null} - verificato da \texttt{useContextMenu.spec.ts} & S \\ \hline
+    \testU & useContextMenu & Verificare che \texttt{open()} apra il menu con la posizione e l'elemento selezionato corretti e chiami \texttt{preventDefault()} - verificato da \texttt{useContextMenu.spec.ts} & S \\ \hline
+    \testU & useContextMenu & Verificare che \texttt{openAt()} apra il menu alle coordinate specificate con l'elemento selezionato corretto - verificato da \texttt{useContextMenu.spec.ts} & S \\ \hline
+    \testU & useContextMenu & Verificare che \texttt{close()} chiuda il menu e azzeri \texttt{selectedItem} - verificato da \texttt{useContextMenu.spec.ts} & S \\ \hline
+    \testU & useModals & Verificare che \texttt{useModals()} restituisca tutte le promise richieste (\texttt{RenamePromise}, \texttt{DeletePromise}, \texttt{ClonePromise}, \texttt{SavePromise}, \texttt{DiscardPromise}, \texttt{SaveAsPromise}) - verificato da \texttt{useModals.spec.ts} & S \\ \hline
+    \testU & useModals & Verificare che \texttt{useModals()} restituisca le stesse istanze su chiamate multiple (singleton pattern) - verificato da \texttt{useModals.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che lo stato venga fornito correttamente al componente figlio tramite \texttt{provideNoteEditor()} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{useNoteEditor()} lanci un'eccezione se utilizzato senza provider - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{loadNote()} carichi correttamente la nota quando l'id è presente, impostando \texttt{noteName}, \texttt{noteContent} e \texttt{isDirty} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{loadNote()} non carichi la nota quando l'id non è presente nel route - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{loadNote()} non carichi la nota quando l'id non è presente nell'archivio - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} chiami \texttt{storeNote()} con i parametri corretti quando la nota è nuova e imposti \texttt{isDirty} a \texttt{false} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} esegua il redirect dopo il primo salvataggio - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} non esegua il redirect dopo il primo salvataggio quando \texttt{exit} è \texttt{true} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} non esegua il redirect quando \texttt{storeNote()} restituisce \texttt{null} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} chiami \texttt{saveNote()} con i parametri corretti quando la nota esiste e imposti \texttt{isDirty} a \texttt{false} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} non esegua il redirect dopo il salvataggio di una nota esistente - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} non aggiorni lo stato quando \texttt{saveNote()} restituisce \texttt{null} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} apra \texttt{SavePromise} quando viene lanciata una \texttt{NoteNotUpdatedError} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} non esegua alcuna azione quando \texttt{SavePromise} restituisce \texttt{null} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} sovrascriva correttamente la nota quando \texttt{SavePromise} restituisce \texttt{"overwrite"} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} salvi come nuova nota quando \texttt{SavePromise} restituisce \texttt{"save as"} ed esegua il redirect - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} non esegua il redirect su \texttt{"save as"} quando \texttt{exit} è \texttt{true} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNote()} aggiorni correttamente la nota quando \texttt{SavePromise} restituisce \texttt{"update"} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNoteAs()} mostri un toast di errore quando la nota è nuova - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNoteAs()} chiami \texttt{storeNote()} con i parametri corretti ed esegua il redirect - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{saveTheNoteAs()} non esegua il redirect quando \texttt{exit} è \texttt{true} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{setEditorContent()} aggiorni correttamente \texttt{noteContent} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{exportTheNote()} chiami \texttt{exportNoteFromRaw()} con il formato corretto - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{exportTheNote()} utilizzi il nome di fallback \texttt{"Nota senza nome"} quando \texttt{noteName} è vuoto - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{exportTheNote()} utilizzi \texttt{noteName} quando è valorizzato - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{isDirty} sia \texttt{false} quando il contenuto differisce solo per \texttt{\&nbsp;} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{isDirty} sia \texttt{false} quando il contenuto differisce solo per attributi \texttt{data-v-} - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{isDirty} sia \texttt{false} quando il contenuto ha marker AI rimossi - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditor & Verificare che \texttt{isDirty} sia \texttt{true} quando il contenuto è effettivamente modificato - verificato da \texttt{useNoteEditor.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{wordCount} calcoli correttamente il numero di parole - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{charCount} calcoli correttamente il numero di caratteri - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{htmlToMarkdownText()} converta correttamente l'HTML in testo preservando la struttura dei paragrafi - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{escapeHtml()} esegua correttamente l'escape dei caratteri HTML - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{stripAiMarkers()} rimuova correttamente i marker AI dall'HTML - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{formatList()} formatti correttamente una lista non ordinata - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{formatList()} formatti correttamente una lista ordinata - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{formatList()} rimuova la formattazione di lista non ordinata quando tutte le righe sono già formattate - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{formatList()} rimuova la formattazione di lista ordinata quando tutte le righe sono già formattate - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{undoEdit()} esegua correttamente il comando \texttt{undo} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{redoEdit()} esegua correttamente il comando \texttt{redo} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{undoEdit()} e \texttt{redoEdit()} non lancino eccezioni quando \texttt{editorRef} è \texttt{null} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{setViewMode()} imposti correttamente la modalità \texttt{render} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{setViewMode()} imposti correttamente la modalità \texttt{split} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{setViewMode()} imposti correttamente la modalità \texttt{editor} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami \texttt{summarize} con il testo selezionato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami \texttt{translate} con il testo e la lingua specificati - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami \texttt{rewrite} con il testo e gli stili specificati - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami la funzione hat corretta in base all'opzione specificata - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami \texttt{distantWriting} con il testo selezionato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} mostri un toast di warning per un'azione non supportata - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} mostri un toast di warning quando l'AI restituisce un errore - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handlePaste()} chiami \texttt{preventDefault()} e inserisca il testo dagli appunti tramite \texttt{execCommand} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorInput()} chiami \texttt{setEditorContent} con il contenuto aggiornato dell'editor - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione grassetto - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione corsivo - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione sottolineato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione barrato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione commento - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione link - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione grassetto esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione corsivo esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione sottolineato esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione barrato esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione commento esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione link esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleListEnter()} continui una lista non ordinata con il simbolo bullet - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleListEnter()} continui una lista ordinata con il numero incrementato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleListEnter()} esca dalla lista quando la riga è vuota - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorKeydown()} non gestisca il tasto se non è \texttt{Enter} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorKeydown()} inserisca un'interruzione di riga con \texttt{Shift+Enter} all'interno di un blocco AI - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorKeydown()} sposti il cursore fuori dal blocco AI quando si preme \texttt{Enter} all'interno di esso - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorKeydown()} ignori \texttt{Enter} quando la selezione non è valida - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} apra il pannello AI con il testo e l'azione corretti quando è presente una selezione - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} non apra il pannello AI quando la selezione è vuota e mostri un toast di warning - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} non apra il pannello AI quando la selezione è \texttt{null} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} imposti correttamente l'azione \texttt{translate} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} imposti correttamente l'azione \texttt{distant writing} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{closeAiPanel()} chiuda il pannello AI e azzeri l'azione corrente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se \texttt{groupId} non è presente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se \texttt{lang} non è presente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} chiami \texttt{translate} usando il contenuto del blocco parent quando \texttt{sourceChildId} non è presente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} aggiorni l'elemento di contenuto con il risultato AI - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} rimuova l'attributo \texttt{data-ai-dirty} dopo una traduzione riuscita - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} nasconda il pulsante di ritraduzione dopo una traduzione riuscita - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} chiami \texttt{setEditorContent} dopo una traduzione riuscita - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} mostri un toast di warning e non aggiorni il contenuto quando l'AI restituisce un errore - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} chiami \texttt{translate} usando il contenuto del blocco sorgente figlio quando \texttt{sourceChildId} è presente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se il blocco sorgente figlio non è trovato nel DOM - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se il blocco parent non è trovato nel DOM - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se il testo sorgente del parent è vuoto - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} non esegua nulla se \texttt{editorRef} non è impostato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} non esegua nulla se \texttt{selectedRange} è \texttt{null} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} non esegua nulla se \texttt{aiResult} è vuoto - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiami \texttt{execCommand} con \texttt{insertHTML} in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa il blocco parent e il blocco child nell'HTML in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiuda il pannello AI dopo l'inserimento in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiami \texttt{setEditorContent} dopo l'inserimento in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} inverta l'ordine di parent e child nell'HTML in modalità \texttt{before} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa solo il blocco child senza parent in modalità \texttt{replace} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiuda il pannello AI dopo l'inserimento in modalità \texttt{replace} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiami \texttt{execCommand} e \texttt{insertAdjacentHTML} correttamente in modalità \texttt{bottom} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiuda il pannello AI dopo l'inserimento in modalità \texttt{bottom} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} utilizzi \texttt{escapeHtml} quando la selezione è all'interno di un blocco AI esistente in modalità \texttt{replace} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} utilizzi \texttt{insertAdjacentHTML} sul blocco AI esistente in modalità \texttt{before} quando la selezione è al suo interno - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} utilizzi \texttt{insertAdjacentHTML} sul blocco AI esistente in modalità \texttt{after} quando la selezione è al suo interno - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} inserisca i marker di commento per l'azione \texttt{distant writing} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa l'attributo \texttt{data-ai-lang} nel blocco child per l'azione \texttt{translate} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa il pulsante di ritraduzione nel blocco child per l'azione \texttt{translate} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa il blocco di uscita \texttt{data-normal-block} nell'HTML in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{wordCount} calcoli correttamente il numero di parole - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{charCount} calcoli correttamente il numero di caratteri - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{htmlToMarkdownText()} converta correttamente l'HTML in testo preservando la struttura dei paragrafi - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{escapeHtml()} esegua correttamente l'escape dei caratteri HTML - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{stripAiMarkers()} rimuova correttamente i marker AI dall'HTML - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{formatList()} formatti correttamente una lista non ordinata - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{formatList()} formatti correttamente una lista ordinata - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{formatList()} rimuova la formattazione di lista non ordinata quando tutte le righe sono già formattate - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{formatList()} rimuova la formattazione di lista ordinata quando tutte le righe sono già formattate - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{undoEdit()} esegua correttamente il comando \texttt{undo} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{redoEdit()} esegua correttamente il comando \texttt{redo} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{undoEdit()} e \texttt{redoEdit()} non lancino eccezioni quando \texttt{editorRef} è \texttt{null} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{setViewMode()} imposti correttamente la modalità \texttt{render} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{setViewMode()} imposti correttamente la modalità \texttt{split} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{setViewMode()} imposti correttamente la modalità \texttt{editor} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami \texttt{summarize} con il testo selezionato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami \texttt{translate} con il testo e la lingua specificati - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami \texttt{rewrite} con il testo e gli stili specificati - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami la funzione hat corretta in base all'opzione specificata - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} chiami \texttt{distantWriting} con il testo selezionato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} mostri un toast di warning per un'azione non supportata - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleAiRun()} mostri un toast di warning quando l'AI restituisce un errore - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handlePaste()} chiami \texttt{preventDefault()} e inserisca il testo dagli appunti tramite \texttt{execCommand} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorInput()} chiami \texttt{setEditorContent} con il contenuto aggiornato dell'editor - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione grassetto - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione corsivo - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione sottolineato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione barrato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione commento - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} applichi correttamente la formattazione link - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione grassetto esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione corsivo esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione sottolineato esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione barrato esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione commento esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{applyFormat()} rimuova la formattazione link esistente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleListEnter()} continui una lista non ordinata con il simbolo bullet - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleListEnter()} continui una lista ordinata con il numero incrementato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleListEnter()} esca dalla lista quando la riga è vuota - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorKeydown()} non gestisca il tasto se non è \texttt{Enter} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorKeydown()} inserisca un'interruzione di riga con \texttt{Shift+Enter} all'interno di un blocco AI - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorKeydown()} sposti il cursore fuori dal blocco AI quando si preme \texttt{Enter} all'interno di esso - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{handleEditorKeydown()} ignori \texttt{Enter} quando la selezione non è valida - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} apra il pannello AI con il testo e l'azione corretti quando è presente una selezione - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} non apra il pannello AI quando la selezione è vuota e mostri un toast di warning - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} non apra il pannello AI quando la selezione è \texttt{null} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} imposti correttamente l'azione \texttt{translate} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{openAiPanel()} imposti correttamente l'azione \texttt{distant writing} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{closeAiPanel()} chiuda il pannello AI e azzeri l'azione corrente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se \texttt{groupId} non è presente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se \texttt{lang} non è presente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} chiami \texttt{translate} usando il contenuto del blocco parent quando \texttt{sourceChildId} non è presente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} aggiorni l'elemento di contenuto con il risultato AI - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} rimuova l'attributo \texttt{data-ai-dirty} dopo una traduzione riuscita - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} nasconda il pulsante di ritraduzione dopo una traduzione riuscita - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} chiami \texttt{setEditorContent} dopo una traduzione riuscita - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} mostri un toast di warning e non aggiorni il contenuto quando l'AI restituisce un errore - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} chiami \texttt{translate} usando il contenuto del blocco sorgente figlio quando \texttt{sourceChildId} è presente - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se il blocco sorgente figlio non è trovato nel DOM - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se il blocco parent non è trovato nel DOM - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{retranslateAiBlock()} non esegua nulla se il testo sorgente del parent è vuoto - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} non esegua nulla se \texttt{editorRef} non è impostato - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} non esegua nulla se \texttt{selectedRange} è \texttt{null} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} non esegua nulla se \texttt{aiResult} è vuoto - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiami \texttt{execCommand} con \texttt{insertHTML} in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa il blocco parent e il blocco child nell'HTML in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiuda il pannello AI dopo l'inserimento in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiami \texttt{setEditorContent} dopo l'inserimento in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} inverta l'ordine di parent e child nell'HTML in modalità \texttt{before} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa solo il blocco child senza parent in modalità \texttt{replace} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiuda il pannello AI dopo l'inserimento in modalità \texttt{replace} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiami \texttt{execCommand} e \texttt{insertAdjacentHTML} correttamente in modalità \texttt{bottom} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} chiuda il pannello AI dopo l'inserimento in modalità \texttt{bottom} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} utilizzi \texttt{escapeHtml} quando la selezione è all'interno di un blocco AI esistente in modalità \texttt{replace} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} utilizzi \texttt{insertAdjacentHTML} sul blocco AI esistente in modalità \texttt{before} quando la selezione è al suo interno - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} utilizzi \texttt{insertAdjacentHTML} sul blocco AI esistente in modalità \texttt{after} quando la selezione è al suo interno - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} inserisca i marker di commento per l'azione \texttt{distant writing} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa l'attributo \texttt{data-ai-lang} nel blocco child per l'azione \texttt{translate} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa il pulsante di ritraduzione nel blocco child per l'azione \texttt{translate} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useNoteEditorUI & Verificare che \texttt{insertAiResult()} includa il blocco di uscita \texttt{data-normal-block} nell'HTML in modalità \texttt{after} - verificato da \texttt{useNoteEditorUI.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che il tema di default sia \texttt{system} quando \texttt{localStorage} è vuoto - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che \texttt{useTheme()} carichi correttamente il tema salvato in \texttt{localStorage} - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che la classe \texttt{dark} venga applicata quando il tema salvato è \texttt{dark} - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che la classe \texttt{dark} non venga applicata quando il tema salvato è \texttt{light} - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che \texttt{setTheme("dark")} aggiunga la classe \texttt{dark} al documento - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che \texttt{setTheme("light")} rimuova la classe \texttt{dark} dal documento - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che \texttt{setTheme()} persista il valore in \texttt{localStorage} - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che \texttt{setTheme("system")} aggiunga la classe \texttt{dark} quando \texttt{prefers-color-scheme: dark} è attivo - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che \texttt{setTheme("system")} non aggiunga la classe \texttt{dark} quando \texttt{prefers-color-scheme: dark} non è attivo - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useTheme & Verificare che \texttt{setTheme()} aggiunga la classe \texttt{disable-transitions} al cambio tema e la rimuova dopo 50ms - verificato da \texttt{useTheme.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che \texttt{successToast()} crei correttamente un toast di tipo \texttt{success} con titolo e messaggio - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che \texttt{errorToast()} crei correttamente un toast di tipo \texttt{error} - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che \texttt{warningToast()} crei correttamente un toast di tipo \texttt{warning} - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che \texttt{infoToast()} crei correttamente un toast di tipo \texttt{info} - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che un toast venga rimosso automaticamente dopo il timeout di default di 5 secondi - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che un toast di tipo \texttt{error} non venga rimosso dopo il timeout di default - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che un toast di tipo \texttt{error} venga rimosso dopo 1 ora - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che un toast venga rimosso dopo un timeout personalizzato - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che \texttt{removeToast()} rimuova correttamente il toast con l'id specificato - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & useToast & Verificare che \texttt{removeToast()} non produca effetti quando l'id specificato non esiste - verificato da \texttt{useToast.spec.ts} & S \\ \hline
+    \testU & ActionToast & Verificare che il componente renderizzi correttamente le props \texttt{title} e \texttt{message} - verificato da \texttt{ActionToast.spec.ts} & S \\ \hline
+    \testU & ActionToast & Verificare che il componente emetta l'evento \texttt{close} quando viene premuto il pulsante di chiusura - verificato da \texttt{ActionToast.spec.ts} & S \\ \hline
+    \testU & ActionToast & Verificare che il componente renderizzi i colori corretti e l'icona \texttt{IconCheck} per il toast di tipo \texttt{success} - verificato da \texttt{ActionToast.spec.ts} & S \\ \hline
+    \testU & ActionToast & Verificare che il componente renderizzi i colori corretti e l'icona \texttt{IconWarning} per il toast di tipo \texttt{warning} - verificato da \texttt{ActionToast.spec.ts} & S \\ \hline
+    \testU & ActionToast & Verificare che il componente renderizzi i colori corretti e l'icona \texttt{IconError} per il toast di tipo \texttt{error} - verificato da \texttt{ActionToast.spec.ts} & S \\ \hline
+    \testU & ActionToast & Verificare che il componente renderizzi i colori corretti e l'icona \texttt{IconInfo} per il toast di tipo \texttt{info} - verificato da \texttt{ActionToast.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente sia visibile quando la prop \texttt{open} è \texttt{true} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente sia nascosto quando la prop \texttt{open} è \texttt{false} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il titolo del pannello sia corretto per ciascuna azione (\texttt{summarize}, \texttt{rewrite}, \texttt{distant writing}, \texttt{hats}, \texttt{translate}, \texttt{null}) - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che l'etichetta del pulsante azione sia corretta per ciascuna azione (\texttt{summarize}, \texttt{rewrite}, \texttt{distant writing}, \texttt{hats}, \texttt{translate}, \texttt{null}) - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il testo selezionato venga mostrato correttamente quando presente - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che venga mostrato il placeholder quando il testo selezionato è assente - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il selettore dei cappelli sia visibile quando l'azione è \texttt{hats} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il selettore della lingua sia visibile quando l'azione è \texttt{translate} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che tutti i pulsanti degli stili di riscrittura siano visibili quando l'azione è \texttt{rewrite} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il pulsante di copia non sia visibile quando il risultato è vuoto - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il pulsante di copia sia visibile quando il risultato non è vuoto - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente emetta l'evento \texttt{close} al click sul pulsante di chiusura - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente emetta \texttt{update:hatMode} al cambio del selettore del cappello - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente emetta \texttt{update:languageMode} al cambio del selettore della lingua - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che \texttt{toggleStyle()} aggiunga uno stile se non è già presente - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che \texttt{toggleStyle()} rimuova uno stile se ne è presente più di uno - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che \texttt{toggleStyle()} non rimuova l'ultimo stile rimanente - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente non emetta \texttt{run} quando l'azione è \texttt{null} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente emetta \texttt{run} con i parametri corretti per l'azione \texttt{summarize} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente emetta \texttt{run} con l'opzione \texttt{hatMode} per l'azione \texttt{hats} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente emetta \texttt{run} con l'opzione \texttt{languageMode} per l'azione \texttt{translate} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente emetta \texttt{run} con gli stili concatenati per l'azione \texttt{rewrite} - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il click sul pulsante di copia copi il risultato negli appunti e mostri un toast di successo - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che venga mostrato un toast di errore quando la copia negli appunti fallisce - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & AsideAI & Verificare che il componente emetta \texttt{insert} con la modalità corretta per ciascun pulsante di inserimento (\texttt{before}, \texttt{after}, \texttt{replace}, \texttt{bottom}) - verificato da \texttt{AsideAI.spec.ts} & S \\ \hline
+    \testU & GeneralButton & Verificare che il componente renderizzi correttamente il testo della prop \texttt{label} e che il pulsante non sia disabilitato di default - verificato da \texttt{GeneralButton.spec.ts} & S \\ \hline
+    \testU & GeneralButton & Verificare che il pulsante risulti disabilitato quando la prop \texttt{disabled} è \texttt{true} - verificato da \texttt{GeneralButton.spec.ts} & S \\ \hline
+    \testU & GeneralButton & Verificare che il componente renderizzi correttamente il contenuto dello slot \texttt{icon} - verificato da \texttt{GeneralButton.spec.ts} & S \\ \hline
+    \testU & NoteArchiveCard & Verificare che il componente mostri correttamente il nome della nota - verificato da \texttt{NoteArchiveCard.spec.ts} & S \\ \hline
+    \testU & NoteArchiveCard & Verificare che il componente mostri correttamente la data di ultima modifica - verificato da \texttt{NoteArchiveCard.spec.ts} & S \\ \hline
+    \testU & NoteArchiveCard & Verificare che il componente mostri correttamente la data di creazione - verificato da \texttt{NoteArchiveCard.spec.ts} & S \\ \hline
+    \testU & NoteArchiveCard & Verificare che il link punti correttamente a \texttt{/notes/:id} - verificato da \texttt{NoteArchiveCard.spec.ts} & S \\ \hline
+    \testU & NoteArchiveCard & Verificare che il link utilizzi il fallback \texttt{\#} quando l'id è vuoto - verificato da \texttt{NoteArchiveCard.spec.ts} & S \\ \hline
+    \testU & NoteArchiveCard & Verificare che il componente venga renderizzato come elemento \texttt{li} - verificato da \texttt{NoteArchiveCard.spec.ts} & S \\ \hline
+    \testU & NoteEditorActions & Verificare che il click sul pulsante \texttt{Salva} chiami correttamente \texttt{saveTheNote()} - verificato da \texttt{NoteEditorActions.spec.ts} & S \\ \hline
+    \testU & NoteEditorActions & Verificare che il pulsante \texttt{Salva come..} sia disabilitato quando \texttt{isNew} è \texttt{true} - verificato da \texttt{NoteEditorActions.spec.ts} & S \\ \hline
+    \testU & NoteEditorActions & Verificare che il click sul pulsante \texttt{Esporta} apra il menu contestuale con 3 opzioni - verificato da \texttt{NoteEditorActions.spec.ts} & S \\ \hline
+    \testU & NoteEditorActions & Verificare che la selezione dell'azione \texttt{Esporta in PDF} chiami \texttt{exportTheNote()} con il formato \texttt{pdf} - verificato da \texttt{NoteEditorActions.spec.ts} & S \\ \hline
+    \testU & NoteEditorActions & Verificare che la selezione dell'azione \texttt{Esporta in HTML} chiami \texttt{exportTheNote()} con il formato \texttt{html} - verificato da \texttt{NoteEditorActions.spec.ts} & S \\ \hline
+    \testU & NoteEditorActions & Verificare che la selezione dell'azione \texttt{Esporta in MD} chiami \texttt{exportTheNote()} con il formato \texttt{md} - verificato da \texttt{NoteEditorActions.spec.ts} & S \\ \hline
+    \testU & NoteEditorActions & Verificare che il menu contestuale venga chiuso dopo l'esecuzione di un'azione - verificato da \texttt{NoteEditorActions.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che il componente renderizzi correttamente in modalità \texttt{split} mostrando sia editor che render - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che in modalità \texttt{editor} sia visibile solo l'editor e non il render - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che in modalità \texttt{render} sia visibile solo il render e non l'editor - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che il componente emetta l'evento \texttt{editor-ready} con l'elemento HTML al momento del mount - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che l'\texttt{innerHTML} dell'editor venga sincronizzato quando la prop \texttt{content} cambia - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che il componente emetta l'evento \texttt{input} quando l'utente digita nell'editor - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che il componente emetta l'evento \texttt{paste} con i dati degli appunti - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che il contenuto HTML renderizzato venga mostrato correttamente nella sezione render - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorContent & Verificare che il componente emetta l'evento \texttt{click} quando l'editor viene cliccato - verificato da \texttt{NoteEditorContent.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il componente mostri il nome della nota nell'input - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che venga mostrato lo stato \texttt{salvato} quando \texttt{isDirty} è \texttt{false} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che venga mostrato lo stato \texttt{non salvato} quando \texttt{isDirty} è \texttt{true} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che l'indicatore sia verde quando \texttt{isDirty} è \texttt{false} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che l'indicatore sia giallo quando \texttt{isDirty} è \texttt{true} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il componente emetta \texttt{update:name} con il nuovo valore quando l'input viene modificato - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il componente emetta \texttt{change-view} con il valore \texttt{editor} al click sul pulsante \texttt{Editor} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il componente emetta \texttt{change-view} con il valore \texttt{split} al click sul pulsante \texttt{Split} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il componente emetta \texttt{change-view} con il valore \texttt{render} al click sul pulsante \texttt{Render} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il pulsante \texttt{Editor} risulti attivo quando \texttt{viewMode} è \texttt{editor} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il pulsante \texttt{Split} risulti attivo quando \texttt{viewMode} è \texttt{split} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il pulsante \texttt{Render} risulti attivo quando \texttt{viewMode} è \texttt{render} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorHeader & Verificare che il pulsante \texttt{Editor} non risulti attivo quando \texttt{viewMode} è \texttt{split} - verificato da \texttt{NoteEditorHeader.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il componente mostri correttamente il conteggio delle parole - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il componente mostri correttamente il conteggio dei caratteri - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il componente emetta l'evento \texttt{undo} al click sul pulsante di annulla - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il componente emetta l'evento \texttt{redo} al click sul pulsante di ripristina - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{grassetto} emetta l'evento \texttt{format} con il valore \texttt{bold} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{italico} emetta l'evento \texttt{format} con il valore \texttt{italic} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{sottolineato} emetta l'evento \texttt{format} con il valore \texttt{underline} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{barrato} emetta l'evento \texttt{format} con il valore \texttt{strikethrough} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{commento} emetta l'evento \texttt{format} con il valore \texttt{comment} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{link} emetta l'evento \texttt{format} con il valore \texttt{link} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{elenco numerato} emetta l'evento \texttt{format} con il valore \texttt{ordered\_list} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{elenco puntato} emetta l'evento \texttt{format} con il valore \texttt{unordered\_list} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{Riassumi} emetta l'evento \texttt{ai} con il valore \texttt{summarize} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{Critica} emetta l'evento \texttt{ai} con il valore \texttt{hats} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{Traduci} emetta l'evento \texttt{ai} con il valore \texttt{translate} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{Riscrivi} emetta l'evento \texttt{ai} con il valore \texttt{rewrite} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & NoteEditorToolbar & Verificare che il click sul pulsante \texttt{Distant Writing} emetta l'evento \texttt{ai} con il valore \texttt{distant writing} - verificato da \texttt{NoteEditorToolbar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che la sidebar sia aperta (\texttt{w-64}) quando il percorso è \texttt{/} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che la sidebar sia chiusa (\texttt{w-0}) quando il percorso è \texttt{/notes/new} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che la sidebar sia chiusa (\texttt{w-0}) quando il percorso è \texttt{/notes/:id} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che \texttt{toggleSidebar()} apra la sidebar quando è chiusa - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che \texttt{toggleSidebar()} chiuda la sidebar quando è aperta - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che il pulsante \texttt{light} risulti attivo quando il tema è \texttt{light} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che il pulsante \texttt{dark} risulti attivo quando il tema è \texttt{dark} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che il pulsante \texttt{system} risulti attivo quando il tema è \texttt{system} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che il click sul pulsante \texttt{light} chiami \texttt{setTheme("light")} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che il click sul pulsante \texttt{dark} chiami \texttt{setTheme("dark")} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & AppSidebar & Verificare che il click sul pulsante \texttt{system} chiami \texttt{setTheme("system")} - verificato da \texttt{AppSidebar.spec.ts} & S \\ \hline
+    \testU & BaseModal & Verificare che il componente si monti senza errori - verificato da \texttt{BaseModal.spec.ts} & S \\ \hline
+    \testU & BaseModal & Verificare che il titolo passato tramite prop venga mostrato correttamente nello slot header di default - verificato da \texttt{BaseModal.spec.ts} & S \\ \hline
+    \testU & BaseModal & Verificare che il componente abbia l'attributo \texttt{role="dialog"} - verificato da \texttt{BaseModal.spec.ts} & S \\ \hline
+    \testU & BaseModal & Verificare che il contenuto dello slot \texttt{body} venga renderizzato correttamente - verificato da \texttt{BaseModal.spec.ts} & S \\ \hline
+    \testU & BaseModal & Verificare che il contenuto dello slot \texttt{footer} venga renderizzato correttamente - verificato da \texttt{BaseModal.spec.ts} & S \\ \hline
+    \testU & BaseModal & Verificare che lo slot \texttt{header} personalizzato sovrascriva quello di default - verificato da \texttt{BaseModal.spec.ts} & S \\ \hline
+    \testU & BaseModal & Verificare che lo slot \texttt{footer} supporti correttamente più elementi - verificato da \texttt{BaseModal.spec.ts} & S \\ \hline
+    \testU & AppLayout & Verificare che il contenitore principale del layout venga renderizzato con le classi flex corrette - verificato da \texttt{AppLayout.spec.ts} & S \\ \hline
+    \testU & AppLayout & Verificare che il componente \texttt{AppSidebar} venga renderizzato correttamente - verificato da \texttt{AppLayout.spec.ts} & S \\ \hline
+    \testU & AppLayout & Verificare che il componente \texttt{RouterView} venga renderizzato all'interno dell'elemento \texttt{main} con le classi corrette - verificato da \texttt{AppLayout.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{fetchNotes()} venga chiamato al mount del componente - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che venga mostrato lo stato di caricamento quando \texttt{loading} è \texttt{true} - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che venga mostrato il messaggio di errore quando \texttt{error} è valorizzato - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che la lista delle note venga mostrata correttamente - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che venga mostrato il conteggio al singolare quando è presente una sola nota - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che venga mostrato il conteggio al plurale quando sono presenti più note - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che la ricerca filtri correttamente le note in base alla query inserita - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che vengano mostrate tutte le note quando la query di ricerca è vuota - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che la ricerca non sia sensibile alle maiuscole - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che il menu contestuale venga aperto all'evento \texttt{contextmenu} su una nota - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{renameNote()} venga chiamato con il nuovo nome dopo che \texttt{RenamePromise} si risolve - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{renameNote()} non venga chiamato se \texttt{RenamePromise} si risolve con \texttt{null} - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{removeNote()} venga chiamato dopo che \texttt{DeletePromise} si risolve con \texttt{true} - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{removeNote()} non venga chiamato se \texttt{DeletePromise} si risolve con \texttt{false} - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{cloneNote()} venga chiamato con il nome corretto dopo che \texttt{ClonePromise} si risolve - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{exportNote()} venga chiamato con il formato \texttt{pdf} alla selezione di \texttt{Esporta in PDF} - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{exportNote()} venga chiamato con il formato \texttt{md} alla selezione di \texttt{Esporta in MD} - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{exportNote()} venga chiamato con il formato \texttt{html} alla selezione di \texttt{Esporta in HTML} - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che \texttt{importNote()} venga chiamato con il file selezionato al cambio dell'input file - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NotesArchivePage & Verificare che venga mostrato un toast di errore se nessun file è selezionato durante l'importazione - verificato da \texttt{NotesArchivePage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che \texttt{loadNote()} venga chiamato all'inizializzazione del componente - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che le classi \texttt{blur-xs} e \texttt{pointer-events-none} vengano applicate quando il pannello AI è aperto - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che le classi di blur non vengano applicate quando il pannello AI è chiuso - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che il navigation guard consenta la navigazione se la nota non è modificata - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che il navigation guard mostri il prompt di salvataggio quando la nota è modificata - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che il navigation guard chiami \texttt{saveTheNote()} e proceda con la navigazione quando l'utente sceglie \texttt{save} - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che il navigation guard annulli la navigazione quando l'utente sceglie \texttt{cancel} - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che \texttt{saveTheNote()} venga chiamato quando \texttt{NoteEditorHeader} emette l'evento \texttt{save} - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che il pannello AI venga aperto quando \texttt{NoteEditorToolbar} emette l'evento \texttt{ai} - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che il click su un elemento con attributo \texttt{data-ai-retranslate} chiami \texttt{retranslateAiBlock()} - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & NoteEditorPage & Verificare che lo stato venga aggiornato correttamente quando \texttt{AsideAI} emette gli eventi \texttt{update:hatMode}, \texttt{update:languageMode} e \texttt{update:rewriteStyle} - verificato da \texttt{NoteEditorPage.spec.ts} & S \\ \hline
+    \testU & Router & Verificare che il percorso \texttt{/} sia mappato correttamente a \texttt{NotesArchivePage} - verificato da \texttt{router.spec.ts} & S \\ \hline
+    \testU & Router & Verificare che il percorso \texttt{/notes/new} sia mappato correttamente a \texttt{NoteEditorPage} in modalità creazione - verificato da \texttt{router.spec.ts} & S \\ \hline
+    \testU & Router & Verificare che il percorso \texttt{/notes/:id} sia mappato correttamente a \texttt{NoteEditorPage} in modalità modifica con il parametro \texttt{id} corretto - verificato da \texttt{router.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{process()} chiami \texttt{apiClient.post} con l'endpoint corretto per \texttt{summarize} - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{process()} restituisca correttamente il risultato dalla risposta - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{process()} chiami l'endpoint \texttt{rewrite} con gli stili nel corpo della richiesta - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{translate()} chiami l'endpoint \texttt{/llm/translate} con la lingua specificata - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{summarize()} chiami l'endpoint \texttt{/llm/summarize} con il contenuto - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{rewrite()} chiami l'endpoint \texttt{/llm/rewrite} con il contenuto e gli stili forniti - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{redhat()} chiami l'endpoint dinamico \texttt{/llm/hat/redhat} con il contenuto - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{whitehat()} chiami l'endpoint dinamico \texttt{/llm/hat/whitehat} con il contenuto - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{yellowhat()} chiami l'endpoint dinamico \texttt{/llm/hat/yellowhat} con il contenuto - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{greenhat()} chiami l'endpoint dinamico \texttt{/llm/hat/greenhat} con il contenuto - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{blackhat()} chiami l'endpoint dinamico \texttt{/llm/hat/blackhat} con il contenuto - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{bluehat()} chiami l'endpoint dinamico \texttt{/llm/hat/bluehat} con il contenuto - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & aiService & Verificare che \texttt{distantWriting()} chiami l'endpoint \texttt{/llm/distant-writing} con il contenuto - verificato da \texttt{aiService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{getAll()} chiami \texttt{GET /notes} e restituisca le note mappate correttamente - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{getAll()} restituisca un array vuoto quando non ci sono note - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{getAll()} propaghi l'errore se la chiamata fallisce - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{get()} chiami \texttt{GET /notes/:id} e restituisca la nota con il contenuto - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{get()} propaghi l'errore se la chiamata fallisce - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{rename()} chiami \texttt{PUT /notes/:id} con il nuovo nome e restituisca la nota mappata - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{rename()} propaghi l'errore se la chiamata fallisce - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{remove()} chiami \texttt{DELETE /notes/:id} correttamente - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{remove()} propaghi l'errore se la chiamata fallisce - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{store()} chiami \texttt{POST /notes} con nome e contenuto e restituisca la nota mappata - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{store()} propaghi l'errore se la chiamata fallisce - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{update()} chiami \texttt{PUT /notes/:id} con titolo e contenuto e restituisca la nota mappata con contenuto - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{update()} propaghi l'errore se la chiamata fallisce - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{export()} chiami \texttt{GET /notes/export/:id} con il formato corretto - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{export()} utilizzi il nome file dall'header \texttt{content-disposition} - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{export()} utilizzi il nome file di fallback quando l'header \texttt{content-disposition} è assente - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{exportRaw()} chiami \texttt{POST /notes/export} con nome, contenuto e formato - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{import()} chiami \texttt{POST /notes/import} con \texttt{FormData} e restituisca la nota mappata - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & noteService & Verificare che \texttt{import()} propaghi l'errore se la chiamata fallisce - verificato da \texttt{noteService.spec.ts} & S \\ \hline
+    \testU & serviceHandler & Verificare che \texttt{serviceHandler()} restituisca il valore della funzione se non ci sono errori - verificato da \texttt{serviceHandler.spec.ts} & S \\ \hline
+    \testU & serviceHandler & Verificare che \texttt{serviceHandler()} lanci un errore con il messaggio del server se è un errore Axios con risposta - verificato da \texttt{serviceHandler.spec.ts} & S \\ \hline
+    \testU & serviceHandler & Verificare che \texttt{serviceHandler()} lanci un errore generico se l'errore Axios non ha \texttt{response} - verificato da \texttt{serviceHandler.spec.ts} & S \\ \hline
+    \testU & serviceHandler & Verificare che \texttt{serviceHandler()} lanci un errore generico se la risposta Axios non ha un messaggio - verificato da \texttt{serviceHandler.spec.ts} & S \\ \hline
+    \testU & serviceHandler & Verificare che \texttt{serviceHandler()} lanci un errore generico se la risposta Axios non ha \texttt{data} - verificato da \texttt{serviceHandler.spec.ts} & S \\ \hline
+    \testU & serviceHandler & Verificare che \texttt{serviceHandler()} lanci un errore generico se l'errore non è di tipo Axios - verificato da \texttt{serviceHandler.spec.ts} & S \\ \hline
+    \testU & serviceHandler & Verificare che \texttt{serviceHandler()} preservi la causa originale dell'errore - verificato da \texttt{serviceHandler.spec.ts} & S \\ \hline
+\end{longtable}
+
+\subsection{Test di integrazione}
+I test di integrazione servono a verificare che le componenti del sistema si integrino correttamente e in maniera efficace. L'obiettivo dei test è identificare eventuali problemi di integrazione fra le componenti del software.
+
+\newcounter{TI@}
+
+\newcommand{\testI}{%
+    \stepcounter{TI@}%
+    \noindent{TI-\arabic{TI@}}\quad\par
+}
+
+\begin{longtable}{|l|p{8cm}|p{2cm}|p{1.5cm}|}
+    \hline
+    \textbf{Test} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
+    \endfirsthead
+    \testI & Verificare che POST /api/notes restituisca 201 e persista correttamente le note create sul disco - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes restituisca 200 con la lista delle note presenti - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/\{id\} restituisca 200 con i dati corretti della nota richiesta - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che DELETE /api/notes/\{id\} restituisca 204 e rimuova correttamente il file della nota dal disco - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che PUT /api/notes/\{id\} restituisca 200 con i dati aggiornati della nota modificata - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/\{id\} restituisca 404 con messaggio "Note not found" quando la nota non esiste - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/69420 restituisca 400 con messaggio "Invalid note id" quando l'id fornito non è un UUID valido - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes restituisca 409 con messaggio "Title already used" quando si tenta di creare una nota con un titolo già esistente - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che DELETE /api/notes/\{id\} restituisca 500 con messaggio "Failed to delete" quando il repository lancia una RuntimeException durante l'eliminazione - verificato da \texttt{NoteTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\}?format=md restituisca 200 con il contenuto Markdown della nota e gli header corretti - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/export restituisca 200 con il contenuto Markdown e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI& Verificare che GET /api/notes/export/\{id\}?format=html restituisca 200 con il contenuto HTML della nota e gli header corretti - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/export restituisca 200 con il contenuto HTML e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI  & Verificare che GET /api/notes/export/\{id\}?format=pdf restituisca 200 con il contenuto PDF della nota e gli header corretti - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI  & Verificare che POST /api/notes/export restituisca 200 con il contenuto PDF e gli header corretti quando vengono forniti titolo e contenuto senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\}?format=wrong\_format restituisca 400 con messaggio "Unknown format: wrong\_format" quando viene richiesto un formato non valido con id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/export restituisca 400 con messaggio "Unknown format: wrong\_format" quando viene richiesto un formato non valido senza id - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\} restituisca 404 con messaggio "Note not found" quando la nota non esiste - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/123 restituisca 400 con messaggio "Invalid note id" quando l'id fornito non è un UUID valido - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che GET /api/notes/export/\{id\} restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ExportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/import restituisca 201 con i dati della nota creata quando viene caricato un file Markdown valido - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI  & Verificare che POST /api/notes/import restituisca 400 con messaggio "uploaded\_format format is not supported" quando il file caricato ha un formato non supportato - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/import restituisca 400 con messaggio "Title already used by another note" quando il titolo della nota importata è già in uso - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/import restituisca 500 con messaggio "Server error" quando il servizio lancia una RuntimeException inattesa - verificato da \texttt{ImportTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/notes/import restituisca 422 con messaggio "File size must not exceed 10240 KB" quando il file caricato supera la dimensione massima consentita - verificato da \texttt{ImportTest.php} & S \\ \hline
+   \testI & Verificare che POST /api/llm/summarize restituisca 200 con il risultato generato dal modello - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm/rewrite restituisca 200 con il testo riscritto utilizzando opzioni di stile valide - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm/translate restituisca 200 con il testo tradotto per una lingua valida - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm/hat/\{type\} restituisca 400 se viene fornito un "hat" non supportato - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm/translate restituisca 422 con errore "Translation in [lang] is not supported" per lingue non in whitelist - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che POST /api/llm/rewrite restituisca 422 con errore di validazione se lo stile di riscrittura non è tra quelli permessi - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \testI & Verificare che l'applicazione restituisca 502 (Bad Gateway) in caso di eccezione del servizio LLM esterno - verificato da \texttt{LlmTest.php} & S \\ \hline
+    \caption{Tabella Test di Integrazione}
+\end{longtable}
+
+
+\subsection{Test di sistema}
+I test$^G$ di sistema hanno lo scopo di verificare che il sistema software rispetti i requisiti specificati nel documento "\textit{Analisi dei Requisiti$^G$}". In seguito verranno elencati i vari test$^G$, i quali avranno un codice identificativo, una descrizione, il requisito a cui fa riferimento e lo stato del test. \\
+
+\newcounter{TS@}
+
+\newcommand{\testS}{%
+    \stepcounter{TS@}%
+    \noindent{TS-\arabic{TS@}}\quad\par
+}
+
+\begin{longtable}{|l|p{8cm}|p{2cm}|p{1.5cm}|}
+    \hline
+    \textbf{Test} & \textbf{Descrizione} & \textbf{Requisito correlato} & \textbf{Stato} \\ \hline
+    \endfirsthead
+    \hline
+    \testS & Verificare che il sistema permetta all'utente di visualizzare l'archivio delle note presenti e per ogni nota il suo nome, la data di creazione e la data dell'ultima modifica & RF-O-1 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di aprire una nota & RF-O-2 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di uscire da una nota & RF-O-3 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di creare una nuova nota & RF-O-4 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare la nota su cui sta lavorando & RF-O-5 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare una nota non ancora presente nell'archivio per la prima volta & RF-O-6 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di clonare una nota & RF-O-7 & S \\ \hline
+    \testS & Verificare che, alla clonazione di una nota, il sistema assegni automaticamente un nome di default (es. "Nota \textit{data-ora}") che l’utente può modificare & RF-O-8 & S \\ \hline
+    \testS & Verificare che il nome di default generato nella clonazione di una nota sia univoco all'interno dell'archivio e facilmente riconoscibile all'utente & RF-O-9 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di ricercare le note per nome nell'archivio & RF-O-10 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di eliminare una nota & RF-O-11 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di rinominare una nota & RF-O-12 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta & RF-O-13 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota direttamente dall'archivio & RF-O-14 & S \\ \hline
+    \testS & Verificare che l’esportazione preservi integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri & RF-O-15 & S \\ \hline
+    \testS & Verificare che l’esportazione preservi correttamente i caratteri Unicode del testo (es. accenti e simboli), senza sostituzioni o corruzione & RF-O-16 & S \\ \hline
+    \testS & Verificare che, al termine dell’esportazione, il sistema notifichi esplicitamente l’errore di esportazione all'utente & RF-O-17 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di importare una nota & RF-O-18 & S \\ \hline
+    \testS & Verificare che l’importazione preservi integralmente il contenuto testuale della nota, senza perdita o alterazione di caratteri (incl. Unicode) & RF-O-19 & S \\ \hline
+    \testS & Verificare che, in caso di file non valido o corrotto, il sistema interrompa l’importazione senza creare note parziali e notifichi chiaramente l’errore all’utente & RF-O-20 & S \\ \hline
+    \testS & Verificare che il sistema permetta all’utente di scrivere nell'editor con caratteri Unicode (es. lettere accentate e simboli) & RF-O-21 & S \\ \hline
+    \testS & Verificare che il sistema compili la sintassi Markdown  & RF-O-22 & S \\ \hline
+    \testS & Verificare che il sistema permetta la visualizzazione del documento formattato secondo la sintassi Markdown & RF-O-23 & S \\ \hline
+    \testS & Verificare che l'aggiornamento della visualizzazione formattata avvenga in un tempo adeguatamente veloce & RF-O-24 & S \\ \hline
+    \testS & Verificare che il sistema permetta di cambiare modalità di visualizzazione & RF-O-25 & S \\ \hline
+    \testS & Verificare che il sistema fornisca un'area di editing di testo in cui è possibile inserire e modificare del testo per la compilazione Markdown & RF-O-26 & S \\ \hline
+    \testS & Verificare che il sistema permetta l'applicazione di formattazioni Markdown senza scrivere manualmente la sintassi & RF-O-27 & S \\ \hline
+    \testS & Verificare che l’editor risponda all’input e alla formattazione dell’utente in modo fluido, senza ritardi percepibili durante la digitazione & RF-O-28 & S \\ \hline
+    \testS & Verificare che il sistema permetta l'applicazione e la rimozione della formattazione testo grassetto senza scrivere manualmente la sintassi & RF-O-29 & S \\ \hline
+    \testS & Verificare che il sistema permetta l'applicazione e la rimozione della formattazione testo corsivo senza scrivere manualmente la sintassi & RF-O-30 & S \\ \hline
+    \testS & Verificare che il sistema permetta l'applicazione e la rimozione della formattazione testo sottolineato senza scrivere manualmente la sintassi & RF-O-31 & S \\ \hline
+    \testS & Verificare che il sistema consenta l’applicazione e la rimozione della formattazione testo barrato senza richiedere l’inserimento manuale della sintassi & RF-O-32 & S \\ \hline
+    \testS & Verificare che il sistema consenta l'inserimento e la rimozione di link ipertestuali senza richiedere l'inserimento manuale della sintassi & RF-O-33 & S \\ \hline
+    \testS & Verificare che l’editor renda i link ipertestuali facilmente riconoscibili (es. evidenziandoli graficamente) e distinguibili dal testo normale & RF-O-34 & S \\ \hline
+    \testS & Verificare che il sistema consenta l'applicazione e la rimozione della formattazione testo commentato senza richiedere l'inserimento manuale della sintassi & RF-O-35 & S \\ \hline
+    \testS & Verificare che il sistema consenta l'inserimento di elenchi numerati & RF-O-36 & S \\ \hline
+    \testS & Verificare che il sistema consenta l'inserimento di elenchi puntati & RF-O-37 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di annullare l'ultima modifica fatta & RF-O-38 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di ripristinare la modifica precedentemente annullata & RF-O-39 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di selezionare porzioni di testo, sia tramite mouse che tastiera & RF-O-40 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di copiare il testo selezionato & RF-O-41 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di tagliare il testo selezionato & RF-O-42 & S \\ \hline
+    \testS & Verificare che l'editor faccia copiare e tagliare all'utente il testo in modo fluido, senza ritardi percepibili & RF-O-43 & S \\ \hline
+    \testS & Verificare che l'editor preservi correttamente il contenuto e la struttura del testo copiato e tagliato, senza perdita o alterazioni di caratteri & RF-O-44 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di incollare del testo nell'area di testo & RF-O-45 & S \\ \hline
+    \testS & Verificare che l'editor faccia incollare all'utente il testo in modo fluido, senza ritardi percepibili & RF-O-46 & S \\ \hline
+    \testS & Verificare che l'editor preservi e incolli correttamente il contenuto e la struttura del testo, senza perdita o alterazioni di caratteri & RF-O-47 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta in MD & RF-O-48 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota direttamente dall'archivio in MD & RF-O-49 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente della presenza di una nota con lo stesso nome in seguito al primo salvataggio & RF-O-50 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo secondo il modello dei "Sei Cappelli" & RF-O-51 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Emotiva" (Cappello Rosso) & RF-O-52 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Neutra" (Cappello Bianco) & RF-O-53 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Ottimista" (Cappello Giallo) & RF-O-54 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione dell'avvocato del Diavolo" (Cappello Nero) & RF-O-55 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Originale" (Cappello Verde) & RF-O-56 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di criticare il testo con una "Visione Logica e Strutturata" (Cappello Blu) & RF-O-57 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di riassumere del testo tramite un agente esterno & RF-O-58 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di riscrivere del testo tramite un agente esterno & RF-O-59 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di scegliere il modo in cui verrà riscritto il testo (correzione grammaticale, estensione del testo, miglioramento del lessico, variazione stilistica) & RF-O-60 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di tradurre del testo tramite un agente esterno & RF-O-61 & S \\ \hline
+    \testS & Verificare che il sistema permetta l'invio da parte dell'utente di un prompt a un agente esterno per la generazione di testo (Distant Writing) & RF-O-62 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di sostituire nell'editor il testo originale con quello generate dall'agente esterno (riassunto, riscrittura, traduzione) & RF-O-63 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di aggiungere nell'editor, in seguito alla selezione del testo originale, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & RF-O-64 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di aggiungere nell'editor, in coda a tutto il testo presente nell'editor, quello generato dall'agente esterno (riassunto, riscrittura, traduzione) & RF-O-65 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di "rifiutare" il testo generato dall'agente esterno (riassunto, riscrittura, traduzione) & RF-O-66 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di copiare negli appunti il testo generato dall'agente esterno (riassunti, riscrittura, traduzione, generazione) & RF-O-67 & S \\ \hline
+    \testS & Verificare che l'agente esterno produca testo grammaticalmente, sintatticamente e semanticamente corretto & RF-O-68 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso dell'impossibilità nell'eseguire una richiesta & RF-O-69 & S \\ \hline
+    \testS & Verificare che il sistema commenti il testo selezionato dall’utente utilizzato per interrogare la generazione (Distant Writing) & RF-O-70 & S \\ \hline
+    \testS & Verificare che, se l’utente aggiunge una traduzione a una parte del testo selezionato, il sistema lo avvisi ogni volta che il testo tradotto viene modificato & RF-O-71 & S \\ \hline
+    \testS & Verificare che il sistema consenta all’utente di aggiornare una traduzione precedentemente inserita se il testo originale è presente ed è stato modificato & RF-O-72 & S \\ \hline
+    \testS & Verificare che il sistema consenta all'utente di rimuovere una traduzione precedentemente inserita & RF-O-73 & S \\ \hline
+    \testS & Verificare che il sistema consenta all'utente di rimuovere il testo originale di una traduzione precedentemente inserita & RF-O-74 & S \\ \hline
+    \testS & Verificare che il sistema notifichi all'utente la perdita del testo originale di riferimento qualora venga eliminato, lasciando la traduzione priva di collegamento & RF-O-75 & S \\ \hline
+    \testS & Verificare che il sistema non consenta l'inserimento di una traduzione all'interno di una porzione di testo già tradotta & RF-O-76 & S \\ \hline
+    \testS & Verificare che l'agente produca traduzioni corrette nella lingua selezionata & RF-O-77 & S \\ \hline
+    \testS & Verificare che il sistema, alla chiusura di una nota, se presenti delle modifiche non salvate avvisi l'utente della presenza di modifiche & RF-O-78 & S \\ \hline
+    \testS & Verificare che il sistema in caso di problemi di connessione con l'agente esterno avvisi l'utente & RF-O-79 & S  \\ \hline
+    \testS & Verificare che, durante una richiesta alla LLM, il sistema fornisca all’utente un feedback chiaro sullo stato dell’operazione (es. indicatore di caricamento/elaborazione) fino al completamento o alla segnalazione di errore & RF-O-80 & S \\ \hline
+    \testS & Verificare che il feedback sullo stato della comunicazione con la LLM sia non bloccante ed eviti che l’utente avvii richieste duplicate inconsapevolmente & RF-O-81 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di visualizzare l'editor con il contenuto della nota dopo l'apertura di questa & RF-O-82 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di tentativo di apertura di una nota non più esistente & RF-O-83 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di fallimento dell'apertura di una nota a causa di problemi di connessione al server & RF-O-84 & S \\ \hline
+    \testS & Verificare che, in caso di tentativo di chiusura di una nota con modifiche non salvate, il sistema avvisi l'utente e chieda se desidera salvare le modifiche prima di chiudere & RF-O-85 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare le modifiche effettuate all'interno di una nota & RF-O-86 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di presenza di una versione più recente della nota aperta nell'archivio & RF-O-87 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di sovrascrivere la nota presente nell'archivio con la versione aperta in caso di conflitto di versioni & RF-O-88 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di salvare la nota aperta con un nuovo nome in caso di conflitto con la versione presente nell'archivio & RF-O-89 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di aggiornare la nota aperta con le modifiche presenti nella versione più recente nell'archivio in caso di conflitto di versioni & RF-O-90 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di errori durante il salvataggio della nota causati da problemi di connessione al server & RF-O-91 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di tentativo di clonazione di una nota non più esistente & RF-O-92 & S \\ \hline
+    \testS & Verificare che il sistema avvisi in caso di impossibilità di clonare una nota a causa di problemi di connessione al server & RF-O-93 & S \\ \hline
+    \testS & Verificare che il sistema chieda all'utente di confermare l'eliminazione di una nota & RF-O-94 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di eliminazione di una nota a causa di problemi di connessione al server & RF-O-95 & S \\ \hline
+    \testS & Verificare che il sistema impedisca all'utente di rinominare una nota con un nome già presente nell'archivio e visualizzare un messaggio di errore & RF-O-96 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di rinominare una nota a causa di problemi di connessione al server & RF-O-97 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di esportare una nota a causa di problemi di connessione al server & RF-O-98 & S \\ \hline
+    \testS & Verificare che il sistema dia la possibilità all'utente di importare una nota in formato MD & RF-O-99 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di problemi di connessione al server durante l'importazione di una nota & RF-O-100 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di inserire elementi in un elenco puntato o numerato & RF-O-101 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di rimuovere elementi da un elenco puntato o numerato & RF-O-102 & S \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di problemi di connessione con l'agente esterno durante la ritraduzione di una porzione di testo precedentemente tradotta & RF-O-103 & S \\ \hline
+    \testS & Verificare che il sistema aggiorni automaticamente i risultati della ricerca ad ogni modifica dell’input di ricerca & RF-D-1 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta in PDF & RF-D-2 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota aperta in HTML & RF-D-3 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota direttamente dall'archivio in PDF & RF-D-4 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di esportare una nota direttamente dall'archivio in HTML & RF-D-5 & S \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di utilizzare scorciatoie da tastiera per formattare il testo & RF-D-6 & x \\ \hline
+    \testS & Verificare che il sistema comunichi all'utente eventuali errori grammaticali nell'editor & RF-D-7 & x \\ \hline
+    \testS & Verificare che il sistema consenta all’utente di eseguire un minimo di 20 operazioni consecutive di annullamento e di ripristino delle modifiche sull’editor della nota corrente & RF-D-8 & x \\ \hline
+    \testS & Verificare che, in caso di incollaggio di contenuti non testuali, l’editor mantenga la reattività e mostri una notifica non bloccante che spieghi l’azione effettuata (rifiuto o conversione in testo) & RF-D-9 & x \\ \hline
+    \testS & Verificare che l'archivio si aggiorni dinamicamente con i risultati della ricerca ad ogni modifica dell’input con una risposta percepita come immediata dall’utente & RF-D-10 & S \\ \hline
+    \testS & Verificare che l'editor evidenzi in modo chiaro e distinguibile la porzione di testo utilizzato come prompt per l'interrogazione del LLM, così da renderla immediatamente riconoscibile all'utente & RF-D-11 & S \\ \hline
+    \testS & Verificare che l’aggiornamento della visualizzazione formattata non blocchi l’input dell’utente durante la digitazione & RF-D-12 & S \\ \hline
+    \testS & Verificare che il sistema aggiorni automaticamente la visualizzazione del testo formattato ad ogni modifica del Markdown, senza richiedere un’azione esplicita & RF-OP-1 & S  \\ \hline
+    \testS & Verificare che il sistema comunichi all'utente eventuali errori di sintassi nei marcatori nell'editor & RF-OP-2 & x \\ \hline
+    \testS & Verificare che l'editor permetta all'utente di interagire direttamente con la LLM tramite marcatori & RF-OP-3 & x \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di registrarsi tramite nome utente e password & RF-OP-4 & x \\ \hline
+    \testS & Verificare che, se password o nome utente non sono corrette, il sistema non permetta la registrazione & RF-OP-5 & x \\ \hline
+    \testS & Verificare che il sistema permetta all'utente di accedere al proprio account & RF-OP-6 & x \\ \hline
+    \testS & Verificare che, se password o nome utente non sono corrette, il sistema non permetta l'autenticazione & RF-OP-7 & x \\ \hline
+    \testS & Verificare che l'utente possa effettuare il logout e terminare la sessione & RF-OP-8 & x \\ \hline
+    \testS & Verificare che il sistema permetta ad un utente autenticato di eliminare il proprio account  & RF-OP-9 & x \\ \hline
+    \testS & Verificare che il sistema richieda la password dell'utente per l'eliminazione del suo account  & RF-OP-10 & x \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente che la password inserita per l'eliminazione dell'account è sbagliata  & RF-OP-11 & x \\ \hline
+    \testS & Verificare che il sistema richieda la conferma all'utente per l'eliminazione del suo account  & RF-OP-12 & x \\ \hline
+    \testS & Verificare che il sistema permetta all'utente autenticato di salvare note nel proprio account & RF-OP-13 & x \\ \hline
+    \testS & Verificare che il sistema permetta all'utente autenticato di aprire una delle note salvate nel proprio account & RF-OP-14 & x \\ \hline
+    \testS & Verificare che il sistema durante il salvataggio, nel caso in cui il DataBase non sia raggiungibile, visualizzi un messaggio d'errore & RF-OP-15 & x \\ \hline
+    \testS & Verificare che il sistema durante l'apertura di una nota, nel caso in cui il DataBase non sia raggiungibile, visualizzi un messaggio d'errore & RF-OP-16 & x \\ \hline
+    \testS & Verificare che le credenziali dell'utente siano trasmesse in modo sicuro durante l'autenticazione e la registrazione & RF-OP-17 & x \\ \hline
+    \testS & Verificare che il sistema completi una richiesta di autenticazione e registrazione in un breve lasso di tempo & RF-OP-18 & x \\ \hline
+    \testS & Verificare che il sistema non memorizzi né mostri password in chiaro & RF-OP-19 & x \\ \hline
+    \testS & Verificare che il sistema limiti ad un massimo di 3 tentativi di accesso falliti per ridurre il rischio di attacchi a forza bruta & RF-OP-20 & x \\ \hline
+    \testS & Verificare che, in caso di credenziali errate, il messaggio di errore non riveli se sia il nome utente o la password ad essere errata & RF-OP-21 & x \\ \hline
+    \testS & Verificare che i messaggi di errore in autenticazione e registrazione siano chiari e indichino all’utente come correggere l’input & RF-OP-22 & x \\ \hline
+    \testS & Verificare che i campi di inserimento credenziali forniscano feedback immediato su validità del formato (es. vincoli su nome utente/password), senza attendere l’invio del form & RF-OP-23 & x \\ \hline
+    \testS & Verificare che, dopo l’autenticazione, la sessione scada automaticamente dopo un periodo di inattività pari a 1 mese & RF-OP-24 & x \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di mancata registrazione/autenticazione dovuta a problemi di connessione al server & RF-OP-25 & x \\ \hline
+    \testS & Verificare che il sistema avvisi l'utente in caso di impossibilità di eliminazione dell'account a causa di problemi di connessione al server & RF-OP-26 & x \\ \hline
+    \caption{Tabella Test di Sistema}
+\end{longtable}
+
+\subsection{Test di accettazione}
+I test di accettazione, eseguiti in presenza del referente aziendale, hanno lo scopo per garantire che il prodotto soddisfi i requisiti obbligatori specificati nel capitolato.
+
+\newcounter{TA@}
+
+\newcommand{\testA}{%
+    \stepcounter{TA@}%
+    \noindent{TA-\arabic{TA@}}\quad\par
+}
+
+\begin{longtable}{|l|p{8cm}|p{1.5cm}|}
+    \hline
+    \textbf{Test} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
+    \endfirsthead
+    \hline
+    \testA & L'utente può aprire una nota salvata nell'archivio e visualizzarne il contenuto nell'editor & S \\ \hline
+    \testA & L'utente può importare una nota localmente ed aprirle nell'editor del programma & S \\ \hline
+    \testA & Nell'editor sono visualizzate la zona di Markdown e la zona di Render & S \\ \hline
+    \testA & L'utente può scrivere sulla zona di Markdown e visualizzare il testo renderizzato a destra & S \\ \hline
+    \testA & L'utente può formattare il testo grassetto, corsivo, sottolineato, barrato, commentato & S \\ \hline
+    \testA & L'utente può creare / togliere elenchi puntati e numerati & S \\ \hline
+    \testA & L'utente può annullare o ripristinare modifiche alla nota & S \\ \hline
+    \testA & L'utente può selezionare del testo ed interagire con il LLM & S \\ \hline
+    \testA & L'utente può riassumere il testo selezionato & S \\ \hline
+    \testA & L'utente può riscrivere il testo selezionato in vari stili & S \\ \hline
+    \testA & L'utente può criticare il testo selezionato in base ai 6 cappelli per pensare di Edward De Bono & S \\ \hline
+    \testA & L'utente può tradurre il testo selezionato in varie lingue & S \\ \hline
+    \testA & L'utente può ritradurre il testo selezionato in caso di modifiche & S \\ \hline
+    \testA & L'utente può avviare la funzionalità di \textit{Distant Writing} selezionando il testo della nota da fornire come prompt all'IA & S \\ \hline
+    \testA & L'utente può inserire prima / dopo / alla fine o sostituire il testo generato dall'IA & S \\ \hline
+    \testA & Il sistema avvisa l'utente alla modifica di un blocco generato dall'IA & S \\ \hline
+    \testA & L'utente può salvare la nota dopo aver effettuato modifiche & S \\ \hline
+    \testA & L'utente può esportare la nota in diversi formati & S \\ \hline
+    \testA & L'utente viene avvisato in caso cerca di uscire dall'editor con modifiche non salvate & S \\ \hline
+    \testA & Il sistema avvisa l'utente tramite una notifica toast in caso di errore & S \\ \hline
+    \testA & In caso di conflitto nel salvataggio, il sistema mostra all'utente varie opzioni per risolvere il conflitto & S \\ \hline
+    \testA & L'utente può rinominare una nota presente nell'archivio & S \\ \hline
+    \testA & L'utente può eliminare una nota presente nell'archivio & S \\ \hline
+    \testA & L'utente può clonare una nota presente nell'archivio & S \\ \hline
+\end{longtable}
+
+\subsection{Test di regressione}
+Per preveire problemi di regressione durante lo sviluppo, abbiamo deciso di adottare un approccio di integrazione continua: la repository del codice sorgente è stata configurata in modo che ad ogni pull request venga attivata automaticamente l'esecuzione dell'intera suite di test di unità e integrazione. Ciò permette di rilevare subito la presenza di possibili regressioni introdotte dalle modifiche effettuate, così da poter rimediare prima del merge nel branch principale.
+
+\section{Checklist}
+La verifica$^G$ tramite analisi statica è preferibile che avvenga tramite \textit{Inspection} anzichè \textit{Walkthrough$^G$}, proprio per questo motivo vengono definite delle liste di controllo (aggiornate progressivamente dai verificatori) che permettono di analizzare velocemente gli errori più comuni.
+\subsection{Documentazione}
+\subsubsection{Struttura}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Errore} & \textbf{Descrizione} \\
+\hline
+Manca la \textit{caption} per le tabelle o le immagini &
+Ogni tabella o immagine deve possedere una \textit{caption}. \\
+\hline
+Sezione vuota &
+Le sezioni vuote devono essere eliminate. \\
+\hline
+\end{tabular}
+\caption{Checklist dei possibili errori nella struttura della documentazione}
+\label{tab:checklist-struttura}
+\end{table}
+\subsubsection{Errori ortografici}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Errore} & \textbf{Descrizione} \\
+\hline
+Errore di sintassi & Errori di battitura o distrazione devono essere rimossi \\
+\hline
+Errore di coniugazione & Gli errori di coniugazione devono essere rimossi \\
+\hline
+\end{tabular}
+\caption{Checklist dei possibili errori ortografici nella documentazione}
+\label{tab:checklist-ortografia}
+\end{table}
+
+\subsubsection{Analisi dei Requisiti}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Errore} & \textbf{Descrizione} \\
+\hline
+Requisiti per un caso d'uso assenti & Ad ogni caso d'uso deve corrispondere almeno un requisito \\
+\hline
+Diagrammi dei casi d'uso erronei & I diagrammi dei casi d'uso devono riportare la corretta numerazione e nomenclatura del caso d'uso stesso e riferirsi allo stesso modo ad altri casi d'uso \\
+\hline
+\end{tabular}
+\caption{Checklist dei possibili errori per l'Analisi dei Requisiti}
+\label{tab:checklist-analisi}
+\end{table}
+
+\section{Cruscotto di valutazione della qualità}
+\subsection{PC01-EAC (Estimated at Completion)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/EAC.pdf}
+    \caption{Estimated at Completion}
+\end{figure}
+Dal grafico si osserva l'andamento dell'EAC nei tredici sprint. Nel terzo periodo il valore si mantiene al di sopra del BAC, indicando una tendenza al superamento del budget pianificato; tuttavia, la traiettoria mostra un progressivo avvicinamento alla linea di base, suggerendo un miglioramento nella gestione delle risorse. Nel settimo e ottavo periodo invece si nota uno scostamento del valore EAC oltre il limite inferiore, dovuto ad un aumento dell'efficienza da parte del gruppo. Nel decimo periodo il gruppo ha riorganizzato la distribuzione delle ore, riducendo quelle inizialmente previste per ruoli di responsabile e analista a favore di amministratore e programmatore, pur rispettando i vincoli orari stabiliti. Questa riallocazione ha comportato una diminuzione del preventivo complessivo del progetto. Al termine del decimo sprint, il progetto risulta comunque rientrato nei limiti accettabili (±5\% BAC), condizione mantenuta anche nei periodi successivi.
+
+\subsection{PC02-PV (Planned Value) e PC04-EV (Earned Value)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/EV rispetto a PV.pdf}
+    \caption{Planned Value - Earned Value}
+\end{figure}
+Il grafico mostra un andamento sostanzialmente allineato tra Planned Value (PV) ed Earned Value (EV) nel corso dei tredici sprint. Le due curve risultano quasi sovrapposte, a conferma che il gruppo sta producendo valore in linea con quanto pianificato. Questo indica una buona capacità di rispettare la pianificazione e di mantenere il ritmo di avanzamento previsto.
+
+\subsection{PC05-ETC (Estimated to Complete)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/ETC.pdf}
+    \caption{Estimated to Complete}
+\end{figure}
+Il grafico mette in relazione AC, ETC, BAC e la loro somma AC+ETC nel corso dei tredici sprint. La linea AC+ETC, che rappresenta la proiezione del costo finale, si mantiene al di sopra del BAC per i primi tre periodi, confermando un rischio di sforamento del budget stimabile intorno al 3--4\%. Tuttavia, nel quarto sprint si osserva un avvicinamento della linea AC+ETC al BAC, segnale positivo di un progressivo rientro nei costi pianificati. Dal quinto sprint in poi, la linea AC+ETC si mantiene prossima al valore desiderato (BAC). Dal settimo sprint inoltre si osserva una diminuzione della proiezione AC+ETC, risultato di un aumento della produttività del gruppo. È opportuno mantenere questo trend nei periodi conclusivi per minimizzare lo scarto finale.
+Dal decimo sprint la linea AC+ETC, grazie alla redistribuzione delle ore si trova quasi nello stesso punto della linea del BAC.
+
+\subsection{PC06-CV (Cost Variance), PC07-SV (Schedule Variance) e PC08-BV (Budget Variance)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/CV, SV, BV.pdf}
+    \caption{Cost Variance, Schedule Variance e Budget Variance}
+\end{figure}
+Il grafico illustra l'andamento delle tre varianze nei tredici sprint$^G$: al termine del terzo sprint$^G$ si osserva un avvicinamento di CV e BV al limite inferiore, dovuto al periodo di sessione universitaria parzialmente previsto; la SV è rimasta stabile, suggerendo che il team ha deliberatamente pianificato meno lavoro in quel periodo per far fronte alla sessione, contenendo il ritardo sulla pianificazione a scapito però dell'efficienza$^G$ economica. Nel quarto sprint$^G$ CV e BV recuperano correttamente, tuttavia la SV mostra un leggero decremento, indicando che il rallentamento del terzo sprint$^G$ non è stato pienamente recuperato in termini di valore prodotto. Per il quinto e sesto sprint i valori si mantengono prossimi allo zero, evidenziando un recupero efficace e un riallineamento complessivo rispetto agli obiettivi pianificati. Nel settimo e ottavo sprint inoltre si nota un innalzamento di CV e BV dovuto ad un aumento della produttività del gruppo rispetto ai periodi precedenti. Dal decimo sprint, grazie alla ridistribuzione delle ore con conseguente ricalcolo del preventivo, viene registrato un reallineamento delle varianze entro i limiti accettabili.
+
+\subsection{Indice di Gulpease}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/Andamento indice di Gulpease verbali.pdf}
+    \caption{Andamento indice di Gulpease verbali}
+\end{figure}
+I risultati mostrano che tutti i verbali analizzati superano ampiamente la soglia minima accettabile di 40 punti nell'Indice di Gulpease, attestandosi su un valore medio di circa 60, a indicare una leggibilità complessivamente buona.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/Indice di Gulpease documenti.pdf}
+    \caption{Indice di Gulpease documenti RTB}
+\end{figure}
+Il grafico illustra i valori dell'Indice di Gulpease calcolati per i documenti Analisi dei Requisiti$^G$, Norme di Progetto$^G$, Piano di Progetto$^G$, Piano di Qualifica, Manuale Utente e Specifica Tecnica. Tutti i documenti superano abbondantemente la soglia minima di 40 punti. In particolare, l'Analisi dei Requisiti$^G$ registra un valore particolarmente elevato, riconducibile alla natura stessa del documento, caratterizzato da una struttura ricca di elementi grafici (Casi d'uso$^G$) e da un uso esteso di elenchi puntati, fattori che incidono positivamente sul calcolo dell'indice.
+
+\subsection{PC15-PCTS (Percentuale dei test superati)}
+Per quanto riguarda la percentuale dei test superati, dal momento della loro introduzione nel corso dell'undicesimo periodo, il loro superamento è sempre stato verificato prima dell'effettivo merge all'interno del branch develop. A parte dunque un primo periodo in cui non era ancora completata appieno l'automazione di \textit{test coverage} all'interno del repository, si è sempre ottenuto una percentuale di test superati pari al 100\%.
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{Metrica} & \textbf{Nome} & \textbf{Valore Accettabile} & \textbf{Valore Preferibile} & \textbf{Valore ottenuto} \\
+\hline
+PC15-PCTS & Percentuale dei test superati & $\geq 80\%$ & 100\% & 100\% \\
+\hline
+\end{tabular}
+\label{tab:res-verifica}
+\end{table}
+
+\subsection{PC16-SC (Statement Coverage)}
+Lo Statement Coverage misura la percentuale di istruzioni eseguite durante l'esecuzione dei test. Si calcola come il numero di istruzioni eseguite almeno una volta rispetto al totale di istruzioni nel programma.
+Il suo scopo è assicurarsi che tutte le istruzioni nel codice vengano testate almeno una volta. \\
+Di seguito si riporta un immagine rappresentante la percentuale di Statement Coverage (sia di frontend che backend) relativa a quelle che Codecov considera come \textit{"relevant lines"}, per ciascun file contenente codice coperto da test.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{resources/Statement Coverage.png}
+    \caption{Statement Coverage}
+\end{figure}
+
+\section{Valutazioni per il miglioramento}
+Questa sezione è dedicata alla valutazione generale del lavoro, con lo scopo di inserire osservazioni sui problemi riscontrati e sulle possibili correzioni da adottare.
+\subsection{Valutazione sull'organizzazione}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3cm}|p{4cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Problema} & \textbf{Descrizione} & \textbf{Gravità} & \textbf{Soluzione} \\
+\hline
+Tracciamento temporale &
+Inizialmente è stato difficile tracciare le ore per ogni attività del ruolo coperto da ogni membro &
+Media &
+Utilizzo di issue su GitHub per suddividere ogni attività in base allo sprint, con relativo tracciamento temporale \\
+\hline
+\end{tabular}
+\caption{Valutazione sull’organizzazione}
+\label{tab:valutazione-organizzazione}
+\end{table}
+
+\subsection{Valutazione degli strumenti utilizzati}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3cm}|p{4cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Problema} & \textbf{Descrizione} & \textbf{Gravità} & \textbf{Soluzione} \\
+\hline
+Suddivisione task &
+Il gruppo ha spesso riscontrato problemi sulla divisione di task &
+Bassa &
+Creazione di sub-issue in modo da assegnare allo specifico membro la sua parte di issue da eseguire \\
+\hline
+\end{tabular}
+\caption{Valutazione degli strumenti utilizzati}
+\label{tab:valutazione-strmenti}
+\end{table}
+
+\subsection{Valutazione sui ruoli}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3cm}|p{4cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Problema} & \textbf{Descrizione} & \textbf{Gravità} & \textbf{Soluzione} \\
+\hline
+Responsabile &
+La partizione dei compiti e la gestione delle ore, prima dell'utilizzo delle issue su GitHub, era vaga e poco accurata &
+Media &
+Grazie alle issue su GitHub è possibile possibile tenere traccia delle ore impiegatate per ciascun task e quindi fare il resoconto dei costi e dei tempi rispetto al preventivo \\
+\hline
+\end{tabular}
+\caption{Valutazione sui ruoli}
+\label{tab:valutazione-ruoli}
+\end{table}
+
+\end{document}
